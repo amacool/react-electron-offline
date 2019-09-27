@@ -1,0 +1,28 @@
+{
+  "languages": [
+    {
+      "type": "AR",
+      "name": "العربية"
+    },
+    {
+      "type": "CN",
+      "name": "中文"
+    },
+    {
+      "type": "EN",
+      "name": "ENGLISH"
+    },
+    {
+      "type": "FR",
+      "name": "FRANÇAIS"
+    },
+    {
+      "type": "RU",
+      "name": "РУССКИЙ"
+    },
+    {
+      "type": "SP",
+      "name": "ESPAÑOL"
+    }
+  ]
+}

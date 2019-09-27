@@ -1,0 +1,50 @@
+{
+  "version" :  "1569400117",
+  "entryType" : [ {"EN" : {
+    "entry" : "Entity",
+    "vessel" : "Vessel",
+    "individual" : "Individual",
+    "aircraft" : "Aircraft"
+  }
+  }],
+  "language" : ["EN","AR","CH","FR","SP","RU"],
+  "applicableMeasure" : [ {"EN" : {
+    "a" : "a-en",
+    "b" : "b-en",
+    "c" : "c-en",
+    "d" : "d-en"
+  }
+  }],
+  "regime" : [ {"EN" : {
+    "R1" : "R1-EN",
+    "R2" : "R2-EN",
+    "R3" : "R3-EN"
+  }
+  }],
+  "type" : [ { "EN" : {
+    "FIRST_NAME" : "FIRST NAME",
+    "SECOND_NAME" : "SECOND NAME",
+    "FULL_NAME" : "FULL NAME"
+  }
+  }],
+  "gender" : [ { "EN" : {
+    "MALE" : "Male",
+    "FEMALE" : "Female"
+  }
+  }],
+  "livingStatus" : [ {"EN" : {
+    "alive" : "Alive",
+    "deceased" : "Deceased"
+  }
+  }],
+  "documentType" : [ {"EN" : {
+    "password" : "Passport",
+    "NIN" : "National Identification Number"
+  }
+  }],
+  "biometricType" : [{"EN" : {
+    "photo" : "Photo",
+    "eye_color" : "Eye color"
+  }
+  }]
+}

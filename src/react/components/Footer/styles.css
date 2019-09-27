@@ -1,0 +1,22 @@
+.offline-footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #efefef;
+    padding-top: 10px;
+}
+
+.footer-logo {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.footer-logo img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.footer-copyright {
+    font-size: 15px;
+    font-weight: 700;
+    color: #626262;
+}
