@@ -3,20 +3,30 @@ import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
+import TextField from "@material-ui/core/TextField/TextField";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Select from "@material-ui/core/Select/Select";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import FormControl from "@material-ui/core/FormControl/FormControl";
 
-function Names({ settings, handleSetValue }) {
+function OtherData({ settings, handleSetValue }) {
+  const categoryLabel = React.useRef(null);
+  const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
-    name: '',
-    type: '',
-    script: ''
+    gender: '',
+    livingStatus: '',
+    nationality: '',
+    title: '',
+    designations: ''
   });
-  const [state1, setState1] = React.useState({
-    name: '',
-    type: '',
-    script: ''
-  });
-  const [names, setNames] = React.useState([]);
-  const [names1, setNames1] = React.useState([]);
+  const gender = settings.gender[0];
+  const livingStatus = settings.livingStatus[0];
+  const language = 'EN';
+  console.log(gender);
+
+  React.useEffect(() => {
+    setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
+  }, []);
 
   const handleChange = name => e => {
     const value = {
@@ -26,122 +36,112 @@ function Names({ settings, handleSetValue }) {
     setState(value);
   };
 
-  const handleChange1 = name => e => {
-    const value = {
-      ...state1,
-      [name]: e.target.value
-    };
-    setState1(value);
-  };
-
-  const handleAdd = () => {
-    if (state.name === '' || state.type === '' || state.script === '') {
-      alert('Please input values!');
-      return;
-    }
-    handleSetValue([...names, { ...state, order: names.length + 1 }]);
-    setNames([...names, { ...state, order: names.length + 1 }]);
-  };
-
-  const handleAdd1 = () => {
-    if (state1.name === '' || state1.type === '' || state1.script === '') {
-      alert('Please input values!');
-      return;
-    }
-    // handleSetValue([...names, { ...state, order: names.length + 1 }]);
-    setNames1([...names1, { ...state1, order: names1.length + 1 }]);
-  };
-
   return (
     <div className="start-page Names">
       <div className="header">
-        <h5>Names</h5>
+        <h5>other data</h5>
       </div>
       <div className="content content-header">
-        <div className="custom-add-group row">
-          <div className="col-3">
-            <CustomInput
-              id="names-name"
-              label="Name"
-              required={true}
-              onChange={handleChange("name")}
+        <div className="row">
+          <div className="custom-add-group mb-50">
+            <div className="col-6 mr-15 mt-26">
+              <div className="custom-add-group mb-20">
+                <div className="col-6 mr-15">
+                  <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+                    <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
+                      Gender<b>*</b>
+                    </InputLabel>
+                    <Select
+                      value={state.gender}
+                      onChange={handleChange('gender')}
+                      labelWidth={categoryLabelWidth}
+                      inputProps={{
+                        name: 'gender',
+                        id: 'gender',
+                      }}
+                      className="custom-select"
+                      placeholder="Primary"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      {gender && Object.keys(gender[language]).map((itemKey, index) => (
+                        <MenuItem
+                          value={itemKey}
+                          key={index}
+                        >
+                          {gender[language][itemKey]}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+                <div className="col-6">
+                  <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+                    <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
+                      Living Status<b>*</b>
+                    </InputLabel>
+                    <Select
+                      value={state.livingStatus}
+                      onChange={handleChange('livingStatus')}
+                      labelWidth={categoryLabelWidth}
+                      inputProps={{
+                        name: 'living-status',
+                        id: 'living-status',
+                      }}
+                      className="custom-select"
+                      placeholder="Primary"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      {livingStatus && Object.keys(livingStatus[language]).map((itemKey, index) => (
+                        <MenuItem
+                          value={itemKey}
+                          key={index}
+                        >
+                          {livingStatus[language][itemKey]}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+              </div>
+              <div className="custom-add-group">
+                <CustomInput
+                  id="title"
+                  label="Title"
+                  required={true}
+                  onChange={handleChange("title")}
+                />
+              </div>
+            </div>
+            <div className="col-4">
+              <CustomInput
+                id="nationality"
+                label="Nationality"
+                required={true}
+                onChange={handleChange("nationality")}
+              />
+            </div>
+          </div>
+          <div className="custom-add-group">
+            <TextField
+              value={state.designations}
+              id="designations"
+              label="Designations"
+              multiline
+              rows="5"
+              onChange={handleChange('designations')}
+              className="text-field custom-textarea-control"
+              variant="outlined"
+              placeholder="Designations"
             />
           </div>
-          <div className="col-3">
-            <CustomInput
-              id="names-type"
-              label="Type"
-              required={true}
-              onChange={handleChange("type")}
-            />
-          </div>
-          <div className="col-3">
-            <CustomInput
-              id="names-script"
-              label="Script"
-              required={true}
-              onChange={handleChange("script")}
-            />
-          </div>
-          <Button
-            variant="contained"
-            className="cancel-button col-1"
-            onClick={handleAdd}
-          >
-            ADD
-          </Button>
         </div>
-      </div>
-      <div className="content content-body">
-        <CustomTable
-          header={['Name', 'Type', 'Script', 'Order']}
-          data={names}
-        />
-      </div>
-
-      <div className="content content-header">
-        <div className="custom-add-group row">
-          <div className="col-3">
-            <CustomInput
-              id="names-name1"
-              label="Name"
-              required={true}
-              onChange={handleChange1("name")}
-            />
-          </div>
-          <div className="col-3">
-            <CustomInput
-              id="names-type1"
-              label="Type"
-              required={true}
-              onChange={handleChange1("type")}
-            />
-          </div>
-          <div className="col-3">
-            <CustomInput
-              id="names-script1"
-              label="Script"
-              required={true}
-              onChange={handleChange1("script")}
-            />
-          </div>
-          <Button
-            variant="contained"
-            className="cancel-button col-1"
-            onClick={handleAdd1}
-          >
-            ADD
-          </Button>
-        </div>
-      </div>
-      <div className="content content-body">
-        <CustomTable
-          header={['Name', 'Type', 'Script', 'Order']}
-          data={names1}
-        />
       </div>
     </div>
   );
 }
 
-export default Names;
+export default OtherData;

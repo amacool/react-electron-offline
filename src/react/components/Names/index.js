@@ -58,7 +58,7 @@ function Names({ settings, handleSetValue }) {
         <h5>Names</h5>
       </div>
       <div className="content content-header">
-        <div className="custom-add-group row">
+        <div className="custom-add-group">
           <div className="col-3">
             <CustomInput
               id="names-name"
@@ -100,11 +100,11 @@ function Names({ settings, handleSetValue }) {
       </div>
 
       <div className="content content-header">
-        <div className="custom-add-group row">
+        <div className="custom-add-group">
           <div className="col-3">
             <CustomInput
               id="names-name1"
-              label="Name"
+              label="Name In Original Script"
               required={true}
               onChange={handleChange1("name")}
             />

@@ -8,6 +8,7 @@ import Information from '../../components/Information';
 import Identities from '../../components/Identities';
 import './styles.css';
 import Names from "../../components/Names";
+import OtherData from "../../components/OtherData";
 
 class Start extends Component {
 
@@ -32,8 +33,8 @@ class Start extends Component {
       },
       identityType: '',
       identities: [],
-      names: {
-      }
+      names: {},
+      otherData: {}
     };
   }
 
@@ -98,10 +99,16 @@ class Start extends Component {
             />
           </>
         ) : (
-          <Names
-            settings={settings}
-            handleSetValue={this.handleSetValue('names')}
-          />
+          <>
+            <Names
+              settings={settings}
+              handleSetValue={this.handleSetValue('names')}
+            />
+            <OtherData
+              settings={settings}
+              handleSetValue={this.handleSetValue('otherData')}
+            />
+          </>
         )}
       </div>
     );

@@ -34,12 +34,31 @@ code {
   justify-content: space-between;
   width: 100%;
 }
+.custom-add-group .col-6 {
+  width: 60%;
+}
 .custom-add-group .col-4 {
-  width: 43%;
+  width: 40%;
 }
 .custom-add-group .col-3 {
   width: 28%;
 }
 .custom-add-group .col-1 {
   width: 10%;
+}
+
+.row {
+  width: 100%;
+}
+.mr-15 {
+  margin-right: 15px;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mt-26 {
+  margin-top: 26px;
 }
