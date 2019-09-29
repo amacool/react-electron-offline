@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from "redux";
-import {changeInformation, save, saveDraft} from "../../redux/actions";
-import {withRouter} from "react-router";
+import React, { Component } from 'react';
+import { bindActionCreators } from "redux";
+import { changeInformation, save, saveDraft } from "../../redux/actions";
+import { withRouter } from "react-router";
 import connect from "react-redux/es/connect/connect";
 import axios from 'axios';
-
 import Information from '../../components/Information';
 import Identities from '../../components/Identities';
-
 import './styles.css';
+import Names from "../../components/Names";
 
 class Start extends Component {
 
@@ -24,12 +23,14 @@ class Start extends Component {
       gender: [],
       livingStatus: [],
       documentType: [],
-      biometricType: []
+      biometricType: [],
+      isIdentityMode: false
     };
     this.results = {
       information: {
         language: 'EN',
       },
+      identityType: '',
       identities: [],
       names: {
       }
@@ -68,10 +69,15 @@ class Start extends Component {
   //   });
   // };
 
-  handleSetValue = name => (val) => {
+  handleSetValue = name => val => {
     this.results[name] = val;
     console.log(this.results);
     // this.props.changeInformation({information: this.state});
+  };
+
+  setViewMode = identityType => {
+    this.setState({ isIdentityMode: true });
+    this.results.identityType = identityType;
   };
 
   render() {
@@ -79,14 +85,24 @@ class Start extends Component {
 
     return (
       <div className="Start">
-        <Information
-          settings={settings}
-          handleSetValue={this.handleSetValue('information')}
-        />
-        <Identities
-          settings={settings}
-          handleSetValue={this.handleSetValue('identities')}
-        />
+        {!settings.isIdentityMode ? (
+          <>
+            <Information
+              settings={settings}
+              handleSetValue={this.handleSetValue('information')}
+            />
+            <Identities
+              settings={settings}
+              setViewMode={this.setViewMode}
+              handleSetValue={this.handleSetValue('identities')}
+            />
+          </>
+        ) : (
+          <Names
+            settings={settings}
+            handleSetValue={this.handleSetValue('names')}
+          />
+        )}
       </div>
     );
   }

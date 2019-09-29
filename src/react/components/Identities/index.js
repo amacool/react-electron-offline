@@ -8,7 +8,7 @@ import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
 
-function Identities({ settings, handleSetValue }) {
+function Identities({ settings, handleSetValue, setViewMode }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -18,7 +18,7 @@ function Identities({ settings, handleSetValue }) {
   const [identities, setIdentities] = React.useState([]);
 
   React.useEffect(() => {
-    setCategoryLabelWidth(categoryLabel.current.offsetWidth);
+    setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
   }, []);
 
   const handleChange = name => e => {
@@ -38,23 +38,26 @@ function Identities({ settings, handleSetValue }) {
     setIdentities([...identities, state]);
   };
 
+  const handleSetIdentityType = type => {
+    setViewMode(type);
+  };
+
   return (
-    <div className="Identities">
+    <div className="start-page Identities">
       <div className="header">
         <h5>IDENTITIES</h5>
       </div>
       <div className="content content-header">
-        <div>
-          <div className="row">
+        <div className="custom-add-group row">
+          <div className="col-4">
             <CustomInput
+              id="identity-type"
               label="Identity Types"
               required={true}
               onChange={handleChange("identityType")}
             />
           </div>
-        </div>
-        <div>
-          <div className="row">
+          <div className="col-4">
             <FormControl variant="outlined" className="form-control custom-outlined-form-control">
               <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                 Category<b>*</b>
@@ -79,13 +82,20 @@ function Identities({ settings, handleSetValue }) {
               </Select>
             </FormControl>
           </div>
+          <Button
+            variant="contained"
+            className="cancel-button col-1"
+            onClick={handleAdd}
+          >
+            ADD
+          </Button>
         </div>
-        <Button variant="contained" className="cancel-button" onClick={handleAdd}>ADD</Button>
       </div>
       <div className="content content-body">
         <CustomTable
           header={['Identity Type', 'Category']}
           data={identities}
+          handleClick={handleSetIdentityType}
         />
       </div>
     </div>

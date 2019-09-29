@@ -1,14 +1,14 @@
 import React from 'react';
 import "./styles.css";
 
-export const CustomInput = ({ label, onChange, required }) => (
+export const CustomInput = ({ label, onChange, required, id }) => (
   <div className="custom-input-control">
-    <div className="custom-input-label">
+    <label className="custom-input-label" htmlFor={id}>
       {label}
       {required && <b>*</b>}
-    </div>
+    </label>
     <div className="custom-input">
-      <input type="text" onChange={onChange} />
+      <input id={id} type="text" onChange={onChange} />
     </div>
   </div>
 );

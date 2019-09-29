@@ -14,3 +14,7 @@ table.custom-table thead tr th {
     font-weight: 600;
     color: #282c34;
 }
+
+table.custom-table tbody tr {
+    cursor: pointer;
+}

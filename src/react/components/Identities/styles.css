@@ -1,34 +1,14 @@
-.Identities .header {
-    border-bottom: 2px solid #626262;
-    padding-bottom: 10px;
-}
-
-.Identities .header h5 {
-    margin: 0;
-    color: #626262;
-}
-
-.Identities .content {
-    display: flex;
-    margin: 20px 0 45px;
-    justify-content: space-between;
-}
-
 .Identities .content-body {
     border-top: 2px solid #626262;
 }
 
 .Identities .content > div {
-    width: 42%;
-}
-
-.Identities .content > div .row {
     margin-top: 35px;
 }
 
 .Identities .content button {
     height: 35px;
-    margin-top: 45px;
+    margin-top: 10px;
     background-color: #4eb6ee;
     color: white;
 }

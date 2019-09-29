@@ -1,38 +1,18 @@
-.Identities .header {
-    border-bottom: 2px solid #626262;
-    padding-bottom: 10px;
-}
-
-.Identities .header h5 {
-    margin: 0;
-    color: #626262;
-}
-
-.Identities .content {
-    display: flex;
-    margin: 20px 0 45px;
-    justify-content: space-between;
-}
-
-.Identities .content-body {
+.Names .content-body {
     border-top: 2px solid #626262;
 }
 
-.Identities .content > div {
-    width: 42%;
-}
-
-.Identities .content > div .row {
+.Names .content > div {
     margin-top: 35px;
 }
 
-.Identities .content button {
+.Names .content button {
     height: 35px;
-    margin-top: 45px;
+    margin-top: 39px;
     background-color: #4eb6ee;
     color: white;
 }
 
-.Identities .content-body table.custom-table thead tr th.thead-category {
+.Names .content-body table.custom-table thead tr th.thead-category {
     border-left: solid 1px black;
 }

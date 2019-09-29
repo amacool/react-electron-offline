@@ -1,22 +1,18 @@
-.New {
-    padding-bottom: 20px;
-    margin: 50px;
-    height: calc(100% - 100px);
-    border-bottom: 2px solid #626262;
+.Names .content-body {
+    border-top: 2px solid #626262;
 }
 
-.New .header {
-    padding: 70px;
-    text-align: center;
+.Names .content > div {
+    margin-top: 35px;
 }
 
-.New .header svg {
-    font-size: 5em;
-    fill: #4eb6ee;
+.Names .content button {
+    height: 35px;
+    margin-top: 39px;
+    background-color: #4eb6ee;
+    color: white;
 }
 
-.New p {
-    font-size: 15px;
-    font-weight: 700;
-    color: #626262;
+.Names .content-body table.custom-table thead tr th.thead-category {
+    border-left: solid 1px black;
 }

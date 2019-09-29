@@ -55,7 +55,7 @@ function Information({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="Information">
+    <div className="start-page Information">
       <div className="header">
         <h5>INFORMATION</h5>
       </div>
@@ -171,6 +171,7 @@ function Information({ settings, handleSetValue }) {
                 Applicable Measures
               </InputLabel>
               <Select
+                value={state.applicableMeasure}
                 onChange={handleChange('applicableMeasure')}
                 labelWidth={applicableMeasuresLabelWidth}
                 inputProps={{
@@ -194,15 +195,16 @@ function Information({ settings, handleSetValue }) {
           </div>
           <div className="row">
             <FormControl required variant="outlined" className="form-control">
-              <InputLabel ref={submittedByLabel} htmlFor="submittedby">
+              <InputLabel ref={submittedByLabel} htmlFor="submitted-by">
                 Submitted By
               </InputLabel>
               <Select
+                value={state.submittedBy}
                 onChange={handleChange('submittedBy')}
                 labelWidth={submittedByLabelWidth}
                 inputProps={{
-                  name: 'submitted_by',
-                  id: 'submittedby',
+                  name: 'submitted-by',
+                  id: 'submitted-by',
                 }}
               >
                 <MenuItem value="">

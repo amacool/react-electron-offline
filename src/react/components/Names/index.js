@@ -1,34 +1,37 @@
 import React from 'react';
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
+import { CustomInput } from "../common/CustomInput";
 import './styles.css';
-import TextField from "@material-ui/core/TextField/TextField";
 
-function Names({ names, handleSetValue }) {
+function Names({ settings, handleSetValue }) {
   const [state, setState] = React.useState({
     name: '',
     type: '',
     script: ''
   });
-  const items = names;
+  const [state1, setState1] = React.useState({
+    name: '',
+    type: '',
+    script: ''
+  });
+  const [names, setNames] = React.useState([]);
+  const [names1, setNames1] = React.useState([]);
 
-  const categoryLabel = React.useRef(null);
-
-  const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
-
-  React.useEffect(() => {
-    setCategoryLabelWidth(categoryLabel.current.offsetWidth);
-  }, []);
-
-  const handleChange = name => event => {
-    setState({
+  const handleChange = name => e => {
+    const value = {
       ...state,
-      [name]: event.target.value,
-    });
+      [name]: e.target.value
+    };
+    setState(value);
+  };
+
+  const handleChange1 = name => e => {
+    const value = {
+      ...state1,
+      [name]: e.target.value
+    };
+    setState1(value);
   };
 
   const handleAdd = () => {
@@ -36,64 +39,109 @@ function Names({ names, handleSetValue }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue([...items, state]);
+    handleSetValue([...names, { ...state, order: names.length + 1 }]);
+    setNames([...names, { ...state, order: names.length + 1 }]);
+  };
+
+  const handleAdd1 = () => {
+    if (state1.name === '' || state1.type === '' || state1.script === '') {
+      alert('Please input values!');
+      return;
+    }
+    // handleSetValue([...names, { ...state, order: names.length + 1 }]);
+    setNames1([...names1, { ...state1, order: names1.length + 1 }]);
   };
 
   return (
-    <div className="Names">
+    <div className="start-page Names">
       <div className="header">
         <h5>Names</h5>
       </div>
       <div className="content content-header">
-        <div>
-          <div className="row">
-            <TextField
-              id="identity-types"
-              label="Identity Types*"
-              multiline
-              onChange={handleChange("type")}
-              className="text-field custom-textarea-control custom-input-control"
-              variant="outlined"
+        <div className="custom-add-group row">
+          <div className="col-3">
+            <CustomInput
+              id="names-name"
+              label="Name"
+              required={true}
+              onChange={handleChange("name")}
             />
           </div>
-        </div>
-        <div>
-          <div className="row">
-            <FormControl variant="outlined" className="form-control custom-outlined-form-control">
-              <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
-                Category<b>*</b>
-              </InputLabel>
-              <Select
-                value={state.category}
-                onChange={handleChange('category')}
-                labelWidth={categoryLabelWidth}
-                inputProps={{
-                  name: 'category',
-                  id: 'category',
-                }}
-                className="custom-select"
-                placeholder="Primary"
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value="Ten">Ten</MenuItem>
-                <MenuItem value="Twenty">Twenty</MenuItem>
-                <MenuItem value="Thirty">Thirty</MenuItem>
-              </Select>
-            </FormControl>
+          <div className="col-3">
+            <CustomInput
+              id="names-type"
+              label="Type"
+              required={true}
+              onChange={handleChange("type")}
+            />
           </div>
+          <div className="col-3">
+            <CustomInput
+              id="names-script"
+              label="Script"
+              required={true}
+              onChange={handleChange("script")}
+            />
+          </div>
+          <Button
+            variant="contained"
+            className="cancel-button col-1"
+            onClick={handleAdd}
+          >
+            ADD
+          </Button>
         </div>
-        <Button variant="contained" className="cancel-button" onClick={handleAdd}>ADD</Button>
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Identity Type', 'Category']}
-          data={items}
+          header={['Name', 'Type', 'Script', 'Order']}
+          data={names}
+        />
+      </div>
+
+      <div className="content content-header">
+        <div className="custom-add-group row">
+          <div className="col-3">
+            <CustomInput
+              id="names-name1"
+              label="Name"
+              required={true}
+              onChange={handleChange1("name")}
+            />
+          </div>
+          <div className="col-3">
+            <CustomInput
+              id="names-type1"
+              label="Type"
+              required={true}
+              onChange={handleChange1("type")}
+            />
+          </div>
+          <div className="col-3">
+            <CustomInput
+              id="names-script1"
+              label="Script"
+              required={true}
+              onChange={handleChange1("script")}
+            />
+          </div>
+          <Button
+            variant="contained"
+            className="cancel-button col-1"
+            onClick={handleAdd1}
+          >
+            ADD
+          </Button>
+        </div>
+      </div>
+      <div className="content content-body">
+        <CustomTable
+          header={['Name', 'Type', 'Script', 'Order']}
+          data={names1}
         />
       </div>
     </div>
   );
 }
 
-export default Identities;
+export default Names;

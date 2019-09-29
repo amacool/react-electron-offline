@@ -6,7 +6,7 @@ import Table from "@material-ui/core/Table/Table";
 import React from "react";
 import "./styles.css";
 
-export const CustomTable = ({ header, data }) => (
+export const CustomTable = ({ header, data, handleClick }) => (
   <Table className="custom-table">
     <TableHead>
       <TableRow>
@@ -17,7 +17,7 @@ export const CustomTable = ({ header, data }) => (
     </TableHead>
     <TableBody>
       {data.map((row, index) => (
-        <TableRow key={index}>
+        <TableRow key={index} onClick={() => handleClick && handleClick(index)}>
           {Object.keys(row).map((item, index) => (
             <TableCell align="left" key={index}>{row[item]}</TableCell>
           ))}
