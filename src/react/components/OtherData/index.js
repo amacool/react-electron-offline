@@ -1,6 +1,4 @@
 import React from 'react';
-import Button from "@material-ui/core/Button/Button";
-import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
 import TextField from "@material-ui/core/TextField/TextField";

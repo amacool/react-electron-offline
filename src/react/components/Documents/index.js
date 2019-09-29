@@ -2,12 +2,13 @@ import React from 'react';
 import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
-import './styles.css';
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
+import Calendar from 'react-input-calendar'
+import './styles.css';
 
 function Documents({ settings, handleSetValue }) {
   const categoryLabel = React.useRef(null);
@@ -165,11 +166,10 @@ function Documents({ settings, handleSetValue }) {
               </FormControl>
             </div>
             <div className="w-34">
-              <CustomInput
-                id="issued-date"
-                label="Issued Date"
-                required={true}
-                onChange={handleChange("issuedDate")}
+              <Calendar
+                format='DD/MM/YYYY'
+                date='4-12-2014'
+                onChange={(e) => console.log(e)}
               />
             </div>
           </div>
@@ -204,6 +204,12 @@ function Documents({ settings, handleSetValue }) {
             </div>
           </div>
         </div>
+      </div>
+      <div className="content content-body">
+        <CustomTable
+          header={['Document Number', 'Document Type', 'Notes']}
+          data={documents.map((item) => ({ a: item.docNumber, b: item.docType, c: item.notes }))}
+        />
       </div>
     </div>
   );

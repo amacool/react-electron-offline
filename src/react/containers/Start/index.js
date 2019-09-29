@@ -111,7 +111,7 @@ class Start extends Component {
             />
             <Documents
               settings={settings}
-              handleSetValue={this.handleSetValue('otherData')}
+              handleSetValue={this.handleSetValue('documents')}
             />
           </>
         )}
