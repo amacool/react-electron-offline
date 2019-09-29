@@ -21,7 +21,7 @@
 .Information .content .row {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    margin: 35px 0;
 }
 
 .Information .content .col-4 {

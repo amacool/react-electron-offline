@@ -10,6 +10,29 @@
 
 .Identities .content {
     display: flex;
-    margin: 20px 0;
+    margin: 20px 0 45px;
     justify-content: space-between;
+}
+
+.Identities .content-body {
+    border-top: 2px solid #626262;
+}
+
+.Identities .content > div {
+    width: 42%;
+}
+
+.Identities .content > div .row {
+    margin-top: 35px;
+}
+
+.Identities .content button {
+    height: 35px;
+    margin-top: 45px;
+    background-color: #4eb6ee;
+    color: white;
+}
+
+.Identities .content-body table.custom-table thead tr th.thead-category {
+    border-left: solid 1px black;
 }
