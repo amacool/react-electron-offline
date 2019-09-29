@@ -34,24 +34,41 @@ code {
   justify-content: space-between;
   width: 100%;
 }
-.custom-add-group .col-6 {
-  width: 60%;
-}
-.custom-add-group .col-4 {
-  width: 40%;
-}
-.custom-add-group .col-3 {
-  width: 28%;
-}
-.custom-add-group .col-1 {
-  width: 10%;
+.custom-add-group button {
+  margin-top: 39px;
 }
 
 .row {
   width: 100%;
 }
+.col {
+  width: 100%;
+}
+.col-7 {
+  width: 70%;
+}
+.col-6 {
+  width: 60%;
+}
+.col-4 {
+  width: 40%;
+}
+.col-3 {
+  width: 30%;
+}
+.col-1 {
+  width: 10%;
+}
+.inline {
+  display: flex;
+  justify-content: space-between;
+}
+
 .mr-15 {
   margin-right: 15px;
+}
+.ml-15 {
+  margin-left: 15px;
 }
 .mb-50 {
   margin-bottom: 50px;
@@ -61,4 +78,21 @@ code {
 }
 .mt-26 {
   margin-top: 26px;
+}
+.mt-39 {
+  margin-top: 39px;
+}
+
+.w-34 {
+  width: 34%;
+}
+.w-69 {
+  width: 69%;
+}
+
+button.add-button {
+  height: 35px;
+  background-color: #4eb6ee;
+  color: white;
+  width: 80px;
 }

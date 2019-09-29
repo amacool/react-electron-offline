@@ -14,7 +14,7 @@
 }
 
 .custom-input-control .custom-input {
-    padding: 11px 10px 15px;
+    padding: 5px 10px 5px;
     border: solid 1px black;
     border-radius: 5px;
     background-color: white;
@@ -25,6 +25,6 @@
     border: none;
     width: 100%;
     outline: none;
-    padding: 0;
     color: #777;
+    padding: 10px 0;
 }

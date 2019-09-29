@@ -6,13 +6,6 @@
     margin-top: 35px;
 }
 
-.Names .content button {
-    height: 35px;
-    margin-top: 39px;
-    background-color: #4eb6ee;
-    color: white;
-}
-
 .Names .content-body table.custom-table thead tr th.thead-category {
     border-left: solid 1px black;
 }

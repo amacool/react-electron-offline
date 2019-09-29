@@ -6,9 +6,10 @@ import connect from "react-redux/es/connect/connect";
 import axios from 'axios';
 import Information from '../../components/Information';
 import Identities from '../../components/Identities';
-import './styles.css';
 import Names from "../../components/Names";
 import OtherData from "../../components/OtherData";
+import Documents from "../../components/Documents";
+import './styles.css';
 
 class Start extends Component {
 
@@ -25,7 +26,7 @@ class Start extends Component {
       livingStatus: [],
       documentType: [],
       biometricType: [],
-      isIdentityMode: false
+      isIdentityMode: true
     };
     this.results = {
       information: {
@@ -105,6 +106,10 @@ class Start extends Component {
               handleSetValue={this.handleSetValue('names')}
             />
             <OtherData
+              settings={settings}
+              handleSetValue={this.handleSetValue('otherData')}
+            />
+            <Documents
               settings={settings}
               handleSetValue={this.handleSetValue('otherData')}
             />

@@ -84,7 +84,7 @@ function Identities({ settings, handleSetValue, setViewMode }) {
           </div>
           <Button
             variant="contained"
-            className="cancel-button col-1"
+            className="add-button col-1 mt-39"
             onClick={handleAdd}
           >
             ADD

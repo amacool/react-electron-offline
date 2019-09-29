@@ -22,7 +22,6 @@ function OtherData({ settings, handleSetValue }) {
   const gender = settings.gender[0];
   const livingStatus = settings.livingStatus[0];
   const language = 'EN';
-  console.log(gender);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -34,10 +33,11 @@ function OtherData({ settings, handleSetValue }) {
       [name]: e.target.value
     };
     setState(value);
+    handleSetValue(value);
   };
 
   return (
-    <div className="start-page Names">
+    <div className="start-page OtherData">
       <div className="header">
         <h5>other data</h5>
       </div>

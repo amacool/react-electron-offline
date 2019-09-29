@@ -67,7 +67,7 @@ function Names({ settings, handleSetValue }) {
               onChange={handleChange("name")}
             />
           </div>
-          <div className="col-3">
+          <div className="col-3 mr-15 ml-15">
             <CustomInput
               id="names-type"
               label="Type"
@@ -75,7 +75,7 @@ function Names({ settings, handleSetValue }) {
               onChange={handleChange("type")}
             />
           </div>
-          <div className="col-3">
+          <div className="col-3 mr-15">
             <CustomInput
               id="names-script"
               label="Script"
@@ -85,7 +85,7 @@ function Names({ settings, handleSetValue }) {
           </div>
           <Button
             variant="contained"
-            className="cancel-button col-1"
+            className="add-button col-1 ml-15 mt-39"
             onClick={handleAdd}
           >
             ADD
@@ -109,7 +109,7 @@ function Names({ settings, handleSetValue }) {
               onChange={handleChange1("name")}
             />
           </div>
-          <div className="col-3">
+          <div className="col-3 mr-15 ml-15">
             <CustomInput
               id="names-type1"
               label="Type"
@@ -117,7 +117,7 @@ function Names({ settings, handleSetValue }) {
               onChange={handleChange1("type")}
             />
           </div>
-          <div className="col-3">
+          <div className="col-3 mr-15">
             <CustomInput
               id="names-script1"
               label="Script"
@@ -127,7 +127,7 @@ function Names({ settings, handleSetValue }) {
           </div>
           <Button
             variant="contained"
-            className="cancel-button col-1"
+            className="add-button col-1 mt-39"
             onClick={handleAdd1}
           >
             ADD
