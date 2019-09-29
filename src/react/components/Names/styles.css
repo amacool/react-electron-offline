@@ -1,22 +1,38 @@
-.New {
-    padding-bottom: 20px;
-    margin: 50px;
-    height: calc(100% - 100px);
+.Identities .header {
     border-bottom: 2px solid #626262;
+    padding-bottom: 10px;
 }
 
-.New .header {
-    padding: 70px;
-    text-align: center;
-}
-
-.New .header svg {
-    font-size: 5em;
-    fill: #4eb6ee;
-}
-
-.New p {
-    font-size: 15px;
-    font-weight: 700;
+.Identities .header h5 {
+    margin: 0;
     color: #626262;
+}
+
+.Identities .content {
+    display: flex;
+    margin: 20px 0 45px;
+    justify-content: space-between;
+}
+
+.Identities .content-body {
+    border-top: 2px solid #626262;
+}
+
+.Identities .content > div {
+    width: 42%;
+}
+
+.Identities .content > div .row {
+    margin-top: 35px;
+}
+
+.Identities .content button {
+    height: 35px;
+    margin-top: 45px;
+    background-color: #4eb6ee;
+    color: white;
+}
+
+.Identities .content-body table.custom-table thead tr th.thead-category {
+    border-left: solid 1px black;
 }

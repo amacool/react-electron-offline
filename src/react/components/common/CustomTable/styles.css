@@ -1,0 +1,16 @@
+/*table component*/
+table.custom-table {
+    min-width: 650px;
+}
+
+table.custom-table thead tr {
+    padding: 10px;
+}
+
+table.custom-table thead tr th {
+    border-bottom: solid 1px black;
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #282c34;
+}

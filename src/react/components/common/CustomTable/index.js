@@ -4,6 +4,7 @@ import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
 import Table from "@material-ui/core/Table/Table";
 import React from "react";
+import "./styles.css";
 
 export const CustomTable = ({ header, data }) => (
   <Table className="custom-table">

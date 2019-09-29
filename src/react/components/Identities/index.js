@@ -3,40 +3,39 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
+import { CustomInput } from "../common/CustomInput";
 import './styles.css';
-import TextField from "@material-ui/core/TextField/TextField";
 
-function Identities({ identities, handleSetValue }) {
+function Identities({ settings, handleSetValue }) {
+  const categoryLabel = React.useRef(null);
+  const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
-    type: '',
+    identityType: '',
     category: ''
   });
-  const items = identities;
-
-  const categoryLabel = React.useRef(null);
-
-  const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
+  const [identities, setIdentities] = React.useState([]);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current.offsetWidth);
   }, []);
 
-  const handleChange = name => event => {
-    setState({
+  const handleChange = name => e => {
+    const value = {
       ...state,
-      [name]: event.target.value,
-    });
+      [name]: e.target.value
+    };
+    setState(value);
   };
 
   const handleAdd = () => {
-    if (state.type === '' || state.category === '') {
+    if (state.identityType === '' || state.category === '') {
       alert('Please input values!');
       return;
     }
-    handleSetValue([...items, state]);
+    handleSetValue([...identities, state]);
+    setIdentities([...identities, state]);
   };
 
   return (
@@ -47,13 +46,10 @@ function Identities({ identities, handleSetValue }) {
       <div className="content content-header">
         <div>
           <div className="row">
-            <TextField
-              id="identity-types"
-              label="Identity Types*"
-              multiline
-              onChange={handleChange("type")}
-              className="text-field custom-textarea-control custom-input-control"
-              variant="outlined"
+            <CustomInput
+              label="Identity Types"
+              required={true}
+              onChange={handleChange("identityType")}
             />
           </div>
         </div>
@@ -89,7 +85,7 @@ function Identities({ identities, handleSetValue }) {
       <div className="content content-body">
         <CustomTable
           header={['Identity Type', 'Category']}
-          data={items}
+          data={identities}
         />
       </div>
     </div>

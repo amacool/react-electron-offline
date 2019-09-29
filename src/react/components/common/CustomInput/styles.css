@@ -1,0 +1,29 @@
+.custom-input-control {
+}
+
+.custom-input-control .custom-input-label {
+    font-size: 15px;
+    color: #4eb6ee;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.custom-input-control .custom-input-label b {
+    color: black;
+    font-weight: 600;
+}
+
+.custom-input-control .custom-input {
+    padding: 11px 10px 15px;
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.custom-input-control .custom-input input {
+    border: none;
+    width: 100%;
+    outline: none;
+    padding: 0;
+    color: #777;
+}

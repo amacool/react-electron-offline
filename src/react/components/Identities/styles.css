@@ -36,3 +36,7 @@
 .Identities .content-body table.custom-table thead tr th.thead-category {
     border-left: solid 1px black;
 }
+
+.Identities .content-header .custom-input-control {
+    margin-top: -27px;
+}

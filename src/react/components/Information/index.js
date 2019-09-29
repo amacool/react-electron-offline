@@ -10,10 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import './styles.css';
 import '../FormControl/styles.css';
 
-function Information(props) {
-  const handleChange = props.handleChange;
-  const state = props.state;
-
+function Information({ settings, handleSetValue }) {
   const typeLabel = React.useRef(null);
   const applicableMeasuresLabel = React.useRef(null);
   const languageLabel = React.useRef(null);
@@ -25,6 +22,20 @@ function Information(props) {
   const [languageLabelWidth, setLanguageLabelWidth] = React.useState(0);
   const [submittedByLabelWidth, setSubmittedByLabelWidth] = React.useState(0);
   const [regimeLabelWidth, setRegimeLabelWidth] = React.useState(0);
+  const [state, setState] = React.useState({
+    language: 'EN',
+    entryType: '',
+    regime: '',
+    memberStateConfidential: false,
+    applicableMeasure: '',
+    submittedBy: '',
+    entryRemarks: '',
+    reasonForListing: ''
+  });
+
+  const entryTypes = settings.entryType[0];
+  const regime = settings.regime[0];
+  const applicableMeasure = settings.applicableMeasure[0];
 
   React.useEffect(() => {
     setTypeLabelWidth(typeLabel.current.offsetWidth);
@@ -33,6 +44,15 @@ function Information(props) {
     setSubmittedByLabelWidth(submittedByLabel.current.offsetWidth);
     setRegimeLabelWidth(regimeLabel.current.offsetWidth);
   }, []);
+
+  const handleChange = name => e => {
+    const value = {
+      ...state,
+      [name]: name !== 'memberStateConfidential' ? e.target.value : e.target.checked
+    };
+    setState(value);
+    handleSetValue(value);
+  };
 
   return (
     <div className="Information">
@@ -47,21 +67,26 @@ function Information(props) {
                 Entry Type<b>*</b>
               </InputLabel>
               <Select
-                value={state.type}
-                onChange={handleChange('type')}
+                value={state.entryType}
+                onChange={handleChange('entryType')}
                 labelWidth={typeLabelWidth}
                 inputProps={{
-                  name: 'type',
-                  id: 'entry-type',
+                  name: 'language',
+                  id: 'language',
                 }}
                 className="custom-select"
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>>
+                {entryTypes && Object.keys(entryTypes[state.language]).map((itemKey, index) => (
+                  <MenuItem
+                    value={itemKey}
+                    key={index}
+                  >
+                    {entryTypes[state.language][itemKey]}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
@@ -84,7 +109,7 @@ function Information(props) {
                   <em>None</em>
                 </MenuItem>
                 {
-                  state.languages && state.languages.map((item, i) => {
+                  settings.languages.map((item, i) => {
                     return (
                       <MenuItem key={i} value={item.type}>{item.name}</MenuItem>
                     )
@@ -111,9 +136,14 @@ function Information(props) {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>>
+                {regime && Object.keys(regime[state.language]).map((itemKey, index) => (
+                  <MenuItem
+                    value={itemKey}
+                    key={index}
+                  >
+                    {regime[state.language][itemKey]}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
@@ -121,9 +151,13 @@ function Information(props) {
             <div className="custom-checkbox-control">
               <label className="custom-checkbox-label">Member state(s) confidential<b>*</b></label>
               <FormControlLabel
-                control={<Checkbox checked={state.member_conditional} color="primary"
-                                   onChange={handleChange('member_conditional')}
-                                   value={!state.member_conditional}/>}
+                control={
+                  <Checkbox
+                    color="primary"
+                    onChange={handleChange('memberStateConfidential')}
+                    value={!state.memberStateConfidential}
+                  />
+                }
                 label="Member state(s) confidential"
                 className="form-control custom-checkbox"
               />
@@ -137,8 +171,7 @@ function Information(props) {
                 Applicable Measures
               </InputLabel>
               <Select
-                value={state.applicable_measures}
-                onChange={handleChange('applicable_measures')}
+                onChange={handleChange('applicableMeasure')}
                 labelWidth={applicableMeasuresLabelWidth}
                 inputProps={{
                   name: 'applicable_measures',
@@ -148,9 +181,14 @@ function Information(props) {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>>
+                {applicableMeasure && Object.keys(applicableMeasure[state.language]).map((itemKey, index) => (
+                  <MenuItem
+                    value={itemKey}
+                    key={index}
+                  >
+                    {applicableMeasure[state.language][itemKey]}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
@@ -160,8 +198,7 @@ function Information(props) {
                 Submitted By
               </InputLabel>
               <Select
-                value={state.submitted_by}
-                onChange={handleChange('submitted_by')}
+                onChange={handleChange('submittedBy')}
                 labelWidth={submittedByLabelWidth}
                 inputProps={{
                   name: 'submitted_by',
@@ -181,12 +218,12 @@ function Information(props) {
         <div className="col-4">
           <div className="row">
             <TextField
+              value={state.entryRemarks}
               id="entry-remarks"
               label="Entry Remarks"
               multiline
               rows="5"
-              value={state.entry_remarks}
-              onChange={handleChange('entry_remarks')}
+              onChange={handleChange('entryRemarks')}
               className="text-field custom-textarea-control"
               variant="outlined"
               placeholder="Max length 500 chars"
@@ -194,12 +231,12 @@ function Information(props) {
           </div>
           <div className="row">
             <TextField
+              value={state.reasonForListing}
               id="reason-listing"
               label="Reason For Listing"
               multiline
               rows="5"
-              value={state.reason_listing}
-              onChange={handleChange('reason_listing')}
+              onChange={handleChange('reasonForListing')}
               className="text-field custom-textarea-control"
               variant="outlined"
               placeholder="Max length 500 chars"

@@ -15,21 +15,24 @@ class Start extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: '',
-      language: '',
-      regime: '',
-      applicable_measures: '',
-      submitted_by: '',
-      member_conditional: false,
-      entry_remarks: '',
-      reason_listing: '',
       languages: [],
-      identities: [
-        {
-          type: 'type1',
-          category: 'category1'
-        }
-      ],
+      entryType: [],
+      language: [],
+      applicableMeasure: [],
+      regime: [],
+      type: [],
+      gender: [],
+      livingStatus: [],
+      documentType: [],
+      biometricType: []
+    };
+    this.results = {
+      information: {
+        language: 'EN',
+      },
+      identities: [],
+      names: {
+      }
     };
   }
 
@@ -41,36 +44,47 @@ class Start extends Component {
           languages: result.data.languages
         });
       });
+
+    axios.get('/data/lookupsData.json')
+      .then(function (result) {
+        console.log(result);
+        Object.keys(result.data).forEach((itemKey) => {
+          th.setState({
+            [itemKey]: result.data[itemKey]
+          }, () => {
+            console.log(th.state);
+          });
+        });
+      });
   }
 
-  handleChange = name => event => {
-    const state = this.state;
-    this.setState({
-      ...state,
-      [name]: name === 'member_conditional' ? event.target.checked : event.target.value,
-    }, () => {
-      this.props.changeInformation({information: this.state});
-    });
-  };
+  // handleChange = name => event => {
+  //   const state = this.state;
+  //   this.setState({
+  //     ...state,
+  //     [name]: name === 'member_conditional' ? event.target.checked : event.target.value,
+  //   }, () => {
+  //     this.props.changeInformation({information: this.state});
+  //   });
+  // };
 
-  handleSetValue = name => val => {
-    this.setState({
-      ...this.state,
-      [name]: val
-    });
+  handleSetValue = name => (val) => {
+    this.results[name] = val;
+    console.log(this.results);
+    // this.props.changeInformation({information: this.state});
   };
 
   render() {
-    const state = this.state;
+    const settings = this.state;
 
     return (
       <div className="Start">
         <Information
-          state={state}
-          handleChange={this.handleChange}
+          settings={settings}
+          handleSetValue={this.handleSetValue('information')}
         />
         <Identities
-          identities={state.identities}
+          settings={settings}
           handleSetValue={this.handleSetValue('identities')}
         />
       </div>

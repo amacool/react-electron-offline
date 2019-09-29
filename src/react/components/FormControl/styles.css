@@ -2,38 +2,47 @@
 .custom-outlined-form-control {
 
 }
+
 .custom-outlined-form-control label.custom-select-label {
     font-size: 15px;
     color: #4eb6ee;
     font-weight: 500;
     transform: translate(0px, -25px) scale(0.9);
 }
+
 .custom-outlined-form-control label.custom-select-label b {
     color: black;
 }
+
 .MuiInputLabel-outlined.MuiInputLabel-shrink.custom-select-label {
     transform: translate(0px, -25px) scale(0.9);
 }
+
 .custom-outlined-form-control .custom-select {
 }
+
 .custom-outlined-form-control .custom-select > div {
     padding: 14px;
     font-size: 13px;
     color: #777;
     z-index: 1;
 }
+
 .custom-outlined-form-control .custom-select svg {
     color: #4eb6ee;
     z-index: 1;
 }
+
 .custom-outlined-form-control .custom-select fieldset {
     border-color: black;
     background: white;
     top: 0;
 }
+
 .custom-outlined-form-control .custom-select .MuiOutlinedInput-notchedOutline {
     border: solid 1px black !important;
 }
+
 .custom-outlined-form-control .custom-select fieldset legend {
     display: none;
 }
@@ -42,17 +51,21 @@
 .custom-checkbox-control {
 
 }
+
 .custom-checkbox-control .custom-checkbox-label {
     font-weight: 500;
     color: #4eb6ee;
     font-size: 15px;
 }
+
 .custom-checkbox-control .custom-checkbox {
     font-size: 13px;
 }
+
 .custom-checkbox-control .custom-checkbox span:first-child {
     color: #777;
 }
+
 .custom-checkbox-control .custom-checkbox span:last-child {
     font-size: 13px;
     color: #777;
@@ -62,48 +75,31 @@
 .custom-textarea-control {
     background-color: white;
 }
+
 .custom-textarea-control > label {
     font-size: 15px;
     color: #4eb6ee;
     transform: translate(0px, -25px) scale(0.9);
 }
+
 .custom-textarea-control > label.MuiInputLabel-outlined.MuiInputLabel-shrink {
     transform: translate(0px, -25px) scale(0.9);
     color: #4eb6ee;
 }
+
 .custom-textarea-control textarea {
     font-size: 13px;
 }
+
 .custom-textarea-control fieldset {
     border-color: black;
     top: 0;
 }
+
 .custom-textarea-control .MuiOutlinedInput-notchedOutline {
     border: solid 1px black !important;
 }
+
 .custom-textarea-control fieldset legend {
     display: none;
-}
-
-/*text input control*/
-.custom-input-control > div {
-    padding: 14px;
-    color: #777;
-}
-
-/*table component*/
-table.custom-table {
-    min-width: 650px;
-}
-
-table.custom-table thead tr {
-    padding: 10px;
-}
-
-table.custom-table thead tr th {
-    border-bottom: solid 1px black;
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-weight: 600;
-    color: #282c34;
 }
