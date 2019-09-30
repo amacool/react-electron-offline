@@ -26,7 +26,7 @@ class Start extends Component {
       livingStatus: [],
       documentType: [],
       biometricType: [],
-      isIdentityMode: true
+      isIdentityMode: false
     };
     this.results = {
       information: {

@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="439823f8-1106-4de8-93bb-72e4cf0e483f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/react/components/common/CustomDatePicker/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/react/components/common/CustomDatePicker/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react/components/Documents/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/Documents/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/components/Names/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/Names/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/components/OtherData/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/OtherData/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/components/common/CustomTable/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/common/CustomTable/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/react/containers/Main/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/containers/Main/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react/containers/Start/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/containers/Start/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -23,13 +24,14 @@
     <session id="-749956836">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.19" value="1" />
-          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -39,38 +41,38 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="32" />
+          <entry key="css" value="33" />
           <entry key="env" value="1" />
-          <entry key="js" value="37" />
-          <entry key="json" value="5" />
+          <entry key="js" value="39" />
+          <entry key="json" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="32" />
-          <entry key="JSON" value="5" />
-          <entry key="JavaScript" value="37" />
+          <entry key="CSS" value="33" />
+          <entry key="JSON" value="6" />
+          <entry key="JavaScript" value="39" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="2" />
+          <entry key="ESLintLanguageService" value="4" />
           <entry key="TypeScriptServerServiceImpl" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="1834" />
-          <entry key="js" value="6100" />
+          <entry key="css" value="2038" />
+          <entry key="js" value="6466" />
           <entry key="json" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="1834" />
+          <entry key="CSS" value="2038" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="6100" />
+          <entry key="JavaScript" value="6466" />
         </counts>
       </usages-collector>
     </session>
@@ -79,20 +81,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.6073501">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="147">
-                  <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/react/components/Names/styles.css">
-              <provider selected="true" editor-type-id="text-editor">
                 <state>
-                  <caret column="22" selection-start-column="22" selection-end-column="22" />
+                  <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
                 </state>
               </provider>
             </entry>
@@ -100,17 +93,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/react/containers/Main/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
+                <state relative-caret-position="1176">
                   <caret line="66" column="37" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/react/containers/Start/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
-                  <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+                <state relative-caret-position="285">
+                  <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -121,8 +114,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/react/components/OtherData/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="136" column="14" selection-start-line="136" selection-start-column="14" selection-end-line="136" selection-end-column="14" />
+                <state relative-caret-position="93">
+                  <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -133,7 +126,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/react/components/Identities/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="11">
+                <state relative-caret-position="555">
                   <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
@@ -145,8 +138,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/react/components/Documents/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="310">
-                  <caret line="171" column="48" selection-start-line="171" selection-start-column="48" selection-end-line="171" selection-end-column="48" />
+                <state relative-caret-position="611">
+                  <caret line="208" column="20" lean-forward="true" selection-start-line="208" selection-start-column="20" selection-end-line="208" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -155,10 +148,22 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/node_modules/react-input-calendar/dist/index.js">
+            <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomDatePicker/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="436">
-                  <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+                <state relative-caret-position="315">
+                  <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomInput/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
                 </state>
               </provider>
             </entry>
@@ -175,7 +180,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/index.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-13">
+                <state relative-caret-position="1533">
                   <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
                 </state>
               </provider>
@@ -184,12 +189,21 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/react/components/FormControl/styles.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="284">
-                  <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+                <state relative-caret-position="158">
+                  <caret line="72" column="19" lean-forward="true" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomDatePicker/styles.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="93">
+                  <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
@@ -200,10 +214,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>map</find>
-      <find>offsetwi</find>
-      <find>typeLabel</find>
-      <find>typelabel</find>
       <find>.Start .text-field</find>
       <find>CustomTable</find>
       <find>Identities</find>
@@ -230,6 +240,10 @@
       <find>date</find>
       <find>Calendar</find>
       <find>moment-rang</find>
+      <find>main-container</find>
+      <find>.main .main-container .top</find>
+      <find>CustomDatePicker</find>
+      <find>main-container .top</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -264,10 +278,13 @@
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/react/components/common/CustomTable/styles.css" />
         <option value="$PROJECT_DIR$/src/react/components/Names/styles.css" />
-        <option value="$PROJECT_DIR$/src/react/containers/Start/index.js" />
-        <option value="$PROJECT_DIR$/src/react/components/Documents/index.js" />
         <option value="$PROJECT_DIR$/src/react/components/OtherData/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/react/components/Documents/index.js" />
+        <option value="$PROJECT_DIR$/src/react/components/common/CustomDatePicker/index.css" />
+        <option value="$PROJECT_DIR$/src/react/components/common/CustomDatePicker/index.js" />
+        <option value="$PROJECT_DIR$/src/react/components/common/CustomDatePicker/styles.css" />
+        <option value="$PROJECT_DIR$/src/react/containers/Start/index.js" />
       </list>
     </option>
   </component>
@@ -303,30 +320,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="offlineapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="offlineapp" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="offlineapp" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="react-input-calendar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="offlineapp" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="react-input-calendar" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
@@ -364,6 +364,15 @@
               <item name="react" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="offlineapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="react" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="CustomDatePicker" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
@@ -456,15 +465,17 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../cm_frontend" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="E:\web\React\offlineapp\node_modules\eslint" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
   </component>
@@ -502,20 +513,21 @@
       <workItem from="1569694567738" duration="1661000" />
       <workItem from="1569707075350" duration="4755000" />
       <workItem from="1569737929566" duration="44211000" />
+      <workItem from="1569799466341" duration="45000" />
+      <workItem from="1569823358044" duration="3673000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56369000" />
+    <option name="totallyTimeSpent" value="60087000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17979905" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17979905" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -525,8 +537,9 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4976203" visible="true" weight="0.26927373" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5023797" side_tool="true" visible="true" weight="0.26927373" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49656266" visible="true" weight="0.26815644" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50343734" side_tool="true" visible="true" weight="0.26815644" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -547,21 +560,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/react/containers/Home/home.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/react/containers/New/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -569,9 +573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -592,9 +593,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -605,23 +603,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomInput/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -629,9 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -646,16 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-236">
           <caret line="222" column="40" lean-forward="true" selection-start-line="222" selection-start-column="40" selection-end-line="222" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/components/FormControl/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -663,9 +635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="129" column="45" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -700,29 +669,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/components/Identities/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11">
-          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomTable/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-scripts/node_modules/babel-loader/lib/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/react/components/Names/styles.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -733,28 +681,84 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/react/containers/Main/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="1176">
           <caret line="66" column="37" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/containers/Start/index.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/react-input-calendar/dist/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+        <state relative-caret-position="1134">
+          <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomTable/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1533">
+          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/Identities/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-scripts/node_modules/babel-loader/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/react/components/OtherData/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="136" column="14" selection-start-line="136" selection-start-column="14" selection-end-line="136" selection-end-column="14" />
+        <state relative-caret-position="93">
+          <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomInput/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="27" column="63" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/FormControl/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="72" column="19" lean-forward="true" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomDatePicker/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomDatePicker/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -763,25 +767,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/react/components/Documents/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="171" column="48" selection-start-line="171" selection-start-column="48" selection-end-line="171" selection-end-column="48" />
+        <state relative-caret-position="611">
+          <caret line="208" column="20" lean-forward="true" selection-start-line="208" selection-start-column="20" selection-end-line="208" selection-end-column="20" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-input-calendar/dist/index.js">
+    <entry file="file://$PROJECT_DIR$/src/react/containers/Start/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        <state relative-caret-position="285">
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
