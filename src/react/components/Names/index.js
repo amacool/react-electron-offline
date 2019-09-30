@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
+import { ThreeDots } from "../common/Icons/ThreeDots";
 
 function Names({ settings, handleSetValue }) {
   const [state, setState] = React.useState({
@@ -138,7 +139,7 @@ function Names({ settings, handleSetValue }) {
         <CustomTable
           header={['Name', 'Type', 'Script', 'Order']}
           data={names1}
-          extraCell={{ title: '', content: <i className="extra-content fa fa-dots" /> }}
+          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
         />
       </div>
     </div>

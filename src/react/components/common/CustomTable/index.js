@@ -25,7 +25,7 @@ export const CustomTable = ({ header, data, handleClick, extraCell }) => (
             <TableCell align="left" key={index}>{row[item]}</TableCell>
           ))}
           {extraCell && (
-            <TableCell align="left" key='appendix'>{extraCell.content}</TableCell>
+            <TableCell align="right" key='appendix'>{extraCell.content}</TableCell >
           )}
         </TableRow>
       ))}

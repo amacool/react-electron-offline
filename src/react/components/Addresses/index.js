@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
+import { ThreeDots } from "../common/Icons/ThreeDots";
 
 function Addresses({ settings, handleSetValue }) {
   const categoryLabel = React.useRef(null);
@@ -206,6 +207,7 @@ function Addresses({ settings, handleSetValue }) {
               c: item.notes
             })
           )}
+          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
         />
       </div>
     </div>

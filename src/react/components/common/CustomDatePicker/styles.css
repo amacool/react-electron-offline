@@ -1,33 +1,45 @@
-.custom-date-picker {
+.custom-date-picker {}
 
-}
 .custom-date-picker label {
-    color: #4eb6ee;
-    font-weight: 600;
+  color: #4eb6ee;
+  font-weight: 600;
 }
+
 .custom-date-picker label b {
-    color: black;
+  color: black;
 }
-.custom-date-picker > div {
-    margin-top: 5px;
-    border: solid 1px black;
-    border-radius: 4px;
-    padding: 0 10px;
-    outline: none;
-    background: white;
-    display: flex;
-    align-items: center;
+
+.custom-date-picker div.DayPickerInput {
+  margin-top: 5px;
+  border: solid 1px black;
+  border-radius: 4px;
+  padding: 0 10px;
+  outline: none;
+  background: white;
+  display: block;
+  align-items: center;
 }
+
 .custom-date-picker > div input {
-    border: none;
-    padding: 15px 0;
-    width: 100%;
-    outline: none;
-    color: #777;
+  border: none;
+  padding: 15px 0;
+  width: 100%;
+  outline: none;
+  color: #777;
 }
-.custom-date-picker > div > div {
-    position: relative;
-    margin-left: -262px;
-    margin-top: 45px;
-    width: 100%;
+
+.custom-date-picker > div > div > div {
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+  left: 0;
+}
+
+.custom-date-picker .calendar-icon {
+  width: 20px;
+  float: right;
+  margin-top: -32px;
+  margin-right: 10px;
+  z-index: 10;
+  position: relative;
 }

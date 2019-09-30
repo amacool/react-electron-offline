@@ -3,13 +3,10 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-
 import './styles.css';
 import '../FormControl/styles.css';
-import {CustomCheckbox} from "../common/CustomCheckbox";
+import { CustomCheckbox } from "../common/CustomCheckbox";
 
 function Information({ settings, handleSetValue }) {
   const typeLabel = React.useRef(null);

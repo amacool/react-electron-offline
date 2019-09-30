@@ -11,6 +11,7 @@ import OtherData from "../../components/OtherData";
 import Documents from "../../components/Documents";
 import Addresses from "../../components/Addresses";
 import PlacesOfBirth from "../../components/PlacesOfBirth";
+import DatesOfBirth from "../../components/DatesOfBirth";
 import './styles.css';
 
 class Start extends Component {
@@ -123,7 +124,11 @@ class Start extends Component {
             />
             <PlacesOfBirth
               settings={settings}
-              handleSetValue={this.handleSetValue('addresses')}
+              handleSetValue={this.handleSetValue('placesOfBirth')}
+            />
+            <DatesOfBirth
+              settings={settings}
+              handleSetValue={this.handleSetValue('datesOfBirth')}
             />
           </>
         )}

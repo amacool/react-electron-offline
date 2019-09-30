@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomDatePicker } from "../common/CustomDatePicker";
+import { ThreeDots } from "../common/Icons/ThreeDots";
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
@@ -208,6 +209,7 @@ function Documents({ settings, handleSetValue }) {
         <CustomTable
           header={['Document Number', 'Document Type', 'Notes']}
           data={documents.map((item) => ({ a: item.docNumber, b: item.docType, c: item.notes }))}
+          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
         />
       </div>
     </div>
