@@ -13,6 +13,7 @@ import Addresses from "../../components/Addresses";
 import PlacesOfBirth from "../../components/PlacesOfBirth";
 import DatesOfBirth from "../../components/DatesOfBirth";
 import './styles.css';
+import Features from "../../components/Features";
 
 class Start extends Component {
 
@@ -129,6 +130,10 @@ class Start extends Component {
             <DatesOfBirth
               settings={settings}
               handleSetValue={this.handleSetValue('datesOfBirth')}
+            />
+            <Features
+              settings={settings}
+              handleSetValue={this.handleSetValue('features')}
             />
           </>
         )}
