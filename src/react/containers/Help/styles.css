@@ -1,5 +1,61 @@
 .Help {
-    margin: 50px;
-    height: calc(100% - 100px);
-    border-bottom: 2px solid #626262;
+  height: calc(100% - 100px);
+  padding: 50px;
+  background-color: white;
+}
+
+.Help .container {
+  border-bottom: 2px solid #626262;
+  height: 100%;
+}
+
+.Help .header {
+  border-bottom: 1px solid #626262;
+  padding-bottom: 10px;
+}
+
+.Help .content-body {
+  height: 669px;
+  overflow-y: auto;
+  margin: 30px 0;
+}
+
+.Help .content-body ul {
+  text-decoration: underline;
+  list-style: none;
+  font-size: 14px;
+}
+
+.Help .content-body ul li {
+  margin-bottom: 20px;
+}
+
+.Help .content-body ul li::before {
+  content: "\2022";
+  color: #4eb6ee;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  font-size: 18px;
+}
+
+.Help .content-body ul li div:first-child {
+  font-weight: 600;
+  display: inline;
+}
+
+.Help .content-body::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+.Help .content-body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+  background-color: #efefef;
+  width: 1px;
+}
+
+.Help .content-body::-webkit-scrollbar-thumb {
+  background-color: #4eb6ee;
 }

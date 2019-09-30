@@ -112,7 +112,7 @@
 }
 
 .main .main-container {
-    border-left: 2px solid #4eb6ee;
+    border-left: 3px solid #4eb6ee;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -122,7 +122,7 @@
     flex: 8 1;
     background: #efefef;
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .main .main-container .bottom {
