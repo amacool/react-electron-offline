@@ -49,12 +49,13 @@ class Main extends Component {
             }
           </div>
           <div className="bottom">
+            Version 0.1.0 <br />
             <div className="bottom-logo">
               <img src={logo} alt="bottom logo"/>
               UNITED NATIONS
             </div>
             <span className="bottom-copyright">
-              Copyright © United Nations 2019
+              v.0.1.0 Copyright © United Nations 2019
             </span>
           </div>
         </div>
