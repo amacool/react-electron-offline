@@ -7,39 +7,43 @@ import TextField from '@material-ui/core/TextField';
 import './styles.css';
 import '../FormControl/styles.css';
 import { CustomCheckbox } from "../common/CustomCheckbox";
+import { CustomMultiSelect } from "../common/CustomMultiSelect";
 
 function Information({ settings, handleSetValue }) {
   const typeLabel = React.useRef(null);
-  const applicableMeasuresLabel = React.useRef(null);
   const languageLabel = React.useRef(null);
-  const submittedByLabel = React.useRef(null);
   const regimeLabel = React.useRef(null);
 
   const [typeLabelWidth, setTypeLabelWidth] = React.useState(0);
-  const [applicableMeasuresLabelWidth, setApplicableMeasuresLabelWidth] = React.useState(0);
   const [languageLabelWidth, setLanguageLabelWidth] = React.useState(0);
-  const [submittedByLabelWidth, setSubmittedByLabelWidth] = React.useState(0);
   const [regimeLabelWidth, setRegimeLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
     language: 'EN',
     entryType: '',
     regime: '',
     memberStateConfidential: false,
-    applicableMeasure: '',
-    submittedBy: '',
+    applicableMeasure: [],
+    submittedBy: [],
     entryRemarks: '',
     reasonForListing: ''
   });
 
   const entryTypes = settings.entryType[0];
   const regime = settings.regime[0];
-  const applicableMeasure = settings.applicableMeasure[0];
+  const applicableMeasure = React.useMemo(() => {
+    if (
+      !settings.applicableMeasure[0] ||
+      !settings.applicableMeasure[0][state.language]
+    ) {
+      return {};
+    }
+    return settings.applicableMeasure[0][state.language];
+  }, [state.language, settings]);
+  const submittedBy = { a: 'person1', b: 'person2', c: 'person3' };
 
   React.useEffect(() => {
     setTypeLabelWidth(typeLabel.current.offsetWidth);
-    setApplicableMeasuresLabelWidth(applicableMeasuresLabel.current.offsetWidth);
     setLanguageLabelWidth(languageLabel.current.offsetWidth);
-    setSubmittedByLabelWidth(submittedByLabel.current.offsetWidth);
     setRegimeLabelWidth(regimeLabel.current.offsetWidth);
   }, []);
 
@@ -156,55 +160,22 @@ function Information({ settings, handleSetValue }) {
         </div>
         <div className="col-3">
           <div className="row">
-            <FormControl variant="outlined" className="form-control">
-              <InputLabel ref={applicableMeasuresLabel} htmlFor="applicable-measures">
-                Applicable Measures
-              </InputLabel>
-              <Select
-                value={state.applicableMeasure}
-                onChange={handleChange('applicableMeasure')}
-                labelWidth={applicableMeasuresLabelWidth}
-                inputProps={{
-                  name: 'applicable_measures',
-                  id: 'applicable-measures',
-                }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {applicableMeasure && Object.keys(applicableMeasure[state.language]).map((itemKey, index) => (
-                  <MenuItem
-                    value={itemKey}
-                    key={index}
-                  >
-                    {applicableMeasure[state.language][itemKey]}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <CustomMultiSelect
+              options={Object.values(applicableMeasure)}
+              selected={state.applicableMeasure}
+              label="Applicable Measures"
+              required={true}
+              onChange={handleChange('applicableMeasure')}
+            />
           </div>
           <div className="row">
-            <FormControl required variant="outlined" className="form-control">
-              <InputLabel ref={submittedByLabel} htmlFor="submitted-by">
-                Submitted By
-              </InputLabel>
-              <Select
-                value={state.submittedBy}
-                onChange={handleChange('submittedBy')}
-                labelWidth={submittedByLabelWidth}
-                inputProps={{
-                  name: 'submitted-by',
-                  id: 'submitted-by',
-                }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
+            <CustomMultiSelect
+              options={Object.values(submittedBy)}
+              selected={state.submittedBy}
+              label="Submitted By"
+              required={true}
+              onChange={handleChange('submittedBy')}
+            />
           </div>
         </div>
         <div className="col-4">

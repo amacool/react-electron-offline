@@ -4,8 +4,8 @@ import { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
-import './styles.css';
 import CalendarIcon from '../../../assets/icons/calendar/calendar.svg';
+import './styles.css';
 
 function parseDate(str, format, locale) {
   const parsed = dateFnsParse(str, format, { locale });

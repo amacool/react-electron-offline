@@ -109,7 +109,7 @@ function Addresses({ settings, handleSetValue }) {
                 onChange={handleChange("zipCode")}
               />
             </div>
-            <div className="col mr-15 mt-26">
+            <div className="col mt-26">
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="country" className="custom-select-label">
                   Country<b>*</b>
@@ -161,7 +161,7 @@ function Addresses({ settings, handleSetValue }) {
                 onChange={handleChange("latitude")}
               />
             </div>
-            <div className="col mr-15">
+            <div className="col">
               <CustomInput
                 id="longitude"
                 label="Longitude"

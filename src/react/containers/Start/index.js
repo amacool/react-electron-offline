@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
 import { changeInformation, save, saveDraft } from "../../redux/actions";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 import axios from 'axios';
 import Information from '../../components/Information';

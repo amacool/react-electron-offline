@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
-import {Link, withRouter} from 'react-router-dom';
-import {bindActionCreators} from 'redux';
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
-
 import Button from '@material-ui/core/Button';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
-import {save, saveDraft, changeInformation} from '../../redux/actions';
+import { save, saveDraft, changeInformation } from '../../redux/actions';
 import logo from '../../assets/logo.png';
 import './styles.css';
 

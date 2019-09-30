@@ -17,7 +17,7 @@ export const CustomDropzone = (props) => {
     acceptedFiles.forEach(file => {
       reader.readAsDataURL(file);
     })
-  }, []);
+  }, [props]);
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: props.accept,

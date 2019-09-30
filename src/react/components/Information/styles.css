@@ -1,13 +1,17 @@
 .Information .content .col-3 {
-    width: 30%;
+  width: 30%;
 }
 
 .Information .content .row {
-    display: flex;
-    justify-content: space-between;
-    margin: 35px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 35px 0;
 }
 
 .Information .content .col-4 {
-    width: 35%;
+  width: 35%;
+}
+
+.Information .custom-multi-select {
+  margin-top: -28px;
 }
