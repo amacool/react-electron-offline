@@ -10,6 +10,7 @@ import Names from "../../components/Names";
 import OtherData from "../../components/OtherData";
 import Documents from "../../components/Documents";
 import './styles.css';
+import Addresses from "../../components/Addresses";
 
 class Start extends Component {
 
@@ -35,7 +36,9 @@ class Start extends Component {
       identityType: '',
       identities: [],
       names: {},
-      otherData: {}
+      otherData: {},
+      documents: {},
+      addresses: {}
     };
   }
 
@@ -112,6 +115,10 @@ class Start extends Component {
             <Documents
               settings={settings}
               handleSetValue={this.handleSetValue('documents')}
+            />
+            <Addresses
+              settings={settings}
+              handleSetValue={this.handleSetValue('addresses')}
             />
           </>
         )}

@@ -41,7 +41,7 @@ function Documents({ settings, handleSetValue }) {
   };
 
   const handleAdd = () => {
-    if (state.identityType === '' || state.category === '') {
+    if (state.docNumber === '' || state.docType === '') {
       alert('Please input values!');
       return;
     }
@@ -169,7 +169,7 @@ function Documents({ settings, handleSetValue }) {
               <CustomDatePicker
                 required={true}
                 label="Issued Date"
-                onChange={(e) => console.log(e)}
+                onChange={handleChange('issuedDate')}
               />
             </div>
           </div>
@@ -188,11 +188,10 @@ function Documents({ settings, handleSetValue }) {
               />
             </div>
             <div className="w-34">
-              <CustomInput
-                id="expiration-date"
-                label="Expiration Date"
+              <CustomDatePicker
                 required={true}
-                onChange={handleChange("expirationDate")}
+                label="Expiration Date"
+                onChange={handleChange('expirationDate')}
               />
               <Button
                 variant="contained"

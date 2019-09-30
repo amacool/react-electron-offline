@@ -10,7 +10,6 @@
 }
 .custom-date-picker > div {
     margin-top: 5px;
-    width: 100%;
     border: solid 1px black;
     border-radius: 4px;
     padding: 0 10px;
@@ -24,11 +23,11 @@
     padding: 15px 0;
     width: 100%;
     outline: none;
+    color: #777;
 }
 .custom-date-picker > div > div {
     position: relative;
-    left: 0;
-    top: 0;
     margin-left: -262px;
     margin-top: 45px;
+    width: 100%;
 }

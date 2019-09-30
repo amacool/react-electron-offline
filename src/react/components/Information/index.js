@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 
 import './styles.css';
 import '../FormControl/styles.css';
+import {CustomCheckbox} from "../common/CustomCheckbox";
 
 function Information({ settings, handleSetValue }) {
   const typeLabel = React.useRef(null);
@@ -148,20 +149,12 @@ function Information({ settings, handleSetValue }) {
             </FormControl>
           </div>
           <div className="row">
-            <div className="custom-checkbox-control">
-              <label className="custom-checkbox-label">Member state(s) confidential<b>*</b></label>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    onChange={handleChange('memberStateConfidential')}
-                    value={!state.memberStateConfidential}
-                  />
-                }
-                label="Member state(s) confidential"
-                className="form-control custom-checkbox"
-              />
-            </div>
+            <CustomCheckbox
+              label="Member state(s) confidential"
+              onChange={handleChange('memberStateConfidential')}
+              required={true}
+              value={state.memberStateConfidential}
+            />
           </div>
         </div>
         <div className="col-3">
