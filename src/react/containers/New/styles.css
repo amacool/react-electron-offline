@@ -1,22 +1,21 @@
 .New {
-    padding-bottom: 20px;
-    margin: 50px;
-    height: calc(100% - 100px);
-    border-bottom: 2px solid #626262;
+  margin: 50px;
+  height: calc(100% - 105px);
+  border-bottom: 1px solid #626262;
 }
 
 .New .header {
-    padding: 70px;
-    text-align: center;
+  padding: 70px;
+  text-align: center;
 }
 
 .New .header svg {
-    font-size: 5em;
-    fill: #4eb6ee;
+  font-size: 5em;
+  fill: #4eb6ee;
 }
 
 .New p {
-    font-size: 15px;
-    font-weight: 700;
-    color: #626262;
+  font-size: 15px;
+  font-weight: 500;
+  color: #626262;
 }

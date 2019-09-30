@@ -26,7 +26,7 @@
   outline: none;
   cursor: pointer;
   font-size: 13px;
-  color: #777;
+  color: #626262;
 }
 
 .attachment .dropzone-container .dropzone img {
@@ -52,11 +52,11 @@
 
 .file-info .file-name {
   font-weight: 600;
-  color: #777;
+  color: #626262;
 }
 
 .file-info .file-path {
-  color: #777;
+  color: #626262;
 }
 
 .file-type-icon svg:first-child {

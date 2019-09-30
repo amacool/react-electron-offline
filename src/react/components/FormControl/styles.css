@@ -24,7 +24,7 @@
 .custom-outlined-form-control .custom-select > div {
   padding: 14px;
   font-size: 13px;
-  color: #777;
+  color: #626262;
   z-index: 1;
 }
 
@@ -70,7 +70,7 @@
 
 .custom-textarea-control textarea {
   font-size: 13px;
-  color: #777;
+  color: #626262;
 }
 
 .custom-textarea-control textarea::placeholder {

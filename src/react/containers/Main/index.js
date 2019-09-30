@@ -64,7 +64,7 @@ class Main extends Component {
           </div>
           <div className="bottom">
             {
-              pathname === '/start' ?
+              pathname === '/start' ? (
                 <div className="start-bottom">
                   <div className="start-bottom-left">
                     <Button variant="contained" className="cancel-button"
@@ -77,9 +77,15 @@ class Main extends Component {
                     <Button variant="contained" className="cancel-button" onClick={() => this.onSave()}>Save</Button>
                   </div>
                 </div>
-                :
-                <Button variant="contained" className="new-form-button" onClick={() => this.goToStart()}>New
-                  Form</Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  className="new-form-button"
+                  onClick={() => this.goToStart()}
+                >
+                  New Form
+                </Button>
+              )
             }
           </div>
         </div>
