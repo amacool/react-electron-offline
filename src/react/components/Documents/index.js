@@ -2,12 +2,12 @@ import React from 'react';
 import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
+import { CustomDatePicker } from "../common/CustomDatePicker";
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-import Calendar from 'react-input-calendar'
 import './styles.css';
 
 function Documents({ settings, handleSetValue }) {
@@ -166,9 +166,9 @@ function Documents({ settings, handleSetValue }) {
               </FormControl>
             </div>
             <div className="w-34">
-              <Calendar
-                format='DD/MM/YYYY'
-                date='4-12-2014'
+              <CustomDatePicker
+                required={true}
+                label="Issued Date"
                 onChange={(e) => console.log(e)}
               />
             </div>
