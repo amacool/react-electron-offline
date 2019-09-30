@@ -50,6 +50,9 @@ code {
 .col-6 {
   width: 60%;
 }
+.col-5 {
+  width: 50%;
+}
 .col-4 {
   width: 40%;
 }
@@ -97,6 +100,12 @@ code {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+.flex-column {
+  flex-direction: column;
+}
+.space-between {
+  justify-content: space-between;
 }
 
 button.add-button {

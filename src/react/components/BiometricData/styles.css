@@ -1,22 +1,67 @@
-.New {
-    padding-bottom: 20px;
-    margin: 50px;
-    height: calc(100% - 100px);
-    border-bottom: 2px solid #626262;
+.attachment {
+
 }
 
-.New .header {
-    padding: 70px;
-    text-align: center;
+.attachment label {
+  font-size: 15px;
+  color: #4eb6ee;
+  font-weight: 600;
 }
 
-.New .header svg {
-    font-size: 5em;
-    fill: #4eb6ee;
+.attachment .dropzone-container {
+  border: dashed 1px #777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 165px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
-.New p {
-    font-size: 15px;
-    font-weight: 700;
-    color: #626262;
+.attachment .dropzone-container .dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: #777;
+}
+
+.attachment .dropzone-container .dropzone img {
+  width: 50px;
+}
+
+.attachment .input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attachment .input-container input {
+  outline: none;
+  border-radius: 5px;
+  padding: 9px;
+  border: solid 1px black;
+  width: 70%;
+}
+
+.BiometricData .custom-textarea-control {
+  height: 165px;
+}
+
+.file-info .file-name {
+  font-weight: 600;
+  color: #777;
+}
+
+.file-info .file-path {
+  color: #777;
+}
+
+.file-type-icon svg:last-child {
+  margin-left: -9px;
+  border-radius: 50%;
+  background: #01af01;
+  padding: 2px;
 }

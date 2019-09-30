@@ -52,6 +52,10 @@
   background-color: white;
 }
 
+.custom-textarea-control > div {
+  height: 100%;
+}
+
 .custom-textarea-control > label {
   font-size: 15px;
   font-weight: 600;

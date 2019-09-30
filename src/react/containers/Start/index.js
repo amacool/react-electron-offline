@@ -12,8 +12,9 @@ import Documents from "../../components/Documents";
 import Addresses from "../../components/Addresses";
 import PlacesOfBirth from "../../components/PlacesOfBirth";
 import DatesOfBirth from "../../components/DatesOfBirth";
-import './styles.css';
 import Features from "../../components/Features";
+import BiometricData from "../../components/BiometricData";
+import './styles.css';
 
 class Start extends Component {
 
@@ -60,22 +61,10 @@ class Start extends Component {
         Object.keys(result.data).forEach((itemKey) => {
           th.setState({
             [itemKey]: result.data[itemKey]
-          }, () => {
-            console.log(th.state);
           });
         });
       });
   }
-
-  // handleChange = name => event => {
-  //   const state = this.state;
-  //   this.setState({
-  //     ...state,
-  //     [name]: name === 'member_conditional' ? event.target.checked : event.target.value,
-  //   }, () => {
-  //     this.props.changeInformation({information: this.state});
-  //   });
-  // };
 
   handleSetValue = name => val => {
     this.results[name] = val;
@@ -134,6 +123,10 @@ class Start extends Component {
             <Features
               settings={settings}
               handleSetValue={this.handleSetValue('features')}
+            />
+            <BiometricData
+              settings={settings}
+              handleSetValue={this.handleSetValue('biometricData')}
             />
           </>
         )}
