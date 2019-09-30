@@ -1,98 +1,105 @@
 import React from 'react';
-import FormControl from "@material-ui/core/FormControl/FormControl";
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Select from "@material-ui/core/Select/Select";
-import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import {makeStyles} from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button/Button";
+import { CustomTable } from "../common/CustomTable";
+import { CustomInput } from "../common/CustomInput";
 import './styles.css';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        minWidth: 120,
-        width: '45%'
-    }
-}));
+function Identities({ settings, handleSetValue, setViewMode }) {
+  const categoryLabel = React.useRef(null);
+  const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
+  const [state, setState] = React.useState({
+    identityType: '',
+    category: ''
+  });
+  const [identities, setIdentities] = React.useState([]);
 
-function Identities() {
-    const classes = useStyles();
-    const [state, setState] = React.useState({
-        type: '',
-        category: ''
-    });
+  React.useEffect(() => {
+    setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
+  }, []);
 
-    const typeLabel = React.useRef(null);
-    const categoryLabel = React.useRef(null);
-
-    const [typeLabelWidth, setTypeLabelWidth] = React.useState(0);
-    const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
-
-    React.useEffect(() => {
-        setTypeLabelWidth(typeLabel.current.offsetWidth);
-        setCategoryLabelWidth(categoryLabel.current.offsetWidth);
-    }, []);
-
-    const handleChange = name => event => {
-        setState({
-            ...state,
-            [name]: event.target.value,
-        });
+  const handleChange = name => e => {
+    const value = {
+      ...state,
+      [name]: e.target.value
     };
+    setState(value);
+  };
 
-    return (
-        <div className="Identities">
-            <div className="header">
-                <h5>IDENTITIES</h5>
-            </div>
-            <div className="content">
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel ref={typeLabel} htmlFor="identity-type">
-                        Identity Type*
-                    </InputLabel>
-                    <Select
-                        value={state.type}
-                        onChange={handleChange('type')}
-                        labelWidth={typeLabelWidth}
-                        inputProps={{
-                            name: 'type',
-                            id: 'identity-type',
-                        }}
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel ref={categoryLabel} htmlFor="category">
-                        Category*
-                    </InputLabel>
-                    <Select
-                        value={state.category}
-                        onChange={handleChange('category')}
-                        labelWidth={categoryLabelWidth}
-                        inputProps={{
-                            name: 'category',
-                            id: 'category',
-                        }}
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
+  const handleAdd = () => {
+    if (state.identityType === '' || state.category === '') {
+      alert('Please input values!');
+      return;
+    }
+    handleSetValue([...identities, state]);
+    setIdentities([...identities, state]);
+  };
+
+  const handleSetIdentityType = type => {
+    setViewMode(type);
+  };
+
+  return (
+    <div className="start-page Identities">
+      <div className="header">
+        <h5>IDENTITIES</h5>
+      </div>
+      <div className="content content-header">
+        <div className="custom-add-group row">
+          <div className="col-4">
+            <CustomInput
+              id="identity-type"
+              label="Identity Types"
+              required={true}
+              onChange={handleChange("identityType")}
+            />
+          </div>
+          <div className="col-4">
+            <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+              <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
+                Category<b>*</b>
+              </InputLabel>
+              <Select
+                value={state.category}
+                onChange={handleChange('category')}
+                labelWidth={categoryLabelWidth}
+                inputProps={{
+                  name: 'category',
+                  id: 'category',
+                }}
+                className="custom-select"
+                placeholder="Primary"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value="Ten">Ten</MenuItem>
+                <MenuItem value="Twenty">Twenty</MenuItem>
+                <MenuItem value="Thirty">Thirty</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <Button
+            variant="contained"
+            className="add-button col-1 mt-39"
+            onClick={handleAdd}
+          >
+            ADD
+          </Button>
         </div>
-    );
+      </div>
+      <div className="content content-body">
+        <CustomTable
+          header={['Identity Type', 'Category']}
+          data={identities}
+          handleClick={handleSetIdentityType}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default Identities;

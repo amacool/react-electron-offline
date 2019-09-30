@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {render} from 'react-dom';
+import {Provider} from 'react-redux';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
@@ -15,21 +15,21 @@ import Start from './react/containers/Start';
 import store from './react/redux/store';
 
 render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Main>
-                    <Route path="/new" component={New}/>
-                    <Route path="/open" component={Open}/>
-                    <Route path="/recent" component={Recent}/>
-                    <Route path="/help" component={Help}/>
-                    <Route path="/start" component={Start}/>
-                </Main>
-            </Switch>
-        </BrowserRouter>
-    </Provider>,
-    document.getElementById('root'));
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Main>
+          <Route path="/new" component={New}/>
+          <Route path="/open" component={Open}/>
+          <Route path="/recent" component={Recent}/>
+          <Route path="/help" component={Help}/>
+          <Route path="/start" component={Start}/>
+        </Main>
+      </Switch>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

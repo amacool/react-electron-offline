@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       appName: '',
       appVersion: '',
-    }
+    };
     ipcRenderer.send(channels.APP_INFO);
     ipcRenderer.on(channels.APP_INFO, (event, arg) => {
       ipcRenderer.removeAllListeners(channels.APP_INFO);

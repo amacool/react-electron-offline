@@ -1,81 +1,139 @@
 import React, { Component } from 'react';
-import {bindActionCreators} from "redux";
-import {changeInformation, save, saveDraft} from "../../redux/actions";
-import {withRouter} from "react-router";
+import { bindActionCreators } from "redux";
+import { changeInformation, save, saveDraft } from "../../redux/actions";
+import { withRouter } from "react-router";
 import connect from "react-redux/es/connect/connect";
 import axios from 'axios';
-
 import Information from '../../components/Information';
 import Identities from '../../components/Identities';
-
+import Names from "../../components/Names";
+import OtherData from "../../components/OtherData";
+import Documents from "../../components/Documents";
 import './styles.css';
 
 class Start extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            type: '',
-            language: '',
-            regime: '',
-            applicable_measures: '',
-            submitted_by: '',
-            member_conditional: false,
-            entry_remarks: '',
-            reason_listing: '',
-            languages: []
-        };
-    }
-
-    componentDidMount() {
-        let th = this;
-        axios.get('/data/languages.json')
-            .then(function(result) {
-                th.setState({
-                    languages: result.data.languages
-                });
-            });
-    }
-
-    handleChange = name => event => {
-        const state = this.state;
-        this.setState({
-            ...state,
-            [name]: name === 'member_conditional' ? event.target.checked : event.target.value,
-        }, () => {
-            this.props.changeInformation({information: this.state});
-        });
+  constructor(props) {
+    super(props);
+    this.state = {
+      languages: [],
+      entryType: [],
+      language: [],
+      applicableMeasure: [],
+      regime: [],
+      type: [],
+      gender: [],
+      livingStatus: [],
+      documentType: [],
+      biometricType: [],
+      isIdentityMode: true
     };
+    this.results = {
+      information: {
+        language: 'EN',
+      },
+      identityType: '',
+      identities: [],
+      names: {},
+      otherData: {}
+    };
+  }
 
-    render() {
-        const state = this.state;
+  componentDidMount() {
+    let th = this;
+    axios.get('/data/languages.json')
+      .then(function (result) {
+        th.setState({
+          languages: result.data.languages
+        });
+      });
 
-        return (
-            <div className="Start">
-                <Information
-                    state={state}
-                    handleChange={this.handleChange}
-                />
-                <Identities/>
-            </div>
-        );
-    }
+    axios.get('/data/lookupsData.json')
+      .then(function (result) {
+        console.log(result);
+        Object.keys(result.data).forEach((itemKey) => {
+          th.setState({
+            [itemKey]: result.data[itemKey]
+          }, () => {
+            console.log(th.state);
+          });
+        });
+      });
+  }
+
+  // handleChange = name => event => {
+  //   const state = this.state;
+  //   this.setState({
+  //     ...state,
+  //     [name]: name === 'member_conditional' ? event.target.checked : event.target.value,
+  //   }, () => {
+  //     this.props.changeInformation({information: this.state});
+  //   });
+  // };
+
+  handleSetValue = name => val => {
+    this.results[name] = val;
+    console.log(this.results);
+    // this.props.changeInformation({information: this.state});
+  };
+
+  setViewMode = identityType => {
+    this.setState({ isIdentityMode: true });
+    this.results.identityType = identityType;
+  };
+
+  render() {
+    const settings = this.state;
+
+    return (
+      <div className="Start">
+        {!settings.isIdentityMode ? (
+          <>
+            <Information
+              settings={settings}
+              handleSetValue={this.handleSetValue('information')}
+            />
+            <Identities
+              settings={settings}
+              setViewMode={this.setViewMode}
+              handleSetValue={this.handleSetValue('identities')}
+            />
+          </>
+        ) : (
+          <>
+            <Names
+              settings={settings}
+              handleSetValue={this.handleSetValue('names')}
+            />
+            <OtherData
+              settings={settings}
+              handleSetValue={this.handleSetValue('otherData')}
+            />
+            <Documents
+              settings={settings}
+              handleSetValue={this.handleSetValue('documents')}
+            />
+          </>
+        )}
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
-    information: state.information,
-    identities: state.identities,
-    err: state.err
+  information: state.information,
+  identities: state.identities,
+  err: state.err
 });
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-            changeInformation: data => changeInformation({data}),
-            save: () => save(),
-            saveDraft: () => saveDraft()
-        },
-        dispatch
-    );
+  bindActionCreators(
+    {
+      changeInformation: data => changeInformation({data}),
+      save: () => save(),
+      saveDraft: () => saveDraft()
+    },
+    dispatch
+  );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Start));

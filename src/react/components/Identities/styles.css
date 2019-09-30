@@ -1,15 +1,22 @@
-.Identities .header {
-    border-bottom: 2px solid #626262;
-    padding-bottom: 10px;
+.Identities .content-body {
+    border-top: 2px solid #626262;
 }
 
-.Identities .header h5 {
-    margin: 0;
-    color: #626262;
+.Identities .content > div {
+    margin-top: 35px;
 }
 
-.Identities .content {
-    display: flex;
-    margin: 20px 0;
-    justify-content: space-between;
+.Identities .content button {
+    height: 35px;
+    margin-top: 10px;
+    background-color: #4eb6ee;
+    color: white;
+}
+
+.Identities .content-body table.custom-table thead tr th.thead-category {
+    border-left: solid 1px black;
+}
+
+.Identities .content-header .custom-input-control {
+    margin-top: -27px;
 }

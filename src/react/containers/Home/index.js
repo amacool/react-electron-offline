@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
@@ -7,50 +7,51 @@ import './styles.css';
 import logo from '../../assets/logo.png';
 
 class Home extends Component {
-    state = {
-        languages: null
-    };
+  state = {
+    languages: null
+  };
 
-    componentDidMount() {
-        let th = this;
-        axios.get('/data/languages.json')
-            .then(function(result) {
-                th.setState({
-                    languages: result.data.languages
-                });
-            });
-    }
+  componentDidMount() {
+    let th = this;
+    axios.get('/data/languages.json')
+      .then(function (result) {
+        th.setState({
+          languages: result.data.languages
+        });
+      });
+  }
 
-    goToMain() {
-        this.props.history.push('/new');
-    }
+  goToMain() {
+    this.props.history.push('/new');
+  }
 
-    render() {
-        let { languages } = this.state;
-        return (
-            <div className="Home">
-                <div className="container">
-                    <img src={logo} className="Home-logo" alt="logo" />
-                    <h3>
-                        Security Council Consolidated List
-                    </h3>
-                    <div className="underline" />
-                    <div className="Home-buttons">
-                        {
-                            languages && languages.map((item, i) => {
-                                return (
-                                    <Button variant="contained" key={`home-button-${i}`} className="Home-button" onClick={() => this.goToMain()}>
-                                        {item.name}
-                                    </Button>
-                                )
-                            })
-                        }
-                    </div>
-                    <Footer />
-                </div>
-            </div>
-        );
-    }
+  render() {
+    let {languages} = this.state;
+    return (
+      <div className="Home">
+        <div className="container">
+          <img src={logo} className="Home-logo" alt="logo"/>
+          <h3>
+            Security Council Consolidated List
+          </h3>
+          <div className="underline"/>
+          <div className="Home-buttons">
+            {
+              languages && languages.map((item, i) => {
+                return (
+                  <Button variant="contained" key={`home-button-${i}`} className="Home-button"
+                          onClick={() => this.goToMain()}>
+                    {item.name}
+                  </Button>
+                )
+              })
+            }
+          </div>
+          <Footer/>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Home;
