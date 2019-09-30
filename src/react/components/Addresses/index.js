@@ -8,7 +8,6 @@ import TextField from "@material-ui/core/TextField/TextField";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
-import './styles.css';
 
 function Addresses({ settings, handleSetValue }) {
   const categoryLabel = React.useRef(null);

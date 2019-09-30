@@ -138,6 +138,7 @@ function Names({ settings, handleSetValue }) {
         <CustomTable
           header={['Name', 'Type', 'Script', 'Order']}
           data={names1}
+          extraCell={{ title: '', content: <i className="extra-content fa fa-dots" /> }}
         />
       </div>
     </div>

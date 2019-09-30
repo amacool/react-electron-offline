@@ -1,21 +1,34 @@
 /*table component*/
 table.custom-table {
-    min-width: 650px;
-    border-top: 2px solid #626262;
+  min-width: 650px;
+  border-top: 2px solid #626262;
 }
 
 table.custom-table thead tr {
-    padding: 10px;
+  padding: 10px;
 }
 
 table.custom-table thead tr th {
-    border-bottom: solid 1px black;
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-weight: 600;
-    color: #282c34;
+  border-bottom: solid 1px black;
+  padding: 10px 0;
+  margin: 10px 0;
+  font-weight: 600;
+  color: #282c34;
+}
+
+table.custom-table thead tr th span {
+  padding: 5px 15px;
+  border-left: solid 1px;
+}
+table.custom-table thead tr th:first-child span {
+  border: none;
 }
 
 table.custom-table tbody tr {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+table.custom-table span.extra-content {
+  color: #4eb6ee;
+  font-weight: 600;
 }

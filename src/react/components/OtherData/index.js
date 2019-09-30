@@ -1,6 +1,5 @@
 import React from 'react';
 import { CustomInput } from "../common/CustomInput";
-import './styles.css';
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
