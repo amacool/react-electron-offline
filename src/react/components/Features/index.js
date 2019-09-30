@@ -41,7 +41,7 @@ function Features({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page Documents">
+    <div className="start-page">
       <div className="header">
         <h5>features</h5>
       </div>

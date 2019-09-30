@@ -1,41 +1,15 @@
 import React from 'react';
 import Button from "@material-ui/core/Button/Button";
-import { CustomTable } from "../common/CustomTable";
-import { CustomInput } from "../common/CustomInput";
-import { CustomDropzone } from "../common/CustomDropzone";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileImage, faFileWord, faFileExcel, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { CustomTable } from "../common/CustomTable";
+import { CustomInput } from "../common/CustomInput";
+import { CustomDropzone } from "../common/CustomDropzone";
+import { DocTypeIcon, DocInfo } from "../common/DocElement";
 import "./styles.css";
-
-const DocTypeIcon = ({ type }) => {
-  let fontIcon = null;
-  if (type.indexOf('word') >= 0) {
-    fontIcon = <FontAwesomeIcon icon={faFileWord} size="3x" />;
-  } else if (type.indexOf('image') >= 0) {
-    fontIcon = <FontAwesomeIcon icon={faFileImage} size="3x" />;
-  } else if (type.indexOf('excel') >= 0) {
-    fontIcon = <FontAwesomeIcon icon={faFileExcel} size="3x" />;
-  }
-
-  return (
-    <div className="file-type-icon">
-      {fontIcon}
-      <FontAwesomeIcon icon={faCheck} size="0.5x" color="#fff" />
-    </div>
-  );
-};
-
-const DocInfo = ({ info }) => (
-  <div className="file-info">
-    <div className="file-name">{info.name}</div>
-    <div className="file-path">{info.path}</div>
-  </div>
-);
 
 function Features({ settings, handleSetValue }) {
   const categoryLabel = React.useRef(null);

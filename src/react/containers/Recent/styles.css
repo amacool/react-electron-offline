@@ -1,5 +1,32 @@
 .Recent {
-    margin: 50px;
-    height: calc(100% - 100px);
-    border-bottom: 2px solid #626262;
+  height: calc(100% - 100px);
+  padding: 50px;
+  background-color: white;
+}
+
+.Recent .container {
+  border-bottom: 2px solid #626262;
+  height: 100%;
+}
+
+.Recent .header {
+  border-bottom: 2px solid #626262;
+  padding-bottom: 10px;
+}
+
+.Recent .header h5 {
+  margin: 0;
+  color: #626262;
+  text-transform: uppercase;
+  font-size: 17px;
+}
+
+.Recent .content-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Recent .content-body button {
+  margin-top: 70px;
 }
