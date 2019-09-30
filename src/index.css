@@ -83,11 +83,20 @@ code {
   margin-top: 39px;
 }
 
+.w-31 {
+  width: 31%;
+}
 .w-34 {
   width: 34%;
 }
 .w-69 {
   width: 69%;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 button.add-button {

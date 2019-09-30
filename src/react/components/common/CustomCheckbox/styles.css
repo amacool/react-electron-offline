@@ -1,30 +1,23 @@
-.custom-input-control {
-    width: 100%;
+.custom-checkbox-control {
+
 }
 
-.custom-input-control .custom-input-label {
-    font-size: 15px;
-    color: #4eb6ee;
-    font-weight: 500;
+.custom-checkbox-control .custom-checkbox-label {
+  font-weight: 600;
+  color: #4eb6ee;
+  font-size: 15px;
 }
 
-.custom-input-control .custom-input-label b {
-    color: black;
-    font-weight: 600;
+.custom-checkbox-control .custom-checkbox {
+  font-size: 13px;
+  margin-top: 5px;
 }
 
-.custom-input-control .custom-input {
-    padding: 5px 10px 5px;
-    border: solid 1px black;
-    border-radius: 5px;
-    background-color: white;
-    margin-top: 5px;
+.custom-checkbox-control .custom-checkbox span:first-child {
+  color: #777;
 }
 
-.custom-input-control .custom-input input {
-    border: none;
-    width: 100%;
-    outline: none;
-    color: #777;
-    padding: 10px 0;
+.custom-checkbox-control .custom-checkbox span:last-child {
+  font-size: 13px;
+  color: #777;
 }
