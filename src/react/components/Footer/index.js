@@ -11,7 +11,7 @@ class Footer extends Component {
                     United Nations
                 </div>
                 <span className="footer-copyright">
-                    Copyright © United Nations 2019
+                    Version 0.1.0. Copyright © United Nations 2019
                 </span>
             </footer>
         )
