@@ -31,14 +31,15 @@ function rootReducer(state = initialState, action) {
     case CHANGE_INFORMATION:
       console.log('TEST CHANGE INFORMATION: ', action.payload);
 
-      return Object.assign({}, state, {
-        information: action.payload.data.information
-      });
+      return {
+        ...state,
+        ...action.payload.data
+      };
 
     case SET_CREATE_STEP:
       return {
         ...state,
-        createStep: action.payload.step
+        createStep: action.payload.data
       };
 
     default:

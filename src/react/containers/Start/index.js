@@ -43,7 +43,6 @@ class Start extends Component {
         entryRemarks: '',
         reasonForListing: ''
       },
-      identityType: -1,
       identities: [],
       names: [],
       names1: [],
@@ -85,16 +84,16 @@ class Start extends Component {
 
   handleSetValue = name => val => {
     this.results[name] = val;
-    console.log(this.results);
-    // this.props.changeInformation({information: this.state});
+    this.props.changeInformation(this.results);
   };
 
   setIdentityType = type => {
     this.results.identityType = type;
+    this.props.setCreateStep(2);
+    this.props.changeInformation(this.results);
   };
 
   setCurrentStep = step => {
-    this.setState({ step });
     this.props.setCreateStep(step);
   };
 
@@ -192,8 +191,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      changeInformation: data => changeInformation({data}),
-      setCreateStep: step => setCreateStep({step}),
+      changeInformation: data => changeInformation({ data }),
+      setCreateStep: data => setCreateStep({ data }),
       save: () => save(),
       saveDraft: () => saveDraft()
     },

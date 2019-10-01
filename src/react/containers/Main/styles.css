@@ -39,6 +39,7 @@
 
 .main .left-container .bottom {
   flex: 1;
+  color: #333;
 }
 
 .main .left-menu {
@@ -90,22 +91,24 @@
 }
 
 .main .bottom-logo {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 
 .main .bottom-logo img {
-  width: 20px;
+  width: 23px;
   margin-right: 5px;
 }
 
 .main .bottom-copyright {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  border-top: 2px solid #626262;
+  border-top: 2px solid #9f9f9f;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 4px;
+  padding-top: 4px;
 }
 
 .main .main-container {
@@ -164,6 +167,14 @@
   color: #626262;
 }
 
+.main .main-container .bottom .start-bottom .next-button {
+  background-color: #f2f2f2;
+}
+
+.main .main-container .bottom .start-bottom .prev-button {
+  background-color: #f2f2f2;
+}
+
 .main .main-container .bottom .start-bottom button.cancel-button {
   background-color: #626262;
   color: white;
@@ -172,4 +183,5 @@
 .main .main-container .bottom .start-bottom button.save-button {
   background-color: #ffffff;
   color: #4eb6ee;
+  font-weight: 500;
 }

@@ -9,7 +9,9 @@ import './styles.css';
 
 const LeftStepper = ({
   createStep,
-  setCreateStep
+  setCreateStep,
+  identityType,
+  identities
 }) => {
   const steps = [
     ['INFORMATION', 'IDENTITIES'],
@@ -26,6 +28,11 @@ const LeftStepper = ({
 
   return (
     <div className="left-stepper">
+      {createStep > 1 && (
+        <div className="step-navigator">
+          <span>Identities > {identities[identityType].identityType}</span>
+        </div>
+      )}
       <Stepper orientation="vertical">
         {steps[mode].map((label, index) => (
           <Step key={label} className={index === steps[mode].length - 1 ? 'last-item' : ''}>
@@ -50,13 +57,15 @@ const LeftStepper = ({
 };
 
 const mapStateToProps = (state) => ({
-  createStep: state.createStep
+  createStep: state.createStep,
+  identities: state.identities,
+  identityType: state.identityType
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      setCreateStep: step => setCreateStep({step}),
+      setCreateStep: data => setCreateStep({ data }),
     },
     dispatch
   );

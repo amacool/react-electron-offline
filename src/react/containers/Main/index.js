@@ -5,10 +5,9 @@ import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { save, saveDraft, changeInformation, setCreateStep } from '../../redux/actions';
 import logo from '../../assets/logo.png';
+import LeftArrowIcon from '../../assets/icons/arrow/left-arrow.svg';
 import './styles.css';
 
 class Main extends Component {
@@ -16,7 +15,6 @@ class Main extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.createStep !== this.props.createStep) {
-      console.log(this.props.createStep);
       const sectionId = this.steps[this.props.createStep];
       const section = document.getElementById(sectionId);
       section && section.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
@@ -75,7 +73,7 @@ class Main extends Component {
                 ? (
                   <div className="stepper-container">
                     <div className="to-prev" onClick={this.onGoBack}>
-                      <FontAwesomeIcon className="icon" icon={faArrowLeft} />
+                      <img src={LeftArrowIcon} />
                     </div>
                     <LeftStepper />
                   </div>)
@@ -117,7 +115,7 @@ class Main extends Component {
                       SAVE AS DRAFT
                     </Button>
                   </div>
-                  <div className="start-bottom-right">
+                  <div className="start-bottom-right" style={{ justifyContent: createStep < 2 ? 'flex-end' : 'space-between' }}>
                     {createStep > 0 && <Button variant="contained" className="prev-button" onClick={this.onPrev}>Prev</Button>}
                     {createStep !== 1 && createStep !== 9 && <Button variant="contained" className="next-button" onClick={this.onNext}>Next</Button>}
                     {createStep === 9 && <Button variant="contained" className="cancel-button" onClick={() => this.onSave()}>Save</Button>}
@@ -151,8 +149,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      changeInformation: data => changeInformation({data}),
-      setCreateStep: step => setCreateStep({step}),
+      changeInformation: data => changeInformation({ data }),
+      setCreateStep: data => setCreateStep({ data }),
       save: () => save(),
       saveDraft: () => saveDraft()
     },

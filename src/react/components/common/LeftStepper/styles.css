@@ -13,6 +13,10 @@
   cursor: pointer;
 }
 
+.stepper-container .to-prev img {
+  width: 25px;
+}
+
 .stepper-container .active-spot {
   position: absolute;
   width: 30px;
@@ -35,6 +39,15 @@
 }
 
 .left-stepper {
+  padding-top: 23px;
+}
+
+.left-stepper .step-navigator {
+  text-align: left;
+  padding-left: 20px;
+  color: #333333;
+  font-weight: 500;
+  margin-bottom: 45px;
 }
 
 .left-stepper .MuiStepper-root {
