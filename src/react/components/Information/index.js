@@ -9,7 +9,7 @@ import '../common/FormControl/styles.css';
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomMultiSelect } from "../common/CustomMultiSelect";
 
-function Information({ settings, handleSetValue }) {
+function Information({ settings, handleSetValue, data }) {
   const typeLabel = React.useRef(null);
   const languageLabel = React.useRef(null);
   const regimeLabel = React.useRef(null);
@@ -17,16 +17,7 @@ function Information({ settings, handleSetValue }) {
   const [typeLabelWidth, setTypeLabelWidth] = React.useState(0);
   const [languageLabelWidth, setLanguageLabelWidth] = React.useState(0);
   const [regimeLabelWidth, setRegimeLabelWidth] = React.useState(0);
-  const [state, setState] = React.useState({
-    language: 'EN',
-    entryType: '',
-    regime: '',
-    memberStateConfidential: false,
-    applicableMeasure: [],
-    submittedBy: [],
-    entryRemarks: '',
-    reasonForListing: ''
-  });
+  const [state, setState] = React.useState(data);
 
   const entryTypes = settings.entryType[0];
   const regime = settings.regime[0];

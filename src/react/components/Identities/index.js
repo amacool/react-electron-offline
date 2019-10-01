@@ -8,14 +8,14 @@ import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
 
-function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep }) {
+function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep, data }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
     identityType: '',
     category: ''
   });
-  const [identities, setIdentities] = React.useState([]);
+  const [identities, setIdentities] = React.useState(data);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);

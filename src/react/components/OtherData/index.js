@@ -6,16 +6,10 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 
-function OtherData({ settings, handleSetValue }) {
+function OtherData({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
-  const [state, setState] = React.useState({
-    gender: '',
-    livingStatus: '',
-    nationality: '',
-    title: '',
-    designations: ''
-  });
+  const [state, setState] = React.useState(data);
   const gender = settings.gender[0];
   const livingStatus = settings.livingStatus[0];
   const language = 'EN';
@@ -106,6 +100,7 @@ function OtherData({ settings, handleSetValue }) {
               </div>
               <div className="custom-add-group">
                 <CustomInput
+                  value={state.title}
                   id="title"
                   label="Title"
                   required={true}
@@ -115,6 +110,7 @@ function OtherData({ settings, handleSetValue }) {
             </div>
             <div className="col-4">
               <CustomInput
+                value={state.nationality}
                 id="nationality"
                 label="Nationality"
                 required={true}

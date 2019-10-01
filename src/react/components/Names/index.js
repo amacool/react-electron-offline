@@ -5,7 +5,7 @@ import { CustomInput } from "../common/CustomInput";
 import './styles.css';
 import { ThreeDots } from "../common/Icons/ThreeDots";
 
-function Names({ settings, handleSetValue }) {
+function Names({ settings, handleSetValue, data, data1 }) {
   const [state, setState] = React.useState({
     name: '',
     type: '',
@@ -16,8 +16,8 @@ function Names({ settings, handleSetValue }) {
     type: '',
     script: ''
   });
-  const [names, setNames] = React.useState([]);
-  const [names1, setNames1] = React.useState([]);
+  const [names, setNames] = React.useState(data);
+  const [names1, setNames1] = React.useState(data1);
 
   const handleChange = name => e => {
     const value = {
@@ -97,6 +97,7 @@ function Names({ settings, handleSetValue }) {
         <CustomTable
           header={['Name', 'Type', 'Script', 'Order']}
           data={names}
+          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
         />
       </div>
 

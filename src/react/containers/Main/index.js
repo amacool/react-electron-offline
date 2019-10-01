@@ -32,14 +32,16 @@ class Main extends Component {
     const { createStep, setCreateStep } = this.props;
     setCreateStep(createStep + 1);
     const sectionId = this.steps[createStep + 1];
-    document.getElementById(sectionId).scrollIntoView(true);
+    const section = document.getElementById(sectionId);
+    section && section.scrollIntoView(true);
   };
 
   onPrev = () => {
     const { createStep, setCreateStep } = this.props;
     setCreateStep(createStep - 1);
     const sectionId = this.steps[createStep - 1];
-    document.getElementById(sectionId).scrollIntoView(true);
+    const section = document.getElementById(sectionId);
+    section && section.scrollIntoView(true);
   };
 
   render() {

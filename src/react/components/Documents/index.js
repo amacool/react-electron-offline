@@ -11,7 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import './styles.css';
 
-function Documents({ settings, handleSetValue }) {
+function Documents({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -25,7 +25,7 @@ function Documents({ settings, handleSetValue }) {
     notes: '',
     expirationDate: ''
   });
-  const [documents, setDocuments] = React.useState([]);
+  const [documents, setDocuments] = React.useState(data);
   const documentType = settings.documentType[0];
   const language = 'EN';
 

@@ -8,7 +8,7 @@ import { CustomDatePicker } from "../common/CustomDatePicker";
 import { ThreeDots } from "../common/Icons/ThreeDots";
 import "./styles.css";
 
-function DatesOfBirth({ settings, handleSetValue }) {
+function DatesOfBirth({ settings, handleSetValue, data }) {
   const [state, setState] = React.useState({
     specific: false,
     date: '',
@@ -18,7 +18,7 @@ function DatesOfBirth({ settings, handleSetValue }) {
     to: '',
     notes: ''
   });
-  const [dates, setDates] = React.useState([]);
+  const [dates, setDates] = React.useState(data);
 
   const handleChange = name => e => {
     const value = {

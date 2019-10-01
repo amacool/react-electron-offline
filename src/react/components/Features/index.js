@@ -9,7 +9,7 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 
-function Features({ settings, handleSetValue }) {
+function Features({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -17,7 +17,7 @@ function Features({ settings, handleSetValue }) {
     value: '',
     notes: ''
   });
-  const [features, setFeatures] = React.useState([]);
+  const [features, setFeatures] = React.useState(data);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);

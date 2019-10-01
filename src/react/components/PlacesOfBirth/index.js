@@ -10,7 +10,7 @@ import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { ThreeDots } from "../common/Icons/ThreeDots";
 
-function PlacesOfBirth({ settings, handleSetValue }) {
+function PlacesOfBirth({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -26,7 +26,7 @@ function PlacesOfBirth({ settings, handleSetValue }) {
     longitude: '',
     notes: ''
   });
-  const [addresses, setAddresses] = React.useState([]);
+  const [addresses, setAddresses] = React.useState(data);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);

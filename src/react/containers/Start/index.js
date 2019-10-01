@@ -35,13 +35,31 @@ class Start extends Component {
     this.results = {
       information: {
         language: 'EN',
+        entryType: '',
+        regime: '',
+        memberStateConfidential: false,
+        applicableMeasure: [],
+        submittedBy: [],
+        entryRemarks: '',
+        reasonForListing: ''
       },
-      identityType: '',
+      identityType: -1,
       identities: [],
-      names: {},
-      otherData: {},
-      documents: {},
-      addresses: {}
+      names: [],
+      names1: [],
+      otherData: {
+        gender: '',
+        livingStatus: [],
+        nationality: '',
+        title: '',
+        designations: ''
+      },
+      documents: [],
+      addresses: [],
+      placesOfBirth: [],
+      datesOfBirth: [],
+      features: [],
+      biometricData: []
     };
   }
 
@@ -83,16 +101,32 @@ class Start extends Component {
   render() {
     const settings = this.state;
     const { createStep } = this.props;
+    const {
+      information,
+      identityType,
+      identities,
+      names,
+      names1,
+      otherData,
+      documents,
+      addresses,
+      placesOfBirth,
+      datesOfBirth,
+      features,
+      biometricData
+    } = this.results;
 
     return (
       <div className="Start">
         {createStep < 2 ? (
           <>
             <Information
+              data={information}
               settings={settings}
               handleSetValue={this.handleSetValue('information')}
             />
             <Identities
+              data={identities}
               settings={settings}
               setIdentityType={this.setIdentityType}
               setCurrentStep={this.setCurrentStep}
@@ -102,34 +136,43 @@ class Start extends Component {
         ) : (
           <>
             <Names
+              data={names}
+              data1={names1}
               settings={settings}
               handleSetValue={this.handleSetValue('names')}
             />
             <OtherData
+              data={otherData}
               settings={settings}
               handleSetValue={this.handleSetValue('otherData')}
             />
             <Documents
+              data={documents}
               settings={settings}
               handleSetValue={this.handleSetValue('documents')}
             />
             <Addresses
+              data={addresses}
               settings={settings}
               handleSetValue={this.handleSetValue('addresses')}
             />
             <PlacesOfBirth
+              data={placesOfBirth}
               settings={settings}
               handleSetValue={this.handleSetValue('placesOfBirth')}
             />
             <DatesOfBirth
+              data={datesOfBirth}
               settings={settings}
               handleSetValue={this.handleSetValue('datesOfBirth')}
             />
             <Features
+              data={features}
               settings={settings}
               handleSetValue={this.handleSetValue('features')}
             />
             <BiometricData
+              data={biometricData}
               settings={settings}
               handleSetValue={this.handleSetValue('biometricData')}
             />

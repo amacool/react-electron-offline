@@ -11,7 +11,7 @@ import { CustomDropzone } from "../common/CustomDropzone";
 import { DocTypeIcon, DocInfo } from "../common/DocElement";
 import "./styles.css";
 
-function Features({ settings, handleSetValue }) {
+function Features({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [attachment, setAttachment] = React.useState('');
@@ -20,7 +20,7 @@ function Features({ settings, handleSetValue }) {
     value: '',
     notes: ''
   });
-  const [features, setFeatures] = React.useState([]);
+  const [features, setFeatures] = React.useState(data);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
