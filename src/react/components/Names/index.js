@@ -54,7 +54,7 @@ function Names({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page Names">
+    <div className="start-page Names" id="NAMES">
       <div className="header">
         <h5>Names</h5>
       </div>

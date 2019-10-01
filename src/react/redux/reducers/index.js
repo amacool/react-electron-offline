@@ -1,4 +1,4 @@
-import {SAVE, CHANGE_INFORMATION} from "../../constant/action-types";
+import { SAVE, CHANGE_INFORMATION, SET_CREATE_STEP } from "../../constant/action-types";
 
 const initialState = {
   information: null,
@@ -11,6 +11,7 @@ const initialState = {
   dates_birth: null,
   features: null,
   biometric_data: null,
+  createStep: 0,
   err: null
 };
 
@@ -18,23 +19,32 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SAVE:
       console.log('TEST SAVE REDUX: ', state);
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
-      var downloadAnchorNode = document.createElement('a');
+      let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
+      let downloadAnchorNode = document.createElement('a');
       downloadAnchorNode.setAttribute("href", dataStr);
       downloadAnchorNode.setAttribute("download", "data.json");
       document.body.appendChild(downloadAnchorNode); // required for firefox
       downloadAnchorNode.click();
       downloadAnchorNode.remove();
       break;
+
     case CHANGE_INFORMATION:
       console.log('TEST CHANGE INFORMATION: ', action.payload);
 
       return Object.assign({}, state, {
         information: action.payload.data.information
       });
+
+    case SET_CREATE_STEP:
+      return {
+        ...state,
+        createStep: action.payload.step
+      };
+
     default:
       break;
   }
   return state;
-};
+}
+
 export default rootReducer;

@@ -59,7 +59,7 @@ function Addresses({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page">
+    <div className="start-page" id="ADDRESSES">
       <div className="header">
         <h5>addresses</h5>
       </div>

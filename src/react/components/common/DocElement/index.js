@@ -16,7 +16,7 @@ export const DocTypeIcon = ({ type }) => {
   return (
     <div className="file-type-icon">
       {fontIcon}
-      <FontAwesomeIcon icon={faCheck} size="0.5x" color="#fff" />
+      <FontAwesomeIcon icon={faCheck} size="sm" color="#fff" />
     </div>
   );
 };

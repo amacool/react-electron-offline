@@ -42,7 +42,7 @@ function DatesOfBirth({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page">
+    <div className="start-page" id="DATES-OF-BIRTH">
       <div className="header">
         <h5>dates of birth</h5>
       </div>

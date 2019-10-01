@@ -34,7 +34,7 @@ function OtherData({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page OtherData">
+    <div className="start-page OtherData" id="OTHER-DATA">
       <div className="header">
         <h5>other data</h5>
       </div>

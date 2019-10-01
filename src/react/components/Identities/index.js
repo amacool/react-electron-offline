@@ -8,7 +8,7 @@ import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
 
-function Identities({ settings, handleSetValue, setViewMode }) {
+function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep }) {
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -39,11 +39,12 @@ function Identities({ settings, handleSetValue, setViewMode }) {
   };
 
   const handleSetIdentityType = type => {
-    setViewMode(type);
+    setIdentityType(type);
+    setCurrentStep(2);
   };
 
   return (
-    <div className="start-page Identities">
+    <div className="start-page Identities" id="IDENTITIES">
       <div className="header">
         <h5>IDENTITIES</h5>
       </div>

@@ -51,7 +51,7 @@ function Documents({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page Documents">
+    <div className="start-page Documents" id="DOCUMENTS">
       <div className="header">
         <h5>documents</h5>
       </div>

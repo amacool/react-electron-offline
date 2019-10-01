@@ -5,11 +5,13 @@ import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
-import { save, saveDraft, changeInformation } from '../../redux/actions';
+import { save, saveDraft, changeInformation, setCreateStep } from '../../redux/actions';
 import logo from '../../assets/logo.png';
 import './styles.css';
 
 class Main extends Component {
+  steps = ['INFORMATION', 'IDENTITIES', 'NAMES', 'OTHER-DATA', 'DOCUMENTS', 'ADDRESSES', 'PLACES-OF-BIRTH', 'DATES-OF-BIRTH', 'FEATURES', 'BIOMETRIC-DATA'];
+
   goToStart() {
     this.props.history.push('/start');
   }
@@ -26,31 +28,42 @@ class Main extends Component {
 
   }
 
-  onNext() {
+  onNext = () => {
+    const { createStep, setCreateStep } = this.props;
+    setCreateStep(createStep + 1);
+    const sectionId = this.steps[createStep + 1];
+    document.getElementById(sectionId).scrollIntoView(true);
+  };
 
-  }
+  onPrev = () => {
+    const { createStep, setCreateStep } = this.props;
+    setCreateStep(createStep - 1);
+    const sectionId = this.steps[createStep - 1];
+    document.getElementById(sectionId).scrollIntoView(true);
+  };
 
   render() {
-    const {pathname} = this.props.location;
+    const { pathname } = this.props.location;
+    const { createStep } = this.props;
+
     return (
       <div className="main">
         <div className="left-container">
           <div className="top">
             <div className="left-logo">
-              <Link to={'/'}><img src={logo} alt="Left Logo"/></Link>
-              <h3>Security Council<br/> Consolidated List</h3>
+              <Link to={'/'}><img src={logo} alt="Left Logo" /></Link>
+              <h3>Security Council<br /> Consolidated List</h3>
             </div>
             {
-              pathname === '/start' ?
-                <LeftStepper/>
-                :
-                <LeftMenu pathname={pathname}/>
+              pathname === '/start'
+                ? <LeftStepper mode={createStep > 1 ? 1: 0} />
+                : <LeftMenu pathname={pathname} />
             }
           </div>
           <div className="bottom">
             Version 0.1.0 <br />
             <div className="bottom-logo">
-              <img src={logo} alt="bottom logo"/>
+              <img src={logo} alt="bottom logo" />
               UNITED NATIONS
             </div>
             <span className="bottom-copyright">
@@ -67,14 +80,25 @@ class Main extends Component {
               pathname === '/start' ? (
                 <div className="start-bottom">
                   <div className="start-bottom-left">
-                    <Button variant="contained" className="cancel-button"
-                            onClick={() => this.onCancel()}>CANCEL</Button>
-                    <Button variant="contained" className="save-button" onClick={() => this.onSaveDraft()}>SAVE AS
-                      DRAFT</Button>
+                    <Button
+                      variant="contained"
+                      className="cancel-button"
+                      onClick={() => this.onCancel()}
+                    >
+                      CANCEL
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="save-button"
+                      onClick={() => this.onSaveDraft()}
+                    >
+                      SAVE AS DRAFT
+                    </Button>
                   </div>
                   <div className="start-bottom-right">
-                    <Button variant="contained" className="next-button" onClick={() => this.onNext()}>Next</Button>
-                    <Button variant="contained" className="cancel-button" onClick={() => this.onSave()}>Save</Button>
+                    {createStep > 0 && <Button variant="contained" className="prev-button" onClick={this.onPrev}>Prev</Button>}
+                    {createStep !== 1 && createStep !== 9 && <Button variant="contained" className="next-button" onClick={this.onNext}>Next</Button>}
+                    {createStep === 9 && <Button variant="contained" className="cancel-button" onClick={() => this.onSave()}>Save</Button>}
                   </div>
                 </div>
               ) : (
@@ -98,6 +122,7 @@ const mapStateToProps = (state) => ({
   information: state.information,
   identities: state.identities,
   identityType: state.identityType,
+  createStep: state.createStep,
   err: state.err
 });
 
@@ -105,6 +130,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       changeInformation: data => changeInformation({data}),
+      setCreateStep: step => setCreateStep({step}),
       save: () => save(),
       saveDraft: () => saveDraft()
     },

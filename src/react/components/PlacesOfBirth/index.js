@@ -58,7 +58,7 @@ function PlacesOfBirth({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page">
+    <div className="start-page" id="PLACES-OF-BIRTH">
       <div className="header">
         <h5>places of birth</h5>
       </div>

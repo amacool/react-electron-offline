@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
-import { changeInformation, save, saveDraft } from "../../redux/actions";
+import { changeInformation, save, saveDraft, setCreateStep } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 import axios from 'axios';
@@ -30,8 +30,7 @@ class Start extends Component {
       gender: [],
       livingStatus: [],
       documentType: [],
-      biometricType: [],
-      isIdentityMode: false
+      biometricType: []
     };
     this.results = {
       information: {
@@ -72,17 +71,22 @@ class Start extends Component {
     // this.props.changeInformation({information: this.state});
   };
 
-  setViewMode = identityType => {
-    this.setState({ isIdentityMode: true });
-    this.results.identityType = identityType;
+  setIdentityType = type => {
+    this.results.identityType = type;
+  };
+
+  setCurrentStep = step => {
+    this.setState({ step });
+    this.props.setCreateStep(step);
   };
 
   render() {
     const settings = this.state;
+    const { createStep } = this.props;
 
     return (
       <div className="Start">
-        {!settings.isIdentityMode ? (
+        {createStep < 2 ? (
           <>
             <Information
               settings={settings}
@@ -90,7 +94,8 @@ class Start extends Component {
             />
             <Identities
               settings={settings}
-              setViewMode={this.setViewMode}
+              setIdentityType={this.setIdentityType}
+              setCurrentStep={this.setCurrentStep}
               handleSetValue={this.handleSetValue('identities')}
             />
           </>
@@ -138,6 +143,7 @@ class Start extends Component {
 const mapStateToProps = (state) => ({
   information: state.information,
   identities: state.identities,
+  createStep: state.createStep,
   err: state.err
 });
 
@@ -145,6 +151,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       changeInformation: data => changeInformation({data}),
+      setCreateStep: step => setCreateStep({step}),
       save: () => save(),
       saveDraft: () => saveDraft()
     },

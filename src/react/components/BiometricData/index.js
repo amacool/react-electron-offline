@@ -45,9 +45,9 @@ function Features({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page BiometricData">
+    <div className="start-page BiometricData" id="BIOMETRIC-DATA">
       <div className="header">
-        <h5>features</h5>
+        <h5>biometric data</h5>
       </div>
       <div className="content content-header">
         <div className="row">

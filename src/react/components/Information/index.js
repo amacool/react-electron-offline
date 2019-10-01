@@ -5,7 +5,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import './styles.css';
-import '../FormControl/styles.css';
+import '../common/FormControl/styles.css';
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomMultiSelect } from "../common/CustomMultiSelect";
 
@@ -57,7 +57,7 @@ function Information({ settings, handleSetValue }) {
   };
 
   return (
-    <div className="start-page Information">
+    <div className="start-page Information" id="INFORMATION">
       <div className="header">
         <h5>INFORMATION</h5>
       </div>
