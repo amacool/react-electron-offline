@@ -10,13 +10,14 @@
   border-right: solid 1px #707070;
   padding: 0 10px;
   margin-top: 25px;
+  cursor: pointer;
 }
 
 .stepper-container .active-spot {
   position: absolute;
   width: 30px;
   height: 30px;
-  border: solid 1px #4eb6ee;;
+  border: solid 1px #00adef;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -30,10 +31,15 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: #4eb6ee;;
+  background-color: #00adef;
 }
 
 .left-stepper {
+}
+
+.left-stepper .MuiStepper-root {
+  display: flex;
+  padding: 24px 24px 24px 50px;
 }
 
 .left-stepper .MuiStepper-vertical {
@@ -43,20 +49,34 @@
   margin-right: auto;
 }
 
+.left-stepper .MuiStepLabel-vertical {
+  cursor: pointer !important;
+}
+
 .left-stepper .MuiStepper-vertical .MuiStepLabel-labelContainer {
   text-align: left;
+}
+
+.left-stepper .MuiStepLabel-label.MuiStepLabel-active {
+  color: #6e6e6e;
+}
+
+.left-stepper .MuiStepper-vertical .active-label .MuiStepLabel-labelContainer span {
+  color: #00adef;
 }
 
 .left-stepper .MuiStepper-vertical .MuiStepLabel-iconContainer {
   padding-right: 20px;
 }
 
-.left-stepper .MuiStepConnector-vertical {
+.left-stepper .MuiStepper-vertical .MuiStepConnector-vertical {
+  margin-left: 10px;
+  border-color: #9c9eac;
   padding: 0 !important;
 }
 
-.left-stepper .MuiStepConnector-vertical {
-  margin-left: 10px;
+.left-stepper > .MuiStepper-vertical .last-item + div {
+  display: none;
 }
 
 .left-stepper .MuiStepConnector-lineVertical {
@@ -69,7 +89,7 @@
 
 .left-stepper .MuiStepper-vertical svg {
   color: #efefef;
-  border: solid 1px #777;
+  border: solid 1px #474747;
   border-radius: 50%;
   width: 18px;
   height: 18px;

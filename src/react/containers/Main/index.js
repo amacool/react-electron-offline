@@ -14,6 +14,15 @@ import './styles.css';
 class Main extends Component {
   steps = ['INFORMATION', 'IDENTITIES', 'NAMES', 'OTHER-DATA', 'DOCUMENTS', 'ADDRESSES', 'PLACES-OF-BIRTH', 'DATES-OF-BIRTH', 'FEATURES', 'BIOMETRIC-DATA'];
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.createStep !== this.props.createStep) {
+      console.log(this.props.createStep);
+      const sectionId = this.steps[this.props.createStep];
+      const section = document.getElementById(sectionId);
+      section && section.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    }
+  }
+
   goToStart() {
     this.props.history.push('/start');
   }
@@ -33,17 +42,20 @@ class Main extends Component {
   onNext = () => {
     const { createStep, setCreateStep } = this.props;
     setCreateStep(createStep + 1);
-    const sectionId = this.steps[createStep + 1];
-    const section = document.getElementById(sectionId);
-    section && section.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   };
 
   onPrev = () => {
     const { createStep, setCreateStep } = this.props;
     setCreateStep(createStep - 1);
-    const sectionId = this.steps[createStep - 1];
-    const section = document.getElementById(sectionId);
-    section && section.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  };
+
+  onGoBack = () => {
+    const { createStep, setCreateStep } = this.props;
+    if (createStep < 2) {
+      this.props.history.push('/new');
+    } else {
+      setCreateStep(0);
+    }
   };
 
   render() {
@@ -62,10 +74,10 @@ class Main extends Component {
               pathname === '/start'
                 ? (
                   <div className="stepper-container">
-                    <div className="to-prev">
+                    <div className="to-prev" onClick={this.onGoBack}>
                       <FontAwesomeIcon className="icon" icon={faArrowLeft} />
                     </div>
-                    <LeftStepper mode={createStep > 1 ? 1: 0} step={createStep} />
+                    <LeftStepper />
                   </div>)
                 : <LeftMenu pathname={pathname} />
             }
