@@ -5,6 +5,8 @@ import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { save, saveDraft, changeInformation, setCreateStep } from '../../redux/actions';
 import logo from '../../assets/logo.png';
 import './styles.css';
@@ -33,7 +35,7 @@ class Main extends Component {
     setCreateStep(createStep + 1);
     const sectionId = this.steps[createStep + 1];
     const section = document.getElementById(sectionId);
-    section && section.scrollIntoView(true);
+    section && section.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   };
 
   onPrev = () => {
@@ -41,7 +43,7 @@ class Main extends Component {
     setCreateStep(createStep - 1);
     const sectionId = this.steps[createStep - 1];
     const section = document.getElementById(sectionId);
-    section && section.scrollIntoView(true);
+    section && section.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   };
 
   render() {
@@ -58,7 +60,13 @@ class Main extends Component {
             </div>
             {
               pathname === '/start'
-                ? <LeftStepper mode={createStep > 1 ? 1: 0} />
+                ? (
+                  <div className="stepper-container">
+                    <div className="to-prev">
+                      <FontAwesomeIcon className="icon" icon={faArrowLeft} />
+                    </div>
+                    <LeftStepper mode={createStep > 1 ? 1: 0} step={createStep} />
+                  </div>)
                 : <LeftMenu pathname={pathname} />
             }
           </div>

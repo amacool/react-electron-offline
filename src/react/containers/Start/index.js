@@ -103,7 +103,6 @@ class Start extends Component {
     const { createStep } = this.props;
     const {
       information,
-      identityType,
       identities,
       names,
       names1,
