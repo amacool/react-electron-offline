@@ -14,8 +14,12 @@
   fill: #4eb6ee;
 }
 
+.New h2 {
+  color: #333333;
+}
+
 .New p {
   font-size: 15px;
   font-weight: 500;
-  color: #626262;
+  color: #333333;
 }

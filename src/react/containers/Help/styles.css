@@ -5,7 +5,7 @@
 }
 
 .Help .container {
-  border-bottom: 2px solid #626262;
+  border-bottom: 1px solid #626262;
   height: 100%;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .Help .content-body {
-  height: 669px;
+  height: 626px;
   overflow-y: auto;
   margin: 30px 0;
 }
@@ -58,4 +58,8 @@
 
 .Help .content-body::-webkit-scrollbar-thumb {
   background-color: #4eb6ee;
+}
+
+.Help .non-list-style::before {
+  display: none !important;
 }
