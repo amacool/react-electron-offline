@@ -7,6 +7,8 @@ import { bindActionCreators } from "redux";
 import { setCreateStep } from "../../../redux/actions";
 import './styles.css';
 
+let timerId = null;
+
 const LeftStepper = ({
   createStep,
   setCreateStep,
@@ -25,7 +27,10 @@ const LeftStepper = ({
 
   const handleClick = React.useCallback((index) => {
     lockScroll(true);
-    setTimeout(() => lockScroll(false), 1500);
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      lockScroll(false);
+    }, 1500);
     setCreateStep(mode === 0 ? index : index + 2);
   }, [setCreateStep, mode, lockScroll]);
 

@@ -67,8 +67,7 @@
 .file-type-icon svg:last-child {
   margin-left: -9px;
   border-radius: 50%;
-  background: #01af01;
   padding: 2px;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }

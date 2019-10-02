@@ -19,13 +19,13 @@ function Recent() {
       name: 'Name of document',
       path: 'HD >> Documents >> Forms >> Drafts',
       lastOpened: '01/01/2019',
-      status: 'Sent'
+      status: 'Incomplete'
     }, {
       type: 'file/excel',
       name: 'Name of document',
       path: 'HD >> Documents >> Forms >> Drafts',
       lastOpened: '01/01/2019',
-      status: 'Sent'
+      status: 'Pending send'
     }, {
       type: 'image/png',
       name: 'Name of document',
@@ -52,8 +52,8 @@ function Recent() {
             header={[<FontAwesomeIcon icon={faFile} size="2x" />, 'Name', 'Last time opened', 'Status']}
             data={files.map((item) =>
               ({
-                a: <DocTypeIcon type={item.type}/>,
-                b: <DocInfo info={{ name: item.name, path: item.path }}/>,
+                a: <DocTypeIcon type={item.type} status={item.status} />,
+                b: <DocInfo info={{ name: item.name, path: item.path }} />,
                 c: item.lastOpened,
                 d: item.status
               })

@@ -41,7 +41,6 @@ function Features({ settings, handleSetValue, data }) {
     }
     handleSetValue([...features, { ...state, attachment }]);
     setFeatures([...features, { ...state, attachment }]);
-    console.log(features);
   };
 
   return (
@@ -141,7 +140,7 @@ function Features({ settings, handleSetValue, data }) {
           header={['Type', 'Attachment', 'Notes']}
           data={features.map((item) =>
             ({
-              a: <DocTypeIcon type={item.attachment.type} />,
+              a: <DocTypeIcon type={item.attachment.type} status="Sent" />,
               b: <DocInfo info={item.attachment} />,
               c: item.notes
             })

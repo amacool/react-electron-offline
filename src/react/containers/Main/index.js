@@ -31,7 +31,10 @@ class Main extends Component {
   }
 
   onScroll = (e) => {
-    if (this.lockScroll) return;
+    if (this.lockScroll) {
+      return;
+    }
+
     const scrollTop = e.target.scrollTop;
     const wrapperHeight = document.getElementById('create-new-container').clientHeight;
     for (let i = 0; i < this.steps.length; i++) {
