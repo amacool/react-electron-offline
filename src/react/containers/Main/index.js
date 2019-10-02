@@ -12,6 +12,11 @@ import './styles.css';
 
 class Main extends Component {
   steps = ['INFORMATION', 'IDENTITIES', 'NAMES', 'OTHER-DATA', 'DOCUMENTS', 'ADDRESSES', 'PLACES-OF-BIRTH', 'DATES-OF-BIRTH', 'FEATURES', 'BIOMETRIC-DATA'];
+  lockScroll = false;
+
+  componentDidMount() {
+    document.getElementById('create-new-container').addEventListener('scroll', this.onScroll);
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.createStep !== this.props.createStep) {
@@ -21,12 +26,33 @@ class Main extends Component {
     }
   }
 
+  componentWillUnmount() {
+    document.getElementById('create-new-container').removeEventListener('scroll', this.onScroll);
+  }
+
+  onScroll = (e) => {
+    if (this.lockScroll) return;
+    const scrollTop = e.target.scrollTop;
+    const wrapperHeight = document.getElementById('create-new-container').clientHeight;
+    for (let i = 0; i < this.steps.length; i++) {
+      const element = document.getElementById(this.steps[i]);
+      if (element) {
+        const offsetTop = element.offsetTop;
+        const dist = offsetTop - scrollTop;
+        if (dist >= 0 && dist <= wrapperHeight) {
+          i !== this.props.createStep && this.props.setCreateStep(i);
+          break;
+        }
+      }
+    }
+  };
+
   goToStart() {
     this.props.history.push('/start');
   }
 
   onCancel() {
-
+    this.props.history.push('/new');
   }
 
   onSave() {
@@ -38,11 +64,13 @@ class Main extends Component {
   }
 
   onNext = () => {
+    this.lockScroll = true;
     const { createStep, setCreateStep } = this.props;
     setCreateStep(createStep + 1);
   };
 
   onPrev = () => {
+    this.lockScroll = true;
     const { createStep, setCreateStep } = this.props;
     setCreateStep(createStep - 1);
   };
@@ -73,9 +101,9 @@ class Main extends Component {
                 ? (
                   <div className="stepper-container">
                     <div className="to-prev" onClick={this.onGoBack}>
-                      <img src={LeftArrowIcon} />
+                      <img src={LeftArrowIcon} alt='' />
                     </div>
-                    <LeftStepper />
+                    <LeftStepper lockScroll={(val) => this.lockScroll = val} />
                   </div>)
                 : <LeftMenu pathname={pathname} />
             }
@@ -92,7 +120,7 @@ class Main extends Component {
           </div>
         </div>
         <div className="main-container">
-          <div className="top">
+          <div className="top" id="create-new-container">
             {this.props.children}
           </div>
           <div className="bottom">

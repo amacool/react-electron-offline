@@ -11,20 +11,23 @@ const LeftStepper = ({
   createStep,
   setCreateStep,
   identityType,
-  identities
+  identities,
+  lockScroll
 }) => {
   const steps = [
     ['INFORMATION', 'IDENTITIES'],
     ['NAMES', 'OTHER DATA', 'DOCUMENTS', 'ADDRESSES', 'PLACES OF BIRTH', 'DATES OF BIRTH', 'FEATURES', 'BIOMETRIC DATA']
   ];
   const pacing = 37;
-  const initialPos = -6;
+  const initialPos = 18;
   const mode = createStep < 2 ? 0 : 1;
   const activeSpotPos = initialPos + pacing * (mode === 0 ? createStep : createStep - 2);
 
   const handleClick = React.useCallback((index) => {
+    lockScroll(true);
+    setTimeout(() => lockScroll(false), 1500);
     setCreateStep(mode === 0 ? index : index + 2);
-  }, [setCreateStep, mode]);
+  }, [setCreateStep, mode, lockScroll]);
 
   return (
     <div className="left-stepper">
@@ -33,6 +36,9 @@ const LeftStepper = ({
           <span>Identities > {identities[identityType].identityType}</span>
         </div>
       )}
+      <div className="active-spot" style={{ marginTop: `${activeSpotPos}px` }}>
+        <div className="spot-inner" />
+      </div>
       <Stepper orientation="vertical">
         {steps[mode].map((label, index) => (
           <Step key={label} className={index === steps[mode].length - 1 ? 'last-item' : ''}>
@@ -48,9 +54,6 @@ const LeftStepper = ({
             </StepLabel>
           </Step>
         ))}
-        <div className="active-spot" style={{ marginTop: `${activeSpotPos}px` }}>
-          <div className="spot-inner" />
-        </div>
       </Stepper>
     </div>
   );
