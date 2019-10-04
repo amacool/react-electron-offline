@@ -152,6 +152,7 @@ function Information({ settings, handleSetValue, data }) {
         <div className="col-3">
           <div className="row">
             <CustomMultiSelect
+              id="applicable-measures"
               options={Object.values(applicableMeasure)}
               selected={state.applicableMeasure}
               label="Applicable Measures"
@@ -161,6 +162,7 @@ function Information({ settings, handleSetValue, data }) {
           </div>
           <div className="row">
             <CustomMultiSelect
+              id="submitted-by"
               options={Object.values(submittedBy)}
               selected={state.submittedBy}
               label="Submitted By"

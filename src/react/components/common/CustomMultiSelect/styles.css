@@ -16,19 +16,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 10px 13px;
+  padding: 12px 10px 14px;
   border: solid 1px black;
   border-radius: 4px;
   background-color: white;
   font-size: 14px;
   color: #626262;
-  margin-top: 7px;
+  margin-top: -47px;
   position: relative;
-}
-
-.custom-multi-select .select-heading svg {
-  width: 22px;
-  fill: #4eb6ee;
 }
 
 .custom-multi-select .select-body {

@@ -1,43 +1,56 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import CrossIcon from "../../../assets/icons/cross/cross-light.svg";
 import "./styles.css";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Select from "@material-ui/core/Select/Select";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import FormControl from "@material-ui/core/FormControl/FormControl";
 
-export const CustomMultiSelect = ({ options, selected, label, required, onChange }) => {
+export const CustomMultiSelect = ({ options, selected, label, required, onChange, id }) => {
   const [values, setValues] = React.useState(selected);
   const handleClick = React.useCallback((item) => {
     let tValues = values;
     const pos = tValues.indexOf(item);
-    if (pos >= 0) {
-      tValues.splice(pos, 1);
-    } else {
-      tValues.push(item);
-    }
+    tValues.splice(pos, 1);
     setValues(tValues);
     onChange({ target: { value: tValues } });
   }, [values, setValues, onChange]);
+  const addValue = () => (e) => {
+    if (values.indexOf(e.target.value) === -1) {
+      onChange({ target: { value: [...values, e.target.value] } });
+      setValues([...values, e.target.value]);
+    }
+  };
 
   return (
     <div className="custom-multi-select">
-      <label className="select-label">
-        {label}{required && <b>*</b>}
-      </label>
-      <div className="select-heading">
-        {label}
-        <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-          <path d="M7 10l5 5 5-5z" />
-        </svg>
-      </div>
+      <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+        <InputLabel htmlFor="regime" className="custom-select-label">
+          {label}{required && <b>*</b>}
+        </InputLabel>
+        <Select
+          value={label}
+          onChange={addValue()}
+          className="custom-select"
+          inputProps={{
+            name: id,
+            id: id,
+          }}
+        >
+          {options.filter((item) => values.indexOf(item) === -1).map((option, index) => (
+            <MenuItem value={option} key={index}>
+              {option}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <div className="select-heading">{label}</div>
       <div className="select-body">
         <div className="select-body-inner">
-          {options.map((item, index) => (
-            <div className="select-option" key={index} onClick={() => handleClick(item)}>
+          {values.map((item, index) => (
+            <div className="select-option" key={index}>
               {item}
-              {values.indexOf(item) >= 0
-                ? <FontAwesomeIcon className="icon" icon={faCheck} />
-                : <img className="icon" src={CrossIcon} alt='' />
-              }
+              <img className="icon" src={CrossIcon} alt='' onClick={() => handleClick(item)} />
             </div>
           ))}
         </div>
