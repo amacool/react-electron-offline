@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from "@material-ui/core/Button/Button";
-import { CustomTable } from "../common/CustomTable";
+import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import { ThreeDots } from "../common/Icons/ThreeDots";
@@ -26,6 +26,7 @@ function Documents({ settings, handleSetValue, data }) {
     expirationDate: ''
   });
   const [documents, setDocuments] = React.useState(data);
+  const [editIndex, setEditIndex] = React.useState(-1);
   const documentType = settings.documentType[0];
   const language = 'EN';
 
@@ -46,8 +47,15 @@ function Documents({ settings, handleSetValue, data }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue([...documents, state]);
-    setDocuments([...documents, state]);
+    if (editIndex === -1) {
+      handleSetValue([...documents, state]);
+      setDocuments([...documents, state]);
+    } else {
+      let tArr = [...documents];
+      tArr[editIndex] = {...state};
+      handleSetValue(tArr);
+      setDocuments(tArr);
+    }
     setState({
       docNumber: '',
       docType: '',
@@ -59,6 +67,30 @@ function Documents({ settings, handleSetValue, data }) {
       notes: '',
       expirationDate: ''
     });
+    setEditIndex(-1);
+  };
+
+  const handleEdit = (mode, index) => {
+    if (mode === 'edit') {
+      setState(documents[index]);
+      setEditIndex(index);
+    } else {
+      let tArr = [...documents];
+      tArr.splice(index, 1);
+      setDocuments(tArr);
+      setState({
+        docNumber: '',
+        docType: '',
+        docType1: '',
+        issuingCity: '',
+        issuedCountry: '',
+        issuingCountry: '',
+        issuedDate: '',
+        notes: '',
+        expirationDate: ''
+      });
+      setEditIndex(-1);
+    }
   };
 
   return (
@@ -182,6 +214,7 @@ function Documents({ settings, handleSetValue, data }) {
             </div>
             <div className="w-34">
               <CustomDatePicker
+                value={state.issuedDate}
                 required={true}
                 label="Issued Date"
                 onChange={handleChange('issuedDate')}
@@ -204,6 +237,7 @@ function Documents({ settings, handleSetValue, data }) {
             </div>
             <div className="w-34">
               <CustomDatePicker
+                value={state.expirationDate}
                 required={true}
                 label="Expiration Date"
                 onChange={handleChange('expirationDate')}
@@ -213,7 +247,7 @@ function Documents({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd()}
               >
-                ADD
+                {editIndex >= 0 ? 'SAVE' : 'ADD'}
               </Button>
             </div>
           </div>
@@ -224,6 +258,7 @@ function Documents({ settings, handleSetValue, data }) {
           header={['Document Number', 'Document Type', 'Notes']}
           data={documents.map((item) => ({ a: item.docNumber, b: item.docType, c: item.notes }))}
           extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
+          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
       </div>
     </div>

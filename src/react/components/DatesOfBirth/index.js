@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
-import { CustomTable } from "../common/CustomTable";
+import {CustomTable, TableBtnEditItem} from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomDatePicker } from "../common/CustomDatePicker";
-import { ThreeDots } from "../common/Icons/ThreeDots";
 import "./styles.css";
 
 function DatesOfBirth({ settings, handleSetValue, data }) {
@@ -19,6 +18,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
     notes: ''
   });
   const [dates, setDates] = React.useState(data);
+  const [editIndex, setEditIndex] = React.useState(-1);
 
   const handleChange = name => e => {
     const value = {
@@ -37,8 +37,15 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue([...dates, state]);
-    setDates([...dates, state]);
+    if (editIndex === -1) {
+      handleSetValue([...dates, state]);
+      setDates([...dates, state]);
+    } else {
+      let tArr = [...dates];
+      tArr[editIndex] = {...state};
+      handleSetValue(tArr);
+      setDates(tArr);
+    }
     setState({
       specific: false,
       date: '',
@@ -48,6 +55,28 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
       to: '',
       notes: ''
     });
+    setEditIndex(-1);
+  };
+
+  const handleEdit = (mode, index) => {
+    if (mode === 'edit') {
+      setState(dates[index]);
+      setEditIndex(index);
+    } else {
+      let tArr = [...dates];
+      tArr.splice(index, 1);
+      setDates(tArr);
+      setState({
+        specific: false,
+        date: '',
+        range: false,
+        subset: '',
+        from: '',
+        to: '',
+        notes: ''
+      });
+      setEditIndex(-1);
+    }
   };
 
   return (
@@ -68,6 +97,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col specific-date">
               <CustomDatePicker
+                value={state.date}
                 required={true}
                 label="Date"
                 onChange={handleChange('date')}
@@ -98,6 +128,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
           <div className="inline mb-20">
             <div className="col mr-15">
               <CustomDatePicker
+                value={state.from}
                 required={true}
                 label="From"
                 onChange={handleChange('from')}
@@ -105,6 +136,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col mr-15">
               <CustomDatePicker
+                value={state.to}
                 required={true}
                 label="To"
                 onChange={handleChange('to')}
@@ -133,7 +165,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd}
               >
-                ADD
+                {editIndex >= 0 ? 'SAVE' : 'ADD'}
               </Button>
             </div>
           </div>
@@ -149,7 +181,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
               c: item.notes
             })
           )}
-          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
+          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
       </div>
     </div>

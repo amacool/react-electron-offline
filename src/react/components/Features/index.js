@@ -1,9 +1,8 @@
 import React from 'react';
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
-import { CustomTable } from "../common/CustomTable";
+import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
-import { ThreeDots } from "../common/Icons/ThreeDots";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
@@ -18,6 +17,7 @@ function Features({ settings, handleSetValue, data }) {
     notes: ''
   });
   const [features, setFeatures] = React.useState(data);
+  const [editIndex, setEditIndex] = React.useState(-1);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -36,13 +36,38 @@ function Features({ settings, handleSetValue, data }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue([...features, state]);
-    setFeatures([...features, state]);
+    if (editIndex === -1) {
+      handleSetValue([...features, state]);
+      setFeatures([...features, state]);
+    } else {
+      let tArr = [...features];
+      tArr[editIndex] = {...state};
+      handleSetValue(tArr);
+      setFeatures(tArr);
+    }
     setState({
       type: false,
       value: '',
       notes: ''
     });
+    setEditIndex(-1);
+  };
+
+  const handleEdit = (mode, index) => {
+    if (mode === 'edit') {
+      setState(features[index]);
+      setEditIndex(index);
+    } else {
+      let tArr = [...features];
+      tArr.splice(index, 1);
+      setFeatures(tArr);
+      setState({
+        type: false,
+        value: '',
+        notes: ''
+      });
+      setEditIndex(-1);
+    }
   };
 
   return (
@@ -109,7 +134,7 @@ function Features({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd}
               >
-                ADD
+                {editIndex >= 0 ? 'SAVE' : 'ADD'}
               </Button>
             </div>
           </div>
@@ -125,7 +150,7 @@ function Features({ settings, handleSetValue, data }) {
               c: item.notes
             })
           )}
-          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
+          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
       </div>
     </div>

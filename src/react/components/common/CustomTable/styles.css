@@ -32,3 +32,10 @@ table.custom-table span.extra-content {
   color: #4eb6ee;
   font-weight: 600;
 }
+
+table.custom-table .table-btn-edit-item .dropdown-item {
+  padding: 3px 8px;
+}
+table.custom-table .table-btn-edit-item .dropdown-item:hover {
+  background-color: #eee;
+}

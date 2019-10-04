@@ -19,7 +19,7 @@ function formatDate(date, format, locale) {
   return dateFnsFormat(date, format, { locale });
 }
 
-export const CustomDatePicker = ({ onChange, label, required }) => {
+export const CustomDatePicker = ({ onChange, label, required, value }) => {
   const FORMAT = 'MM/dd/yyyy';
   return (
     <div className='custom-date-picker'>
@@ -28,10 +28,11 @@ export const CustomDatePicker = ({ onChange, label, required }) => {
       </label>
       <div>
         <DayPickerInput
+          value={value}
           formatDate={formatDate}
           format={FORMAT}
           parseDate={parseDate}
-          placeholder={`${dateFnsFormat(new Date(), FORMAT)}`}
+          placeholder="MM/DD/YYYY"
           onDayChange={(v) => onChange({ target : { value: dateFnsFormat(v, FORMAT) } })}
         />
         <img className="calendar-icon" src={CalendarIcon} alt='' />

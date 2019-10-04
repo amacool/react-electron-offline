@@ -1,9 +1,8 @@
 import React from 'react';
 import Button from "@material-ui/core/Button/Button";
-import { CustomTable } from "../common/CustomTable";
+import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
-import { ThreeDots } from "../common/Icons/ThreeDots";
 
 function Names({ settings, handleSetValue, data }) {
   const [state, setState] = React.useState({
@@ -18,6 +17,8 @@ function Names({ settings, handleSetValue, data }) {
   });
   const [names, setNames] = React.useState(data.names);
   const [names1, setNames1] = React.useState(data.names1);
+  const [editIndex, setEditIndex] = React.useState(-1);
+  const [editIndex1, setEditIndex1] = React.useState(-1);
 
   const handleChange = name => e => {
     const value = {
@@ -40,16 +41,27 @@ function Names({ settings, handleSetValue, data }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue({
-      names: [...names, { ...state, order: names.length + 1 }],
-      names1
-    });
-    setNames([...names, { ...state, order: names.length + 1 }]);
+    if (editIndex === -1) {
+      handleSetValue({
+        names: [...names, {...state, order: names.length + 1}],
+        names1
+      });
+      setNames([...names, {...state, order: names.length + 1}]);
+    } else {
+      let tArr = [...names];
+      tArr[editIndex] = {...state};
+      handleSetValue({
+        names: tArr,
+        names1
+      });
+      setNames(tArr);
+    }
     setState({
       name: '',
       type: '',
       script: ''
     });
+    setEditIndex(-1);
   };
 
   const handleAdd1 = () => {
@@ -57,16 +69,63 @@ function Names({ settings, handleSetValue, data }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue({
-      names1: [...names1, { ...state1, order: names1.length + 1 }],
-      names
-    });
-    setNames1([...names1, { ...state1, order: names1.length + 1 }]);
+    if (editIndex1 === -1) {
+      handleSetValue({
+        names1: [...names1, {...state1, order: names1.length + 1}],
+        names
+      });
+      setNames1([...names1, {...state1, order: names1.length + 1}]);
+    } else {
+      let tArr = [...names1];
+      tArr[editIndex1] = {...state1};
+      handleSetValue({
+        names1: tArr,
+        names
+      });
+      setNames1(tArr);
+    }
     setState1({
       name: '',
       type: '',
       script: ''
     });
+    setEditIndex1(-1);
+  };
+
+  const handleEdit = (mode, index) => {
+    if (mode === 'edit') {
+      setState(names[index]);
+      setEditIndex(index);
+    } else {
+      let tArr = [...names];
+      tArr.splice(index, 1);
+      tArr = tArr.map((item, index) => ({ ...item, order: index + 1 }));
+      setNames(tArr);
+      setState({
+        name: '',
+        type: '',
+        script: ''
+      });
+      setEditIndex(-1);
+    }
+  };
+
+  const handleEdit1 = (mode, index) => {
+    if (mode === 'edit') {
+      setState1(names1[index]);
+      setEditIndex1(index);
+    } else {
+      let tArr = [...names1];
+      tArr.splice(index, 1);
+      tArr = tArr.map((item, index) => ({ ...item, order: index + 1 }));
+      setNames1(tArr);
+      setState1({
+        name: '',
+        type: '',
+        script: ''
+      });
+      setEditIndex1(-1);
+    }
   };
 
   return (
@@ -108,7 +167,7 @@ function Names({ settings, handleSetValue, data }) {
             className="add-button col-1 ml-15 mt-39"
             onClick={handleAdd}
           >
-            ADD
+            {editIndex >= 0 ? 'SAVE' : 'ADD'}
           </Button>
         </div>
       </div>
@@ -116,7 +175,7 @@ function Names({ settings, handleSetValue, data }) {
         <CustomTable
           header={['Name', 'Type', 'Script', 'Order']}
           data={names}
-          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
+          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
       </div>
 
@@ -154,7 +213,7 @@ function Names({ settings, handleSetValue, data }) {
             className="add-button col-1 mt-39"
             onClick={handleAdd1}
           >
-            ADD
+            {editIndex1 >= 0 ? 'SAVE' : 'ADD'}
           </Button>
         </div>
       </div>
@@ -162,7 +221,7 @@ function Names({ settings, handleSetValue, data }) {
         <CustomTable
           header={['Name', 'Type', 'Script', 'Order']}
           data={names1}
-          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
+          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit1(mode, index)} /> })}
         />
       </div>
     </div>

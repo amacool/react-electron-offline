@@ -5,10 +5,9 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
-import { CustomTable } from "../common/CustomTable";
+import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
-import { ThreeDots } from "../common/Icons/ThreeDots";
 
 function PlacesOfBirth({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
@@ -27,6 +26,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
     notes: ''
   });
   const [addresses, setAddresses] = React.useState(data);
+  const [editIndex, setEditIndex] = React.useState(-1);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -53,8 +53,15 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue([...addresses, state]);
-    setAddresses([...addresses, state]);
+    if (editIndex === -1) {
+      handleSetValue([...addresses, state]);
+      setAddresses([...addresses, state]);
+    } else {
+      let tArr = [...addresses];
+      tArr[editIndex] = {...state};
+      handleSetValue(tArr);
+      setAddresses(tArr);
+    }
     setState({
       address: false,
       street: '',
@@ -67,7 +74,33 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
       latitude: '',
       longitude: '',
       notes: ''
-    })
+    });
+    setEditIndex(-1);
+  };
+
+  const handleEdit = (mode, index) => {
+    if (mode === 'edit') {
+      setState(addresses[index]);
+      setEditIndex(index);
+    } else {
+      let tArr = [...addresses];
+      tArr.splice(index, 1);
+      setAddresses(tArr);
+      setState({
+        address: false,
+        street: '',
+        city: '',
+        province: '',
+        zipCode: '',
+        country: '',
+        location: false,
+        region: '',
+        latitude: '',
+        longitude: '',
+        notes: ''
+      });
+      setEditIndex(-1);
+    }
   };
 
   return (
@@ -210,7 +243,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd}
               >
-                ADD
+                {editIndex >= 0 ? 'SAVE' : 'ADD'}
               </Button>
             </div>
           </div>
@@ -226,7 +259,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               c: item.notes
             })
           )}
-          extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
+          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
       </div>
     </div>
