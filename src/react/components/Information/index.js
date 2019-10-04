@@ -41,7 +41,7 @@ function Information({ settings, handleSetValue, data }) {
   const handleChange = name => e => {
     const value = {
       ...state,
-      [name]: name !== 'memberStateConfidential' ? e.target.value : e.target.checked
+      [name]: e.target.value
     };
     setState(value);
     handleSetValue(value);
@@ -73,10 +73,7 @@ function Information({ settings, handleSetValue, data }) {
                   <em>None</em>
                 </MenuItem>
                 {entryTypes && Object.keys(entryTypes[state.language]).map((itemKey, index) => (
-                  <MenuItem
-                    value={itemKey}
-                    key={index}
-                  >
+                  <MenuItem value={itemKey} key={index}>
                     {entryTypes[state.language][itemKey]}
                   </MenuItem>
                 ))}
@@ -130,10 +127,7 @@ function Information({ settings, handleSetValue, data }) {
                   <em>None</em>
                 </MenuItem>
                 {regime && Object.keys(regime[state.language]).map((itemKey, index) => (
-                  <MenuItem
-                    value={itemKey}
-                    key={index}
-                  >
+                  <MenuItem value={itemKey} key={index}>
                     {regime[state.language][itemKey]}
                   </MenuItem>
                 ))}

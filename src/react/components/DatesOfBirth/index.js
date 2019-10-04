@@ -76,6 +76,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
         notes: ''
       });
       setEditIndex(-1);
+      handleSetValue(tArr);
     }
   };
 

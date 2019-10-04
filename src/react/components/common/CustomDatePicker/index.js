@@ -21,6 +21,7 @@ function formatDate(date, format, locale) {
 
 export const CustomDatePicker = ({ onChange, label, required, value }) => {
   const FORMAT = 'MM/dd/yyyy';
+
   return (
     <div className='custom-date-picker'>
       <label>
@@ -28,6 +29,7 @@ export const CustomDatePicker = ({ onChange, label, required, value }) => {
       </label>
       <div>
         <DayPickerInput
+          id="day-picker-input"
           value={value}
           formatDate={formatDate}
           format={FORMAT}

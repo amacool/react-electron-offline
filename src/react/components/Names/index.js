@@ -106,6 +106,10 @@ function Names({ settings, handleSetValue, data }) {
         type: '',
         script: ''
       });
+      handleSetValue({
+        names: tArr,
+        names1
+      });
       setEditIndex(-1);
     }
   };
@@ -123,6 +127,10 @@ function Names({ settings, handleSetValue, data }) {
         name: '',
         type: '',
         script: ''
+      });
+      handleSetValue({
+        names1: tArr,
+        names
       });
       setEditIndex1(-1);
     }

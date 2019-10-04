@@ -100,6 +100,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
         notes: ''
       });
       setEditIndex(-1);
+      handleSetValue(tArr);
     }
   };
 

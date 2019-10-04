@@ -43,7 +43,16 @@ function Documents({ settings, handleSetValue, data }) {
   };
 
   const handleAdd = () => () => {
-    if (state.docNumber === '' || state.docType === '') {
+    if (
+      state.docNumber === '' ||
+      state.docType === '' ||
+      state.docType1 === '' ||
+      state.issuingCity === '' ||
+      state.issuedCountry === '' ||
+      state.issuingCountry === '' ||
+      state.issuedDate === '' ||
+      state.expirationDate === ''
+    ) {
       alert('Please input values!');
       return;
     }
@@ -90,6 +99,7 @@ function Documents({ settings, handleSetValue, data }) {
         expirationDate: ''
       });
       setEditIndex(-1);
+      handleSetValue(tArr);
     }
   };
 

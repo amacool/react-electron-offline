@@ -43,24 +43,27 @@ class Start extends Component {
         entryRemarks: '',
         reasonForListing: ''
       },
+      identityType: 0,
       identities: [],
-      names: {
-        names: [],
-        names1: []
-      },
-      otherData: {
-        gender: '',
-        livingStatus: [],
-        nationality: '',
-        title: '',
-        designations: ''
-      },
-      documents: [],
-      addresses: [],
-      placesOfBirth: [],
-      datesOfBirth: [],
-      features: [],
-      biometricData: []
+      identitiesArr: [{
+        names: {
+          names: [],
+          names1: []
+        },
+        otherData: {
+          gender: '',
+          livingStatus: [],
+          nationality: '',
+          title: '',
+          designations: ''
+        },
+        documents: [],
+        addresses: [],
+        placesOfBirth: [],
+        datesOfBirth: [],
+        features: [],
+        biometricData: []
+      }]
     };
   }
 
@@ -85,12 +88,38 @@ class Start extends Component {
   }
 
   handleSetValue = name => val => {
-    this.results[name] = val;
+    if (this.props.createStep < 2) {
+      this.results[name] = val;
+    } else {
+      this.results.identitiesArr[this.results.identityType][name] = val;
+    }
     this.props.changeInformation(this.results);
   };
 
   setIdentityType = type => {
     this.results.identityType = type;
+    const emptyCount = this.results.identities.length - this.results.identitiesArr.length;
+    for (let i = 0; i < emptyCount; i++ ) {
+      this.results.identitiesArr.push({
+        names: {
+          names: [],
+          names1: []
+        },
+        otherData: {
+          gender: '',
+          livingStatus: [],
+          nationality: '',
+          title: '',
+          designations: ''
+        },
+        documents: [],
+        addresses: [],
+        placesOfBirth: [],
+        datesOfBirth: [],
+        features: [],
+        biometricData: []
+      });
+    }
     this.props.setCreateStep(2);
     this.props.changeInformation(this.results);
   };
@@ -105,6 +134,9 @@ class Start extends Component {
     const {
       information,
       identities,
+      identitiesArr
+    } = this.results;
+    const {
       names,
       otherData,
       documents,
@@ -113,7 +145,7 @@ class Start extends Component {
       datesOfBirth,
       features,
       biometricData
-    } = this.results;
+    } = identitiesArr[this.results.identityType];
 
     return (
       <div className="Start">
