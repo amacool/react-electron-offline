@@ -39,6 +39,15 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
     }
     handleSetValue([...dates, state]);
     setDates([...dates, state]);
+    setState({
+      specific: false,
+      date: '',
+      range: false,
+      subset: '',
+      from: '',
+      to: '',
+      notes: ''
+    });
   };
 
   return (
@@ -77,6 +86,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col mr-15">
               <CustomInput
+                value={state.subset}
                 id="subset"
                 label="Subset"
                 required={true}

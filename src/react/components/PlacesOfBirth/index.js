@@ -55,6 +55,19 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
     }
     handleSetValue([...addresses, state]);
     setAddresses([...addresses, state]);
+    setState({
+      address: false,
+      street: '',
+      city: '',
+      province: '',
+      zipCode: '',
+      country: '',
+      location: false,
+      region: '',
+      latitude: '',
+      longitude: '',
+      notes: ''
+    })
   };
 
   return (
@@ -75,6 +88,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col">
               <CustomInput
+                value={state.street}
                 id="street"
                 label="Street"
                 required={true}
@@ -86,6 +100,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
           <div className="inline mb-20">
             <div className="col mr-15">
               <CustomInput
+                value={state.city}
                 id="city"
                 label="City"
                 required={true}
@@ -94,6 +109,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col mr-15">
               <CustomInput
+                value={state.province}
                 id="province"
                 label="Province"
                 required={true}
@@ -102,6 +118,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col mr-15">
               <CustomInput
+                value={state.zipCode}
                 id="zip-code"
                 label="Zip Code"
                 required={true}
@@ -146,6 +163,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col mr-15">
               <CustomInput
+                value={state.region}
                 id="region"
                 label="Region"
                 required={true}
@@ -154,6 +172,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col mr-15">
               <CustomInput
+                value={state.latitude}
                 id="latitude"
                 label="Latitude"
                 required={true}
@@ -162,6 +181,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
             </div>
             <div className="col">
               <CustomInput
+                value={state.longitude}
                 id="longitude"
                 label="Longitude"
                 required={true}

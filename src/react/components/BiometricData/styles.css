@@ -71,3 +71,11 @@
   width: 8px;
   height: 8px;
 }
+
+.BiometricData .custom-textarea-control {
+  height: 166px !important;
+}
+
+.BiometricData .custom-textarea-control > div {
+  align-items: start;
+}

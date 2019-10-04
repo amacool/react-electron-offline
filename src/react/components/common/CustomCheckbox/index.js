@@ -12,8 +12,8 @@ export const CustomCheckbox = ({ label, onChange, required, value }) => (
       control={
         <Checkbox
           color="primary"
-          onChange={onChange}
-          value={value}
+          onChange={(e) => onChange({ target: { value: e.target.checked } })}
+          value="check"
           checked={value}
         />
       }

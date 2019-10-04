@@ -44,8 +44,10 @@ class Start extends Component {
         reasonForListing: ''
       },
       identities: [],
-      names: [],
-      names1: [],
+      names: {
+        names: [],
+        names1: []
+      },
       otherData: {
         gender: '',
         livingStatus: [],
@@ -104,7 +106,6 @@ class Start extends Component {
       information,
       identities,
       names,
-      names1,
       otherData,
       documents,
       addresses,
@@ -135,7 +136,6 @@ class Start extends Component {
           <>
             <Names
               data={names}
-              data1={names1}
               settings={settings}
               handleSetValue={this.handleSetValue('names')}
             />

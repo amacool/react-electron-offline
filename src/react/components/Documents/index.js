@@ -41,13 +41,24 @@ function Documents({ settings, handleSetValue, data }) {
     setState(value);
   };
 
-  const handleAdd = () => {
+  const handleAdd = () => () => {
     if (state.docNumber === '' || state.docType === '') {
       alert('Please input values!');
       return;
     }
     handleSetValue([...documents, state]);
     setDocuments([...documents, state]);
+    setState({
+      docNumber: '',
+      docType: '',
+      docType1: '',
+      issuingCity: '',
+      issuedCountry: '',
+      issuingCountry: '',
+      issuedDate: '',
+      notes: '',
+      expirationDate: ''
+    });
   };
 
   return (
@@ -60,6 +71,7 @@ function Documents({ settings, handleSetValue, data }) {
           <div className="inline mb-20">
             <div className="col">
               <CustomInput
+                value={state.docNumber}
                 id="doc-number"
                 label="Document Number"
                 required={true}
@@ -98,6 +110,7 @@ function Documents({ settings, handleSetValue, data }) {
             </div>
             <div className="col">
               <CustomInput
+                value={state.docType1}
                 id="doc-type1"
                 label="Document Type1"
                 required={true}
@@ -108,6 +121,7 @@ function Documents({ settings, handleSetValue, data }) {
           <div className="inline mb-20">
             <div className="w-34 mr-15">
               <CustomInput
+                value={state.issuingCity}
                 id="issuing-city"
                 label="Issuing City"
                 required={true}
@@ -197,7 +211,7 @@ function Documents({ settings, handleSetValue, data }) {
               <Button
                 variant="contained"
                 className="add-button"
-                onClick={handleAdd}
+                onClick={handleAdd()}
               >
                 ADD
               </Button>

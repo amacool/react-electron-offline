@@ -36,6 +36,10 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     }
     handleSetValue([...identities, state]);
     setIdentities([...identities, state]);
+    setState({
+      identityType: '',
+      category: ''
+    });
   };
 
   const handleSetIdentityType = type => {
@@ -52,6 +56,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
         <div className="custom-add-group row">
           <div className="col-4">
             <CustomInput
+              value={state.identityType}
               id="identity-type"
               label="Identity Types"
               required={true}

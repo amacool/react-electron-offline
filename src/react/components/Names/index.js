@@ -5,7 +5,7 @@ import { CustomInput } from "../common/CustomInput";
 import './styles.css';
 import { ThreeDots } from "../common/Icons/ThreeDots";
 
-function Names({ settings, handleSetValue, data, data1 }) {
+function Names({ settings, handleSetValue, data }) {
   const [state, setState] = React.useState({
     name: '',
     type: '',
@@ -16,8 +16,8 @@ function Names({ settings, handleSetValue, data, data1 }) {
     type: '',
     script: ''
   });
-  const [names, setNames] = React.useState(data);
-  const [names1, setNames1] = React.useState(data1);
+  const [names, setNames] = React.useState(data.names);
+  const [names1, setNames1] = React.useState(data.names1);
 
   const handleChange = name => e => {
     const value = {
@@ -40,8 +40,16 @@ function Names({ settings, handleSetValue, data, data1 }) {
       alert('Please input values!');
       return;
     }
-    handleSetValue([...names, { ...state, order: names.length + 1 }]);
+    handleSetValue({
+      names: [...names, { ...state, order: names.length + 1 }],
+      names1
+    });
     setNames([...names, { ...state, order: names.length + 1 }]);
+    setState({
+      name: '',
+      type: '',
+      script: ''
+    });
   };
 
   const handleAdd1 = () => {
@@ -49,8 +57,16 @@ function Names({ settings, handleSetValue, data, data1 }) {
       alert('Please input values!');
       return;
     }
-    // handleSetValue([...names, { ...state, order: names.length + 1 }]);
+    handleSetValue({
+      names1: [...names1, { ...state1, order: names1.length + 1 }],
+      names
+    });
     setNames1([...names1, { ...state1, order: names1.length + 1 }]);
+    setState1({
+      name: '',
+      type: '',
+      script: ''
+    });
   };
 
   return (
@@ -62,6 +78,7 @@ function Names({ settings, handleSetValue, data, data1 }) {
         <div className="custom-add-group">
           <div className="col-3">
             <CustomInput
+              value={state.name}
               id="names-name"
               label="Name"
               required={true}
@@ -70,6 +87,7 @@ function Names({ settings, handleSetValue, data, data1 }) {
           </div>
           <div className="col-3 mr-15 ml-15">
             <CustomInput
+              value={state.type}
               id="names-type"
               label="Type"
               required={true}
@@ -78,6 +96,7 @@ function Names({ settings, handleSetValue, data, data1 }) {
           </div>
           <div className="col-3 mr-15">
             <CustomInput
+              value={state.script}
               id="names-script"
               label="Script"
               required={true}
@@ -105,6 +124,7 @@ function Names({ settings, handleSetValue, data, data1 }) {
         <div className="custom-add-group">
           <div className="col-3">
             <CustomInput
+              value={state1.name}
               id="names-name1"
               label="Name In Original Script"
               required={true}
@@ -113,6 +133,7 @@ function Names({ settings, handleSetValue, data, data1 }) {
           </div>
           <div className="col-3 mr-15 ml-15">
             <CustomInput
+              value={state1.type}
               id="names-type1"
               label="Type"
               required={true}
@@ -121,6 +142,7 @@ function Names({ settings, handleSetValue, data, data1 }) {
           </div>
           <div className="col-3 mr-15">
             <CustomInput
+              value={state1.script}
               id="names-script1"
               label="Script"
               required={true}

@@ -41,6 +41,11 @@ function Features({ settings, handleSetValue, data }) {
     }
     handleSetValue([...features, { ...state, attachment }]);
     setFeatures([...features, { ...state, attachment }]);
+    setState({
+      type: false,
+      value: '',
+      notes: ''
+    });
   };
 
   return (
@@ -78,6 +83,7 @@ function Features({ settings, handleSetValue, data }) {
             </div>
             <div className="col">
               <CustomInput
+                value={state.value}
                 id="value"
                 label="Value"
                 required={true}
