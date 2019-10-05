@@ -66,8 +66,8 @@ const LeftStepper = ({
 
 const mapStateToProps = (state) => ({
   createStep: state.createStep,
-  identities: state.identities,
-  identityType: state.identityType
+  identities: state.data.identities,
+  identityType: state.data.identityType
 });
 
 const mapDispatchToProps = dispatch =>

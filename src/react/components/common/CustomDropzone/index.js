@@ -9,13 +9,12 @@ export const CustomDropzone = (props) => {
     reader.onabort = () => console.log('file reading was aborted');
     reader.onerror = () => console.log('file reading has failed');
     reader.onload = () => {
-      console.log(acceptedFiles[0]);
       const { name, path, type } = acceptedFiles[0];
-      props.onHandleLoad({ name, path, type });
+      props.onHandleLoad({ name, path, type, result: reader.result });
     };
 
     acceptedFiles.forEach(file => {
-      reader.readAsDataURL(file);
+      reader.readAsText(file);
     })
   }, [props]);
 

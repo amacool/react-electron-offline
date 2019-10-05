@@ -170,9 +170,9 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  information: state.information,
-  identities: state.identities,
-  identityType: state.identityType,
+  information: state.data.information,
+  identities: state.data.identities,
+  identityType: state.data.identityType,
   createStep: state.createStep,
   err: state.err
 });

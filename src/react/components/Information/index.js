@@ -38,6 +38,10 @@ function Information({ settings, handleSetValue, data }) {
     setRegimeLabelWidth(regimeLabel.current.offsetWidth);
   }, []);
 
+  React.useEffect(() => {
+    setState(data);
+  }, [data]);
+
   const handleChange = name => e => {
     const value = {
       ...state,

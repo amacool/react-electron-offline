@@ -16,6 +16,9 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     category: ''
   });
   const [identities, setIdentities] = React.useState(data);
+  React.useEffect(() => {
+    setIdentities(data);
+  }, [data]);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);

@@ -1,5 +1,9 @@
 .Open {
-    margin: 50px;
-    height: calc(100% - 100px);
-    border-bottom: 2px solid #626262;
+  margin: 50px;
+  height: calc(100% - 100px);
+  border-bottom: 2px solid #626262;
+}
+
+.Open #file-input {
+  visibility: hidden;
 }

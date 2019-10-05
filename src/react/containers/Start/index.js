@@ -68,6 +68,11 @@ class Start extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.data);
+    if (this.props.data.information) {
+      this.results = this.props.data;
+    }
+
     let th = this;
     axios.get('/data/languages.json')
       .then(function (result) {
@@ -214,8 +219,7 @@ class Start extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  information: state.information,
-  identities: state.identities,
+  data: state.data,
   createStep: state.createStep,
   err: state.err
 });

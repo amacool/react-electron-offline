@@ -1,16 +1,7 @@
 import { SAVE, CHANGE_INFORMATION, SET_CREATE_STEP } from "../../constant/action-types";
 
 const initialState = {
-  information: null,
-  identities: null,
-  names: null,
-  other_data: null,
-  documents: null,
-  addresses: null,
-  places_birth: null,
-  dates_birth: null,
-  features: null,
-  biometric_data: null,
+  data: {},
   createStep: 0,
   err: null
 };
@@ -19,7 +10,7 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SAVE:
       console.log('TEST SAVE REDUX: ', state);
-      let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
+      let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ ...state, sign: 'council-document' }));
       let downloadAnchorNode = document.createElement('a');
       downloadAnchorNode.setAttribute("href", dataStr);
       downloadAnchorNode.setAttribute("download", "data.json");
@@ -33,7 +24,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        ...action.payload.data
+        data: action.payload.data
       };
 
     case SET_CREATE_STEP:
