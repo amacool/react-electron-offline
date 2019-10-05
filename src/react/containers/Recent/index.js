@@ -45,7 +45,7 @@ function Recent() {
     <div className="Recent">
       <div className="container">
         <div className="header">
-          <h5>places of birth</h5>
+          <h5>recent forms</h5>
         </div>
         <div className="content-body">
           <CustomTable

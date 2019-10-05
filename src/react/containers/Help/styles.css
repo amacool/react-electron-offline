@@ -12,12 +12,14 @@
 .Help .header {
   border-bottom: 1px solid #626262;
   padding-bottom: 10px;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .Help .content-body {
-  height: 626px;
+  height: 610px;
   overflow-y: auto;
-  margin: 30px 0;
+  margin-top: 30px;
 }
 
 .Help .content-body ul {

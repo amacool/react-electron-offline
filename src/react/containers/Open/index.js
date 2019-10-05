@@ -7,18 +7,8 @@ import connect from "react-redux/es/connect/connect";
 import './styles.css';
 
 const Open = ({ changeInformation, history }) => {
-  const fileInput = React.useRef(null);
-  React.useEffect(() => {
-    // fileInput.current.click();
-    // fileInput.current.onchange = (e) => {
-    //   const file = readTextFile(`file:///${e.target.value}`);
-    //   console.log(file);
-    // }
-  }, []);
-
   return (
     <div className="Open">
-      <input ref={fileInput} type="file" id="file-input" />
       <CustomDropzone
         heading='Attachment'
         description='Choose a file or drag it here'
@@ -32,6 +22,8 @@ const Open = ({ changeInformation, history }) => {
           }
         }}
         accept='application/json'
+        autoOpen={true}
+        hidden={true}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
-import { save, saveDraft, changeInformation, setCreateStep } from '../../redux/actions';
+import { save, saveDraft, changeInformation, clearInformation, setCreateStep } from '../../redux/actions';
 import logo from '../../assets/logo.png';
 import LeftArrowIcon from '../../assets/icons/arrow/left-arrow.svg';
 import './styles.css';
@@ -55,6 +55,7 @@ class Main extends Component {
   }
 
   onCancel() {
+    this.props.clearInformation();
     this.props.history.push('/new');
   }
 
@@ -181,6 +182,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       changeInformation: data => changeInformation({ data }),
+      clearInformation: () => clearInformation(),
       setCreateStep: data => setCreateStep({ data }),
       save: () => save(),
       saveDraft: () => saveDraft()

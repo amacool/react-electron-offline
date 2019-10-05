@@ -23,6 +23,13 @@ export const CustomDropzone = (props) => {
     onDrop
   });
 
+  const dropzoneInput = React.useRef(null);
+  React.useEffect(() => {
+    if (props.autoOpen) {
+      dropzoneInput.current.click();
+    }
+  }, [props.autoOpen, dropzoneInput]);
+
   const acceptedFilesItems = acceptedFiles.map(file => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
@@ -30,9 +37,9 @@ export const CustomDropzone = (props) => {
   ));
 
   return (
-    <section className="upload-photo-inner-container">
+    <section className="upload-photo-inner-container" style={{display: props.hidden ? 'none' : 'block'}}>
       <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} ref={dropzoneInput} />
         <img src={UploadIcon} alt='' />
         <p>{props.description}</p>
       </div>

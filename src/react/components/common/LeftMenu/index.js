@@ -20,7 +20,7 @@ class LeftMenu extends Component {
           </Link>
         </div>
         <div className="menu-item">
-          <Link to={'/open'} className={(pathname === '/open') ? 'active' : ''}>
+          <Link to={'/open'} className={(pathname === '/open') ? 'active' : ''} >
             <FolderOpen />
             <p>OPEN</p>
           </Link>
