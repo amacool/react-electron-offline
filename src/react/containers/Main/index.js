@@ -64,7 +64,7 @@ class Main extends Component {
   }
 
   onSaveDraft() {
-
+    this.props.save();
   }
 
   onNext = () => {
