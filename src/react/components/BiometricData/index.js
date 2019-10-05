@@ -103,7 +103,7 @@ function Features({ settings, handleSetValue, data }) {
                     onHandleLoad={(v) => {
                       setAttachment(v);
                     }}
-                    accept='image/jpeg, image/png, video/mp4, video/webm, audio/webm'
+                    accept=''
                   />
                 </div>
                 <div className="input-container">
@@ -146,8 +146,8 @@ function Features({ settings, handleSetValue, data }) {
           header={['Type', 'Attachment', 'Notes']}
           data={features.map((item) =>
             ({
-              a: <DocTypeIcon type={item.attachment.type} status="Sent" />,
-              b: <DocInfo info={item.attachment} />,
+              a: item.attachment && <DocTypeIcon type={item.attachment.type} status="Sent" />,
+              b: item.attachment && <DocInfo info={item.attachment} />,
               c: item.notes
             })
           )}

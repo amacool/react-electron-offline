@@ -68,7 +68,6 @@ class Start extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.data);
     if (this.props.data.information) {
       this.results = this.props.data;
     }

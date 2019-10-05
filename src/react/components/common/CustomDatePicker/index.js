@@ -35,7 +35,7 @@ export const CustomDatePicker = ({ onChange, label, required, value }) => {
           format={FORMAT}
           parseDate={parseDate}
           placeholder="MM/DD/YYYY"
-          onDayChange={(v) => onChange({ target : { value: dateFnsFormat(v, FORMAT) } })}
+          onDayChange={(v) => v && onChange({ target : { value: dateFnsFormat(v, FORMAT) } })}
         />
         <img className="calendar-icon" src={CalendarIcon} alt='' />
       </div>

@@ -38,8 +38,8 @@ export const CustomDropzone = (props) => {
 
   return (
     <section className="upload-photo-inner-container" style={{display: props.hidden ? 'none' : 'block'}}>
-      <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} ref={dropzoneInput} />
+      <div {...getRootProps({className: 'dropzone'})} ref={dropzoneInput}>
+        <input {...getInputProps()} />
         <img src={UploadIcon} alt='' />
         <p>{props.description}</p>
       </div>
