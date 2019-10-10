@@ -25,7 +25,7 @@ class Home extends Component {
   }
 
   render() {
-    let {languages} = this.state;
+    const { languages } = this.state;
     return (
       <div className="Home">
         <div className="container">
@@ -38,8 +38,12 @@ class Home extends Component {
             {
               languages && languages.map((item, i) => {
                 return (
-                  <Button variant="contained" key={`home-button-${i}`} className="Home-button"
-                          onClick={() => this.goToMain()}>
+                  <Button
+                    variant="contained"
+                    key={`home-button-${i}`}
+                    className="Home-button"
+                    onClick={() => this.goToMain()}
+                  >
                     {item.name}
                   </Button>
                 )

@@ -126,15 +126,14 @@ class Main extends Component {
               <h3>Security Council<br /> Consolidated List</h3>
             </div>
             {
-              pathname === '/start'
-                ? (
-                  <div className="stepper-container">
-                    <div className="to-prev" onClick={this.onGoBack}>
-                      <img src={LeftArrowIcon} alt='' />
-                    </div>
-                    <LeftStepper lockScroll={(val) => this.lockScroll = val} />
-                  </div>)
-                : <LeftMenu pathname={pathname} />
+              pathname === '/start' ? (
+                <div className="stepper-container">
+                  <div className="to-prev" onClick={this.onGoBack}>
+                    <img src={LeftArrowIcon} alt='' />
+                  </div>
+                  <LeftStepper lockScroll={(val) => this.lockScroll = val} />
+                </div>
+              ) : <LeftMenu pathname={pathname} />
             }
           </div>
           <div className="bottom">

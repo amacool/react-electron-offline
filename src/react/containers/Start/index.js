@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
-import { changeInformation, save, saveDraft, setCreateStep } from "../../redux/actions";
+import { changeInformation, setCreateStep } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 import axios from 'axios';

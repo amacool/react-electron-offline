@@ -51,9 +51,8 @@ ipcMain.on(channels.APP_INFO, (event) => {
 });
 
 ipcMain.on(channels.SAVE_FILE, function (event, arg) {
-  const savePath = dialog.showSaveDialog('data.json');
+  const savePath = dialog.showSaveDialog();
   if (!savePath) return;
-
   try {
     fs.writeFile(savePath, arg.content, function(err) {
       if (err)  throw err;
@@ -82,7 +81,7 @@ ipcMain.on(channels.SAVE_FILE, function (event, arg) {
   }
 });
 
-ipcMain.on(channels.GET_HISTORY, function (event, arg) {
+ipcMain.on(channels.GET_HISTORY, function (event) {
   try {
     fs.readFile(historyPath, 'utf-8', (err, data) => {
       if (err) throw err;
@@ -91,9 +90,30 @@ ipcMain.on(channels.GET_HISTORY, function (event, arg) {
         data
       });
     });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
-    event.sender.send(channels.SAVE_FILE, {
+    event.sender.send(channels.GET_HISTORY, {
+      message: err,
+      success: false
+    });
+  }
+});
+
+ipcMain.on(channels.OPEN_FILE, function (event) {
+  const openPath = dialog.showOpenDialog();
+  if (!openPath) return;
+  console.log(openPath);
+  try {
+    fs.readFile(openPath[0], 'utf-8', (err, data) => {
+      if (err) throw err;
+      event.sender.send(channels.OPEN_FILE, {
+        success: true,
+        data
+      });
+    });
+  } catch (err) {
+    console.log(err);
+    event.sender.send(channels.OPEN_FILE, {
       message: err,
       success: false
     });

@@ -29,7 +29,7 @@ function Recent() {
               name: fileName,
               path: fileInfo[0],
               lastOpened: fileInfo[1],
-              status: fileInfo[2] === '0' ? 'Complete' : 'Incomplete'
+              status: fileInfo[2] === '0' ? 'Completed' : 'Draft'
             };
           });
           setFiles(fileInfoArr);

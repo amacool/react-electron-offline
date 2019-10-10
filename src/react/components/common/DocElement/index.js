@@ -15,9 +15,9 @@ export const DocTypeIcon = ({ type, status }) => {
     fontIcon = <FontAwesomeIcon icon={faFile} size="2x" />;
   }
   let statusIcon = null;
-  if (status === 'Complete' || status === 'Pending send') {
+  if (status === 'Completed' || status === 'Pending send') {
     statusIcon = <FontAwesomeIcon style={{ backgroundColor: '#01af01' }} icon={faCheck} size="sm" color="#fff" />;
-  } else if (status === 'Incomplete') {
+  } else if (status === 'Draft') {
     statusIcon = <FontAwesomeIcon style={{ backgroundColor: '#dd0008' }} icon={faExclamation} size="sm" color="#fff" />;
   }
 
