@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { changeInformation, save, saveDraft, setCreateStep } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
@@ -45,25 +45,7 @@ class Start extends Component {
       },
       identityType: 0,
       identities: [],
-      identitiesArr: [{
-        names: {
-          names: [],
-          names1: []
-        },
-        otherData: {
-          gender: '',
-          livingStatus: [],
-          nationality: '',
-          title: '',
-          designations: ''
-        },
-        documents: [],
-        addresses: [],
-        placesOfBirth: [],
-        datesOfBirth: [],
-        features: [],
-        biometricData: []
-      }]
+      identitiesArr: [this.getIdentityModel()]
     };
   }
 
@@ -91,6 +73,28 @@ class Start extends Component {
       });
   }
 
+  getIdentityModel = () => {
+    return {
+      names: {
+        names: [],
+        names1: []
+      },
+      otherData: {
+        gender: '',
+        livingStatus: [],
+        nationality: '',
+        title: '',
+        designations: ''
+      },
+      documents: [],
+      addresses: [],
+      placesOfBirth: [],
+      datesOfBirth: [],
+      features: [],
+      biometricData: []
+    }
+  };
+
   handleSetValue = name => val => {
     if (this.props.createStep < 2) {
       this.results[name] = val;
@@ -104,25 +108,7 @@ class Start extends Component {
     this.results.identityType = type;
     const emptyCount = this.results.identities.length - this.results.identitiesArr.length;
     for (let i = 0; i < emptyCount; i++ ) {
-      this.results.identitiesArr.push({
-        names: {
-          names: [],
-          names1: []
-        },
-        otherData: {
-          gender: '',
-          livingStatus: [],
-          nationality: '',
-          title: '',
-          designations: ''
-        },
-        documents: [],
-        addresses: [],
-        placesOfBirth: [],
-        datesOfBirth: [],
-        features: [],
-        biometricData: []
-      });
+      this.results.identitiesArr.push(this.getIdentityModel());
     }
     this.props.setCreateStep(2);
     this.props.changeInformation(this.results);
@@ -227,9 +213,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       changeInformation: data => changeInformation({ data }),
-      setCreateStep: data => setCreateStep({ data }),
-      save: () => save(),
-      saveDraft: () => saveDraft()
+      setCreateStep: data => setCreateStep({ data })
     },
     dispatch
   );

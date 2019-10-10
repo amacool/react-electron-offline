@@ -101,6 +101,7 @@ function Features({ settings, handleSetValue, data }) {
                     heading='Attachment'
                     description='Choose a file or drag it here'
                     onHandleLoad={(v) => {
+                      delete v.result;
                       setAttachment(v);
                     }}
                     accept=''

@@ -5,9 +5,11 @@ import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
-import { save, saveDraft, changeInformation, clearInformation, setCreateStep } from '../../redux/actions';
+import { saveDraft, changeInformation, clearInformation, setCreateStep } from '../../redux/actions';
 import logo from '../../assets/logo.png';
 import LeftArrowIcon from '../../assets/icons/arrow/left-arrow.svg';
+import isElectron from 'is-electron';
+import { channels } from '../../../shared/constants';
 import './styles.css';
 
 class Main extends Component {
@@ -60,12 +62,35 @@ class Main extends Component {
   }
 
   onSave() {
-    this.props.save();
+    this.handleSaveFile(false);
   }
 
   onSaveDraft() {
-    this.props.save();
+    this.handleSaveFile(true);
   }
+
+  handleSaveFile = async (draft) => {
+    const isDraft = draft ? 1 : 0;
+    const data = {
+      data: this.props.docData,
+      sign: 'council-document',
+      isDraft
+    };
+    if (isElectron()) {
+      const { ipcRenderer } = window.require('electron');
+      ipcRenderer.send(channels.SAVE_FILE, { content: JSON.stringify(data), isDraft });
+      ipcRenderer.on(channels.SAVE_FILE, (event, arg) => {
+        ipcRenderer.removeAllListeners(channels.SAVE_FILE);
+        const { message, success } = arg;
+        if (success) {
+          alert('Saved successfully');
+        } else {
+          console.log(message);
+          alert(message);
+        }
+      });
+    }
+  };
 
   onNext = () => {
     this.lockScroll = true;
@@ -175,6 +200,7 @@ const mapStateToProps = (state) => ({
   identities: state.data.identities,
   identityType: state.data.identityType,
   createStep: state.createStep,
+  docData: state.data,
   err: state.err
 });
 
@@ -184,7 +210,6 @@ const mapDispatchToProps = dispatch =>
       changeInformation: data => changeInformation({ data }),
       clearInformation: () => clearInformation(),
       setCreateStep: data => setCreateStep({ data }),
-      save: () => save(),
       saveDraft: () => saveDraft()
     },
     dispatch

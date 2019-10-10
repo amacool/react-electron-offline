@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-
 import Footer from '../../components/Footer';
 import logo from '../../assets/logo.png';
 import './styles.css';
