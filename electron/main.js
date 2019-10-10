@@ -7,6 +7,7 @@ const { dialog } = require('electron');
 const { channels } = require('../src/shared/constants');
 
 let mainWindow;
+const historyPath = path.join(__dirname, '../documents/history.txt');
 
 function createWindow () {
   const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -57,7 +58,6 @@ ipcMain.on(channels.SAVE_FILE, function (event, arg) {
     fs.writeFile(savePath, arg.content, function(err) {
       if (err)  throw err;
 
-      const historyPath = path.join(__dirname, '../documents/history.txt');
       const today = moment(new Date()).format('MM/DD/YYYY');
       const dataToAppend = `${savePath},${today},${arg.isDraft}\n`;
       fs.open(historyPath, 'a+', (err, fd) => {
@@ -73,6 +73,24 @@ ipcMain.on(channels.SAVE_FILE, function (event, arg) {
         success: true
       });
     })
+  } catch(err) {
+    console.log(err);
+    event.sender.send(channels.SAVE_FILE, {
+      message: err,
+      success: false
+    });
+  }
+});
+
+ipcMain.on(channels.GET_HISTORY, function (event, arg) {
+  try {
+    fs.readFile(historyPath, 'utf-8', (err, data) => {
+      if (err) throw err;
+      event.sender.send(channels.GET_HISTORY, {
+        success: true,
+        data
+      });
+    });
   } catch(err) {
     console.log(err);
     event.sender.send(channels.SAVE_FILE, {

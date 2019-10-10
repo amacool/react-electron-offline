@@ -1,45 +1,45 @@
 import React from 'react';
+import isElectron from "is-electron";
+import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../../components/common/CustomTable";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DocTypeIcon, DocInfo } from "../../components/common/DocElement";
+import { channels } from "../../../shared/constants";
 import './styles.css';
-import Button from "@material-ui/core/Button/Button";
 
 function Recent() {
-  const files = [
-    {
-      type: 'image/png',
-      name: 'Name of document',
-      path: 'HD >> Documents >> Forms >> Drafts',
-      lastOpened: '01/01/2019',
-      status: 'Sent'
-    }, {
-      type: 'file/word',
-      name: 'Name of document',
-      path: 'HD >> Documents >> Forms >> Drafts',
-      lastOpened: '01/01/2019',
-      status: 'Incomplete'
-    }, {
-      type: 'file/excel',
-      name: 'Name of document',
-      path: 'HD >> Documents >> Forms >> Drafts',
-      lastOpened: '01/01/2019',
-      status: 'Pending send'
-    }, {
-      type: 'image/png',
-      name: 'Name of document',
-      path: 'HD >> Documents >> Forms >> Drafts',
-      lastOpened: '01/01/2019',
-      status: 'Sent'
-    }, {
-      type: 'image/png',
-      name: 'Name of document',
-      path: 'HD >> Documents >> Forms >> Drafts',
-      lastOpened: '01/01/2019',
-      status: 'Sent'
+  const [files, setFiles] = React.useState([]);
+
+  React.useEffect(() => {
+    if (isElectron()) {
+      const { ipcRenderer } = window.require('electron');
+      ipcRenderer.send(channels.GET_HISTORY);
+      ipcRenderer.on(channels.GET_HISTORY, (event, arg) => {
+        ipcRenderer.removeAllListeners(channels.GET_HISTORY);
+        const { data, message, success } = arg;
+        if (success) {
+          const rows = data.split("\n");
+          rows.splice(rows.length - 1, 1);
+          const fileInfoArr = rows.map((item) => {
+            const fileInfo = item.split(",");
+            const fileName = fileInfo[0].substr(fileInfo[0].lastIndexOf("\\") + 1);
+            return {
+              type: 'normal',
+              name: fileName,
+              path: fileInfo[0],
+              lastOpened: fileInfo[1],
+              status: fileInfo[2] === '0' ? 'Complete' : 'Incomplete'
+            };
+          });
+          setFiles(fileInfoArr);
+        } else {
+          console.log(message);
+          alert(message);
+        }
+      });
     }
-  ];
+  }, []);
 
   return (
     <div className="Recent">
