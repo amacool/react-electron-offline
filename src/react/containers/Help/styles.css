@@ -48,6 +48,10 @@
   display: inline;
 }
 
+.Help .content-body ul li a {
+  color: black;
+}
+
 .Help .content-body::-webkit-scrollbar {
   width: 10px;
   background-color: #F5F5F5;
