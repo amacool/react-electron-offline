@@ -85,7 +85,6 @@ class Main extends Component {
         if (success) {
           alert('Saved successfully');
         } else {
-          console.log(message);
           alert(message);
         }
       });

@@ -73,9 +73,8 @@ ipcMain.on(channels.SAVE_FILE, function (event, arg) {
       });
     })
   } catch(err) {
-    console.log(err);
     event.sender.send(channels.SAVE_FILE, {
-      message: err,
+      message: err.message,
       success: false
     });
   }
@@ -91,9 +90,8 @@ ipcMain.on(channels.GET_HISTORY, function (event) {
       });
     });
   } catch (err) {
-    console.log(err);
     event.sender.send(channels.GET_HISTORY, {
-      message: err,
+      message: err.message,
       success: false
     });
   }
@@ -102,20 +100,59 @@ ipcMain.on(channels.GET_HISTORY, function (event) {
 ipcMain.on(channels.OPEN_FILE, function (event) {
   const openPath = dialog.showOpenDialog();
   if (!openPath) return;
-  console.log(openPath);
   try {
     fs.readFile(openPath[0], 'utf-8', (err, data) => {
-      if (err) throw err;
-      event.sender.send(channels.OPEN_FILE, {
-        success: true,
-        data
-      });
+      try {
+        if (err) throw err;
+
+        // document validation
+        if (!isJson(data)) throw Error("Invalid document");
+        const fileInfo = JSON.parse(data);
+        if (fileInfo.sign !== 'council-document') {
+          throw Error('Invalid document');
+        }
+
+        // update last opened date
+        fs.readFile(historyPath, 'utf-8', (err, data) => {
+          if (err) throw err;
+          const rows = data.split("\n");
+          rows.splice(rows.length - 1, 1);
+          let fileInHistory = rows.find((item) => item.split(",")[0] === openPath[0].replace("\\\\", "\\"));
+          if (fileInHistory) {
+            let newInfo = fileInHistory.split(",");
+            newInfo[1] = moment(new Date()).format('MM/DD/YYYY');
+            newInfo = newInfo.join(",");
+            const newData = data.replace(fileInHistory, newInfo);
+            console.log("newData: ", newData);
+            fs.writeFile(historyPath, newData, function (err) {
+              if (err) throw err;
+            });
+          }
+        });
+        event.sender.send(channels.OPEN_FILE, {
+          success: true,
+          data: fileInfo
+        });
+      } catch (err) {
+        event.sender.send(channels.OPEN_FILE, {
+          message: err.message,
+          success: false
+        });
+      }
     });
   } catch (err) {
-    console.log(err);
     event.sender.send(channels.OPEN_FILE, {
-      message: err,
+      message: err.message,
       success: false
     });
   }
 });
+
+const isJson = (data) => {
+  try {
+    JSON.parse(data);
+    return true;
+  } catch (err) {
+    return false;
+  }
+};

@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="439823f8-1106-4de8-93bb-72e4cf0e483f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/documents/history.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/electron/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/electron/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/components/common/DocElement/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/common/DocElement/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react/components/common/LeftMenu/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/common/LeftMenu/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/containers/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/containers/Home/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/containers/Main/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/containers/Main/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/containers/Open/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/containers/Open/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/containers/Recent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/containers/Recent/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react/containers/Start/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/containers/Start/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,7 +59,7 @@
           <entry key="log" value="1" />
           <entry key="svg" value="9" />
           <entry key="ts" value="28" />
-          <entry key="txt" value="3" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -74,7 +68,7 @@
           <entry key="HTML" value="2" />
           <entry key="JSON" value="14" />
           <entry key="JavaScript" value="269" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="PLAIN_TEXT" value="6" />
           <entry key="SVG" value="9" />
           <entry key="TypeScript" value="28" />
           <entry key="yarn.lock" value="1" />
@@ -89,7 +83,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="4525" />
-          <entry key="js" value="27906" />
+          <entry key="js" value="28629" />
           <entry key="json" value="6" />
           <entry key="svg" value="11" />
           <entry key="txt" value="2" />
@@ -99,7 +93,7 @@
         <counts>
           <entry key="CSS" value="4525" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="27906" />
+          <entry key="JavaScript" value="28629" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SVG" value="11" />
         </counts>
@@ -108,11 +102,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/electron/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="113" column="17" lean-forward="true" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
+            <state relative-caret-position="295">
+              <caret line="140" column="24" lean-forward="true" selection-start-line="140" selection-start-column="24" selection-end-line="140" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documents/history.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="1" column="17" lean-forward="true" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -120,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/react/containers/Main/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+            <state relative-caret-position="232">
+              <caret line="78" column="23" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -129,11 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/react/components/common/LeftMenu/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="10" column="64" lean-forward="true" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+            <state relative-caret-position="189">
+              <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -189,8 +192,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/react/containers/Recent/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+            <state relative-caret-position="190">
+              <caret line="23" column="50" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="23" selection-end-column="50" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -314,8 +317,8 @@
         <option value="$PROJECT_DIR$/src/react/containers/Start/index.js" />
         <option value="$PROJECT_DIR$/src/shared/constants.js" />
         <option value="$PROJECT_DIR$/src/react/containers/Open/index.js" />
-        <option value="$PROJECT_DIR$/electron/main.js" />
         <option value="$PROJECT_DIR$/src/react/components/common/LeftMenu/index.js" />
+        <option value="$PROJECT_DIR$/electron/main.js" />
       </list>
     </option>
   </component>
@@ -339,7 +342,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -524,12 +527,12 @@
       <workItem from="1570611209763" duration="1320000" />
       <workItem from="1570631421776" duration="9732000" />
       <workItem from="1570651660824" duration="13291000" />
-      <workItem from="1570687419423" duration="12590000" />
+      <workItem from="1570687419423" duration="14858000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238171000" />
+    <option name="totallyTimeSpent" value="240439000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -812,13 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documents/history.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@fortawesome/free-regular-svg-icons/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
@@ -830,16 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/containers/Recent/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -899,23 +885,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/electron/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="113" column="17" lean-forward="true" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/containers/Main/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/react/redux/actions/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -936,13 +905,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/components/common/LeftMenu/index.js">
+    <entry file="file://$PROJECT_DIR$/src/react/containers/Recent/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="10" column="64" lean-forward="true" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        <state relative-caret-position="190">
+          <caret line="23" column="50" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="23" selection-end-column="50" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documents/history.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="17" lean-forward="true" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/containers/Main/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="78" column="23" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/common/LeftMenu/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/electron/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="140" column="24" lean-forward="true" selection-start-line="140" selection-start-column="24" selection-end-line="140" selection-end-column="24" />
         </state>
       </provider>
     </entry>

@@ -18,24 +18,17 @@ const LeftMenu = ({ history, pathname, changeInformation }) => {
         const { data, message, success } = arg;
         if (success) {
           try {
-            const fileInfo = JSON.parse(data);
-            if (fileInfo.sign !== 'council-document') {
-              alert('Invalid document!');
-              return;
-            }
-            console.log(fileInfo.data);
-            changeInformation(fileInfo.data);
+            changeInformation(data.data);
             history.replace('/start');
           } catch (err) {
             alert('Invalid document!');
           }
         } else {
-          console.log(message);
           alert(message);
         }
       });
     }
-  }, [history]);
+  }, [history, changeInformation]);
 
   return (
     <div className="left-menu">
