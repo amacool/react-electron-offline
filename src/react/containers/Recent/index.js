@@ -59,6 +59,8 @@ function Recent() {
               })
             )}
           />
+        </div>
+        <div className="content-footer">
           <Button
             variant="contained"
             className="add-button col-1 mt-39"

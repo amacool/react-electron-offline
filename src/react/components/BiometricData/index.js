@@ -52,7 +52,10 @@ function Features({ settings, handleSetValue, data }) {
 
   const handleEdit = (mode, index) => {
     if (mode === 'edit') {
-      setAttachment(features[index].attachment);
+      setAttachment({
+        ...attachment,
+        result: features[index].attachment.result
+      });
       setIsModalOpen(true);
     } else {
       let tArr = [...features];
@@ -181,7 +184,7 @@ function Features({ settings, handleSetValue, data }) {
           onClose={() => setIsModalOpen(false)}
           labelClose="CLOSE"
         >
-          <iframe src={attachment.result} style={{ width: '100%', height: '100%' }} />
+          <iframe src={attachment.result} style={{ width: '100%', height: '100%' }} title="View Attachment" />
         </CustomModal>
       </div>
     </div>

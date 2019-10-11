@@ -84,10 +84,16 @@ ipcMain.on(channels.GET_HISTORY, function (event) {
   try {
     fs.readFile(historyPath, 'utf-8', (err, data) => {
       if (err) throw err;
+      const newData = keepRecent(data).join("\n");
       event.sender.send(channels.GET_HISTORY, {
         success: true,
-        data
+        data: newData
       });
+      if (newData !== data) {
+        fs.writeFile(historyPath, newData, function (err) {
+          if (err) throw err;
+        });
+      }
     });
   } catch (err) {
     event.sender.send(channels.GET_HISTORY, {
@@ -123,7 +129,6 @@ ipcMain.on(channels.OPEN_FILE, function (event) {
             newInfo[1] = moment(new Date()).format('MM/DD/YYYY');
             newInfo = newInfo.join(",");
             const newData = data.replace(fileInHistory, newInfo);
-            console.log("newData: ", newData);
             fs.writeFile(historyPath, newData, function (err) {
               if (err) throw err;
             });
@@ -147,6 +152,22 @@ ipcMain.on(channels.OPEN_FILE, function (event) {
     });
   }
 });
+
+const keepRecent = (data) => {
+  const rows = data.split("\n");
+  const newData = [];
+  rows.forEach((item) => {
+    if (!item) return;
+    const date1 = moment(item.split(",")[1]);
+    const date2 = moment(new Date());
+    const diff = date2.diff(date1, 'days');
+    if (diff <= 7) {
+      newData.push(item);
+    }
+  });
+  newData.push("");
+  return newData;
+};
 
 const isJson = (data) => {
   try {
