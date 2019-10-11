@@ -14,9 +14,10 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    width: '70%',
+    height: '80%'
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -32,32 +33,38 @@ const useStyles = makeStyles(theme => ({
     color: 'black'
   },
   modalBody: {
+    height: '85%',
+    marginBottom: '20px'
   },
-  modalContainer: {
+  modalFooter: {
     display: 'flex',
     justifyContent: 'space-between'
   }
 }));
 
-export default function CustomModal({ isOpen, defaultTitle, onSave, onCancel }) {
+export const CustomModal = ({
+  isOpen,
+  title,
+  labelConfirm,
+  labelClose,
+  children,
+  singleButton,
+  onConfirm,
+  onClose
+}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(isOpen);
-  const [title, setTitle] = React.useState(defaultTitle);
 
   React.useEffect(() => {
     setOpen(isOpen);
   }, [isOpen]);
 
   const handleClose = () => {
-    onCancel();
+    onClose();
   };
 
-  const handleChangeTitle = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleSave = () => {
-    onSave(title);
+  const handleConfirm = () => {
+    onConfirm();
   };
 
   return (
@@ -75,35 +82,30 @@ export default function CustomModal({ isOpen, defaultTitle, onSave, onCancel }) 
     >
       <Fade in={open}>
         <div className={classes.paper}>
-          <h2 id="transition-modal-title">Input File Name</h2>
+          <h2 id="transition-modal-title">{title}</h2>
           <div className={classes.modalBody}>
-            <TextField
-              id="standard-name"
-              label="Name"
-              className={classes.textField}
-              value={title}
-              onChange={handleChangeTitle}
-              margin="normal"
-            />
-            <div className={classes.modalContainer}>
+            {children}
+          </div>
+          <div className={classes.modalFooter} style={singleButton && { justifyContent: 'flex-end' }}>
+            {!singleButton && (
               <Button
                 variant="contained"
                 className={classes.saveButton}
-                onClick={handleSave}
+                onClick={handleConfirm}
               >
-                SAVE
+                {labelConfirm}
               </Button>
-              <Button
-                variant="contained"
-                className={classes.cancelButton}
-                onClick={handleClose}
-              >
-                CANCEL
-              </Button>
-            </div>
+            )}
+            <Button
+              variant="contained"
+              className={classes.cancelButton}
+              onClick={handleClose}
+            >
+              {labelClose}
+            </Button>
           </div>
         </div>
       </Fade>
     </Modal>
   );
-}
+};

@@ -2,7 +2,14 @@ import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import UploadIcon from '../../../assets/icons/upload/upload.svg';
 
-export const CustomDropzone = (props) => {
+export const CustomDropzone = ({
+  onHandleLoad,
+  accept,
+  autoOpen,
+  description,
+  showSelectedFiles,
+  hidden
+}) => {
   const onDrop = useCallback(acceptedFiles => {
     const reader = new FileReader();
 
@@ -10,25 +17,25 @@ export const CustomDropzone = (props) => {
     reader.onerror = () => console.log('file reading has failed');
     reader.onload = () => {
       const { name, path, type } = acceptedFiles[0];
-      props.onHandleLoad({ name, path, type, result: reader.result });
+      onHandleLoad({ name, path, type, result: reader.result });
     };
 
     acceptedFiles.forEach(file => {
-      reader.readAsText(file);
+      reader.readAsDataURL(file);
     })
-  }, [props]);
+  }, [onHandleLoad]);
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    accept: props.accept,
+    accept: accept,
     onDrop
   });
 
   const dropzoneInput = React.useRef(null);
   React.useEffect(() => {
-    if (props.autoOpen) {
+    if (autoOpen) {
       dropzoneInput.current.click();
     }
-  }, [props.autoOpen, dropzoneInput]);
+  }, [autoOpen, dropzoneInput]);
 
   const acceptedFilesItems = acceptedFiles.map(file => (
     <li key={file.path}>
@@ -37,17 +44,19 @@ export const CustomDropzone = (props) => {
   ));
 
   return (
-    <section className="upload-photo-inner-container" style={{display: props.hidden ? 'none' : 'block'}}>
+    <section className="upload-photo-inner-container" style={{display: hidden ? 'none' : 'block'}}>
       <div {...getRootProps({className: 'dropzone'})} ref={dropzoneInput}>
         <input {...getInputProps()} />
         <img src={UploadIcon} alt='' />
-        <p>{props.description}</p>
+        <p>{description}</p>
       </div>
-      <aside>
-        <ul>
-          {acceptedFilesItems}
-        </ul>
-      </aside>
+      {showSelectedFiles && (
+        <aside>
+          <ul>
+            {acceptedFilesItems}
+          </ul>
+        </aside>
+      )}
     </section>
   );
 };

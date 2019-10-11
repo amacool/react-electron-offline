@@ -51,7 +51,7 @@ export const CustomTable = ({ header, data, handleClick, getExtraCell }) => (
   </Table>
 );
 
-export const TableBtnEditItem = ({ onEdit }) => {
+export const TableBtnEditItem = ({ onEdit, label1 = "Edit", label2 = "Remove" }) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -67,8 +67,8 @@ export const TableBtnEditItem = ({ onEdit }) => {
             <Button onClick={() => setOpen(!open)}><ThreeDots color='#4eb6ee'/></Button>
             {open ? (
               <Paper className={classes.paper}>
-                <div className="dropdown-item" onClick={() => onEdit('edit')}>Edit</div>
-                <div className="dropdown-item" onClick={() => onEdit('remove')}>Remove</div>
+                <div className="dropdown-item" onClick={() => onEdit('edit')}>{label1}</div>
+                <div className="dropdown-item" onClick={() => onEdit('remove')}>{label2}</div>
               </Paper>
             ) : null}
           </div>

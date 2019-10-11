@@ -5,10 +5,11 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
-import { CustomTable } from "../common/CustomTable";
+import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomDropzone } from "../common/CustomDropzone";
 import { DocTypeIcon, DocInfo } from "../common/DocElement";
+import { CustomModal } from "../common/CustomModal";
 import "./styles.css";
 
 function Features({ settings, handleSetValue, data }) {
@@ -21,6 +22,7 @@ function Features({ settings, handleSetValue, data }) {
     notes: ''
   });
   const [features, setFeatures] = React.useState(data);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -46,6 +48,23 @@ function Features({ settings, handleSetValue, data }) {
       value: '',
       notes: ''
     });
+  };
+
+  const handleEdit = (mode, index) => {
+    if (mode === 'edit') {
+      setAttachment(features[index].attachment);
+      setIsModalOpen(true);
+    } else {
+      let tArr = [...features];
+      tArr.splice(index, 1);
+      setFeatures(tArr);
+      setState({
+        type: false,
+        value: '',
+        notes: ''
+      });
+      handleSetValue(tArr);
+    }
   };
 
   return (
@@ -101,14 +120,14 @@ function Features({ settings, handleSetValue, data }) {
                     heading='Attachment'
                     description='Choose a file or drag it here'
                     onHandleLoad={(v) => {
-                      delete v.result;
                       setAttachment(v);
                     }}
                     accept=''
+                    showSelectedFiles={false}
                   />
                 </div>
                 <div className="input-container">
-                  <input type="text" placeholder="Upload from file" />
+                  <input type="text" placeholder="Upload from file" value={attachment.path} />
                   <Button
                     variant="contained"
                     className="add-button"
@@ -144,15 +163,26 @@ function Features({ settings, handleSetValue, data }) {
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Type', 'Attachment', 'Notes']}
+          header={['Type', 'Value', 'Attachment', 'Notes']}
           data={features.map((item) =>
             ({
               a: item.attachment && <DocTypeIcon type={item.attachment.type} status="Sent" />,
-              b: item.attachment && <DocInfo info={item.attachment} />,
-              c: item.notes
+              b: item.value,
+              c: item.attachment && <DocInfo info={item.attachment} />,
+              d: item.notes
             })
           )}
+          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem label1="View" label2="Remove" onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
+        <CustomModal
+          isOpen={isModalOpen}
+          title="View Attachment"
+          singleButton={true}
+          onClose={() => setIsModalOpen(false)}
+          labelClose="CLOSE"
+        >
+          <iframe src={attachment.result} style={{ width: '100%', height: '100%' }} />
+        </CustomModal>
       </div>
     </div>
   )

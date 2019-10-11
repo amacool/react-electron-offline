@@ -19,6 +19,8 @@ export const DocTypeIcon = ({ type, status }) => {
     statusIcon = <FontAwesomeIcon style={{ backgroundColor: '#01af01' }} icon={faCheck} size="sm" color="#fff" />;
   } else if (status === 'Draft') {
     statusIcon = <FontAwesomeIcon style={{ backgroundColor: '#dd0008' }} icon={faExclamation} size="sm" color="#fff" />;
+  } else {
+    statusIcon = <FontAwesomeIcon style={{ backgroundColor: '#dd0008' }} icon={faExclamation} size="sm" color="#fff" />;
   }
 
   return (
