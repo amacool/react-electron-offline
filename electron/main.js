@@ -153,12 +153,45 @@ ipcMain.on(channels.OPEN_FILE, function (event) {
   }
 });
 
+ipcMain.on(channels.OPEN_FROM_PATH, function (event, openPath) {
+  if (!openPath) return;
+  try {
+    fs.readFile(openPath, 'utf-8', (err, data) => {
+      try {
+        if (err) throw err;
+
+        // document validation
+        if (!isJson(data)) throw Error("Invalid document");
+        const fileInfo = JSON.parse(data);
+        if (fileInfo.sign !== 'council-document') {
+          throw Error('Invalid document');
+        }
+
+        event.sender.send(channels.OPEN_FROM_PATH, {
+          success: true,
+          data: fileInfo
+        });
+      } catch (err) {
+        event.sender.send(channels.OPEN_FILE, {
+          message: err.message,
+          success: false
+        });
+      }
+    });
+  } catch (err) {
+    event.sender.send(channels.OPEN_FROM_PATH, {
+      message: err.message,
+      success: false
+    });
+  }
+});
+
 const keepRecent = (data) => {
   const rows = data.split("\n");
   const newData = [];
   rows.forEach((item) => {
     if (!item) return;
-    const date1 = moment(item.split(",")[1]);
+    const date1 = moment(new Date(item.split(",")[1]));
     const date2 = moment(new Date());
     const diff = date2.diff(date1, 'days');
     if (diff <= 7) {

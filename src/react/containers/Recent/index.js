@@ -1,15 +1,36 @@
-import React from 'react';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
 import isElectron from "is-electron";
 import Button from "@material-ui/core/Button/Button";
-import { CustomTable } from "../../components/common/CustomTable";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DocTypeIcon, DocInfo } from "../../components/common/DocElement";
 import { channels } from "../../../shared/constants";
+import { changeInformation } from "../../redux/actions";
+import { CustomTable } from "../../components/common/CustomTable";
 import './styles.css';
 
-function Recent() {
+function Recent({ history, changeInformation }) {
   const [files, setFiles] = React.useState([]);
+
+  const handleLoadData = (index) => {
+    if (isElectron()) {
+      const {ipcRenderer} = window.require('electron');
+      ipcRenderer.send(channels.OPEN_FROM_PATH, files[index].path);
+      ipcRenderer.on(channels.OPEN_FROM_PATH, (event, arg) => {
+        ipcRenderer.removeAllListeners(channels.OPEN_FROM_PATH);
+        const { data, message, success } = arg;
+        if (success) {
+          changeInformation(data.data);
+          history.push('/start');
+        } else {
+          alert(message);
+        }
+      });
+    }
+  };
 
   React.useEffect(() => {
     if (isElectron()) {
@@ -34,7 +55,6 @@ function Recent() {
           });
           setFiles(fileInfoArr);
         } else {
-          console.log(message);
           alert(message);
         }
       });
@@ -58,6 +78,7 @@ function Recent() {
                 d: item.status
               })
             )}
+            handleClick={handleLoadData}
           />
         </div>
         <div className="content-footer">
@@ -73,4 +94,12 @@ function Recent() {
   );
 }
 
-export default Recent;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      changeInformation: data => changeInformation({ data })
+    },
+    dispatch
+  );
+
+export default withRouter(connect(null, mapDispatchToProps)(Recent));

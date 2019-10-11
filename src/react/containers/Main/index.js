@@ -5,7 +5,12 @@ import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
-import { saveDraft, changeInformation, clearInformation, setCreateStep } from '../../redux/actions';
+import {
+  saveDraft,
+  changeInformation,
+  clearInformation,
+  setCreateStep
+} from '../../redux/actions';
 import logo from '../../assets/logo.png';
 import LeftArrowIcon from '../../assets/icons/arrow/left-arrow.svg';
 import isElectron from 'is-electron';
