@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
+import smalltalk from "smalltalk";
 
 function PlacesOfBirth({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
@@ -50,7 +51,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
       || state.latitude === ''
       || state.longitude === ''
     ) {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     if (editIndex === -1) {

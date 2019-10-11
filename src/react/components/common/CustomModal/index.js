@@ -15,8 +15,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    width: '70%',
-    height: '80%'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -32,8 +33,10 @@ const useStyles = makeStyles(theme => ({
     color: 'black'
   },
   modalBody: {
-    height: '85%',
-    marginBottom: '20px'
+    height: '75%',
+    marginBottom: '20px',
+    whiteSpace: 'pre-line',
+    overflowY: 'auto'
   },
   modalFooter: {
     display: 'flex',
@@ -44,15 +47,18 @@ const useStyles = makeStyles(theme => ({
 export const CustomModal = ({
   isOpen,
   title,
-  labelConfirm,
-  labelClose,
+  labelConfirm = "Confirm",
+  labelClose = "Close",
   children,
   singleButton,
   onConfirm,
-  onClose
+  onClose,
+  size = "lg"
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(isOpen);
+  const width = size === "sm" ? "45%" : (size === "md" ? "60%" : "80%");
+  const height = size === "sm" ? "45%" : (size === "md" ? "60%" : "80%");
 
   React.useEffect(() => {
     setOpen(isOpen);
@@ -80,7 +86,7 @@ export const CustomModal = ({
       }}
     >
       <Fade in={open}>
-        <div className={classes.paper}>
+        <div className={classes.paper} style={{ width, height }}>
           <h2 id="transition-modal-title">{title}</h2>
           <div className={classes.modalBody}>
             {children}

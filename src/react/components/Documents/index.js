@@ -10,6 +10,7 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import './styles.css';
+import smalltalk from "smalltalk";
 
 function Documents({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
@@ -53,7 +54,7 @@ function Documents({ settings, handleSetValue, data }) {
       state.issuedDate === '' ||
       state.expirationDate === ''
     ) {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     if (editIndex === -1) {

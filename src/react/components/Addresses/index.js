@@ -5,6 +5,7 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
+import smalltalk from "smalltalk";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
@@ -50,7 +51,7 @@ function Addresses({ settings, handleSetValue, data }) {
       || state.latitude === ''
       || state.longitude === ''
     ) {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     if (editIndex === -1) {

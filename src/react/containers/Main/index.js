@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
+import smalltalk from "smalltalk";
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
 import {
@@ -15,11 +16,16 @@ import logo from '../../assets/logo.png';
 import LeftArrowIcon from '../../assets/icons/arrow/left-arrow.svg';
 import isElectron from 'is-electron';
 import { channels } from '../../../shared/constants';
+import { CustomModal } from "../../components/common/CustomModal";
 import './styles.css';
 
 class Main extends Component {
   steps = ['INFORMATION', 'IDENTITIES', 'NAMES', 'OTHER-DATA', 'DOCUMENTS', 'ADDRESSES', 'PLACES-OF-BIRTH', 'DATES-OF-BIRTH', 'FEATURES', 'BIOMETRIC-DATA'];
   lockScroll = false;
+  state = {
+    errorMsg: "",
+    isModalOpen: false
+  };
 
   componentDidMount() {
     document.getElementById('create-new-container').addEventListener('scroll', this.onScroll);
@@ -67,7 +73,9 @@ class Main extends Component {
   }
 
   onSave() {
-    this.handleSaveFile(false);
+    if (this.performValidation()) {
+      this.handleSaveFile(false);
+    }
   }
 
   onSaveDraft() {
@@ -88,9 +96,9 @@ class Main extends Component {
         ipcRenderer.removeAllListeners(channels.SAVE_FILE);
         const { message, success } = arg;
         if (success) {
-          alert('Saved successfully');
+          smalltalk.alert('Info', 'Saved successfully!');
         } else {
-          alert(message);
+          smalltalk.alert('Error', message);
         }
       });
     }
@@ -117,9 +125,82 @@ class Main extends Component {
     }
   };
 
+  performValidation = () => {
+    const { identities, identitiesArr, information } = this.props.docData;
+    const {
+      language,
+      entryType,
+      regime,
+      applicableMeasure,
+      submittedBy
+    } = information;
+    let msg = "";
+    if (!language || !entryType || !regime || applicableMeasure.length < 1 || submittedBy.length < 1 ) {
+      msg += "Please fill out information form!\n";
+    }
+    if (identities.length < 0) {
+      msg += "Please add identities!\n";
+    }
+
+    identitiesArr.forEach((item, index) => {
+      const {
+        names,
+        otherData,
+        documents,
+        addresses,
+        placesOfBirth,
+        datesOfBirth,
+        features,
+        biometricData
+      } = item;
+      const curIdentityType = identities[index].identityType;
+
+      if (names.names.length < 1 || names.names1.length < 1) {
+        msg += `Please add names for ${curIdentityType}!\n`;
+      }
+
+      const {
+        gender,
+        livingStatus,
+        nationality,
+        title
+      } = otherData;
+      if (!gender || !livingStatus || !nationality || !title || !title) {
+        msg += `Please fill out other data for ${curIdentityType}!\n`;
+      }
+
+      if (documents.length < 1) {
+        msg += `Please add documents for ${curIdentityType}!\n`;
+      }
+
+      if (addresses.length < 1) {
+        msg += `Please add addresses for ${curIdentityType}!\n`;
+      }
+
+      if (placesOfBirth.length < 1) {
+        msg += `Please add places of birth for ${curIdentityType}!\n`;
+      }
+
+      if (datesOfBirth.length < 1) {
+        msg += `Please add dates of birth for ${curIdentityType}!\n`;
+      }
+
+      if (features.length < 1) {
+        msg += `Please add features for ${curIdentityType}!\n`;
+      }
+
+      if (biometricData.length < 1) {
+        msg += `Please add biometric data for ${curIdentityType}!\n`;
+      }
+    });
+    this.setState({ errorMsg: msg, isModalOpen: msg !== "" });
+    return msg === "";
+  };
+
   render() {
     const { pathname } = this.props.location;
     const { createStep } = this.props;
+    const { isModalOpen, errorMsg } = this.state;
 
     return (
       <div className="main">
@@ -179,6 +260,16 @@ class Main extends Component {
                     {createStep > 0 && <Button variant="contained" className="prev-button" onClick={this.onPrev}>Prev</Button>}
                     {createStep !== 1 && createStep !== 9 && <Button variant="contained" className="next-button" onClick={this.onNext}>Next</Button>}
                     {createStep === 9 && <Button variant="contained" className="cancel-button" onClick={() => this.onSave()}>Save</Button>}
+
+                    <CustomModal
+                      isOpen={isModalOpen}
+                      singleButton={true}
+                      title="Validation Error"
+                      onClose={() => this.setState({ isModalOpen: false })}
+                      size="sm"
+                    >
+                      {errorMsg}
+                    </CustomModal>
                   </div>
                 </div>
               ) : (

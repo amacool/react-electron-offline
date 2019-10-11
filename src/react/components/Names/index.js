@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from "@material-ui/core/Button/Button";
+import smalltalk from "smalltalk";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
@@ -38,7 +39,7 @@ function Names({ settings, handleSetValue, data }) {
 
   const handleAdd = () => {
     if (state.name === '' || state.type === '' || state.script === '') {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     if (editIndex === -1) {
@@ -66,7 +67,7 @@ function Names({ settings, handleSetValue, data }) {
 
   const handleAdd1 = () => {
     if (state1.name === '' || state1.type === '' || state1.script === '') {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     if (editIndex1 === -1) {
@@ -182,7 +183,7 @@ function Names({ settings, handleSetValue, data }) {
       <div className="content content-body">
         <CustomTable
           header={['Name', 'Type', 'Script', 'Order']}
-          data={names}
+          data={names.map((item) => ({ a: item.name, b: item.type, c: item.script, d: item.order }))}
           getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
       </div>
@@ -228,7 +229,7 @@ function Names({ settings, handleSetValue, data }) {
       <div className="content content-body">
         <CustomTable
           header={['Name', 'Type', 'Script', 'Order']}
-          data={names1}
+          data={names1.map((item) => ({ a: item.name, b: item.type, c: item.script, d: item.order }))}
           getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit1(mode, index)} /> })}
         />
       </div>

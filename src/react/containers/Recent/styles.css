@@ -11,6 +11,7 @@
 
 .Recent .header {
   padding-bottom: 10px;
+  height: 3%;
 }
 
 .Recent .header h5 {
@@ -25,13 +26,14 @@
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  height: 88%;
-  margin-bottom: 15px;
+  height: 87%;
+  margin-bottom: 1%;
 }
 
 .Recent .content-footer {
   display: flex;
   justify-content: center;
+  height: 7%;
 }
 
 .Recent .custom-table tbody tr td {

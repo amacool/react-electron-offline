@@ -3,6 +3,7 @@ import connect from "react-redux/es/connect/connect";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import isElectron from "is-electron";
+import smalltalk from "smalltalk";
 import { FolderOpen, Help, InsertDriveFile, WatchLater } from "@material-ui/icons";
 import { channels } from "../../../../shared/constants";
 import { bindActionCreators } from "redux";
@@ -21,10 +22,10 @@ const LeftMenu = ({ history, pathname, changeInformation }) => {
             changeInformation(data.data);
             history.replace('/start');
           } catch (err) {
-            alert('Invalid document!');
+            smalltalk.alert('Error', 'Invalid document!');
           }
         } else {
-          alert(message);
+          smalltalk.alert('Error', message);
         }
       });
     }

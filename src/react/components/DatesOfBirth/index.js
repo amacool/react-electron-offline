@@ -6,6 +6,7 @@ import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import "./styles.css";
+import smalltalk from "smalltalk";
 
 function DatesOfBirth({ settings, handleSetValue, data }) {
   const [state, setState] = React.useState({
@@ -34,7 +35,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
       || state.from === ''
       || state.to === ''
     ) {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     if (editIndex === -1) {

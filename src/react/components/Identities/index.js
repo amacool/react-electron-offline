@@ -4,6 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button/Button";
+import smalltalk from "smalltalk";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import './styles.css';
@@ -34,7 +35,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
 
   const handleAdd = () => {
     if (state.identityType === '' || state.category === '') {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     handleSetValue([...identities, state]);
@@ -103,7 +104,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
       <div className="content content-body">
         <CustomTable
           header={['Identity Type', 'Category']}
-          data={identities}
+          data={identities.map((item) => ({ a: item.identityType, b: item.category }))}
           handleClick={handleSetIdentityType}
         />
       </div>

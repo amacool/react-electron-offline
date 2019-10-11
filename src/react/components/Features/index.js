@@ -7,6 +7,7 @@ import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
+import smalltalk from "smalltalk";
 
 function Features({ settings, handleSetValue, data }) {
   const categoryLabel = React.useRef(null);
@@ -33,7 +34,7 @@ function Features({ settings, handleSetValue, data }) {
 
   const handleAdd = () => {
     if (state.type === '' || state.value === '') {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     if (editIndex === -1) {

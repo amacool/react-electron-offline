@@ -10,6 +10,7 @@ import { CustomInput } from "../common/CustomInput";
 import { CustomDropzone } from "../common/CustomDropzone";
 import { DocTypeIcon, DocInfo } from "../common/DocElement";
 import { CustomModal } from "../common/CustomModal";
+import smalltalk from "smalltalk";
 import "./styles.css";
 
 function Features({ settings, handleSetValue, data }) {
@@ -17,7 +18,7 @@ function Features({ settings, handleSetValue, data }) {
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [attachment, setAttachment] = React.useState('');
   const [state, setState] = React.useState({
-    type: false,
+    type: '',
     value: '',
     notes: ''
   });
@@ -38,13 +39,13 @@ function Features({ settings, handleSetValue, data }) {
 
   const handleAdd = () => {
     if (state.type === '' || state.value === '') {
-      alert('Please input values!');
+      smalltalk.alert('Error', 'Please input values!');
       return;
     }
     handleSetValue([...features, { ...state, attachment }]);
     setFeatures([...features, { ...state, attachment }]);
     setState({
-      type: false,
+      type: '',
       value: '',
       notes: ''
     });

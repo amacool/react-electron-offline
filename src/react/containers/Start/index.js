@@ -75,23 +75,23 @@ class Start extends Component {
 
   getIdentityModel = () => {
     return {
-      names: {
-        names: [],
-        names1: []
-      },
-      otherData: {
-        gender: '',
-        livingStatus: [],
-        nationality: '',
-        title: '',
-        designations: ''
-      },
-      documents: [],
-      addresses: [],
-      placesOfBirth: [],
-      datesOfBirth: [],
-      features: [],
-      biometricData: []
+        names: {
+          names: [],
+          names1: []
+        },
+        otherData: {
+          gender: '',
+          livingStatus: [],
+          nationality: '',
+          title: '',
+          designations: ''
+        },
+        documents: [],
+        addresses: [],
+        placesOfBirth: [],
+        datesOfBirth: [],
+        features: [],
+        biometricData: []
     }
   };
 

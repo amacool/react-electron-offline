@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
 import isElectron from "is-electron";
 import Button from "@material-ui/core/Button/Button";
+import smalltalk from "smalltalk";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DocTypeIcon, DocInfo } from "../../components/common/DocElement";
@@ -26,7 +27,7 @@ function Recent({ history, changeInformation }) {
           changeInformation(data.data);
           history.push('/start');
         } else {
-          alert(message);
+          smalltalk.alert('Error', message);
         }
       });
     }
@@ -55,7 +56,7 @@ function Recent({ history, changeInformation }) {
           });
           setFiles(fileInfoArr);
         } else {
-          alert(message);
+          smalltalk.alert('Error', message);
         }
       });
     }
