@@ -6,3 +6,5 @@ C:\Users\amacool\Downloads\asdf.json,10/13/2019,1
 C:\Users\amacool\Downloads\dddd,10/13/2019,1
 E:\data.json,10/13/2019,1
 E:\cccc,10/13/2019,1
+E:\tttt,10/13/2019,1
+E:\asb,10/13/2019,0

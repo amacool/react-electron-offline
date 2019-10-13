@@ -19,8 +19,8 @@ function createWindow () {
     width: 1024,
     height: 768,
     webPreferences: {
-      // preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false
     },
   });
   mainWindow.loadURL(startUrl);

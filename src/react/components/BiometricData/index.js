@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Button from "@material-ui/core/Button/Button";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
@@ -11,6 +11,8 @@ import { CustomDropzone } from "../common/CustomDropzone";
 import { DocTypeIcon, DocInfo } from "../common/DocElement";
 import { CustomModal } from "../common/CustomModal";
 import smalltalk from "smalltalk";
+import FileViewer from "react-file-viewer";
+import { FileTypes } from "../../constant/file-types";
 import "./styles.css";
 
 function Features({ settings, handleSetValue, data }) {
@@ -24,6 +26,7 @@ function Features({ settings, handleSetValue, data }) {
   });
   const [features, setFeatures] = React.useState(data);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [curAttachment, setCurAttachment] = React.useState(-1);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -53,11 +56,14 @@ function Features({ settings, handleSetValue, data }) {
 
   const handleEdit = (mode, index) => {
     if (mode === 'edit') {
-      setAttachment({
-        ...attachment,
-        result: features[index].attachment.result
-      });
-      setIsModalOpen(true);
+      const type = features[index].attachment.type;
+      const exists = FileTypes.find((item) => type.indexOf(item) >= 0);
+      if (exists) {
+        setCurAttachment({ ...features[index].attachment, type: exists });
+        setIsModalOpen(true);
+      } else {
+        smalltalk.alert('Error', 'File type is not supported!');
+      }
     } else {
       let tArr = [...features];
       tArr.splice(index, 1);
@@ -69,6 +75,10 @@ function Features({ settings, handleSetValue, data }) {
       });
       handleSetValue(tArr);
     }
+  };
+
+  const handleReadError = (e) => {
+    console.log(e);
   };
 
   return (
@@ -178,15 +188,22 @@ function Features({ settings, handleSetValue, data }) {
           )}
           getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem label1="View" label2="Remove" onEdit={(mode) => handleEdit(mode, index)} /> })}
         />
-        <CustomModal
-          isOpen={isModalOpen}
-          title="View Attachment"
-          singleButton={true}
-          onClose={() => setIsModalOpen(false)}
-          labelClose="CLOSE"
-        >
-          <iframe src={attachment.result} style={{ width: '100%', height: '100%' }} title="View Attachment" />
-        </CustomModal>
+        {curAttachment && (
+          <CustomModal
+            isOpen={isModalOpen}
+            title="View Attachment"
+            singleButton={true}
+            onClose={() => setIsModalOpen(false)}
+            labelClose="CLOSE"
+          >
+            <FileViewer
+              fileType={curAttachment.type}
+              filePath={curAttachment.path}
+              errorComponent={null}
+              onError={handleReadError}
+            />
+          </CustomModal>
+        )}
       </div>
     </div>
   )
