@@ -19,9 +19,9 @@ function Recent({ history, changeInformation }) {
   const handleLoadData = (index) => {
     if (isElectron()) {
       const {ipcRenderer} = window.require('electron');
-      ipcRenderer.send(channels.OPEN_FROM_PATH, files[index].path);
-      ipcRenderer.on(channels.OPEN_FROM_PATH, (event, arg) => {
-        ipcRenderer.removeAllListeners(channels.OPEN_FROM_PATH);
+      ipcRenderer.send(channels.OPEN_FILE, { path: files[index].path });
+      ipcRenderer.on(channels.OPEN_FILE, (event, arg) => {
+        ipcRenderer.removeAllListeners(channels.OPEN_FILE);
         const { data, message, success } = arg;
         if (success) {
           changeInformation(data.data);

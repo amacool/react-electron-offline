@@ -25,7 +25,11 @@ const LeftMenu = ({ history, pathname, changeInformation }) => {
             smalltalk.alert('Error', 'Invalid document!');
           }
         } else {
-          smalltalk.alert('Error', message);
+          if (message === 'not selected') {
+            history.goBack();
+          } else {
+            smalltalk.alert('Error', message);
+          }
         }
       });
     }

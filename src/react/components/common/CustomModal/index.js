@@ -19,6 +19,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-between'
   },
+  heading: {
+    padding: '5px',
+    borderBottom: 'solid 1px grey'
+  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: '15px',
@@ -36,7 +40,8 @@ const useStyles = makeStyles(theme => ({
     height: '75%',
     marginBottom: '20px',
     whiteSpace: 'pre-line',
-    overflowY: 'auto'
+    overflowY: 'auto',
+    padding: '0 5px'
   },
   modalFooter: {
     display: 'flex',
@@ -87,7 +92,7 @@ export const CustomModal = ({
     >
       <Fade in={open}>
         <div className={classes.paper} style={{ width, height }}>
-          <h2 id="transition-modal-title">{title}</h2>
+          <h2 className={classes.heading} id="transition-modal-title">{title}</h2>
           <div className={classes.modalBody}>
             {children}
           </div>

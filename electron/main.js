@@ -57,14 +57,21 @@ ipcMain.on(channels.SAVE_FILE, function (event, arg) {
     fs.writeFile(savePath, arg.content, function(err) {
       if (err)  throw err;
 
-      const today = moment(new Date()).format('MM/DD/YYYY');
-      const dataToAppend = `${savePath},${today},${arg.isDraft}\n`;
-      fs.open(historyPath, 'a+', (err, fd) => {
+      // update history info
+      fs.readFile(historyPath, 'utf-8', (err, data) => {
         if (err) throw err;
-        fs.appendFile(fd, dataToAppend, 'utf8', (err) => {
-          fs.close(fd, (err) => {
-            if (err) throw err;
-          });
+        let logs = data.split("\n");
+        logs.splice(logs.length - 1, 1);
+        const existingLogIndex = logs.findIndex((item) => item.indexOf(savePath) >= 0);
+        const today = moment(new Date()).format('MM/DD/YYYY');
+        const newLog = `${savePath},${today},${arg.isDraft}`;
+        if (existingLogIndex >= 0) {
+          logs[existingLogIndex] = newLog;
+        } else {
+          logs.push(newLog);
+        }
+        logs.push("");
+        fs.writeFile(historyPath, logs.join("\n"), (err) => {
           if (err) throw err;
         });
       });
@@ -103,11 +110,25 @@ ipcMain.on(channels.GET_HISTORY, function (event) {
   }
 });
 
-ipcMain.on(channels.OPEN_FILE, function (event) {
-  const openPath = dialog.showOpenDialog();
-  if (!openPath) return;
+ipcMain.on(channels.OPEN_FILE, function (event, arg) {
+  let openPath = '';
+  if (arg && arg.path) {
+    openPath = arg.path;
+  } else {
+    openPath = dialog.showOpenDialog();
+    if (openPath) {
+      openPath = openPath[0];
+    }
+  }
+  if (!openPath) {
+    event.sender.send(channels.OPEN_FILE, {
+      message: 'not selected',
+      success: false
+    });
+    return;
+  }
   try {
-    fs.readFile(openPath[0], 'utf-8', (err, data) => {
+    fs.readFile(openPath, 'utf-8', (err, data) => {
       try {
         if (err) throw err;
 
@@ -121,19 +142,27 @@ ipcMain.on(channels.OPEN_FILE, function (event) {
         // update last opened date
         fs.readFile(historyPath, 'utf-8', (err, data) => {
           if (err) throw err;
-          const rows = data.split("\n");
-          rows.splice(rows.length - 1, 1);
-          let fileInHistory = rows.find((item) => item.split(",")[0] === openPath[0].replace("\\\\", "\\"));
-          if (fileInHistory) {
-            let newInfo = fileInHistory.split(",");
+          let logs = data.split("\n");
+          logs.splice(logs.length - 1, 1);
+          let existingLog = logs.find((item) => item.split(",")[0] === openPath.replace("\\\\", "\\"));
+          let newData = '';
+          if (existingLog) {
+            let newInfo = existingLog.split(",");
             newInfo[1] = moment(new Date()).format('MM/DD/YYYY');
             newInfo = newInfo.join(",");
-            const newData = data.replace(fileInHistory, newInfo);
-            fs.writeFile(historyPath, newData, function (err) {
-              if (err) throw err;
-            });
+            newData = data.replace(existingLog, newInfo);
+          } else {
+            const today = moment(new Date()).format('MM/DD/YYYY');
+            const newLog = `${openPath},${today},1`;
+            logs.push(newLog);
+            logs.push("");
+            newData = logs.join("\n");
           }
+          fs.writeFile(historyPath, newData, function (err) {
+            if (err) throw err;
+          });
         });
+
         event.sender.send(channels.OPEN_FILE, {
           success: true,
           data: fileInfo
@@ -147,39 +176,6 @@ ipcMain.on(channels.OPEN_FILE, function (event) {
     });
   } catch (err) {
     event.sender.send(channels.OPEN_FILE, {
-      message: err.message,
-      success: false
-    });
-  }
-});
-
-ipcMain.on(channels.OPEN_FROM_PATH, function (event, openPath) {
-  if (!openPath) return;
-  try {
-    fs.readFile(openPath, 'utf-8', (err, data) => {
-      try {
-        if (err) throw err;
-
-        // document validation
-        if (!isJson(data)) throw Error("Invalid document");
-        const fileInfo = JSON.parse(data);
-        if (fileInfo.sign !== 'council-document') {
-          throw Error('Invalid document');
-        }
-
-        event.sender.send(channels.OPEN_FROM_PATH, {
-          success: true,
-          data: fileInfo
-        });
-      } catch (err) {
-        event.sender.send(channels.OPEN_FILE, {
-          message: err.message,
-          success: false
-        });
-      }
-    });
-  } catch (err) {
-    event.sender.send(channels.OPEN_FROM_PATH, {
       message: err.message,
       success: false
     });
