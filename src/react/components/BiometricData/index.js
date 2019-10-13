@@ -1,4 +1,5 @@
 import React from "react";
+import isElectron from "is-electron";
 import Button from "@material-ui/core/Button/Button";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
@@ -13,6 +14,7 @@ import { CustomModal } from "../common/CustomModal";
 import smalltalk from "smalltalk";
 import FileViewer from "react-file-viewer";
 import { FileTypes } from "../../constant/file-types";
+import { channels } from "../../../shared/constants";
 import "./styles.css";
 
 function Features({ settings, handleSetValue, data }) {
@@ -56,13 +58,20 @@ function Features({ settings, handleSetValue, data }) {
 
   const handleEdit = (mode, index) => {
     if (mode === 'edit') {
-      const type = features[index].attachment.type;
-      const exists = FileTypes.find((item) => type.indexOf(item) >= 0);
-      if (exists) {
-        setCurAttachment({ ...features[index].attachment, type: exists });
-        setIsModalOpen(true);
-      } else {
-        smalltalk.alert('Error', 'File type is not supported!');
+      if (isElectron()) {
+        const { ipcRenderer } = window.require('electron');
+        ipcRenderer.send(channels.GET_FILE_TYPE, features[index].attachment.path);
+        ipcRenderer.on(channels.GET_FILE_TYPE, (event, arg) => {
+          ipcRenderer.removeAllListeners(channels.GET_FILE_TYPE);
+          const { data, message, success } = arg;
+          if (success) {
+            const existingType = FileTypes.find((item) => item === data);
+            setCurAttachment({ ...features[index].attachment, type: existingType });
+            setIsModalOpen(true);
+          } else {
+            smalltalk.alert('Error', message);
+          }
+        });
       }
     } else {
       let tArr = [...features];
@@ -196,12 +205,16 @@ function Features({ settings, handleSetValue, data }) {
             onClose={() => setIsModalOpen(false)}
             labelClose="CLOSE"
           >
-            <FileViewer
-              fileType={curAttachment.type}
-              filePath={curAttachment.path}
-              errorComponent={null}
-              onError={handleReadError}
-            />
+            {curAttachment.type ? (
+              <FileViewer
+                fileType={curAttachment.type}
+                filePath={curAttachment.path}
+                errorComponent={null}
+                onError={handleReadError}
+              />
+            ) : (
+              <iframe src={curAttachment.path} width={'100%'} height={'100%'} />
+            )}
           </CustomModal>
         )}
       </div>

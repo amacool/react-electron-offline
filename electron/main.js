@@ -3,6 +3,7 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs');
 const moment = require('moment');
+const mime = require('mime-types');
 const { dialog } = require('electron');
 const { channels } = require('../src/shared/constants');
 
@@ -176,6 +177,22 @@ ipcMain.on(channels.OPEN_FILE, function (event, arg) {
     });
   } catch (err) {
     event.sender.send(channels.OPEN_FILE, {
+      message: err.message,
+      success: false
+    });
+  }
+});
+
+ipcMain.on(channels.GET_FILE_TYPE, function (event, arg) {
+  if (!arg) return;
+  try {
+    const type = mime.extension(mime.lookup(arg));
+    event.sender.send(channels.GET_FILE_TYPE, {
+      success: true,
+      data: type
+    });
+  } catch (err) {
+    event.sender.send(channels.GET_FILE_TYPE, {
       message: err.message,
       success: false
     });
