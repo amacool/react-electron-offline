@@ -17,6 +17,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     category: ''
   });
   const [identities, setIdentities] = React.useState(data);
+
   React.useEffect(() => {
     setIdentities(data);
   }, [data]);
@@ -34,10 +35,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
   };
 
   const handleAdd = () => {
-    if (state.identityType === '' || state.category === '') {
-      smalltalk.alert('Error', 'Please input values!');
-      return;
-    }
+    if (!doValidation()) return;
     handleSetValue([...identities, state]);
     setIdentities([...identities, state]);
     setState({
@@ -46,10 +44,25 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     });
   };
 
+  const doValidation = () => {
+    if (state.identityType === '' || state.category === '') {
+      smalltalk.alert('Error', 'Please input values!');
+      return false;
+    }
+    return true;
+  };
+
   const handleSetIdentityType = type => {
     setIdentityType(type);
     setCurrentStep(2);
   };
+
+  // do validation
+  // React.useEffect(() => {
+  //   if (!doValidation()) {
+  //
+  //   }
+  // }, [validation, doValidation]);
 
   return (
     <div className="start-page Identities" id="IDENTITIES">

@@ -213,7 +213,7 @@ function Features({ settings, handleSetValue, data }) {
                 onError={handleReadError}
               />
             ) : (
-              <iframe src={curAttachment.path} width={'100%'} height={'100%'} />
+              <iframe src={curAttachment.path} width={'100%'} height={'100%'} title="View Attachment" />
             )}
           </CustomModal>
         )}
