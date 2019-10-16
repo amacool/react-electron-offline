@@ -1,15 +1,16 @@
-import React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import './styles.css';
-import '../common/FormControl/styles.css';
+import React from "react";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import "./styles.css";
+import "../common/FormControl/styles.css";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomMultiSelect } from "../common/CustomMultiSelect";
+import connect from "react-redux/es/connect/connect";
 
-function Information({ settings, handleSetValue, data }) {
+function Information({ settings, handleSetValue, data, vocabularies }) {
   const typeLabel = React.useRef(null);
   const languageLabel = React.useRef(null);
   const regimeLabel = React.useRef(null);
@@ -21,15 +22,16 @@ function Information({ settings, handleSetValue, data }) {
 
   const entryTypes = settings.entryType[0];
   const regime = settings.regime[0];
+  const lang = localStorage.getItem('lang') || 'EN';
   const applicableMeasure = React.useMemo(() => {
     if (
       !settings.applicableMeasure[0] ||
-      !settings.applicableMeasure[0][state.language]
+      !settings.applicableMeasure[0][lang]
     ) {
       return {};
     }
-    return settings.applicableMeasure[0][state.language];
-  }, [state.language, settings]);
+    return settings.applicableMeasure[0][lang];
+  }, [lang, settings]);
   const submittedBy = { a: 'person1', b: 'person2', c: 'person3' };
 
   React.useEffect(() => {
@@ -39,6 +41,7 @@ function Information({ settings, handleSetValue, data }) {
   }, []);
 
   React.useEffect(() => {
+    console.log(data);
     setState(data);
   }, [data]);
 
@@ -54,14 +57,14 @@ function Information({ settings, handleSetValue, data }) {
   return (
     <div className="start-page Information" id="INFORMATION">
       <div className="header">
-        <h5>INFORMATION</h5>
+        <h5>{vocabularies[lang]['new']['main'][4]}</h5>
       </div>
       <div className="content">
         <div className="col-3">
           <div className="row">
             <FormControl variant="outlined" className="form-control custom-outlined-form-control">
               <InputLabel ref={typeLabel} htmlFor="entry-type" className="custom-select-label">
-                Entry Type<b>*</b>
+                {vocabularies[lang]['new']['information'][0]}<b>*</b>
               </InputLabel>
               <Select
                 value={state.entryType}
@@ -74,11 +77,11 @@ function Information({ settings, handleSetValue, data }) {
                 className="custom-select"
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {entryTypes && Object.keys(entryTypes[state.language]).map((itemKey, index) => (
+                {entryTypes && Object.keys(entryTypes[lang]).map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
-                    {entryTypes[state.language][itemKey]}
+                    {entryTypes[lang][itemKey]}
                   </MenuItem>
                 ))}
               </Select>
@@ -87,7 +90,7 @@ function Information({ settings, handleSetValue, data }) {
           <div className="row">
             <FormControl variant="outlined" className="form-control custom-outlined-form-control">
               <InputLabel ref={languageLabel} htmlFor="language" className="custom-select-label">
-                Language<b>*</b>
+                {vocabularies[lang]['new']['information'][3]}<b>*</b>
               </InputLabel>
               <Select
                 value={state.language}
@@ -100,7 +103,7 @@ function Information({ settings, handleSetValue, data }) {
                 className="custom-select"
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
                 {
                   settings.languages.map((item, i) => {
@@ -115,7 +118,7 @@ function Information({ settings, handleSetValue, data }) {
           <div className="row">
             <FormControl variant="outlined" className="form-control custom-outlined-form-control">
               <InputLabel ref={regimeLabel} htmlFor="regime" className="custom-select-label">
-                Regime<b>*</b>
+                {vocabularies[lang]['new']['common'][4]}<b>*</b>
               </InputLabel>
               <Select
                 value={state.regime}
@@ -128,11 +131,11 @@ function Information({ settings, handleSetValue, data }) {
                 className="custom-select"
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {regime && Object.keys(regime[state.language]).map((itemKey, index) => (
+                {regime && Object.keys(regime[lang]).map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
-                    {regime[state.language][itemKey]}
+                    {regime[lang][itemKey]}
                   </MenuItem>
                 ))}
               </Select>
@@ -140,7 +143,7 @@ function Information({ settings, handleSetValue, data }) {
           </div>
           <div className="row">
             <CustomCheckbox
-              label="Member state(s) confidential"
+              label={vocabularies[lang]['new']['information'][7]}
               onChange={handleChange('memberStateConfidential')}
               required={true}
               value={state.memberStateConfidential}
@@ -153,7 +156,7 @@ function Information({ settings, handleSetValue, data }) {
               id="applicable-measures"
               options={Object.values(applicableMeasure)}
               selected={state.applicableMeasure}
-              label="Applicable Measures"
+              label={vocabularies[lang]['new']['information'][1]}
               required={true}
               onChange={handleChange('applicableMeasure')}
             />
@@ -163,7 +166,7 @@ function Information({ settings, handleSetValue, data }) {
               id="submitted-by"
               options={Object.values(submittedBy)}
               selected={state.submittedBy}
-              label="Submitted By"
+              label={vocabularies[lang]['new']['information'][5]}
               required={true}
               onChange={handleChange('submittedBy')}
             />
@@ -174,7 +177,7 @@ function Information({ settings, handleSetValue, data }) {
             <TextField
               value={state.entryRemarks}
               id="entry-remarks"
-              label="Entry Remarks"
+              label={vocabularies[lang]['new']['information'][2]}
               multiline
               rows="5"
               onChange={handleChange('entryRemarks')}
@@ -187,7 +190,7 @@ function Information({ settings, handleSetValue, data }) {
             <TextField
               value={state.reasonForListing}
               id="reason-listing"
-              label="Reason For Listing"
+              label={vocabularies[lang]['new']['information'][6]}
               multiline
               rows="5"
               onChange={handleChange('reasonForListing')}
@@ -202,4 +205,8 @@ function Information({ settings, handleSetValue, data }) {
   );
 }
 
-export default Information;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(Information);

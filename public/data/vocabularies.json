@@ -1,6 +1,6 @@
 {
   "EN": {
-    "messages": ["Error", "Invalid document!"],
+    "messages": ["Error", "Info", "Saved successfully!", "Invalid document!", "Failed to save!", "Please input values!"],
     "main": [
       "NEW",
       "RECENT",
@@ -20,6 +20,7 @@
         "CREATE A NEW FORM",
         "The Security Council has primary responsibility for the maintenance of international peace and security. It has 15 members, and each Member has one vote. Under the Charter of the United Nations, all Member States are obligated to comply with Council decisions.",
         "The Security Council takes the lead in determining the existence of a threat to the peace or act of aggression. It calls upon the parties to a dispute to settle it by peaceful means and recommends methods of adjustment or terms of settlement. In some cases, the Security Council can resort to imposing sanctions or even authorize the use of force to maintain or restore international peace and security.",
+        "Identities",
         "INFORMATION",
         "IDENTITIES",
         "NAMES",
@@ -36,7 +37,8 @@
         "Edit",
         "Remove",
         "Notes",
-        "Type"
+        "Type",
+        "None"
       ],
       "information": [
         "Entry Type",

@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import connect from 'react-redux/es/connect/connect';
-import Button from '@material-ui/core/Button';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
+import Button from "@material-ui/core/Button";
 import smalltalk from "smalltalk";
-import isElectron from 'is-electron';
-import LeftStepper from '../../components/common/LeftStepper';
-import LeftMenu from '../../components/common/LeftMenu';
+import isElectron from "is-electron";
+import LeftStepper from "../../components/common/LeftStepper";
+import LeftMenu from "../../components/common/LeftMenu";
 import {
   saveDraft,
   changeInformation,
   clearInformation,
   setCreateStep
-} from '../../redux/actions';
-import logo from '../../assets/logo.png';
-import LeftArrowIcon from '../../assets/icons/arrow/left-arrow.svg';
-import { channels } from '../../../shared/constants';
+} from "../../redux/actions";
+import logo from "../../assets/logo.png";
+import LeftArrowIcon from "../../assets/icons/arrow/left-arrow.svg";
+import { channels } from "../../../shared/constants";
 import { CustomModal } from "../../components/common/CustomModal";
-import './styles.css';
+import "./styles.css";
 
 class Main extends Component {
   steps = ['INFORMATION', 'IDENTITIES', 'NAMES', 'OTHER-DATA', 'DOCUMENTS', 'ADDRESSES', 'PLACES-OF-BIRTH', 'DATES-OF-BIRTH', 'FEATURES', 'BIOMETRIC-DATA'];
@@ -95,11 +95,11 @@ class Main extends Component {
       ipcRenderer.send(channels.SAVE_FILE, { content: JSON.stringify(data), isDraft });
       ipcRenderer.on(channels.SAVE_FILE, (event, arg) => {
         ipcRenderer.removeAllListeners(channels.SAVE_FILE);
-        const { message, success } = arg;
+        const { success } = arg;
         if (success) {
-          smalltalk.alert('Info', 'Saved successfully!');
+          smalltalk.alert(this.props.vocabularies[this.lang]['messages'][1], this.props.vocabularies[this.lang]['messages'][2]);
         } else {
-          smalltalk.alert('Error', message);
+          smalltalk.alert(this.props.vocabularies[this.lang]['messages'][0], this.props.vocabularies[this.lang]['messages'][4]);
         }
       });
     }

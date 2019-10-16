@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import Stepper from "@material-ui/core/Stepper/Stepper";
 import Step from "@material-ui/core/Step/Step";
 import StepLabel from "@material-ui/core/StepLabel/StepLabel";
 import connect from "react-redux/es/connect/connect";
 import { bindActionCreators } from "redux";
 import { setCreateStep } from "../../../redux/actions";
-import './styles.css';
+import "./styles.css";
 
 let timerId = null;
 
@@ -14,8 +14,10 @@ const LeftStepper = ({
   setCreateStep,
   identityType,
   identities,
-  lockScroll
+  lockScroll,
+  vocabularies
 }) => {
+  const lang = localStorage.getItem('lang') || 'EN';
   const steps = [
     ['INFORMATION', 'IDENTITIES'],
     ['NAMES', 'OTHER DATA', 'DOCUMENTS', 'ADDRESSES', 'PLACES OF BIRTH', 'DATES OF BIRTH', 'FEATURES', 'BIOMETRIC DATA']
@@ -38,7 +40,7 @@ const LeftStepper = ({
     <div className="left-stepper">
       {createStep > 1 && (
         <div className="step-navigator">
-          <span>Identities > {identities[identityType].identityType}</span>
+          <span>{vocabularies[lang]['new']['main'][3]} > {identities[identityType].identityType}</span>
         </div>
       )}
       <div className="active-spot" style={{ marginTop: `${activeSpotPos}px` }}>
@@ -55,7 +57,7 @@ const LeftStepper = ({
               }
               onClick={() => handleClick(index)}
             >
-              {label}
+              {vocabularies[lang]['new']['main'][index + (mode === 0 ? 4 : 6)]}
             </StepLabel>
           </Step>
         ))}
@@ -67,7 +69,8 @@ const LeftStepper = ({
 const mapStateToProps = (state) => ({
   createStep: state.createStep,
   identities: state.data.identities,
-  identityType: state.data.identityType
+  identityType: state.data.identityType,
+  vocabularies: state.vocabularies
 });
 
 const mapDispatchToProps = dispatch =>

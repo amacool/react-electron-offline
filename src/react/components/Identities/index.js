@@ -1,4 +1,5 @@
 import React from "react";
+import connect from "react-redux/es/connect/connect";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -9,7 +10,8 @@ import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import "./styles.css";
 
-function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep, data }) {
+function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -17,6 +19,15 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     category: ''
   });
   const [identities, setIdentities] = React.useState(data);
+  const categories = React.useMemo(() => {
+    if (
+      !settings.category[0] ||
+      !settings.category[0][lang]
+    ) {
+      return {};
+    }
+    return settings.category[0][lang];
+  }, [lang, settings]);
 
   React.useEffect(() => {
     setIdentities(data);
@@ -46,7 +57,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
 
   const doValidation = () => {
     if (state.identityType === '' || state.category === '') {
-      smalltalk.alert('Error', 'Please input values!');
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -67,7 +78,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
   return (
     <div className="start-page Identities" id="IDENTITIES">
       <div className="header">
-        <h5>IDENTITIES</h5>
+        <h5>{vocabularies[lang]['new']['main'][5]}</h5>
       </div>
       <div className="content content-header">
         <div className="custom-add-group row">
@@ -75,7 +86,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
             <CustomInput
               value={state.identityType}
               id="identity-type"
-              label="Identity Types"
+              label={vocabularies[lang]['new']['identities'][0]}
               required={true}
               onChange={handleChange("identityType")}
             />
@@ -83,7 +94,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
           <div className="col-4">
             <FormControl variant="outlined" className="form-control custom-outlined-form-control">
               <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
-                Category<b>*</b>
+                {vocabularies[lang]['new']['identities'][1]}<b>*</b>
               </InputLabel>
               <Select
                 value={state.category}
@@ -94,14 +105,15 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
                   id: 'category',
                 }}
                 className="custom-select"
-                placeholder="Primary"
               >
                 <MenuItem value="">
-                  <em>None</em>
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                <MenuItem value="Ten">Ten</MenuItem>
-                <MenuItem value="Twenty">Twenty</MenuItem>
-                <MenuItem value="Thirty">Thirty</MenuItem>
+                {categories && Object.keys(categories).map((itemKey, index) => (
+                  <MenuItem value={itemKey} key={index}>
+                    {categories[itemKey]}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
@@ -110,13 +122,13 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
             className="add-button col-1 mt-39"
             onClick={handleAdd}
           >
-            ADD
+            {vocabularies[lang]['new']['common'][0]}
           </Button>
         </div>
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Identity Type', 'Category']}
+          header={[vocabularies[lang]['new']['identities'][0], vocabularies[lang]['new']['identities'][1]]}
           data={identities.map((item) => ({ a: item.identityType, b: item.category }))}
           handleClick={handleSetIdentityType}
         />
@@ -125,4 +137,8 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
   );
 }
 
-export default Identities;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(Identities);

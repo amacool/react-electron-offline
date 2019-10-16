@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import connect from "react-redux/es/connect/connect";
 import Button from "@material-ui/core/Button/Button";
 import smalltalk from "smalltalk";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
-import './styles.css';
+import "./styles.css";
 
-function Names({ settings, handleSetValue, data }) {
+function Names({ settings, handleSetValue, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const [state, setState] = React.useState({
     name: '',
     type: '',
@@ -67,7 +69,7 @@ function Names({ settings, handleSetValue, data }) {
 
   const handleAdd1 = () => {
     if (state1.name === '' || state1.type === '' || state1.script === '') {
-      smalltalk.alert('Error', 'Please input values!');
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return;
     }
     if (editIndex1 === -1) {
@@ -140,7 +142,7 @@ function Names({ settings, handleSetValue, data }) {
   return (
     <div className="start-page Names" id="NAMES">
       <div className="header">
-        <h5>Names</h5>
+        <h5>{vocabularies[lang]['new']['main'][6]}</h5>
       </div>
       <div className="content content-header">
         <div className="custom-add-group">
@@ -148,7 +150,7 @@ function Names({ settings, handleSetValue, data }) {
             <CustomInput
               value={state.name}
               id="names-name"
-              label="Name"
+              label={vocabularies[lang]['new']['names'][0]}
               required={true}
               onChange={handleChange("name")}
             />
@@ -157,7 +159,7 @@ function Names({ settings, handleSetValue, data }) {
             <CustomInput
               value={state.type}
               id="names-type"
-              label="Type"
+              label={vocabularies[lang]['new']['common'][4]}
               required={true}
               onChange={handleChange("type")}
             />
@@ -166,7 +168,7 @@ function Names({ settings, handleSetValue, data }) {
             <CustomInput
               value={state.script}
               id="names-script"
-              label="Script"
+              label={vocabularies[lang]['new']['names'][1]}
               required={true}
               onChange={handleChange("script")}
             />
@@ -176,15 +178,27 @@ function Names({ settings, handleSetValue, data }) {
             className="add-button col-1 ml-15 mt-39"
             onClick={handleAdd}
           >
-            {editIndex >= 0 ? 'SAVE' : 'ADD'}
+            {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
           </Button>
         </div>
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Name', 'Type', 'Script', 'Order']}
+          header={[
+            vocabularies[lang]['new']['names'][0],
+            vocabularies[lang]['new']['common'][4],
+            vocabularies[lang]['new']['names'][1],
+            vocabularies[lang]['new']['names'][2]
+          ]}
           data={names.map((item) => ({ a: item.name, b: item.type, c: item.script, d: item.order }))}
-          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
+          getExtraCell={(index) => ({
+            title: '',
+            content: <TableBtnEditItem
+              onEdit={(mode) => handleEdit(mode, index)}
+              label1={vocabularies[lang]['new']['common'][1]}
+              label2={vocabularies[lang]['new']['common'][2]}
+            />
+          })}
         />
       </div>
 
@@ -194,7 +208,7 @@ function Names({ settings, handleSetValue, data }) {
             <CustomInput
               value={state1.name}
               id="names-name1"
-              label="Name In Original Script"
+              label={vocabularies[lang]['new']['names'][3]}
               required={true}
               onChange={handleChange1("name")}
             />
@@ -203,7 +217,7 @@ function Names({ settings, handleSetValue, data }) {
             <CustomInput
               value={state1.type}
               id="names-type1"
-              label="Type"
+              label={vocabularies[lang]['new']['common'][4]}
               required={true}
               onChange={handleChange1("type")}
             />
@@ -212,7 +226,7 @@ function Names({ settings, handleSetValue, data }) {
             <CustomInput
               value={state1.script}
               id="names-script1"
-              label="Script"
+              label={vocabularies[lang]['new']['names'][1]}
               required={true}
               onChange={handleChange1("script")}
             />
@@ -222,19 +236,35 @@ function Names({ settings, handleSetValue, data }) {
             className="add-button col-1 mt-39"
             onClick={handleAdd1}
           >
-            {editIndex1 >= 0 ? 'SAVE' : 'ADD'}
+            {editIndex1 >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
           </Button>
         </div>
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Name', 'Type', 'Script', 'Order']}
+          header={[
+            vocabularies[lang]['new']['names'][0],
+            vocabularies[lang]['new']['common'][4],
+            vocabularies[lang]['new']['names'][1],
+            vocabularies[lang]['new']['names'][2]
+          ]}
           data={names1.map((item) => ({ a: item.name, b: item.type, c: item.script, d: item.order }))}
-          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit1(mode, index)} /> })}
+          getExtraCell={(index) => ({
+            title: '',
+            content: <TableBtnEditItem
+              onEdit={(mode) => handleEdit1(mode, index)}
+              label1={vocabularies[lang]['new']['common'][1]}
+              label2={vocabularies[lang]['new']['common'][2]}
+            />
+          })}
         />
       </div>
     </div>
   );
 }
 
-export default Names;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(Names);

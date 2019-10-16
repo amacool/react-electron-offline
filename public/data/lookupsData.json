@@ -21,6 +21,12 @@
     "R3" : "R3-EN"
   }
   }],
+  "category" : [ {"EN" : {
+    "R1" : "cat1",
+    "R2" : "cat2",
+    "R3" : "cat3"
+  }
+  }],
   "type" : [ { "EN" : {
     "FIRST_NAME" : "FIRST NAME",
     "SECOND_NAME" : "SECOND NAME",

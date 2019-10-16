@@ -27,6 +27,7 @@ class Start extends Component {
       applicableMeasure: [],
       regime: [],
       type: [],
+      category: [],
       gender: [],
       livingStatus: [],
       documentType: [],

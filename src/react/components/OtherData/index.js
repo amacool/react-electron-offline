@@ -1,18 +1,19 @@
-import React from 'react';
-import { CustomInput } from "../common/CustomInput";
+import React from "react";
+import connect from "react-redux/es/connect/connect";
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
+import { CustomInput } from "../common/CustomInput";
 
-function OtherData({ settings, handleSetValue, data }) {
+function OtherData({ settings, handleSetValue, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState(data);
   const gender = settings.gender[0];
   const livingStatus = settings.livingStatus[0];
-  const language = 'EN';
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -56,12 +57,12 @@ function OtherData({ settings, handleSetValue, data }) {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      {gender && Object.keys(gender[language]).map((itemKey, index) => (
+                      {gender && Object.keys(gender[lang]).map((itemKey, index) => (
                         <MenuItem
                           value={itemKey}
                           key={index}
                         >
-                          {gender[language][itemKey]}
+                          {gender[lang][itemKey]}
                         </MenuItem>
                       ))}
                     </Select>
@@ -86,12 +87,12 @@ function OtherData({ settings, handleSetValue, data }) {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      {livingStatus && Object.keys(livingStatus[language]).map((itemKey, index) => (
+                      {livingStatus && Object.keys(livingStatus[lang]).map((itemKey, index) => (
                         <MenuItem
                           value={itemKey}
                           key={index}
                         >
-                          {livingStatus[language][itemKey]}
+                          {livingStatus[lang][itemKey]}
                         </MenuItem>
                       ))}
                     </Select>
@@ -137,4 +138,8 @@ function OtherData({ settings, handleSetValue, data }) {
   );
 }
 
-export default OtherData;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(OtherData);
