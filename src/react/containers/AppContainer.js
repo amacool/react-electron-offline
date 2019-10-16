@@ -9,7 +9,6 @@ const AppContainer = ({ setLanguage, setVocabularies, vocabularies, children }) 
   useEffect(() => {
     axios.get('/data/languages.json')
       .then(function (result) {
-        console.log(result.data.languages);
         setLanguage(result.data.languages);
       });
     axios.get('/data/vocabularies.json')
@@ -19,6 +18,7 @@ const AppContainer = ({ setLanguage, setVocabularies, vocabularies, children }) 
   }, []);
 
   if (vocabularies) {
+    localStorage.removeItem('lang');
     return children;
   }
   return null;

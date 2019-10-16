@@ -37,6 +37,7 @@ function rootReducer(state = initialState, action) {
 
     case CLEAR_INFORMATION:
       return {
+        ...state,
         data: {},
         createStep: 0,
         err: null

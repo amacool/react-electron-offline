@@ -26,7 +26,7 @@ class Main extends Component {
     errorMsg: "",
     isModalOpen: false
   };
-  lang = localStorage.getItem("lang");
+  lang = localStorage.getItem("lang") || 'EN';
 
   componentDidMount() {
     document.getElementById('create-new-container').addEventListener('scroll', this.onScroll);

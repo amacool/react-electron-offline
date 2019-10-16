@@ -9,7 +9,8 @@ import { channels } from "../../../../shared/constants";
 import { bindActionCreators } from "redux";
 import { changeInformation } from "../../../redux/actions";
 
-const LeftMenu = ({ history, pathname, changeInformation }) => {
+const LeftMenu = ({ history, pathname, changeInformation, vocabularies }) => {
+  const lang = localStorage.getItem('lang') || 'EN';
   const openFile = React.useCallback(() => {
     if (isElectron()) {
       const { ipcRenderer } = window.require('electron');
@@ -40,30 +41,34 @@ const LeftMenu = ({ history, pathname, changeInformation }) => {
       <div className="menu-item">
         <Link to={'/new'} className={(pathname === '/new') ? 'active' : ''}>
           <InsertDriveFile />
-          <p>New</p>
+          <p>{vocabularies[lang]['main'][0]}</p>
         </Link>
       </div>
       <div className="menu-item">
         <Link to={'/recent'} className={(pathname === '/recent') ? 'active' : ''}>
           <WatchLater />
-          <p>RECENT</p>
+          <p>{vocabularies[lang]['main'][1]}</p>
         </Link>
       </div>
       <div className="menu-item">
         <Link to={'/open'} className={(pathname === '/open') ? 'active' : ''} onClick={openFile}>
           <FolderOpen />
-          <p>OPEN</p>
+          <p>{vocabularies[lang]['main'][2]}</p>
         </Link>
       </div>
       <div className="menu-item">
         <Link to={'/help'} className={(pathname === '/help') ? 'active' : ''}>
           <Help />
-          <p>HELP</p>
+          <p>{vocabularies[lang]['main'][3]}</p>
         </Link>
       </div>
     </div>
   );
 };
+
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
@@ -73,4 +78,4 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default withRouter(connect(null, mapDispatchToProps)(LeftMenu));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LeftMenu));

@@ -1,5 +1,6 @@
 {
   "EN": {
+    "messages": ["Error", "Invalid document!"],
     "main": [
       "NEW",
       "RECENT",

@@ -6,6 +6,7 @@ import "./styles.css";
 
 function New({ vocabularies }) {
   const lang = localStorage.getItem("lang") || 'EN';
+  console.log('---------------');
 
   return (
     <div className="New">
