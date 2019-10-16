@@ -17,6 +17,26 @@
           "link" : "www.google.com" }
       ]
     }
+  ],
+    "CN" : [
+      {
+        "bulleted-list" : "zhiyuan he election",
+        "h-link" :  [ { "text" : "chinese text for hlink",
+          "link" : "www.google.com" }]
+      },
+      {
+        "bulleted-list" : "Conduct of Business",
+        "h-link" :  [ { "text" : "How is the work of the Security Council organized?",
+          "link" : "www.google.com" },
+          { "text" : "What is the difference between open and closed meetings and consultations?",
+            "link" : "www.google.com" },
+          { "text" : "What are subsidiary organs?",
+            "link" : "www.google.com" },
+          { "text" : "What is the difference between peacekeeping operations, political missions and peacebuilding offices?",
+            "link" : "www.google.com" }
+        ]
+      }
+    ]
+  }
   ]
-  }]
 }

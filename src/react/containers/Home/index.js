@@ -1,9 +1,13 @@
-import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
-import axios from 'axios';
-import Footer from '../../components/Footer';
-import logo from '../../assets/logo.png';
-import './styles.css';
+import React, { Component } from "react";
+import connect from "react-redux/es/connect/connect";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import axios from "axios";
+import Footer from "../../components/Footer";
+import logo from "../../assets/logo.png";
+import { setLanguage } from "../../redux/actions";
+import "./styles.css";
 
 class Home extends Component {
   state = {
@@ -20,7 +24,9 @@ class Home extends Component {
       });
   }
 
-  goToMain() {
+  goToMain(lang) {
+    console.log(lang);
+    this.props.setLanguage(lang);
     this.props.history.push('/new');
   }
 
@@ -42,7 +48,7 @@ class Home extends Component {
                     variant="contained"
                     key={`home-button-${i}`}
                     className="Home-button"
-                    onClick={() => this.goToMain()}
+                    onClick={() => this.goToMain(item.type)}
                   >
                     {item.name}
                   </Button>
@@ -57,4 +63,16 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  err: state.err
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setLanguage: data => setLanguage({ data })
+    },
+    dispatch
+  );
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

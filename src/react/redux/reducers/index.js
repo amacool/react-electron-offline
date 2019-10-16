@@ -2,12 +2,14 @@ import {
   SAVE_INFORMATION,
   CHANGE_INFORMATION,
   CLEAR_INFORMATION,
-  SET_CREATE_STEP
+  SET_CREATE_STEP,
+  SET_LANGUAGE
 } from "../../constant/action-types";
 
 const initialState = {
   data: {},
   createStep: 0,
+  lang: 'EN',
   err: null
 };
 
@@ -42,6 +44,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         createStep: action.payload.data
+      };
+
+    case SET_LANGUAGE:
+      return {
+        ...state,
+        lang: action.payload.data
       };
 
     default:

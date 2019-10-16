@@ -2,8 +2,9 @@ import {
   SAVE_INFORMATION,
   SAVE_DRAFT,
   CHANGE_INFORMATION,
+  CLEAR_INFORMATION,
   SET_CREATE_STEP,
-  CLEAR_INFORMATION
+  SET_LANGUAGE
 } from "../../constant/action-types";
 
 export function save(payload) {
@@ -24,4 +25,8 @@ export function clearInformation() {
 
 export function setCreateStep(payload) {
   return { type: SET_CREATE_STEP, payload };
+}
+
+export function setLanguage(payload) {
+  return { type: SET_LANGUAGE, payload };
 }

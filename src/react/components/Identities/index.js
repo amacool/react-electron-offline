@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button/Button";
 import smalltalk from "smalltalk";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
-import './styles.css';
+import "./styles.css";
 
 function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep, data }) {
   const categoryLabel = React.useRef(null);

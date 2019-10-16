@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
 import Button from '@material-ui/core/Button';
 import smalltalk from "smalltalk";
+import isElectron from 'is-electron';
 import LeftStepper from '../../components/common/LeftStepper';
 import LeftMenu from '../../components/common/LeftMenu';
 import {
@@ -14,7 +15,6 @@ import {
 } from '../../redux/actions';
 import logo from '../../assets/logo.png';
 import LeftArrowIcon from '../../assets/icons/arrow/left-arrow.svg';
-import isElectron from 'is-electron';
 import { channels } from '../../../shared/constants';
 import { CustomModal } from "../../components/common/CustomModal";
 import './styles.css';
@@ -295,6 +295,7 @@ const mapStateToProps = (state) => ({
   identityType: state.data.identityType,
   createStep: state.createStep,
   docData: state.data,
+  lang: state.lang,
   err: state.err
 });
 

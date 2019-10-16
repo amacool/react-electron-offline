@@ -1,10 +1,12 @@
 import React from "react";
+import connect from "react-redux/es/connect/connect";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 
-function Recent() {
+function Help({ lang }) {
   const [content, setContent] = React.useState({});
-  const lang = "EN";
+  console.log(lang);
 
   React.useEffect(() => {
     axios.get('/data/help.json')
@@ -38,4 +40,9 @@ function Recent() {
   );
 }
 
-export default Recent;
+const mapStateToProps = (state) => ({
+  lang: state.lang,
+  err: state.err
+});
+
+export default withRouter(connect(mapStateToProps, null)(Help));
