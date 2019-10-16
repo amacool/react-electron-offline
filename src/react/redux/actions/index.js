@@ -4,7 +4,8 @@ import {
   CHANGE_INFORMATION,
   CLEAR_INFORMATION,
   SET_CREATE_STEP,
-  SET_LANGUAGE
+  SET_LANGUAGE,
+  SET_VOCABULARIES
 } from "../../constant/action-types";
 
 export function save(payload) {
@@ -29,4 +30,8 @@ export function setCreateStep(payload) {
 
 export function setLanguage(payload) {
   return { type: SET_LANGUAGE, payload };
+}
+
+export function setVocabularies(payload) {
+  return { type: SET_VOCABULARIES, payload };
 }

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-
+import AppContainer from './react/containers/AppContainer';
 import Main from './react/containers/Main';
 import Home from './react/containers/Home';
 import New from './react/containers/New';
@@ -18,14 +18,16 @@ render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home}/>
-        <Main>
-          <Route path="/new" component={New}/>
-          <Route path="/open" component={Open}/>
-          <Route path="/recent" component={Recent}/>
-          <Route path="/help" component={Help}/>
-          <Route path="/start" component={Start}/>
-        </Main>
+        <AppContainer>
+          <Route exact path="/" component={Home}/>
+          <Main>
+            <Route path="/new" component={New}/>
+            <Route path="/open" component={Open}/>
+            <Route path="/recent" component={Recent}/>
+            <Route path="/help" component={Help}/>
+            <Route path="/start" component={Start}/>
+          </Main>
+        </AppContainer>
       </Switch>
     </BrowserRouter>
   </Provider>,

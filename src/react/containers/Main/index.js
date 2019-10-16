@@ -26,6 +26,7 @@ class Main extends Component {
     errorMsg: "",
     isModalOpen: false
   };
+  lang = localStorage.getItem("lang");
 
   componentDidMount() {
     document.getElementById('create-new-container').addEventListener('scroll', this.onScroll);
@@ -199,7 +200,7 @@ class Main extends Component {
 
   render() {
     const { pathname } = this.props.location;
-    const { createStep } = this.props;
+    const { createStep, vocabularies } = this.props;
     const { isModalOpen, errorMsg } = this.state;
 
     return (
@@ -278,7 +279,7 @@ class Main extends Component {
                   className="new-form-button"
                   onClick={() => this.goToStart()}
                 >
-                  New Form
+                  {vocabularies[this.lang]['main'][4]}
                 </Button>
               )
             }
@@ -295,7 +296,7 @@ const mapStateToProps = (state) => ({
   identityType: state.data.identityType,
   createStep: state.createStep,
   docData: state.data,
-  lang: state.lang,
+  vocabularies: state.vocabularies,
   err: state.err
 });
 

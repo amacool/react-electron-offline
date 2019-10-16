@@ -3,35 +3,20 @@ import connect from "react-redux/es/connect/connect";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import Footer from "../../components/Footer";
 import logo from "../../assets/logo.png";
-import { setLanguage } from "../../redux/actions";
 import "./styles.css";
 
 class Home extends Component {
-  state = {
-    languages: null
-  };
-
-  componentDidMount() {
-    let th = this;
-    axios.get('/data/languages.json')
-      .then(function (result) {
-        th.setState({
-          languages: result.data.languages
-        });
-      });
-  }
 
   goToMain(lang) {
     console.log(lang);
-    this.props.setLanguage(lang);
+    localStorage.setItem("lang", lang);
     this.props.history.push('/new');
   }
 
   render() {
-    const { languages } = this.state;
+    const { languages } = this.props;
     return (
       <div className="Home">
         <div className="container">
@@ -64,15 +49,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  languages: state.languages,
   err: state.err
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      setLanguage: data => setLanguage({ data })
-    },
-    dispatch
-  );
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withRouter(connect(mapStateToProps, null)(Home));

@@ -6,7 +6,6 @@ import "./styles.css";
 
 function Help({ lang }) {
   const [content, setContent] = React.useState({});
-  console.log(lang);
 
   React.useEffect(() => {
     axios.get('/data/help.json')
