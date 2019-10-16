@@ -1,4 +1,5 @@
 import React from "react";
+import connect from "react-redux/es/connect/connect";
 import isElectron from "is-electron";
 import Button from "@material-ui/core/Button/Button";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
@@ -6,18 +7,19 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
+import smalltalk from "smalltalk";
+import FileViewer from "react-file-viewer";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomDropzone } from "../common/CustomDropzone";
 import { DocTypeIcon, DocInfo } from "../common/DocElement";
 import { CustomModal } from "../common/CustomModal";
-import smalltalk from "smalltalk";
-import FileViewer from "react-file-viewer";
 import { FileTypes } from "../../constant/file-types";
 import { channels } from "../../../shared/constants";
 import "./styles.css";
 
-function Features({ settings, handleSetValue, data }) {
+function BiometricData({ settings, handleSetValue, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [attachment, setAttachment] = React.useState('');
@@ -29,6 +31,7 @@ function Features({ settings, handleSetValue, data }) {
   const [features, setFeatures] = React.useState(data);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [curAttachment, setCurAttachment] = React.useState(-1);
+  const types = settings.type[0];
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -44,7 +47,7 @@ function Features({ settings, handleSetValue, data }) {
 
   const handleAdd = () => {
     if (state.type === '' || state.value === '') {
-      smalltalk.alert('Error', 'Please input values!');
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return;
     }
     handleSetValue([...features, { ...state, attachment }]);
@@ -63,13 +66,13 @@ function Features({ settings, handleSetValue, data }) {
         ipcRenderer.send(channels.GET_FILE_TYPE, features[index].attachment.path);
         ipcRenderer.on(channels.GET_FILE_TYPE, (event, arg) => {
           ipcRenderer.removeAllListeners(channels.GET_FILE_TYPE);
-          const { data, message, success } = arg;
+          const { data, success } = arg;
           if (success) {
             const existingType = FileTypes.find((item) => item === data);
             setCurAttachment({ ...features[index].attachment, type: existingType });
             setIsModalOpen(true);
           } else {
-            smalltalk.alert('Error', message);
+            smalltalk.alert(vocabularies[lang]['messages'][0], '');
           }
         });
       }
@@ -87,13 +90,14 @@ function Features({ settings, handleSetValue, data }) {
   };
 
   const handleReadError = (e) => {
+    console.log('-----------------');
     console.log(e);
   };
 
   return (
     <div className="start-page BiometricData" id="BIOMETRIC-DATA">
       <div className="header">
-        <h5>biometric data</h5>
+        <h5>{vocabularies[lang]['new']['main'][13]}</h5>
       </div>
       <div className="content content-header">
         <div className="row">
@@ -101,7 +105,7 @@ function Features({ settings, handleSetValue, data }) {
             <div className="w-31 mr-15 mt-26">
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
-                  Type<b>*</b>
+                  {vocabularies[lang]['new']['common'][4]}<b>*</b>
                 </InputLabel>
                 <Select
                   value={state.type}
@@ -112,14 +116,18 @@ function Features({ settings, handleSetValue, data }) {
                     id: 'type',
                   }}
                   className="custom-select"
-                  placeholder="Primary"
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  <MenuItem value="Ten">Ten</MenuItem>
-                  <MenuItem value="Twenty">Twenty</MenuItem>
-                  <MenuItem value="Thirty">Thirty</MenuItem>
+                  {types && Object.keys(types[lang]).map((itemKey, index) => (
+                    <MenuItem
+                      value={itemKey}
+                      key={index}
+                    >
+                      {types[lang][itemKey]}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -127,7 +135,7 @@ function Features({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.value}
                 id="value"
-                label="Value"
+                label={vocabularies[lang]['new']['features'][0]}
                 required={true}
                 onChange={handleChange("value")}
               />
@@ -137,11 +145,11 @@ function Features({ settings, handleSetValue, data }) {
           <div className="inline mb-20">
             <div className="col-5 mr-15">
               <div className="attachment">
-                <label>Attachment</label>
+                <label>{vocabularies[lang]['new']['biometric data'][0]}</label>
                 <div className="dropzone-container">
                   <CustomDropzone
                     heading='Attachment'
-                    description='Choose a file or drag it here'
+                    description={vocabularies[lang]['new']['biometric data'][1]}
                     onHandleLoad={(v) => {
                       setAttachment(v);
                     }}
@@ -150,13 +158,13 @@ function Features({ settings, handleSetValue, data }) {
                   />
                 </div>
                 <div className="input-container">
-                  <input type="text" placeholder="Upload from file" value={attachment.path} />
+                  <input type="text" placeholder={vocabularies[lang]['new']['biometric data'][2]} value={attachment.path} />
                   <Button
                     variant="contained"
                     className="add-button"
                     onClick={handleAdd}
                   >
-                    UPLOAD
+                    {vocabularies[lang]['new']['biometric data'][3]}
                   </Button>
                 </div>
               </div>
@@ -165,7 +173,7 @@ function Features({ settings, handleSetValue, data }) {
               <TextField
                 value={state.notes}
                 id="notes"
-                label="Notes"
+                label={vocabularies[lang]['new']['common'][3]}
                 multiline
                 rows="5"
                 onChange={handleChange('notes')}
@@ -178,7 +186,7 @@ function Features({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd}
               >
-                ADD
+                {vocabularies[lang]['new']['common'][0]}
               </Button>
             </div>
           </div>
@@ -186,7 +194,12 @@ function Features({ settings, handleSetValue, data }) {
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Type', 'Value', 'Attachment', 'Notes']}
+          header={[
+            vocabularies[lang]['new']['common'][4],
+            vocabularies[lang]['new']['features'][0],
+            vocabularies[lang]['new']['biometric data'][0],
+            vocabularies[lang]['new']['common'][3]
+          ]}
           data={features.map((item) =>
             ({
               a: item.attachment && <DocTypeIcon type={item.attachment.type} status="Sent" />,
@@ -195,15 +208,22 @@ function Features({ settings, handleSetValue, data }) {
               d: item.notes
             })
           )}
-          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem label1="View" label2="Remove" onEdit={(mode) => handleEdit(mode, index)} /> })}
+          getExtraCell={(index) => ({
+            title: '',
+            content: <TableBtnEditItem
+              onEdit={(mode) => handleEdit(mode, index)}
+              label1={vocabularies[lang]['new']['common'][6]}
+              label2={vocabularies[lang]['new']['common'][2]}
+            />
+          })}
         />
         {curAttachment && (
           <CustomModal
             isOpen={isModalOpen}
-            title="View Attachment"
+            title={vocabularies[lang]['new']['biometric data'][4]}
             singleButton={true}
             onClose={() => setIsModalOpen(false)}
-            labelClose="CLOSE"
+            labelClose={vocabularies[lang]['main'][12]}
           >
             {curAttachment.type ? (
               <FileViewer
@@ -213,7 +233,12 @@ function Features({ settings, handleSetValue, data }) {
                 onError={handleReadError}
               />
             ) : (
-              <iframe src={curAttachment.path} width={'100%'} height={'100%'} title="View Attachment" />
+              <iframe
+                src={curAttachment.path}
+                width={'100%'}
+                height={'100%'}
+                title={vocabularies[lang]['new']['biometric data'][4]}
+              />
             )}
           </CustomModal>
         )}
@@ -222,4 +247,8 @@ function Features({ settings, handleSetValue, data }) {
   )
 }
 
-export default Features;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(BiometricData);

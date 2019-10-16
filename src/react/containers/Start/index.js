@@ -3,9 +3,9 @@ import { bindActionCreators } from "redux";
 import { changeInformation, setCreateStep } from "../../redux/actions";
 import { withRouter } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
-import axios from 'axios';
-import Information from '../../components/Information';
-import Identities from '../../components/Identities';
+import axios from "axios";
+import Information from "../../components/Information";
+import Identities from "../../components/Identities";
 import Names from "../../components/Names";
 import OtherData from "../../components/OtherData";
 import Documents from "../../components/Documents";
@@ -14,7 +14,7 @@ import PlacesOfBirth from "../../components/PlacesOfBirth";
 import DatesOfBirth from "../../components/DatesOfBirth";
 import Features from "../../components/Features";
 import BiometricData from "../../components/BiometricData";
-import './styles.css';
+import "./styles.css";
 
 class Start extends Component {
 
@@ -31,6 +31,7 @@ class Start extends Component {
       gender: [],
       livingStatus: [],
       documentType: [],
+      countries: [],
       biometricType: []
     };
     this.results = {

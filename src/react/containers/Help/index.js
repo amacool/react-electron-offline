@@ -4,12 +4,14 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 
-function Help({ lang }) {
+function Help() {
+  const lang = localStorage.getItem('lang') || 'EN';
   const [content, setContent] = React.useState({});
 
   React.useEffect(() => {
     axios.get('/data/help.json')
       .then(function (result) {
+        console.log(result.data);
         setContent(result.data.content[0]);
       });
   }, []);
@@ -40,7 +42,6 @@ function Help({ lang }) {
 }
 
 const mapStateToProps = (state) => ({
-  lang: state.lang,
   err: state.err
 });
 

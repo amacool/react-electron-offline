@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import connect from "react-redux/es/connect/connect";
 import Button from "@material-ui/core/Button/Button";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
@@ -9,10 +10,11 @@ import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-import './styles.css';
 import smalltalk from "smalltalk";
+import "./styles.css";
 
-function Documents({ settings, handleSetValue, data }) {
+function Documents({ settings, handleSetValue, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -29,7 +31,7 @@ function Documents({ settings, handleSetValue, data }) {
   const [documents, setDocuments] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
   const documentType = settings.documentType[0];
-  const language = 'EN';
+  const countries = settings.countries[0];
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -54,7 +56,7 @@ function Documents({ settings, handleSetValue, data }) {
       state.issuedDate === '' ||
       state.expirationDate === ''
     ) {
-      smalltalk.alert('Error', 'Please input values!');
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return;
     }
     if (editIndex === -1) {
@@ -107,7 +109,7 @@ function Documents({ settings, handleSetValue, data }) {
   return (
     <div className="start-page Documents" id="DOCUMENTS">
       <div className="header">
-        <h5>documents</h5>
+        <h5>{vocabularies[lang]['new']['main'][8]}</h5>
       </div>
       <div className="content content-header">
         <div className="row">
@@ -116,7 +118,7 @@ function Documents({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.docNumber}
                 id="doc-number"
-                label="Document Number"
+                label={vocabularies[lang]['new']['documents'][0]}
                 required={true}
                 onChange={handleChange("docNumber")}
               />
@@ -124,7 +126,7 @@ function Documents({ settings, handleSetValue, data }) {
             <div className="col ml-15 mr-15 mt-26">
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="doc-type" className="custom-select-label">
-                  Document Type<b>*</b>
+                  {vocabularies[lang]['new']['documents'][1]}<b>*</b>
                 </InputLabel>
                 <Select
                   value={state.docType}
@@ -135,17 +137,16 @@ function Documents({ settings, handleSetValue, data }) {
                     id: 'doc-type',
                   }}
                   className="custom-select"
-                  placeholder="Primary"
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {documentType && Object.keys(documentType[language]).map((itemKey, index) => (
+                  {documentType && Object.keys(documentType[lang]).map((itemKey, index) => (
                     <MenuItem
                       value={itemKey}
                       key={index}
                     >
-                      {documentType[language][itemKey]}
+                      {documentType[lang][itemKey]}
                     </MenuItem>
                   ))}
                 </Select>
@@ -155,7 +156,7 @@ function Documents({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.docType1}
                 id="doc-type1"
-                label="Document Type1"
+                label={vocabularies[lang]['new']['documents'][1]}
                 required={true}
                 onChange={handleChange("docType1")}
               />
@@ -166,7 +167,7 @@ function Documents({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.issuingCity}
                 id="issuing-city"
-                label="Issuing City"
+                label={vocabularies[lang]['new']['documents'][2]}
                 required={true}
                 onChange={handleChange("issuingCity")}
               />
@@ -174,7 +175,7 @@ function Documents({ settings, handleSetValue, data }) {
             <div className="w-69 mt-26">
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="doc-type" className="custom-select-label">
-                  Issued Country<b>*</b>
+                  {vocabularies[lang]['new']['documents'][3]}<b>*</b>
                 </InputLabel>
                 <Select
                   value={state.issuedCountry}
@@ -185,14 +186,18 @@ function Documents({ settings, handleSetValue, data }) {
                     id: 'issued-country',
                   }}
                   className="custom-select"
-                  placeholder="Primary"
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  <MenuItem value="EN">
-                    <em>England</em>
-                  </MenuItem>
+                  {countries && Object.keys(countries[lang]).map((itemKey, index) => (
+                    <MenuItem
+                      value={itemKey}
+                      key={index}
+                    >
+                      {countries[lang][itemKey]}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -201,7 +206,7 @@ function Documents({ settings, handleSetValue, data }) {
             <div className="w-69 mr-15 mt-26">
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="issuing-country" className="custom-select-label">
-                  Issuing Country<b>*</b>
+                  {vocabularies[lang]['new']['documents'][4]}<b>*</b>
                 </InputLabel>
                 <Select
                   value={state.issuingCountry}
@@ -212,14 +217,18 @@ function Documents({ settings, handleSetValue, data }) {
                     id: 'issuing-country',
                   }}
                   className="custom-select"
-                  placeholder="Primary"
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  <MenuItem value="EN">
-                    <em>England</em>
-                  </MenuItem>
+                  {countries && Object.keys(countries[lang]).map((itemKey, index) => (
+                    <MenuItem
+                      value={itemKey}
+                      key={index}
+                    >
+                      {countries[lang][itemKey]}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -227,7 +236,7 @@ function Documents({ settings, handleSetValue, data }) {
               <CustomDatePicker
                 value={state.issuedDate}
                 required={true}
-                label="Issued Date"
+                label={vocabularies[lang]['new']['documents'][5]}
                 onChange={handleChange('issuedDate')}
               />
             </div>
@@ -237,20 +246,20 @@ function Documents({ settings, handleSetValue, data }) {
               <TextField
                 value={state.notes}
                 id="notes"
-                label="Notes"
+                label={vocabularies[lang]['new']['common'][3]}
                 multiline
                 rows="5"
                 onChange={handleChange('notes')}
                 className="text-field custom-textarea-control"
                 variant="outlined"
-                placeholder="Notes"
+                placeholder={vocabularies[lang]['new']['common'][3]}
               />
             </div>
             <div className="w-34">
               <CustomDatePicker
                 value={state.expirationDate}
                 required={true}
-                label="Expiration Date"
+                label={vocabularies[lang]['new']['documents'][6]}
                 onChange={handleChange('expirationDate')}
               />
               <Button
@@ -258,7 +267,7 @@ function Documents({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd()}
               >
-                {editIndex >= 0 ? 'SAVE' : 'ADD'}
+                {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
               </Button>
             </div>
           </div>
@@ -266,14 +275,29 @@ function Documents({ settings, handleSetValue, data }) {
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Document Number', 'Document Type', 'Notes']}
+          header={[
+            vocabularies[lang]['new']['documents'][0],
+            vocabularies[lang]['new']['documents'][1],
+            vocabularies[lang]['new']['common'][3]
+          ]}
           data={documents.map((item) => ({ a: item.docNumber, b: item.docType, c: item.notes }))}
           extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
-          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
+          getExtraCell={(index) => ({
+            title: '',
+            content: <TableBtnEditItem
+              onEdit={(mode) => handleEdit(mode, index)}
+              label1={vocabularies[lang]['new']['common'][1]}
+              label2={vocabularies[lang]['new']['common'][2]}
+            />
+          })}
         />
       </div>
     </div>
   );
 }
 
-export default Documents;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(Documents);

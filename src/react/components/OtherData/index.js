@@ -31,7 +31,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
   return (
     <div className="start-page OtherData" id="OTHER-DATA">
       <div className="header">
-        <h5>other data</h5>
+        <h5>{vocabularies[lang]['new']['main'][7]}</h5>
       </div>
       <div className="content content-header">
         <div className="row">
@@ -41,7 +41,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                 <div className="col-6 mr-15">
                   <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                     <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
-                      Gender<b>*</b>
+                      {vocabularies[lang]['new']['other data'][0]}<b>*</b>
                     </InputLabel>
                     <Select
                       value={state.gender}
@@ -55,7 +55,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                       placeholder="Primary"
                     >
                       <MenuItem value="">
-                        <em>None</em>
+                        <em>{vocabularies[lang]['new']['common'][3]}</em>
                       </MenuItem>
                       {gender && Object.keys(gender[lang]).map((itemKey, index) => (
                         <MenuItem
@@ -71,7 +71,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                 <div className="col-6">
                   <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                     <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
-                      Living Status<b>*</b>
+                      {vocabularies[lang]['new']['other data'][1]}<b>*</b>
                     </InputLabel>
                     <Select
                       value={state.livingStatus}
@@ -85,7 +85,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                       placeholder="Primary"
                     >
                       <MenuItem value="">
-                        <em>None</em>
+                        <em>{vocabularies[lang]['new']['common'][3]}</em>
                       </MenuItem>
                       {livingStatus && Object.keys(livingStatus[lang]).map((itemKey, index) => (
                         <MenuItem
@@ -103,7 +103,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                 <CustomInput
                   value={state.title}
                   id="title"
-                  label="Title"
+                  label={vocabularies[lang]['new']['other data'][3]}
                   required={true}
                   onChange={handleChange("title")}
                 />
@@ -113,7 +113,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
               <CustomInput
                 value={state.nationality}
                 id="nationality"
-                label="Nationality"
+                label={vocabularies[lang]['new']['other data'][2]}
                 required={true}
                 onChange={handleChange("nationality")}
               />
@@ -123,13 +123,13 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
             <TextField
               value={state.designations}
               id="designations"
-              label="Designations"
+              label={vocabularies[lang]['new']['other data'][4]}
               multiline
               rows="5"
               onChange={handleChange('designations')}
               className="text-field custom-textarea-control"
               variant="outlined"
-              placeholder="Designations"
+              placeholder={vocabularies[lang]['new']['other data'][4]}
             />
           </div>
         </div>

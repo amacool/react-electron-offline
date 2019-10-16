@@ -11,9 +11,10 @@ import { DocTypeIcon, DocInfo } from "../../components/common/DocElement";
 import { channels } from "../../../shared/constants";
 import { changeInformation } from "../../redux/actions";
 import { CustomTable } from "../../components/common/CustomTable";
-import './styles.css';
+import "./styles.css";
 
-function Recent({ history, changeInformation }) {
+function Recent({ history, changeInformation, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const [files, setFiles] = React.useState([]);
 
   const handleLoadData = (index) => {
@@ -22,12 +23,12 @@ function Recent({ history, changeInformation }) {
       ipcRenderer.send(channels.OPEN_FILE, { path: files[index].path });
       ipcRenderer.on(channels.OPEN_FILE, (event, arg) => {
         ipcRenderer.removeAllListeners(channels.OPEN_FILE);
-        const { data, message, success } = arg;
+        const { data, success } = arg;
         if (success) {
           changeInformation(data.data);
           history.push('/start');
         } else {
-          smalltalk.alert('Error', message);
+          smalltalk.alert(vocabularies[lang]['messages'][0], '');
         }
       });
     }
@@ -39,7 +40,7 @@ function Recent({ history, changeInformation }) {
       ipcRenderer.send(channels.GET_HISTORY);
       ipcRenderer.on(channels.GET_HISTORY, (event, arg) => {
         ipcRenderer.removeAllListeners(channels.GET_HISTORY);
-        const { data, message, success } = arg;
+        const { data, success } = arg;
         if (success) {
           const rows = data.split("\n");
           rows.splice(rows.length - 1, 1);
@@ -51,12 +52,12 @@ function Recent({ history, changeInformation }) {
               name: fileName,
               path: fileInfo[0],
               lastOpened: fileInfo[1],
-              status: fileInfo[2] === '0' ? 'Completed' : 'Draft'
+              status: fileInfo[2] === '0' ? vocabularies[lang]['recent'][4] : vocabularies[lang]['recent'][5]
             };
           });
           setFiles(fileInfoArr);
         } else {
-          smalltalk.alert('Error', message);
+          smalltalk.alert(vocabularies[lang]['messages'][0], '');
         }
       });
     }
@@ -70,7 +71,12 @@ function Recent({ history, changeInformation }) {
         </div>
         <div className="content-body">
           <CustomTable
-            header={[<FontAwesomeIcon icon={faFile} size="2x" />, 'Name', 'Last time opened', 'Status']}
+            header={[
+              <FontAwesomeIcon icon={faFile} size="2x" />,
+              vocabularies[lang]['new']['names'][0],
+              vocabularies[lang]['recent'][1],
+              vocabularies[lang]['recent'][2]
+            ]}
             data={files.map((item) =>
               ({
                 a: <DocTypeIcon type={item.type} status={item.status} />,
@@ -87,13 +93,18 @@ function Recent({ history, changeInformation }) {
             variant="contained"
             className="add-button col-1 mt-39"
           >
-            Sent
+            {vocabularies[lang]['recent'][3]}
           </Button>
         </div>
       </div>
     </div>
   );
 }
+
+
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
@@ -103,4 +114,4 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default withRouter(connect(null, mapDispatchToProps)(Recent));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Recent));

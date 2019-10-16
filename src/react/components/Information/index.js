@@ -41,7 +41,6 @@ function Information({ settings, handleSetValue, data, vocabularies }) {
   }, []);
 
   React.useEffect(() => {
-    console.log(data);
     setState(data);
   }, [data]);
 

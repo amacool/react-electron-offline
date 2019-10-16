@@ -1,6 +1,6 @@
 {
   "EN": {
-    "messages": ["Error", "Info", "Saved successfully!", "Invalid document!", "Failed to save!", "Please input values!"],
+    "messages": ["Error", "Info", "Saved successfully!", "Invalid document!", "Failed to save!", "Please input values!", "Failed to open!"],
     "main": [
       "NEW",
       "RECENT",
@@ -13,7 +13,8 @@
       "PREV",
       "NEXT",
       "Security Council Consolidated List",
-      "United Nations"
+      "United Nations",
+      "CLOSE"
     ],
     "new": {
       "main": [
@@ -38,7 +39,8 @@
         "Remove",
         "Notes",
         "Type",
-        "None"
+        "None",
+        "View"
       ],
       "information": [
         "Entry Type",
@@ -57,9 +59,9 @@
       "addresses": ["Address", "Street", "City", "Province", "Zip Code", "Country", "Location", "Region", "Latitude", "Longitude"],
       "dates of birth": ["Specific", "Date", "Range", "Subset", "From", "To"],
       "features": ["Value"],
-      "biometric data": ["Attachment", "Choose a file or drag it here", "Upload from file", "UPLOAD"]
+      "biometric data": ["Attachment", "Choose a file or drag it here", "Upload from file", "UPLOAD", "View Attachment"]
     },
-    "recent": ["RECENT FORMS", "Name", "Last time opened", "Status", "SENT"],
+    "recent": ["RECENT FORMS", "Last time opened", "Status", "SENT", "Completed", "Draft"],
     "help": [
       "The following are some frequently asked questions on United Nations and the Security Council. If your question is not listed here, please fell free to contact the Security Council Practices and Charter Research Branch."
     ]

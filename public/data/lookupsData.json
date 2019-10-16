@@ -48,6 +48,11 @@
     "NIN" : "National Identification Number"
   }
   }],
+  "countries" : [ {"EN" : {
+    "US" : "United States",
+    "CA" : "Canada"
+  }
+  }],
   "biometricType" : [{"EN" : {
     "photo" : "Photo",
     "eye_color" : "Eye color"

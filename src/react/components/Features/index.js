@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
@@ -8,8 +8,10 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import smalltalk from "smalltalk";
+import connect from "react-redux/es/connect/connect";
 
-function Features({ settings, handleSetValue, data }) {
+function Features({ settings, handleSetValue, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -19,6 +21,7 @@ function Features({ settings, handleSetValue, data }) {
   });
   const [features, setFeatures] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
+  const types = settings.type[0];
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -34,7 +37,7 @@ function Features({ settings, handleSetValue, data }) {
 
   const handleAdd = () => {
     if (state.type === '' || state.value === '') {
-      smalltalk.alert('Error', 'Please input values!');
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return;
     }
     if (editIndex === -1) {
@@ -75,7 +78,7 @@ function Features({ settings, handleSetValue, data }) {
   return (
     <div className="start-page" id="FEATURES">
       <div className="header">
-        <h5>features</h5>
+        <h5>{vocabularies[lang]['new']['main'][12]}</h5>
       </div>
       <div className="content content-header">
         <div className="row">
@@ -83,7 +86,7 @@ function Features({ settings, handleSetValue, data }) {
             <div className="w-31 mr-15 mt-26">
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
-                  Type<b>*</b>
+                  {vocabularies[lang]['new']['common'][4]}<b>*</b>
                 </InputLabel>
                 <Select
                   value={state.type}
@@ -94,14 +97,18 @@ function Features({ settings, handleSetValue, data }) {
                     id: 'type',
                   }}
                   className="custom-select"
-                  placeholder="Primary"
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  <MenuItem value="Ten">Ten</MenuItem>
-                  <MenuItem value="Twenty">Twenty</MenuItem>
-                  <MenuItem value="Thirty">Thirty</MenuItem>
+                  {types && Object.keys(types[lang]).map((itemKey, index) => (
+                    <MenuItem
+                      value={itemKey}
+                      key={index}
+                    >
+                      {types[lang][itemKey]}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -109,7 +116,7 @@ function Features({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.value}
                 id="value"
-                label="Value"
+                label={vocabularies[lang]['new']['features'][0]}
                 required={true}
                 onChange={handleChange("value")}
               />
@@ -121,13 +128,13 @@ function Features({ settings, handleSetValue, data }) {
               <TextField
                 value={state.notes}
                 id="notes"
-                label="Notes"
+                label={vocabularies[lang]['new']['common'][3]}
                 multiline
                 rows="5"
                 onChange={handleChange('notes')}
                 className="text-field custom-textarea-control"
                 variant="outlined"
-                placeholder="Notes"
+                placeholder={vocabularies[lang]['new']['common'][3]}
               />
             </div>
             <div className="w-34 flex-end">
@@ -136,7 +143,7 @@ function Features({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd}
               >
-                {editIndex >= 0 ? 'SAVE' : 'ADD'}
+                {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
               </Button>
             </div>
           </div>
@@ -144,7 +151,11 @@ function Features({ settings, handleSetValue, data }) {
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Type', 'Value', 'Notes']}
+          header={[
+            vocabularies[lang]['new']['common'][4],
+            vocabularies[lang]['new']['features'][0],
+            vocabularies[lang]['new']['common'][3]
+          ]}
           data={features.map((item) =>
             ({
               a: item.type,
@@ -152,11 +163,22 @@ function Features({ settings, handleSetValue, data }) {
               c: item.notes
             })
           )}
-          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
+          getExtraCell={(index) => ({
+            title: '',
+            content: <TableBtnEditItem
+              onEdit={(mode) => handleEdit(mode, index)}
+              label1={vocabularies[lang]['new']['common'][1]}
+              label2={vocabularies[lang]['new']['common'][2]}
+            />
+          })}
         />
       </div>
     </div>
   )
 }
 
-export default Features;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(Features);

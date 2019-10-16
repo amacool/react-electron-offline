@@ -23,13 +23,13 @@ const LeftMenu = ({ history, pathname, changeInformation, vocabularies }) => {
             changeInformation(data.data);
             history.replace('/start');
           } catch (err) {
-            smalltalk.alert('Error', 'Invalid document!');
+            smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][3]);
           }
         } else {
           if (message === 'not selected') {
             history.goBack();
           } else {
-            smalltalk.alert('Error', message);
+            smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][6]);
           }
         }
       });

@@ -1,16 +1,18 @@
-import React from 'react';
+import React from "react";
+import connect from "react-redux/es/connect/connect";
 import Button from "@material-ui/core/Button/Button";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
+import smalltalk from "smalltalk";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
-import smalltalk from "smalltalk";
 
-function PlacesOfBirth({ settings, handleSetValue, data }) {
+function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
@@ -28,6 +30,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
   });
   const [addresses, setAddresses] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
+  const countries = settings.countries[0];
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -51,7 +54,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
       || state.latitude === ''
       || state.longitude === ''
     ) {
-      smalltalk.alert('Error', 'Please input values!');
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return;
     }
     if (editIndex === -1) {
@@ -108,14 +111,14 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
   return (
     <div className="start-page" id="PLACES-OF-BIRTH">
       <div className="header">
-        <h5>places of birth</h5>
+        <h5>{vocabularies[lang]['new']['main'][10]}</h5>
       </div>
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
             <div className="col w-31 mr-15">
               <CustomCheckbox
-                label="address"
+                label={vocabularies[lang]['new']['addresses'][0]}
                 onChange={handleChange('address')}
                 required={true}
                 value={state.address}
@@ -125,7 +128,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.street}
                 id="street"
-                label="Street"
+                label={vocabularies[lang]['new']['addresses'][1]}
                 required={true}
                 onChange={handleChange("street")}
               />
@@ -137,7 +140,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.city}
                 id="city"
-                label="City"
+                label={vocabularies[lang]['new']['addresses'][2]}
                 required={true}
                 onChange={handleChange("city")}
               />
@@ -146,7 +149,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.province}
                 id="province"
-                label="Province"
+                label={vocabularies[lang]['new']['addresses'][3]}
                 required={true}
                 onChange={handleChange("province")}
               />
@@ -155,7 +158,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.zipCode}
                 id="zip-code"
-                label="Zip Code"
+                label={vocabularies[lang]['new']['addresses'][4]}
                 required={true}
                 onChange={handleChange("zipCode")}
               />
@@ -163,7 +166,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
             <div className="col mt-26">
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="country" className="custom-select-label">
-                  Country<b>*</b>
+                  {vocabularies[lang]['new']['addresses'][5]}<b>*</b>
                 </InputLabel>
                 <Select
                   value={state.country}
@@ -174,14 +177,18 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
                     id: 'country',
                   }}
                   className="custom-select"
-                  placeholder="Primary"
                 >
                   <MenuItem value="">
-                    <em>None</em>
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  <MenuItem value="EN">
-                    <em>England</em>
-                  </MenuItem>
+                  {countries && Object.keys(countries[lang]).map((itemKey, index) => (
+                    <MenuItem
+                      value={itemKey}
+                      key={index}
+                    >
+                      {countries[lang][itemKey]}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </div>
@@ -190,7 +197,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
           <div className="inline mb-20">
             <div className="col mr-15">
               <CustomCheckbox
-                label="Location"
+                label={vocabularies[lang]['new']['addresses'][6]}
                 onChange={handleChange('location')}
                 required={true}
                 value={state.location}
@@ -200,7 +207,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.region}
                 id="region"
-                label="Region"
+                label={vocabularies[lang]['new']['common'][7]}
                 required={true}
                 onChange={handleChange("region")}
               />
@@ -209,7 +216,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.latitude}
                 id="latitude"
-                label="Latitude"
+                label={vocabularies[lang]['new']['common'][8]}
                 required={true}
                 onChange={handleChange("latitude")}
               />
@@ -218,7 +225,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.longitude}
                 id="longitude"
-                label="Longitude"
+                label={vocabularies[lang]['new']['common'][9]}
                 required={true}
                 onChange={handleChange("longitude")}
               />
@@ -230,13 +237,13 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               <TextField
                 value={state.notes}
                 id="notes"
-                label="Notes"
+                label={vocabularies[lang]['new']['common'][3]}
                 multiline
                 rows="5"
                 onChange={handleChange('notes')}
                 className="text-field custom-textarea-control"
                 variant="outlined"
-                placeholder="Notes"
+                placeholder={vocabularies[lang]['new']['common'][3]}
               />
             </div>
             <div className="w-34 flex-end">
@@ -245,7 +252,7 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd}
               >
-                {editIndex >= 0 ? 'SAVE' : 'ADD'}
+                {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
               </Button>
             </div>
           </div>
@@ -253,7 +260,11 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Address', 'Location', 'Notes']}
+          header={[
+            vocabularies[lang]['new']['documents'][0],
+            vocabularies[lang]['new']['documents'][1],
+            vocabularies[lang]['new']['common'][3]
+          ]}
           data={addresses.map((item) =>
             ({
               a: `${item.street} ${item.city} ${item.province} ${item.zipCode} ${item.country}`,
@@ -261,11 +272,22 @@ function PlacesOfBirth({ settings, handleSetValue, data }) {
               c: item.notes
             })
           )}
-          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
+          getExtraCell={(index) => ({
+            title: '',
+            content: <TableBtnEditItem
+              onEdit={(mode) => handleEdit(mode, index)}
+              label1={vocabularies[lang]['new']['common'][1]}
+              label2={vocabularies[lang]['new']['common'][2]}
+            />
+          })}
         />
       </div>
     </div>
   )
 }
 
-export default PlacesOfBirth;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(PlacesOfBirth);

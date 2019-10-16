@@ -1,14 +1,16 @@
-import React from 'react';
+import React from "react";
+import smalltalk from "smalltalk";
+import connect from "react-redux/es/connect/connect";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
-import {CustomTable, TableBtnEditItem} from "../common/CustomTable";
+import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import "./styles.css";
-import smalltalk from "smalltalk";
 
-function DatesOfBirth({ settings, handleSetValue, data }) {
+function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const [state, setState] = React.useState({
     specific: false,
     date: '',
@@ -35,7 +37,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
       || state.from === ''
       || state.to === ''
     ) {
-      smalltalk.alert('Error', 'Please input values!');
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return;
     }
     if (editIndex === -1) {
@@ -84,14 +86,14 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
   return (
     <div className="start-page" id="DATES-OF-BIRTH">
       <div className="header">
-        <h5>dates of birth</h5>
+        <h5>{vocabularies[lang]['new']['main'][11]}</h5>
       </div>
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
             <div className="col w-31 mr-15">
               <CustomCheckbox
-                label="Specific"
+                label={vocabularies[lang]['new']['dates of birth'][0]}
                 onChange={handleChange('specific')}
                 required={true}
                 value={state.specific}
@@ -101,7 +103,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
               <CustomDatePicker
                 value={state.date}
                 required={true}
-                label="Date"
+                label={vocabularies[lang]['new']['dates of birth'][1]}
                 onChange={handleChange('date')}
               />
             </div>
@@ -110,7 +112,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
           <div className="inline mb-20">
             <div className="w-31 mr-15">
               <CustomCheckbox
-                label="Range"
+                label={vocabularies[lang]['new']['dates of birth'][2]}
                 onChange={handleChange('range')}
                 required={true}
                 value={state.range}
@@ -120,7 +122,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
               <CustomInput
                 value={state.subset}
                 id="subset"
-                label="Subset"
+                label={vocabularies[lang]['new']['dates of birth'][3]}
                 required={true}
                 onChange={handleChange("subset")}
               />
@@ -132,7 +134,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
               <CustomDatePicker
                 value={state.from}
                 required={true}
-                label="From"
+                label={vocabularies[lang]['new']['dates of birth'][4]}
                 onChange={handleChange('from')}
               />
             </div>
@@ -140,7 +142,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
               <CustomDatePicker
                 value={state.to}
                 required={true}
-                label="To"
+                label={vocabularies[lang]['new']['dates of birth'][5]}
                 onChange={handleChange('to')}
               />
             </div>
@@ -152,7 +154,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
               <TextField
                 value={state.notes}
                 id="notes"
-                label="Notes"
+                label={vocabularies[lang]['new']['common'][3]}
                 multiline
                 rows="5"
                 onChange={handleChange('notes')}
@@ -167,7 +169,7 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
                 className="add-button"
                 onClick={handleAdd}
               >
-                {editIndex >= 0 ? 'SAVE' : 'ADD'}
+                {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
               </Button>
             </div>
           </div>
@@ -175,7 +177,11 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
       </div>
       <div className="content content-body">
         <CustomTable
-          header={['Specific', 'Range', 'Notes']}
+          header={[
+            'Specific',
+            'Range',
+            'Notes'
+          ]}
           data={dates.map((item) =>
             ({
               a: item.date,
@@ -183,11 +189,22 @@ function DatesOfBirth({ settings, handleSetValue, data }) {
               c: item.notes
             })
           )}
-          getExtraCell={(index) => ({ title: '', content: <TableBtnEditItem onEdit={(mode) => handleEdit(mode, index)} /> })}
+          getExtraCell={(index) => ({
+            title: '',
+            content: <TableBtnEditItem
+              onEdit={(mode) => handleEdit(mode, index)}
+              label1={vocabularies[lang]['new']['common'][1]}
+              label2={vocabularies[lang]['new']['common'][2]}
+            />
+          })}
         />
       </div>
     </div>
   )
 }
 
-export default DatesOfBirth;
+const mapStateToProps = (state) => ({
+  vocabularies: state.vocabularies
+});
+
+export default connect(mapStateToProps, null)(DatesOfBirth);
