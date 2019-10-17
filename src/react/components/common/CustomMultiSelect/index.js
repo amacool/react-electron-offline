@@ -6,7 +6,7 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 
-export const CustomMultiSelect = ({ options, selected, label, required, onChange, id }) => {
+export const CustomMultiSelect = ({ options, selected, label, required, onChange, id, validation }) => {
   const [values, setValues] = React.useState(selected);
   const handleClick = React.useCallback((item) => {
     let tValues = values;
@@ -48,7 +48,7 @@ export const CustomMultiSelect = ({ options, selected, label, required, onChange
           ))}
         </Select>
       </FormControl>
-      <div className="select-heading">{label}</div>
+      <div className={`select-heading ${validation && required && selected.length === 0 ? 'select-empty' : ''}`}>{label}</div>
       <div className="select-body">
         <div className="select-body-inner">
           {values.map((item, index) => (

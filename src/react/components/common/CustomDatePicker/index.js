@@ -23,12 +23,12 @@ function parseDate(str, format, locale) {
   return undefined;
 }
 
-export const CustomDatePicker = ({ onChange, label, required, value, locale = "en" }) => {
+export const CustomDatePicker = ({ onChange, label, required, value, locale = "en", validation }) => {
   const FORMAT = 'MM/dd/yyyy';
   const localeLower = locale.toLowerCase();
 
   return (
-    <div className='custom-date-picker'>
+    <div className={`custom-date-picker ${validation && required && !value ? 'date-picker-empty' :''}`}>
       <label>
         {label}{required && <b>*</b>}
       </label>
@@ -36,7 +36,6 @@ export const CustomDatePicker = ({ onChange, label, required, value, locale = "e
         <DayPickerInput
           id="day-picker-input"
           value={value}
-          // formatDate={formatDate}
           format={FORMAT}
           localeUtils={MomentLocaleUtils}
           dayPickerProps={{

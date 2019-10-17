@@ -176,7 +176,6 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 className={`text-field custom-textarea-control ${lang === 'AR' ? 'textarea-rtl' : ''}`}
                 variant="outlined"
                 placeholder="Notes"
-                validation={validation}
               />
             </div>
             <div className="w-34 flex-end">

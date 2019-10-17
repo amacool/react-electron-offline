@@ -21,6 +21,7 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
   });
   const [features, setFeatures] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
+  const [validation, setValidation] = React.useState(false);
   const types = settings.type[0];
 
   React.useEffect(() => {
@@ -36,10 +37,8 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
   };
 
   const handleAdd = () => {
-    if (state.type === '' || state.value === '') {
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
-      return;
-    }
+    if (!doValidation()) return;
+
     if (editIndex === -1) {
       handleSetValue([...features, state]);
       setFeatures([...features, state]);
@@ -75,6 +74,15 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
     }
   };
 
+  const doValidation = () => {
+    if (state.type === '' || state.value === '') {
+      setValidation(true);
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="start-page" id="FEATURES">
       <div className="header">
@@ -84,7 +92,7 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
         <div className="row">
           <div className="inline mb-20">
             <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
-              <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.type ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                   {vocabularies[lang]['new']['common'][4]}<b>*</b>
                 </InputLabel>
@@ -119,6 +127,7 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['features'][0]}
                 required={true}
                 onChange={handleChange("value")}
+                validation={validation}
               />
             </div>
           </div>

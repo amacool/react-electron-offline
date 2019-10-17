@@ -26,6 +26,10 @@
   position: relative;
 }
 
+.custom-multi-select .select-heading.select-empty {
+  border: solid 1px red;
+}
+
 .custom-multi-select .select-body {
   border: solid 1px black;
   border-top: none;

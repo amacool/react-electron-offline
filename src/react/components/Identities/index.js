@@ -48,6 +48,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
 
   const handleAdd = () => {
     if (!doValidation()) return;
+
     handleSetValue([...identities, state]);
     setIdentities([...identities, state]);
     setState({
@@ -95,7 +96,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
             />
           </div>
           <div className="col-4">
-            <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.category ? 'select-empty' : ''}`}>
               <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                 {vocabularies[lang]['new']['identities'][1]}<b>*</b>
               </InputLabel>

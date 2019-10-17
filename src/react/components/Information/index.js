@@ -19,6 +19,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
   const [typeLabelWidth, setTypeLabelWidth] = React.useState(0);
   const [languageLabelWidth, setLanguageLabelWidth] = React.useState(0);
   const [regimeLabelWidth, setRegimeLabelWidth] = React.useState(0);
+  const [validation, setValidation] = React.useState(false);
   const [state, setState] = React.useState(data);
 
   const entryTypes = React.useMemo(() => {
@@ -69,6 +70,10 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
     handleSetValue(value);
   };
 
+  const doValidation = () => {
+    setValidation(true);
+  };
+
   return (
     <div className="start-page Information" id="INFORMATION">
       <div className="header">
@@ -77,7 +82,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
       <div className="content">
         <div className="col-3">
           <div className="row">
-            <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.entryType ? 'select-empty' : ''}`}>
               <InputLabel ref={typeLabel} htmlFor="entry-type" className="custom-select-label">
                 {vocabularies[lang]['new']['information'][0]}<b>*</b>
               </InputLabel>
@@ -103,7 +108,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
             </FormControl>
           </div>
           <div className="row">
-            <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.language ? 'select-empty' : ''}`}>
               <InputLabel ref={languageLabel} htmlFor="language" className="custom-select-label">
                 {vocabularies[lang]['new']['information'][3]}<b>*</b>
               </InputLabel>
@@ -131,7 +136,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
             </FormControl>
           </div>
           <div className="row">
-            <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.regime ? 'select-empty' : ''}`}>
               <InputLabel ref={regimeLabel} htmlFor="regime" className="custom-select-label">
                 {vocabularies[lang]['new']['common'][4]}<b>*</b>
               </InputLabel>
@@ -174,6 +179,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
               label={vocabularies[lang]['new']['information'][1]}
               required={true}
               onChange={handleChange('applicableMeasure')}
+              validation={validation}
             />
           </div>
           <div className="row">
@@ -184,6 +190,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
               label={vocabularies[lang]['new']['information'][5]}
               required={true}
               onChange={handleChange('submittedBy')}
+              validation={validation}
             />
           </div>
         </div>

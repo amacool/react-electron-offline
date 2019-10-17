@@ -30,6 +30,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
   });
   const [documents, setDocuments] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
+  const [validation, setValidation] = React.useState(false);
   const documentType = settings.documentType[0];
   const countries = settings.countries[0];
 
@@ -46,19 +47,8 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
   };
 
   const handleAdd = () => () => {
-    if (
-      state.docNumber === '' ||
-      state.docType === '' ||
-      state.docType1 === '' ||
-      state.issuingCity === '' ||
-      state.issuedCountry === '' ||
-      state.issuingCountry === '' ||
-      state.issuedDate === '' ||
-      state.expirationDate === ''
-    ) {
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
-      return;
-    }
+    if (!doValidation()) return;
+
     if (editIndex === -1) {
       handleSetValue([...documents, state]);
       setDocuments([...documents, state]);
@@ -106,6 +96,24 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
     }
   };
 
+  const doValidation = () => {
+    if (
+      state.docNumber === '' ||
+      state.docType === '' ||
+      state.docType1 === '' ||
+      state.issuingCity === '' ||
+      state.issuedCountry === '' ||
+      state.issuingCountry === '' ||
+      state.issuedDate === '' ||
+      state.expirationDate === ''
+    ) {
+      setValidation(true);
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="start-page Documents" id="DOCUMENTS">
       <div className="header">
@@ -121,10 +129,11 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['documents'][0]}
                 required={true}
                 onChange={handleChange("docNumber")}
+                validation={validation}
               />
             </div>
             <div className="col ml-15 mr-15 mt-26">
-              <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.docType ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="doc-type" className="custom-select-label">
                   {vocabularies[lang]['new']['documents'][1]}<b>*</b>
                 </InputLabel>
@@ -159,6 +168,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['documents'][1]}
                 required={true}
                 onChange={handleChange("docType1")}
+                validation={validation}
               />
             </div>
           </div>
@@ -170,10 +180,11 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['documents'][2]}
                 required={true}
                 onChange={handleChange("issuingCity")}
+                validation={validation}
               />
             </div>
             <div className="w-69 mt-26">
-              <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.issuedCountry ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="doc-type" className="custom-select-label">
                   {vocabularies[lang]['new']['documents'][3]}<b>*</b>
                 </InputLabel>
@@ -204,7 +215,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
           </div>
           <div className="inline mb-20">
             <div className={`w-69 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
-              <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.issuingCountry ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="issuing-country" className="custom-select-label">
                   {vocabularies[lang]['new']['documents'][4]}<b>*</b>
                 </InputLabel>
@@ -239,6 +250,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['documents'][5]}
                 onChange={handleChange('issuedDate')}
                 locale={lang}
+                validation={validation}
               />
             </div>
           </div>
@@ -263,6 +275,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['documents'][6]}
                 onChange={handleChange('expirationDate')}
                 locale={lang}
+                validation={validation}
               />
               <Button
                 variant="contained"

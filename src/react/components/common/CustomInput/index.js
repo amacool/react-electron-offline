@@ -7,7 +7,7 @@ export const CustomInput = ({ label, onChange, required, id, value, validation }
       {label}
       {required && <b>*</b>}
     </label>
-    <div className={`custom-input ${validation && !value ? 'input-empty' : ''}`}>
+    <div className={`custom-input ${validation && required && !value ? 'input-empty' : ''}`}>
       <input id={id} type="text" onChange={onChange} value={value} />
     </div>
   </div>

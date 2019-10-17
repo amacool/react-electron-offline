@@ -20,6 +20,10 @@
   align-items: center;
 }
 
+.custom-date-picker.date-picker-empty div.DayPickerInput {
+  border: solid 1px red;
+}
+
 .custom-date-picker div.DayPickerInput input {
   background-color: white;
   cursor: text;

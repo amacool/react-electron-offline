@@ -22,6 +22,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
   const [names1, setNames1] = React.useState(data.names1);
   const [editIndex, setEditIndex] = React.useState(-1);
   const [editIndex1, setEditIndex1] = React.useState(-1);
+  const [validation, setValidation] = React.useState(false);
 
   const handleChange = name => e => {
     const value = {
@@ -40,10 +41,8 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
   };
 
   const handleAdd = () => {
-    if (state.name === '' || state.type === '' || state.script === '') {
-      smalltalk.alert('Error', 'Please input values!');
-      return;
-    }
+    if (!doValidation()) return;
+
     if (editIndex === -1) {
       handleSetValue({
         names: [...names, {...state, order: names.length + 1}],
@@ -68,10 +67,8 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
   };
 
   const handleAdd1 = () => {
-    if (state1.name === '' || state1.type === '' || state1.script === '') {
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
-      return;
-    }
+    if (!doValidation1()) return;
+
     if (editIndex1 === -1) {
       handleSetValue({
         names1: [...names1, {...state1, order: names1.length + 1}],
@@ -139,6 +136,24 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
     }
   };
 
+  const doValidation = () => {
+    if (state.name === '' || state.type === '' || state.script === '') {
+      setValidation(true);
+      smalltalk.alert('Error', 'Please input values!');
+      return false;
+    }
+    return true;
+  };
+
+  const doValidation1 = () => {
+    if (state1.name === '' || state1.type === '' || state1.script === '') {
+      setValidation(true);
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="start-page Names" id="NAMES">
       <div className="header">
@@ -153,6 +168,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               label={vocabularies[lang]['new']['names'][0]}
               required={true}
               onChange={handleChange("name")}
+              validation={validation}
             />
           </div>
           <div className="col-3 mr-15 ml-15">
@@ -162,6 +178,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               label={vocabularies[lang]['new']['common'][4]}
               required={true}
               onChange={handleChange("type")}
+              validation={validation}
             />
           </div>
           <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -171,6 +188,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               label={vocabularies[lang]['new']['names'][1]}
               required={true}
               onChange={handleChange("script")}
+              validation={validation}
             />
           </div>
           <Button
@@ -211,6 +229,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               label={vocabularies[lang]['new']['names'][3]}
               required={true}
               onChange={handleChange1("name")}
+              validation={validation}
             />
           </div>
           <div className="col-3 mr-15 ml-15">
@@ -220,6 +239,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               label={vocabularies[lang]['new']['common'][4]}
               required={true}
               onChange={handleChange1("type")}
+              validation={validation}
             />
           </div>
           <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -229,6 +249,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               label={vocabularies[lang]['new']['names'][1]}
               required={true}
               onChange={handleChange1("script")}
+              validation={validation}
             />
           </div>
           <Button

@@ -110,7 +110,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
         <div className="row">
           <div className="inline mb-20">
             <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
-              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.country ? 'select-empty' : ''}`}>
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.type ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                   {vocabularies[lang]['new']['common'][4]}<b>*</b>
                 </InputLabel>
@@ -145,6 +145,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['features'][0]}
                 required={true}
                 onChange={handleChange("value")}
+                validation={validation}
               />
             </div>
           </div>
