@@ -10,7 +10,7 @@ import { CustomMultiSelect } from "../common/CustomMultiSelect";
 import "../common/FormControl/styles.css";
 import "./styles.css";
 
-function Information({ settings, handleSetValue, data, vocabularies, languages }) {
+function Information({ settings, handleSetValue, data, vocabularies, languages, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const typeLabel = React.useRef(null);
   const languageLabel = React.useRef(null);
@@ -61,6 +61,10 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
     setState(data);
   }, [data]);
 
+  React.useEffect(() => {
+    setValidation(validating);
+  }, [validating]);
+
   const handleChange = name => e => {
     const value = {
       ...state,
@@ -68,10 +72,6 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
     };
     setState(value);
     handleSetValue(value);
-  };
-
-  const doValidation = () => {
-    setValidation(true);
   };
 
   return (
@@ -230,7 +230,8 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
 
 const mapStateToProps = (state) => ({
   vocabularies: state.vocabularies,
-  languages: state.languages
+  languages: state.languages,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(Information);

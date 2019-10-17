@@ -10,7 +10,7 @@ import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import "./styles.css";
 
-function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep, data, vocabularies }) {
+function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
@@ -33,6 +33,10 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
   React.useEffect(() => {
     setIdentities(data);
   }, [data]);
+
+  React.useEffect(() => {
+    setValidation(validating);
+  }, [validating]);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -71,16 +75,9 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     setCurrentStep(2);
   };
 
-  // do validation
-  // React.useEffect(() => {
-  //   if (!doValidation()) {
-  //
-  //   }
-  // }, [validation, doValidation]);
-
   return (
     <div className="start-page Identities" id="IDENTITIES">
-      <div className="header">
+      <div className="header" style={validating && identities.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][5]}</h5>
       </div>
       <div className="content content-header">
@@ -142,7 +139,8 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(Identities);

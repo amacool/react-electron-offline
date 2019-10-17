@@ -18,7 +18,7 @@ import { FileTypes } from "../../constant/file-types";
 import { channels } from "../../../shared/constants";
 import "./styles.css";
 
-function BiometricData({ settings, handleSetValue, data, vocabularies }) {
+function BiometricData({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
@@ -103,7 +103,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
 
   return (
     <div className="start-page BiometricData" id="BIOMETRIC-DATA">
-      <div className="header">
+      <div className="header" style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][13]}</h5>
       </div>
       <div className="content content-header">
@@ -256,7 +256,8 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(BiometricData);

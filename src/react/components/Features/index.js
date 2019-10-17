@@ -10,7 +10,7 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import smalltalk from "smalltalk";
 import connect from "react-redux/es/connect/connect";
 
-function Features({ settings, handleSetValue, data, vocabularies }) {
+function Features({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
@@ -85,7 +85,7 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
 
   return (
     <div className="start-page" id="FEATURES">
-      <div className="header">
+      <div className="header" style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][12]}</h5>
       </div>
       <div className="content content-header">
@@ -187,7 +187,8 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(Features);

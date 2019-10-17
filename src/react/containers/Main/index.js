@@ -11,6 +11,7 @@ import {
   saveDraft,
   changeInformation,
   clearInformation,
+  validateInformation,
   setCreateStep
 } from "../../redux/actions";
 import logo from "../../assets/logo.png";
@@ -76,7 +77,10 @@ class Main extends Component {
 
   onSave() {
     if (this.performValidation()) {
+      this.props.validateInformation(false);
       this.handleSaveFile(false);
+    } else {
+      this.props.validateInformation(true);
     }
   }
 
@@ -332,6 +336,7 @@ const mapDispatchToProps = dispatch =>
     {
       changeInformation: data => changeInformation({ data }),
       clearInformation: () => clearInformation(),
+      validateInformation: data => validateInformation(data),
       setCreateStep: data => setCreateStep({ data }),
       saveDraft: () => saveDraft()
     },

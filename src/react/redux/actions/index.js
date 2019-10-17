@@ -3,6 +3,7 @@ import {
   SAVE_DRAFT,
   CHANGE_INFORMATION,
   CLEAR_INFORMATION,
+  VALIDATE_INFORMATION,
   SET_CREATE_STEP,
   SET_LANGUAGE,
   SET_VOCABULARIES,
@@ -23,6 +24,10 @@ export function changeInformation(payload) {
 
 export function clearInformation() {
   return { type: CLEAR_INFORMATION };
+}
+
+export function validateInformation(payload) {
+  return { type: VALIDATE_INFORMATION, payload };
 }
 
 export function setCreateStep(payload) {

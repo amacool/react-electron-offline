@@ -2,6 +2,7 @@ import {
   SAVE_INFORMATION,
   CHANGE_INFORMATION,
   CLEAR_INFORMATION,
+  VALIDATE_INFORMATION,
   SET_CREATE_STEP,
   SET_LANGUAGE,
   SET_CUR_LANG,
@@ -14,6 +15,7 @@ const initialState = {
   languages: [],
   curLang: localStorage.getItem('lang') || 'EN',
   vocabularies: null,
+  validating: false,
   err: null
 };
 
@@ -42,7 +44,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         data: {},
         createStep: 0,
+        validating: false,
         err: null
+      };
+
+    case VALIDATE_INFORMATION:
+      return {
+        ...state,
+        validating: action.payload
       };
 
     case SET_CREATE_STEP:

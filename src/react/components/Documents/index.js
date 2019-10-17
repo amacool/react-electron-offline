@@ -13,7 +13,7 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import smalltalk from "smalltalk";
 import "./styles.css";
 
-function Documents({ settings, handleSetValue, data, vocabularies }) {
+function Documents({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
@@ -116,7 +116,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
 
   return (
     <div className="start-page Documents" id="DOCUMENTS">
-      <div className="header">
+      <div className="header" style={validating && documents.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][8]}</h5>
       </div>
       <div className="content content-header">
@@ -312,7 +312,8 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(Documents);

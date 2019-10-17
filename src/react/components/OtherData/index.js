@@ -7,17 +7,22 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import { CustomInput } from "../common/CustomInput";
 
-function OtherData({ settings, handleSetValue, data, vocabularies }) {
+function OtherData({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState(data);
+  const [validation, setValidation] = React.useState(validating);
   const gender = settings.gender[0];
   const livingStatus = settings.livingStatus[0];
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
   }, []);
+
+  React.useEffect(() => {
+    setValidation(validating);
+  }, [validating]);
 
   const handleChange = name => e => {
     const value = {
@@ -27,6 +32,8 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
     setState(value);
     handleSetValue(value);
   };
+
+  console.log(state.livingStatus);
 
   return (
     <div className="start-page OtherData" id="OTHER-DATA">
@@ -39,7 +46,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
             <div className={`col-6 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
               <div className="custom-add-group mb-20">
                 <div className={`col-6 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-                  <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+                  <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.gender ? 'select-empty' : ''}`}>
                     <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                       {vocabularies[lang]['new']['other data'][0]}<b>*</b>
                     </InputLabel>
@@ -69,7 +76,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                   </FormControl>
                 </div>
                 <div className="col-6">
-                  <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+                  <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.livingStatus ? 'select-empty' : ''}`}>
                     <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                       {vocabularies[lang]['new']['other data'][1]}<b>*</b>
                     </InputLabel>
@@ -106,6 +113,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                   label={vocabularies[lang]['new']['other data'][3]}
                   required={true}
                   onChange={handleChange("title")}
+                  validation={validation}
                 />
               </div>
             </div>
@@ -116,6 +124,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['other data'][2]}
                 required={true}
                 onChange={handleChange("nationality")}
+                validation={validation}
               />
             </div>
           </div>
@@ -139,7 +148,8 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(OtherData);

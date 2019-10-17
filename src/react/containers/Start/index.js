@@ -58,7 +58,6 @@ class Start extends Component {
     let th = this;
     axios.get('/data/lookupsData.json')
       .then(function (result) {
-        console.log(result);
         Object.keys(result.data).forEach((itemKey) => {
           th.setState({
             [itemKey]: result.data[itemKey]
@@ -75,7 +74,7 @@ class Start extends Component {
         },
         otherData: {
           gender: '',
-          livingStatus: [],
+          livingStatus: '',
           nationality: '',
           title: '',
           designations: ''

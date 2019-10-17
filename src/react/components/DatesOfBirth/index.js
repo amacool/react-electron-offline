@@ -9,7 +9,7 @@ import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import "./styles.css";
 
-function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
+function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const [state, setState] = React.useState({
     specific: false,
@@ -93,7 +93,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
 
   return (
     <div className="start-page" id="DATES-OF-BIRTH">
-      <div className="header">
+      <div className="header" style={validating && dates.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][11]}</h5>
       </div>
       <div className="content content-header">
@@ -219,7 +219,8 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(DatesOfBirth);

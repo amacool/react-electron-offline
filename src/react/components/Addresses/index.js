@@ -11,7 +11,7 @@ import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import connect from "react-redux/es/connect/connect";
 
-function Addresses({ settings, handleSetValue, data, vocabularies }) {
+function Addresses({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
@@ -118,7 +118,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
 
   return (
     <div className="start-page" id="ADDRESSES">
-      <div className="header">
+      <div className="header" style={validating && addresses.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][9]}</h5>
       </div>
       <div className="content content-header">
@@ -303,7 +303,8 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(Addresses);

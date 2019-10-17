@@ -11,7 +11,7 @@ import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 
-function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
+function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
@@ -118,7 +118,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
 
   return (
     <div className="start-page" id="PLACES-OF-BIRTH">
-      <div className="header">
+      <div className="header" style={validating && addresses.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][10]}</h5>
       </div>
       <div className="content content-header">
@@ -302,7 +302,8 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(PlacesOfBirth);

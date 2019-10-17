@@ -6,7 +6,7 @@ import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import "./styles.css";
 
-function Names({ settings, handleSetValue, data, vocabularies }) {
+function Names({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const [state, setState] = React.useState({
     name: '',
@@ -156,7 +156,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
 
   return (
     <div className="start-page Names" id="NAMES">
-      <div className="header">
+      <div className="header" style={validating && (names.length === 0 || names1.length === 0) ? { backgroundColor: '#ffaeae' } : {}}>
         <h5>{vocabularies[lang]['new']['main'][6]}</h5>
       </div>
       <div className="content content-header">
@@ -285,7 +285,8 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  validating: state.validating
 });
 
 export default connect(mapStateToProps, null)(Names);
