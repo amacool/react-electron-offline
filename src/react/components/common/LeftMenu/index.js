@@ -11,6 +11,7 @@ import { changeInformation } from "../../../redux/actions";
 
 const LeftMenu = ({ history, pathname, changeInformation, vocabularies }) => {
   const lang = localStorage.getItem('lang') || 'EN';
+  console.log(vocabularies);
   const openFile = React.useCallback(() => {
     if (isElectron()) {
       const { ipcRenderer } = window.require('electron');

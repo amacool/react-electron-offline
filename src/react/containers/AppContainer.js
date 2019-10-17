@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { setVocabularies, setLanguage } from "../redux/actions";
 import { withRouter } from "react-router-dom";
@@ -18,7 +18,7 @@ const AppContainer = ({ setLanguage, setVocabularies, vocabularies, children }) 
   }, []);
 
   if (vocabularies) {
-    localStorage.removeItem('lang');
+    // localStorage.removeItem('lang');
     return children;
   }
   return null;

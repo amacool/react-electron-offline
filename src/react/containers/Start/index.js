@@ -21,7 +21,6 @@ class Start extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      languages: [],
       entryType: [],
       language: [],
       applicableMeasure: [],
@@ -57,13 +56,6 @@ class Start extends Component {
     }
 
     let th = this;
-    axios.get('/data/languages.json')
-      .then(function (result) {
-        th.setState({
-          languages: result.data.languages
-        });
-      });
-
     axios.get('/data/lookupsData.json')
       .then(function (result) {
         console.log(result);

@@ -14,7 +14,9 @@
       "NEXT",
       "Security Council Consolidated List",
       "United Nations",
-      "CLOSE"
+      "CLOSE",
+      "Security Council",
+      "Consolidated List"
     ],
     "new": {
       "main": [
@@ -40,7 +42,8 @@
         "Notes",
         "Type",
         "None",
-        "View"
+        "View",
+        "Max length 500 chars"
       ],
       "information": [
         "Entry Type",
@@ -64,6 +67,76 @@
     "recent": ["RECENT FORMS", "Last time opened", "Status", "SENT", "Completed", "Draft"],
     "help": [
       "The following are some frequently asked questions on United Nations and the Security Council. If your question is not listed here, please fell free to contact the Security Council Practices and Charter Research Branch."
+    ]
+  },
+  "CN": {
+    "messages": ["错误", "信息", "保存成功!", "无效的文件!", "保存失败", "请输入值!", "打开失败!"],
+    "main": [
+      "新",
+      "最近",
+      "打开",
+      "救命",
+      "新表格",
+      "取消",
+      "保存为草稿",
+      "保存",
+      "上一个",
+      "下一个",
+      "安全理事会综合名单",
+      "联合国",
+      "关",
+      "安全理事会",
+      "合并清单"
+    ],
+    "new": {
+      "main": [
+        "建立新表格",
+        "安全理事会对维护国际和平与安全负有主要责任。它有15个成员，每个成员都有一票。根据《联合国宪章》，所有会员国都有义务遵守安理会的决定。",
+        "安全理事会牵头确定是否存在对和平或侵略行为的威胁。它呼吁争端各方以和平方式解决争端，并建议采取调整方法或解决条件。在某些情况下，安全理事会可以诉诸制裁，甚至授权使用武力维持或恢复国际和平与安全。",
+        "身份",
+        "信息",
+        "身份",
+        "名字",
+        "其他数据",
+        "文件资料",
+        "地址",
+        "出生地点",
+        "出生日期",
+        "特征",
+        "生物数据"
+      ],
+      "common": [
+        "加",
+        "编辑",
+        "去掉",
+        "笔记",
+        "类型",
+        "没有",
+        "视图",
+        "最大长度500个字符"
+      ],
+      "information": [
+        "输入类型",
+        "适用措施",
+        "进入备注",
+        "语言",
+        "政权",
+        "所提交",
+        "上市原因",
+        "会员国机密"
+      ],
+      "identities": ["身份类型", "类别"],
+      "names": ["名称", "名称脚本", "订购", "原始脚本中的名称"],
+      "other data": ["性别", "生活状况", "国籍", "标题", "名称"],
+      "documents": ["文件编号", "文件类型", "发行城市", "发行国家", "发行国", "发行日期", "截止日期"],
+      "addresses": ["地址", "街", "市", "省", "邮政编码", "国家", "位置", "区域", "纬度", "经度"],
+      "dates of birth": ["具体", "日期", "范围", "子集", "从", "至"],
+      "features": ["值"],
+      "biometric data": ["附件", "选择一个文件或将其拖到此处", "从文件上传", "上载", "查看附件"]
+    },
+    "recent": ["最近形式", "上次开放", "状态", "已发送", "已完成", "草案"],
+    "help": [
+      "以下是有关联合国和安全理事会的一些常见问题。如果您的问题未在此处列出，请随时与安全理事会惯例和宪章研究处联系。"
     ]
   }
 }

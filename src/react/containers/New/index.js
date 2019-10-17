@@ -6,7 +6,7 @@ import "./styles.css";
 
 function New({ vocabularies }) {
   const lang = localStorage.getItem("lang") || 'EN';
-  console.log('---------------');
+  console.log(localStorage.getItem("lang"));
 
   return (
     <div className="New">
@@ -23,8 +23,7 @@ function New({ vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies,
-  err: state.err
+  vocabularies: state.vocabularies
 });
 
 export default withRouter(connect(mapStateToProps, null)(New));

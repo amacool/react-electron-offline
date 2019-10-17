@@ -67,7 +67,7 @@ function Recent({ history, changeInformation, vocabularies }) {
     <div className="Recent">
       <div className="container">
         <div className="header">
-          <h5>recent forms</h5>
+          <h5>{vocabularies[lang]['recent'][0]}</h5>
         </div>
         <div className="content-body">
           <CustomTable

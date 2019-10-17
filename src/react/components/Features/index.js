@@ -101,7 +101,7 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {types && Object.keys(types[lang]).map((itemKey, index) => (
+                  {types && types[lang] && Object.keys(types[lang]).map((itemKey, index) => (
                     <MenuItem
                       value={itemKey}
                       key={index}

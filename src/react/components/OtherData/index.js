@@ -57,7 +57,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                       <MenuItem value="">
                         <em>{vocabularies[lang]['new']['common'][3]}</em>
                       </MenuItem>
-                      {gender && Object.keys(gender[lang]).map((itemKey, index) => (
+                      {gender && gender[lang] && Object.keys(gender[lang]).map((itemKey, index) => (
                         <MenuItem
                           value={itemKey}
                           key={index}
@@ -87,7 +87,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
                       <MenuItem value="">
                         <em>{vocabularies[lang]['new']['common'][3]}</em>
                       </MenuItem>
-                      {livingStatus && Object.keys(livingStatus[lang]).map((itemKey, index) => (
+                      {livingStatus && livingStatus[lang] && Object.keys(livingStatus[lang]).map((itemKey, index) => (
                         <MenuItem
                           value={itemKey}
                           key={index}

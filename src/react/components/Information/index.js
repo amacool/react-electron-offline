@@ -1,16 +1,17 @@
 import React from "react";
+import connect from "react-redux/es/connect/connect";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-import "./styles.css";
-import "../common/FormControl/styles.css";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomMultiSelect } from "../common/CustomMultiSelect";
-import connect from "react-redux/es/connect/connect";
+import "../common/FormControl/styles.css";
+import "./styles.css";
 
-function Information({ settings, handleSetValue, data, vocabularies }) {
+function Information({ settings, handleSetValue, data, vocabularies, languages }) {
+  const lang = localStorage.getItem('lang') || 'EN';
   const typeLabel = React.useRef(null);
   const languageLabel = React.useRef(null);
   const regimeLabel = React.useRef(null);
@@ -20,9 +21,24 @@ function Information({ settings, handleSetValue, data, vocabularies }) {
   const [regimeLabelWidth, setRegimeLabelWidth] = React.useState(0);
   const [state, setState] = React.useState(data);
 
-  const entryTypes = settings.entryType[0];
-  const regime = settings.regime[0];
-  const lang = localStorage.getItem('lang') || 'EN';
+  const entryTypes = React.useMemo(() => {
+    if (
+      !settings.entryType[0] ||
+      !settings.entryType[0][lang]
+    ) {
+      return {};
+    }
+    return settings.entryType[0][lang];
+  }, [lang, settings]);
+  const regime = React.useMemo(() => {
+    if (
+      !settings.regime[0] ||
+      !settings.regime[0][lang]
+    ) {
+      return {};
+    }
+    return settings.regime[0][lang];
+  }, [lang, settings]);
   const applicableMeasure = React.useMemo(() => {
     if (
       !settings.applicableMeasure[0] ||
@@ -78,7 +94,7 @@ function Information({ settings, handleSetValue, data, vocabularies }) {
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {entryTypes && Object.keys(entryTypes[lang]).map((itemKey, index) => (
+                {entryTypes && entryTypes[lang] && Object.keys(entryTypes[lang]).map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
                     {entryTypes[lang][itemKey]}
                   </MenuItem>
@@ -105,7 +121,7 @@ function Information({ settings, handleSetValue, data, vocabularies }) {
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
                 {
-                  settings.languages.map((item, i) => {
+                  languages.map((item, i) => {
                     return (
                       <MenuItem key={i} value={item.type}>{item.name}</MenuItem>
                     )
@@ -132,7 +148,7 @@ function Information({ settings, handleSetValue, data, vocabularies }) {
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {regime && Object.keys(regime[lang]).map((itemKey, index) => (
+                {regime && regime[lang] && Object.keys(regime[lang]).map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
                     {regime[lang][itemKey]}
                   </MenuItem>
@@ -205,7 +221,8 @@ function Information({ settings, handleSetValue, data, vocabularies }) {
 }
 
 const mapStateToProps = (state) => ({
-  vocabularies: state.vocabularies
+  vocabularies: state.vocabularies,
+  languages: state.languages
 });
 
 export default connect(mapStateToProps, null)(Information);

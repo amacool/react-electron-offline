@@ -4,6 +4,7 @@ import {
   CLEAR_INFORMATION,
   SET_CREATE_STEP,
   SET_LANGUAGE,
+  SET_CUR_LANG,
   SET_VOCABULARIES
 } from "../../constant/action-types";
 
@@ -11,6 +12,7 @@ const initialState = {
   data: {},
   createStep: 0,
   languages: [],
+  curLang: localStorage.getItem('lang') || 'EN',
   vocabularies: null,
   err: null
 };
@@ -50,10 +52,15 @@ function rootReducer(state = initialState, action) {
       };
 
     case SET_LANGUAGE:
-      console.log(action.payload);
       return {
         ...state,
         languages: action.payload
+      };
+
+    case SET_CUR_LANG:
+      return {
+        ...state,
+        curLang: action.payload
       };
 
     case SET_VOCABULARIES:

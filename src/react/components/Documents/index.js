@@ -141,7 +141,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {documentType && Object.keys(documentType[lang]).map((itemKey, index) => (
+                  {documentType && documentType[lang] && Object.keys(documentType[lang]).map((itemKey, index) => (
                     <MenuItem
                       value={itemKey}
                       key={index}
@@ -190,7 +190,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {countries && Object.keys(countries[lang]).map((itemKey, index) => (
+                  {countries && countries[lang] && Object.keys(countries[lang]).map((itemKey, index) => (
                     <MenuItem
                       value={itemKey}
                       key={index}
@@ -221,7 +221,7 @@ function Documents({ settings, handleSetValue, data, vocabularies }) {
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {countries && Object.keys(countries[lang]).map((itemKey, index) => (
+                  {countries && countries[lang] && Object.keys(countries[lang]).map((itemKey, index) => (
                     <MenuItem
                       value={itemKey}
                       key={index}

@@ -200,8 +200,9 @@ class Main extends Component {
 
   render() {
     const { pathname } = this.props.location;
-    const { createStep, vocabularies } = this.props;
+    const { createStep, vocabularies, children, curLang } = this.props;
     const { isModalOpen, errorMsg } = this.state;
+    const lang = curLang || this.lang;
 
     return (
       <div className="main">
@@ -209,7 +210,7 @@ class Main extends Component {
           <div className="top">
             <div className="left-logo">
               <Link to={'/'}><img src={logo} alt="Left Logo" /></Link>
-              <h3>Security Council<br /> Consolidated List</h3>
+              <h3>{vocabularies[lang]['main'][13]}<br /> {vocabularies[lang]['main'][14]}</h3>
             </div>
             {
               pathname === '/start' ? (
@@ -235,7 +236,7 @@ class Main extends Component {
         </div>
         <div className="main-container">
           <div className="top" id="create-new-container">
-            {this.props.children}
+            {children}
           </div>
           <div className="bottom">
             {
@@ -247,20 +248,44 @@ class Main extends Component {
                       className="cancel-button"
                       onClick={() => this.onCancel()}
                     >
-                      CANCEL
+                      {vocabularies[lang]['main'][5]}
                     </Button>
                     <Button
                       variant="contained"
                       className="save-button"
                       onClick={() => this.onSaveDraft()}
                     >
-                      SAVE AS DRAFT
+                      {vocabularies[lang]['main'][6]}
                     </Button>
                   </div>
                   <div className="start-bottom-right" style={{ justifyContent: createStep < 2 ? 'flex-end' : 'space-between' }}>
-                    {createStep > 0 && <Button variant="contained" className="prev-button" onClick={this.onPrev}>Prev</Button>}
-                    {createStep !== 1 && createStep !== 9 && <Button variant="contained" className="next-button" onClick={this.onNext}>Next</Button>}
-                    {createStep === 9 && <Button variant="contained" className="cancel-button" onClick={() => this.onSave()}>Save</Button>}
+                    {createStep > 0 && (
+                      <Button
+                        variant="contained"
+                        className="prev-button"
+                        onClick={this.onPrev}
+                      >
+                        {vocabularies[lang]['main'][8]}
+                      </Button>
+                    )}
+                    {createStep !== 1 && createStep !== 9 && (
+                      <Button
+                        variant="contained"
+                        className="next-button"
+                        onClick={this.onNext}
+                      >
+                        {vocabularies[lang]['main'][9]}
+                      </Button>
+                    )}
+                    {createStep === 9 && (
+                      <Button
+                        variant="contained"
+                        className="cancel-button"
+                        onClick={() => this.onSave()}
+                      >
+                        {vocabularies[lang]['main'][7]}
+                      </Button>
+                    )}
 
                     <CustomModal
                       isOpen={isModalOpen}
@@ -279,7 +304,7 @@ class Main extends Component {
                   className="new-form-button"
                   onClick={() => this.goToStart()}
                 >
-                  {vocabularies[this.lang]['main'][4]}
+                  {vocabularies[lang]['main'][4]}
                 </Button>
               )
             }
@@ -297,6 +322,7 @@ const mapStateToProps = (state) => ({
   createStep: state.createStep,
   docData: state.data,
   vocabularies: state.vocabularies,
+  curLang: state.curLang,
   err: state.err
 });
 
