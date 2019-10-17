@@ -1,3 +1,4 @@
+
 export const setArabicMarkup = (lang) => {
   let body = document.querySelector('body');
   if (lang === 'AR') {

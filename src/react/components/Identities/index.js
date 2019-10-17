@@ -14,6 +14,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
+  const [validation, setValidation] = React.useState(false);
   const [state, setState] = React.useState({
     identityType: '',
     category: ''
@@ -57,6 +58,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
 
   const doValidation = () => {
     if (state.identityType === '' || state.category === '') {
+      setValidation(true);
       smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
@@ -89,6 +91,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
               label={vocabularies[lang]['new']['identities'][0]}
               required={true}
               onChange={handleChange("identityType")}
+              validation={validation}
             />
           </div>
           <div className="col-4">

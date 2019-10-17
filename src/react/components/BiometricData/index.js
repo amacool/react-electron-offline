@@ -31,6 +31,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
   const [features, setFeatures] = React.useState(data);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [curAttachment, setCurAttachment] = React.useState(-1);
+  const [validation, setValidation] = React.useState(false);
   const types = settings.type[0];
 
   React.useEffect(() => {
@@ -46,10 +47,8 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
   };
 
   const handleAdd = () => {
-    if (state.type === '' || state.value === '') {
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
-      return;
-    }
+    if (!doValidation()) return;
+
     handleSetValue([...features, { ...state, attachment }]);
     setFeatures([...features, { ...state, attachment }]);
     setState({
@@ -93,6 +92,15 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
     console.log(e);
   };
 
+  const doValidation = () => {
+    if (state.type === '' || state.value === '') {
+      setValidation(true);
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="start-page BiometricData" id="BIOMETRIC-DATA">
       <div className="header">
@@ -102,7 +110,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
         <div className="row">
           <div className="inline mb-20">
             <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
-              <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.country ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                   {vocabularies[lang]['new']['common'][4]}<b>*</b>
                 </InputLabel>

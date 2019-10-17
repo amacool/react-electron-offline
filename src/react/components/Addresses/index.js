@@ -30,6 +30,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
   });
   const [addresses, setAddresses] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
+  const [validation, setValidation] = React.useState(false);
   const countries = settings.countries[0];
 
   React.useEffect(() => {
@@ -45,18 +46,8 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
   };
 
   const handleAdd = () => {
-    if (state.street === ''
-      || state.city === ''
-      || state.province === ''
-      || state.zipCode === ''
-      || state.country === ''
-      || state.region === ''
-      || state.latitude === ''
-      || state.longitude === ''
-    ) {
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
-      return;
-    }
+    if (!doValidation()) return;
+
     if (editIndex === -1) {
       handleSetValue([...addresses, state]);
       setAddresses([...addresses, state]);
@@ -108,6 +99,23 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
     }
   };
 
+  const doValidation = () => {
+    if (state.street === ''
+      || state.city === ''
+      || state.province === ''
+      || state.zipCode === ''
+      || state.country === ''
+      || state.region === ''
+      || state.latitude === ''
+      || state.longitude === ''
+    ) {
+      setValidation(true);
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="start-page" id="ADDRESSES">
       <div className="header">
@@ -131,6 +139,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['addresses'][1]}
                 required={true}
                 onChange={handleChange("street")}
+                validation={validation}
               />
             </div>
           </div>
@@ -143,6 +152,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['addresses'][2]}
                 required={true}
                 onChange={handleChange("city")}
+                validation={validation}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -152,6 +162,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['addresses'][3]}
                 required={true}
                 onChange={handleChange("province")}
+                validation={validation}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -161,10 +172,11 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['addresses'][4]}
                 required={true}
                 onChange={handleChange("zipCode")}
+                validation={validation}
               />
             </div>
             <div className="col mt-26">
-              <FormControl variant="outlined" className="form-control custom-outlined-form-control">
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.country ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="country" className="custom-select-label">
                   {vocabularies[lang]['new']['addresses'][5]}<b>*</b>
                 </InputLabel>
@@ -211,6 +223,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['addresses'][7]}
                 required={true}
                 onChange={handleChange("region")}
+                validation={validation}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -220,6 +233,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['addresses'][8]}
                 required={true}
                 onChange={handleChange("latitude")}
+                validation={validation}
               />
             </div>
             <div className="col">
@@ -229,6 +243,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['addresses'][9]}
                 required={true}
                 onChange={handleChange("longitude")}
+                validation={validation}
               />
             </div>
           </div>

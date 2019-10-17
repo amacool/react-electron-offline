@@ -22,6 +22,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
   });
   const [dates, setDates] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
+  const [validation, setValidation] = React.useState(false);
 
   const handleChange = name => e => {
     const value = {
@@ -32,14 +33,8 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
   };
 
   const handleAdd = () => {
-    if (state.date === ''
-      || state.subset === ''
-      || state.from === ''
-      || state.to === ''
-    ) {
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
-      return;
-    }
+    if (!doValidation()) return;
+
     if (editIndex === -1) {
       handleSetValue([...dates, state]);
       setDates([...dates, state]);
@@ -83,6 +78,19 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
     }
   };
 
+  const doValidation = () => {
+    if (state.date === ''
+      || state.subset === ''
+      || state.from === ''
+      || state.to === ''
+    ) {
+      setValidation(true);
+      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="start-page" id="DATES-OF-BIRTH">
       <div className="header">
@@ -106,6 +114,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['dates of birth'][1]}
                 onChange={handleChange('date')}
                 locale={lang}
+                validation={validation}
               />
             </div>
           </div>
@@ -126,6 +135,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['dates of birth'][3]}
                 required={true}
                 onChange={handleChange("subset")}
+                validation={validation}
               />
             </div>
           </div>
@@ -138,6 +148,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['dates of birth'][4]}
                 onChange={handleChange('from')}
                 locale={lang}
+                validation={validation}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -147,6 +158,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 label={vocabularies[lang]['new']['dates of birth'][5]}
                 onChange={handleChange('to')}
                 locale={lang}
+                validation={validation}
               />
             </div>
             <div className="col" />
@@ -164,6 +176,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 className={`text-field custom-textarea-control ${lang === 'AR' ? 'textarea-rtl' : ''}`}
                 variant="outlined"
                 placeholder="Notes"
+                validation={validation}
               />
             </div>
             <div className="w-34 flex-end">

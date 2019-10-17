@@ -4,12 +4,14 @@ import { DateUtils } from 'react-day-picker';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 import MomentLocaleUtils from 'react-day-picker/moment';
-import 'moment/locale/ar';
-import 'moment/locale/fr';
-import 'moment/locale/ru';
-// import 'moment/locale/sp';
-// import 'moment/locale/cn';
 import CalendarIcon from '../../../assets/icons/calendar/calendar.svg';
+import {
+  WEEKDAYS_SHORT,
+  MONTHS,
+  WEEKDAYS_LONG,
+  FIRST_DAY_OF_WEEK,
+  LABELS
+} from "./locale";
 import 'react-day-picker/lib/style.css';
 import './styles.css';
 
@@ -21,13 +23,9 @@ function parseDate(str, format, locale) {
   return undefined;
 }
 
-function formatDate(date, format, locale) {
-  return dateFnsFormat(date, format, { locale });
-}
-
 export const CustomDatePicker = ({ onChange, label, required, value, locale = "en" }) => {
   const FORMAT = 'MM/dd/yyyy';
-  console.log(locale);
+  const localeLower = locale.toLowerCase();
 
   return (
     <div className='custom-date-picker'>
@@ -38,10 +36,17 @@ export const CustomDatePicker = ({ onChange, label, required, value, locale = "e
         <DayPickerInput
           id="day-picker-input"
           value={value}
-          formatDate={formatDate}
+          // formatDate={formatDate}
           format={FORMAT}
           localeUtils={MomentLocaleUtils}
-          dayPickerProps={{ locale: 'ja' }}
+          dayPickerProps={{
+            locale: localeLower,
+            months: MONTHS[localeLower],
+            weekdaysLong: WEEKDAYS_LONG[localeLower],
+            weekdaysShort: WEEKDAYS_SHORT[localeLower],
+            firstDayOfWeek: FIRST_DAY_OF_WEEK[localeLower],
+            labels: LABELS[localeLower]
+          }}
           parseDate={parseDate}
           placeholder="MM/DD/YYYY"
           onDayChange={(v) => v && onChange({ target : { value: dateFnsFormat(v, FORMAT) } })}

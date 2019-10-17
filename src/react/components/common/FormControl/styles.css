@@ -40,7 +40,15 @@
   top: 0;
 }
 
+.custom-outlined-form-control.select-empty .custom-select fieldset {
+  border: solid 1px red;
+}
+
 .custom-outlined-form-control .custom-select .MuiOutlinedInput-notchedOutline {
+  border: solid 1px black;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   border: solid 1px black !important;
 }
 
