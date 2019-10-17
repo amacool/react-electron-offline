@@ -250,7 +250,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies }) {
             <div className="w-34 flex-end">
               <Button
                 variant="contained"
-                className="add-button"
+                className={`add-button ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
                 onClick={handleAdd}
               >
                 {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}

@@ -138,5 +138,215 @@
     "help": [
       "以下是有关联合国和安全理事会的一些常见问题。如果您的问题未在此处列出，请随时与安全理事会惯例和宪章研究处联系。"
     ]
+  },
+  "FR": {
+    "messages": ["Erreur", "Info", "Enregistré avec succès!", "Document invalide!", "Échec de la sauvegarde!", "S'il vous plaît entrer des valeurs!", "Impossible d'ouvrir!"],
+    "main": [
+      "NOUVELLE",
+      "RÉCENTE",
+      "OUVERTE",
+      "AIDEZ-MOI",
+      "NOUVELLE FORME",
+      "ANNULER",
+      "ENREGISTRER COMME BROUILLON",
+      "ENREGISTRER",
+      "PREV",
+      "SUIVANTE",
+      "Liste consolidée du Conseil de sécurité",
+      "Les Nations Unies",
+      "PROCHE",
+      "Conseil de sécurité",
+      "Liste consolidée"
+    ],
+    "new": {
+      "main": [
+        "CRÉER UN NOUVEAU FORMULAIRE",
+        "Le Conseil de sécurité est le principal responsable du maintien de la paix et de la sécurité internationales. Il compte 15 membres et chaque membre dispose d'une voix. En vertu de la Charte des Nations Unies, tous les États Membres sont tenus de se conformer aux décisions du Conseil.",
+        "Le Conseil de sécurité joue un rôle de premier plan dans la détermination de l’existence d’une menace à la paix ou d’un acte d’agression. Il demande aux parties à un différend de le régler par des moyens pacifiques et recommande des méthodes d'ajustement ou des conditions de règlement. Dans certains cas, le Conseil de sécurité peut recourir à des sanctions ou même autoriser le recours à la force pour maintenir ou rétablir la paix et la sécurité internationales.",
+        "Identités",
+        "INFORMATION",
+        "Identités",
+        "DES NOMS",
+        "AUTRE INFORMATIONS",
+        "DOCUMENTS",
+        "ADRESSES",
+        "LIEUX DE NAISSANCE",
+        "DATES DE NAISSANCE",
+        "TRAITS",
+        "DONNÉES BIOMÉTRIQUES"
+      ],
+      "common": [
+        "AJOUTER",
+        "Modifier",
+        "Retirer",
+        "Remarques",
+        "Type",
+        "Aucune",
+        "Vue",
+        "Longueur maximale 500 caractères"
+      ],
+      "information": [
+        "Type d'entrée",
+        "Mesures applicables",
+        "Remarques d'entrée",
+        "La langue",
+        "Régime",
+        "Proposé par",
+        "Raison de l'inscription",
+        "État membre confidentiel"
+      ],
+      "identities": ["Type d'identité", "Catégorie"],
+      "names": ["Nom", "Scénario", "Ordre", "Nom dans le script original"],
+      "other data": ["Le sexe HOMME ou FEMME", "Statut de vie", "Nationalité", "Titre", "Désignations"],
+      "documents": ["numéro de document", "Type de document", "Ville émettrice", "Pays d'émission", "Pays émetteur", "Date de publication", "Date d'expiration"],
+      "addresses": ["Adresse", "rue", "Ville", "Province", "Code postal", "Pays", "Emplacement", "Région", "Latitude", "Longitude"],
+      "dates of birth": ["Spécifique", "Date", "Gamme", "Sous-ensemble", "De", "À"],
+      "features": ["Valeur"],
+      "biometric data": ["Attachement", "Choisissez un fichier ou faites-le glisser ici", "Télécharger depuis un fichier", "TÉLÉCHARGER", "Voir pièce jointe"]
+    },
+    "recent": ["FORMULAIRES RÉCENTS", "Dernière ouverture", "Statut", "ENVOYÉ", "Terminé", "Brouillon"],
+    "help": [
+      "Voici quelques questions fréquemment posées sur l’Organisation des Nations Unies et le Conseil de sécurité. Si votre question ne figure pas ici, n'hésitez pas à contacter le Service de la recherche sur les pratiques et la Charte du Conseil de sécurité."
+    ]
+  },
+  "RU": {
+    "messages": ["ошибка", "Информация", "Успешно сохранено!", "Неверный документ!", "Не удалось сохранить!", "Пожалуйста, введите значения!", "Не удалось открыть!"],
+    "main": [
+      "НОВЫЙ",
+      "ПОСЛЕДНЕЕ",
+      "ОТКРЫТЫЙ",
+      "ПОМОГИТЕ",
+      "НОВАЯ ФОРМА",
+      "ОТМЕНА",
+      "СОХРАНИТЬ КАК ЧЕРНОВИК",
+      "СПАСТИ",
+      "ПРЕДЫДУЩИЙ",
+      "СЛЕДУЮЩИЙ",
+      "Сводный список Совета Безопасности",
+      "Объединенные Нации",
+      "БЛИЗКО",
+      "Советник по безопасности",
+      "Сводный список"
+    ],
+    "new": {
+      "main": [
+        "СОЗДАТЬ НОВУЮ ФОРМУ",
+        "Совет Безопасности несет главную ответственность за поддержание международного мира и безопасности. Он имеет 15 членов, и каждый член имеет один голос. В соответствии с Уставом Организации Объединенных Наций все государства-члены обязаны выполнять решения Совета.",
+        "Совет Безопасности играет ведущую роль в определении существования угрозы миру или акту агрессии. Он призывает стороны в споре урегулировать его мирными средствами и рекомендует методы урегулирования или условия урегулирования. В некоторых случаях Совет Безопасности может прибегнуть к введению санкций или даже санкционировать применение силы для поддержания или восстановления международного мира и безопасности.",
+        "Тождества",
+        "ИНФОРМАЦИЯ",
+        "ИДЕНТИЧНОСТЬ",
+        "ИМЕНА",
+        "ДРУГИЕ ДАННЫЕ",
+        "ДОКУМЕНТЫ",
+        "АДРЕСА",
+        "МЕСТА РОЖДЕНИЯ",
+        "ДАТЫ РОЖДЕНИЯ",
+        "ФУНКЦИИ",
+        "БИОМЕТРИЧЕСКИЕ ДАННЫЕ"
+      ],
+      "common": [
+        "ДОБАВЛЯТЬ",
+        "редактировать",
+        "Удалить",
+        "Примечания",
+        "Тип",
+        "Никто",
+        "Посмотреть",
+        "Максимальная длина 500 символов"
+      ],
+      "information": [
+        "Тип входа",
+        "Применимые меры",
+        "Вступление Примечания",
+        "язык",
+        "Режим",
+        "Представленный",
+        "Причина перечисления",
+        "Государство-член (ы) конфиденциально"
+      ],
+      "identities": ["Тип идентификации", "категория"],
+      "names": ["имя", "скрипт", "порядок", "Имя в оригинальном сценарии"],
+      "other data": ["Пол", "Статус жизни", "Национальность", "заглавие", "обозначения"],
+      "documents": ["Номер документа", "тип документа", "Город выдачи", "Выданная страна", "Страна выдачи", "Дата выпуска", "Срок годности"],
+      "addresses": ["Адрес", "улица", "город", "Провинция", "Почтовый Индекс", "Страна", "Место нахождения", "Область", "широта", "Долгота"],
+      "dates of birth": ["Конкретный", "Свидание", "Ассортимент", "Подмножество", "Из", "к"],
+      "features": ["Стоимость"],
+      "biometric data": ["прикрепление", "Выберите файл или перетащите его сюда", "Загрузить из файла", "ЗАГРУЗИТЬ", "Просмотреть вложение"]
+    },
+    "recent": ["ПОСЛЕДНИЕ ФОРМЫ", "Последний раз открывался", "Статус", "ПОСЛАЛ", "Завершенный", "Черновой вариант"],
+    "help": [
+      "Ниже приведены некоторые часто задаваемые вопросы об Организации Объединенных Наций и Совете Безопасности. Если ваш вопрос не указан здесь, пожалуйста, не стесняйтесь связаться с Сектором практики Совета Безопасности и Хартии."
+    ]
+  },
+  "SP": {
+    "messages": ["Error", "Informacion", "¡Guardado exitosamente!", "Documento inválido!", "¡Error al guardar!", "Por favor ingrese los valores!", "¡Falló al abrir!"],
+    "main": [
+      "NUEVO",
+      "RECIENTE",
+      "ABIERTO",
+      "AYUDA",
+      "NUEVA FORMA",
+      "CANCELAR",
+      "GUARDAR COMO BORRADOR",
+      "SALVAR",
+      "ANTERIOR",
+      "PRÓXIMO",
+      "Lista consolidada del Consejo de Seguridad",
+      "Naciones Unidas",
+      "CERRAR",
+      "Consejo de Seguridad",
+      "Lista consolidada"
+    ],
+    "new": {
+      "main": [
+        "CREA UNA NUEVA FORMA",
+        "El Consejo de Seguridad tiene la responsabilidad principal del mantenimiento de la paz y la seguridad internacionales. Tiene 15 miembros, y cada miembro tiene un voto. Según la Carta de las Naciones Unidas, todos los Estados miembros están obligados a cumplir con las decisiones del Consejo.",
+        "El Consejo de Seguridad toma la iniciativa para determinar la existencia de una amenaza a la paz o un acto de agresión. Exhorta a las partes en una disputa a resolverla por medios pacíficos y recomienda métodos de ajuste o términos de solución. En algunos casos, el Consejo de Seguridad puede recurrir a la imposición de sanciones o incluso autorizar el uso de la fuerza para mantener o restablecer la paz y la seguridad internacionales.",
+        "Identidades",
+        "INFORMACIÓN",
+        "IDENTIDADES",
+        "NOMBRES",
+        "OTROS DATOS",
+        "DOCUMENTOS",
+        "DIRECCIONES",
+        "LUGARES DE NACIMIENTO",
+        "FECHAS DE NACIMIENTO",
+        "CARACTERISTICAS",
+        "INFORMACIÓN BIOMÉTRICA"
+      ],
+      "common": [
+        "AÑADIR",
+        "Editar",
+        "Eliminar",
+        "Notas",
+        "Tipo",
+        "Ninguna",
+        "Ver",
+        "Longitud máxima 500 caracteres"
+      ],
+      "information": [
+        "Tipo de entrada",
+        "Medidas Aplicables",
+        "Observaciones de entrada",
+        "Idioma",
+        "Régimen",
+        "Presentado por",
+        "Motivo de la inclusión",
+        "Estado miembro (s) confidencial"
+      ],
+      "identities": ["Tipo de identidad", "Categoría"],
+      "names": ["Nombre", "Guión", "Orden", "Nombre en el guión original"],
+      "other data": ["Género", "Estado de vida", "Nacionalidad", "Título", "Designaciones"],
+      "documents": ["Número del Documento", "Tipo de Documento", "Ciudad emisora", "País emitido", "País emisor", "Fecha de Emisión", "Fecha de caducidad"],
+      "addresses": ["Habla a", "Calle", "Ciudad", "Provincia", "Código postal", "País", "Ubicación", "Región", "Latitud", "Longitud"],
+      "dates of birth": ["Específico", "Fecha", "Distancia", "Subconjunto", "De", "A"],
+      "features": ["Valor"],
+      "biometric data": ["Archivo adjunto", "Elige un archivo o arrástralo aquí", "Subir desde archivo", "SUBIR", "Vea el archivo adjunto"]
+    },
+    "recent": ["FORMULARIOS RECIENTES", "Última vez abierta", "Estado", "EXPEDIDO", "Terminado", "Sequía"],
+    "help": [
+      "Las siguientes son algunas preguntas frecuentes sobre las Naciones Unidas y el Consejo de Seguridad. Si su pregunta no figura en esta lista, no dude en ponerse en contacto con el Servicio de Prácticas del Consejo de Seguridad y la División de Investigación de la Carta."
+    ]
   }
 }

@@ -175,7 +175,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
           </div>
           <Button
             variant="contained"
-            className="add-button col-1 ml-15 mt-39"
+            className={`add-button col-1 ml-15 mt-39 ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
             onClick={handleAdd}
           >
             {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
@@ -233,7 +233,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
           </div>
           <Button
             variant="contained"
-            className="add-button col-1 mt-39"
+            className={`add-button col-1 mt-39 ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
             onClick={handleAdd1}
           >
             {editIndex1 >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}

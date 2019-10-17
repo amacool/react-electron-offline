@@ -114,3 +114,7 @@ button.add-button {
   color: white;
   width: 80px;
 }
+
+button.add-button.btn-bg {
+  width: 125px;
+}

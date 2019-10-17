@@ -198,7 +198,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
               onChange={handleChange('entryRemarks')}
               className="text-field custom-textarea-control"
               variant="outlined"
-              placeholder="Max length 500 chars"
+              placeholder={vocabularies[lang]['new']['common'][7]}
             />
           </div>
           <div className="row">
@@ -211,7 +211,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
               onChange={handleChange('reasonForListing')}
               className="text-field custom-textarea-control"
               variant="outlined"
-              placeholder="Max length 500 chars"
+              placeholder={vocabularies[lang]['new']['common'][7]}
             />
           </div>
         </div>

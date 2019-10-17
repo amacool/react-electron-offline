@@ -119,7 +119,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
           </div>
           <Button
             variant="contained"
-            className="add-button col-1 mt-39"
+            className={`add-button col-1 mt-39 ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
             onClick={handleAdd}
           >
             {vocabularies[lang]['new']['common'][0]}

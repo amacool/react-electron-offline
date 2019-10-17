@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: 36,
     right: 0,
-    width: '100px',
+    width: '125px',
     zIndex: 1
   }
 }));

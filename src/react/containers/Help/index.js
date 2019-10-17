@@ -4,14 +4,13 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 
-function Help() {
+function Help({ vocabularies }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const [content, setContent] = React.useState({});
 
   React.useEffect(() => {
     axios.get('/data/help.json')
       .then(function (result) {
-        console.log(result.data);
         setContent(result.data.content[0]);
       });
   }, []);
@@ -20,9 +19,7 @@ function Help() {
     <div className="Help">
       <div className="container">
         <div className="header">
-          <span>The following are some frequently asked questions on United Nations and the Security Council.
-            If your question is not listed here, please fell free to contact the Security Council Practices
-            and Charter Research Branch.</span>
+          <span>{vocabularies[lang]['help'][0]}</span>
         </div>
         <div className="content-body">
           <ul>
@@ -42,7 +39,7 @@ function Help() {
 }
 
 const mapStateToProps = (state) => ({
-  err: state.err
+  vocabularies: state.vocabularies
 });
 
 export default withRouter(connect(mapStateToProps, null)(Help));
