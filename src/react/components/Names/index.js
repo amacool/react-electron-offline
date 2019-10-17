@@ -164,7 +164,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               onChange={handleChange("type")}
             />
           </div>
-          <div className="col-3 mr-15">
+          <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
             <CustomInput
               value={state.script}
               id="names-script"
@@ -175,7 +175,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
           </div>
           <Button
             variant="contained"
-            className={`add-button col-1 ml-15 mt-39 ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
+            className={`add-button col-1 ${lang === 'AR' ? 'mr' : 'ml'}-15 mt-39 ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
             onClick={handleAdd}
           >
             {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
@@ -222,7 +222,7 @@ function Names({ settings, handleSetValue, data, vocabularies }) {
               onChange={handleChange1("type")}
             />
           </div>
-          <div className="col-3 mr-15">
+          <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
             <CustomInput
               value={state1.script}
               id="names-script1"

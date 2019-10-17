@@ -83,7 +83,7 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
-            <div className="w-31 mr-15 mt-26">
+            <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                   {vocabularies[lang]['new']['common'][4]}<b>*</b>
@@ -124,7 +124,7 @@ function Features({ settings, handleSetValue, data, vocabularies }) {
           </div>
 
           <div className="inline mb-20">
-            <div className="w-69 mr-15 mt-26">
+            <div className={`w-69 ${lang === 'AR' ? 'ml' : 'mr'}mr-15 mt-26`}>
               <TextField
                 value={state.notes}
                 id="notes"

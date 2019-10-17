@@ -94,9 +94,9 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {entryTypes && entryTypes[lang] && Object.keys(entryTypes[lang]).map((itemKey, index) => (
+                {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
-                    {entryTypes[lang][itemKey]}
+                    {entryTypes[itemKey]}
                   </MenuItem>
                 ))}
               </Select>

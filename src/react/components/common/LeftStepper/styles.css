@@ -70,6 +70,11 @@
 
 .left-stepper .MuiStepper-vertical .MuiStepLabel-labelContainer {
   text-align: left;
+  padding-top: 2px;
+}
+
+.left-stepper .MuiStepLabel-label {
+  font-size: 13px;
 }
 
 .left-stepper .MuiStepLabel-label.MuiStepLabel-active {
@@ -108,4 +113,8 @@
   border-radius: 50%;
   width: 18px;
   height: 18px;
+}
+
+.left-stepper .MuiStep-vertical {
+  max-height: 20px;
 }

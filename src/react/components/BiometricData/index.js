@@ -101,7 +101,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
-            <div className="w-31 mr-15 mt-26">
+            <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
               <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                 <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                   {vocabularies[lang]['new']['common'][4]}<b>*</b>
@@ -142,7 +142,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
           </div>
 
           <div className="inline mb-20">
-            <div className="col-5 mr-15">
+            <div className={`col-5 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <div className="attachment">
                 <label>{vocabularies[lang]['new']['biometric data'][0]}</label>
                 <div className="dropzone-container">

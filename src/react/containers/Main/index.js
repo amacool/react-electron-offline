@@ -201,7 +201,7 @@ class Main extends Component {
 
   render() {
     const { pathname } = this.props.location;
-    const { createStep, vocabularies, children, curLang } = this.props;
+    const { createStep, clearInformation, vocabularies, children, curLang } = this.props;
     const { isModalOpen, errorMsg } = this.state;
     const lang = curLang || this.lang;
 
@@ -210,7 +210,7 @@ class Main extends Component {
         <div className="left-container">
           <div className="top">
             <div className="left-logo">
-              <Link to={'/'}><img src={logo} alt="Left Logo" /></Link>
+              <Link to={'/'} onClick={() => clearInformation()}><img src={logo} alt="Left Logo" /></Link>
               <h3>{vocabularies[lang]['main'][13]}<br /> {vocabularies[lang]['main'][14]}</h3>
             </div>
             {

@@ -165,3 +165,8 @@ button.add-button.btn-bg {
   right: unset;
   left: 7px;
 }
+
+.main-arabic .custom-date-picker .calendar-icon {
+  float: left;
+  margin-left: 15px;
+}

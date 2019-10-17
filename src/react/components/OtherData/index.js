@@ -36,9 +36,9 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
       <div className="content content-header">
         <div className="row">
           <div className="custom-add-group mb-50">
-            <div className="col-6 mr-15 mt-26">
+            <div className={`col-6 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
               <div className="custom-add-group mb-20">
-                <div className="col-6 mr-15">
+                <div className={`col-6 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
                   <FormControl variant="outlined" className="form-control custom-outlined-form-control">
                     <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
                       {vocabularies[lang]['new']['other data'][0]}<b>*</b>

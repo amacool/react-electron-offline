@@ -116,7 +116,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
-            <div className="col w-31 mr-15">
+            <div className={`col w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomCheckbox
                 label={vocabularies[lang]['new']['addresses'][0]}
                 onChange={handleChange('address')}
@@ -136,7 +136,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
           </div>
 
           <div className="inline mb-20">
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomInput
                 value={state.city}
                 id="city"
@@ -145,7 +145,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 onChange={handleChange("city")}
               />
             </div>
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomInput
                 value={state.province}
                 id="province"
@@ -154,7 +154,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 onChange={handleChange("province")}
               />
             </div>
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomInput
                 value={state.zipCode}
                 id="zip-code"
@@ -195,7 +195,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
           </div>
 
           <div className="inline mb-20">
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomCheckbox
                 label={vocabularies[lang]['new']['addresses'][6]}
                 onChange={handleChange('location')}
@@ -203,20 +203,20 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 value={state.location}
               />
             </div>
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomInput
                 value={state.region}
                 id="region"
-                label={vocabularies[lang]['new']['common'][7]}
+                label={vocabularies[lang]['new']['addresses'][7]}
                 required={true}
                 onChange={handleChange("region")}
               />
             </div>
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomInput
                 value={state.latitude}
                 id="latitude"
-                label={vocabularies[lang]['new']['common'][8]}
+                label={vocabularies[lang]['new']['addresses'][8]}
                 required={true}
                 onChange={handleChange("latitude")}
               />
@@ -225,7 +225,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
               <CustomInput
                 value={state.longitude}
                 id="longitude"
-                label={vocabularies[lang]['new']['common'][9]}
+                label={vocabularies[lang]['new']['addresses'][9]}
                 required={true}
                 onChange={handleChange("longitude")}
               />
@@ -233,7 +233,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies }) {
           </div>
 
           <div className="inline mb-20">
-            <div className="w-69 mr-15 mt-26">
+            <div className={`w-69 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
               <TextField
                 value={state.notes}
                 id="notes"

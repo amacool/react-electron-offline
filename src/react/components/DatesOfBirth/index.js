@@ -91,7 +91,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
-            <div className="col w-31 mr-15">
+            <div className={`col w-31 ${lang === 'AR' ? 'ml' : 'mr'}mr-15`}>
               <CustomCheckbox
                 label={vocabularies[lang]['new']['dates of birth'][0]}
                 onChange={handleChange('specific')}
@@ -105,12 +105,13 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 required={true}
                 label={vocabularies[lang]['new']['dates of birth'][1]}
                 onChange={handleChange('date')}
+                locale={lang}
               />
             </div>
           </div>
 
           <div className="inline mb-20">
-            <div className="w-31 mr-15">
+            <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomCheckbox
                 label={vocabularies[lang]['new']['dates of birth'][2]}
                 onChange={handleChange('range')}
@@ -118,7 +119,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
                 value={state.range}
               />
             </div>
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomInput
                 value={state.subset}
                 id="subset"
@@ -130,27 +131,29 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
           </div>
 
           <div className="inline mb-20">
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomDatePicker
                 value={state.from}
                 required={true}
                 label={vocabularies[lang]['new']['dates of birth'][4]}
                 onChange={handleChange('from')}
+                locale={lang}
               />
             </div>
-            <div className="col mr-15">
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomDatePicker
                 value={state.to}
                 required={true}
                 label={vocabularies[lang]['new']['dates of birth'][5]}
                 onChange={handleChange('to')}
+                locale={lang}
               />
             </div>
             <div className="col" />
           </div>
 
           <div className="inline mb-20">
-            <div className="w-69 mr-15 mt-26">
+            <div className={`w-69 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
               <TextField
                 value={state.notes}
                 id="notes"
@@ -178,9 +181,9 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies }) {
       <div className="content content-body">
         <CustomTable
           header={[
-            'Specific',
-            'Range',
-            'Notes'
+            vocabularies[lang]['new']['dates of birth'][0],
+            vocabularies[lang]['new']['dates of birth'][2],
+            vocabularies[lang]['new']['common'][3]
           ]}
           data={dates.map((item) =>
             ({
