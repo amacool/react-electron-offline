@@ -127,7 +127,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies }) {
               multiline
               rows="5"
               onChange={handleChange('designations')}
-              className="text-field custom-textarea-control"
+              className={`text-field custom-textarea-control ${lang === 'AR' ? 'textarea-rtl' : ''}`}
               variant="outlined"
               placeholder={vocabularies[lang]['new']['other data'][4]}
             />

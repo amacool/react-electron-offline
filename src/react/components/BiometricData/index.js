@@ -176,13 +176,13 @@ function BiometricData({ settings, handleSetValue, data, vocabularies }) {
                 multiline
                 rows="5"
                 onChange={handleChange('notes')}
-                className="text-field custom-textarea-control"
+                className={`text-field custom-textarea-control ${lang === 'AR' ? 'textarea-rtl' : ''}`}
                 variant="outlined"
                 placeholder="Notes"
               />
               <Button
                 variant="contained"
-                className="add-button"
+                className={`add-button ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
                 onClick={handleAdd}
               >
                 {vocabularies[lang]['new']['common'][0]}

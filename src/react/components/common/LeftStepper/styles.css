@@ -52,7 +52,7 @@
 
 .left-stepper .MuiStepper-root {
   display: flex;
-  padding: 24px 24px 24px 50px;
+  padding: 24px 0 24px 50px;
 }
 
 .left-stepper .MuiStepper-vertical {
@@ -64,6 +64,8 @@
 
 .left-stepper .MuiStepLabel-vertical {
   cursor: pointer !important;
+  display: flex;
+  align-items: end;
 }
 
 .left-stepper .MuiStepper-vertical .MuiStepLabel-labelContainer {

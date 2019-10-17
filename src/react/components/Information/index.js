@@ -196,8 +196,9 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
               multiline
               rows="5"
               onChange={handleChange('entryRemarks')}
-              className="text-field custom-textarea-control"
+              className={`text-field custom-textarea-control ${lang === 'AR' ? 'textarea-rtl' : ''}`}
               variant="outlined"
+              style={{ direction: lang === 'AR' ? 'rtl' : '' }}
               placeholder={vocabularies[lang]['new']['common'][7]}
             />
           </div>
@@ -209,7 +210,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages }
               multiline
               rows="5"
               onChange={handleChange('reasonForListing')}
-              className="text-field custom-textarea-control"
+              className={`text-field custom-textarea-control ${lang === 'AR' ? 'textarea-rtl' : ''}`}
               variant="outlined"
               placeholder={vocabularies[lang]['new']['common'][7]}
             />

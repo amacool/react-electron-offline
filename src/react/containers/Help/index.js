@@ -19,7 +19,7 @@ function Help({ vocabularies }) {
     <div className="Help">
       <div className="container">
         <div className="header">
-          <span>{vocabularies[lang]['help'][0]}</span>
+          <span style={{ direction: lang === 'AR' ? 'rtl' : '' }}>{vocabularies[lang]['help'][0]}</span>
         </div>
         <div className="content-body">
           <ul>

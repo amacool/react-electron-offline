@@ -203,11 +203,9 @@ class Main extends Component {
     const { createStep, vocabularies, children, curLang } = this.props;
     const { isModalOpen, errorMsg } = this.state;
     const lang = curLang || this.lang;
-    console.log(vocabularies);
-    console.log(lang);
 
     return (
-      <div className="main">
+      <div className={`main ${lang === 'AR' ? 'main-arabic' : ''}`}>
         <div className="left-container">
           <div className="top">
             <div className="left-logo">

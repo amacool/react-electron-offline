@@ -11,7 +11,7 @@ import { changeInformation } from "../../../redux/actions";
 
 const LeftMenu = ({ history, pathname, changeInformation, vocabularies }) => {
   const lang = localStorage.getItem('lang') || 'EN';
-  console.log(vocabularies);
+  const isShortLang = lang === 'EN' || lang === 'CN';
   const openFile = React.useCallback(() => {
     if (isElectron()) {
       const { ipcRenderer } = window.require('electron');
@@ -40,25 +40,25 @@ const LeftMenu = ({ history, pathname, changeInformation, vocabularies }) => {
   return (
     <div className="left-menu">
       <div className="menu-item">
-        <Link to={'/new'} className={(pathname === '/new') ? 'active' : ''}>
+        <Link to={'/new'} className={(pathname === '/new') ? 'active' : ''} style={{ maxWidth: isShortLang ? '70px' : '90px' }}>
           <InsertDriveFile />
           <p>{vocabularies[lang]['main'][0]}</p>
         </Link>
       </div>
       <div className="menu-item">
-        <Link to={'/recent'} className={(pathname === '/recent') ? 'active' : ''}>
+        <Link to={'/recent'} className={(pathname === '/recent') ? 'active' : ''} style={{ maxWidth: isShortLang ? '70px' : '90px' }}>
           <WatchLater />
           <p>{vocabularies[lang]['main'][1]}</p>
         </Link>
       </div>
       <div className="menu-item">
-        <Link to={'/open'} className={(pathname === '/open') ? 'active' : ''} onClick={openFile}>
+        <Link to={'/open'} className={(pathname === '/open') ? 'active' : ''} onClick={openFile} style={{ maxWidth: isShortLang ? '70px' : '90px' }}>
           <FolderOpen />
           <p>{vocabularies[lang]['main'][2]}</p>
         </Link>
       </div>
       <div className="menu-item">
-        <Link to={'/help'} className={(pathname === '/help') ? 'active' : ''}>
+        <Link to={'/help'} className={(pathname === '/help') ? 'active' : ''} style={{ maxWidth: isShortLang ? '70px' : '90px' }}>
           <Help />
           <p>{vocabularies[lang]['main'][3]}</p>
         </Link>

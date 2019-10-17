@@ -73,6 +73,10 @@
   color: #626262;
 }
 
+.custom-textarea-control.textarea-rtl {
+  direction: rtl;
+}
+
 .custom-textarea-control textarea::placeholder {
   display: block !important;
 }
