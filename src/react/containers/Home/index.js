@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { setCurLang } from "../../redux/actions";
 import Footer from "../../components/Footer";
 import logo from "../../assets/logo.png";
+import { setArabicMarkup } from "../../common/helper";
 import "./styles.css";
 
 function Home({ setCurLang, history, languages, curLang, vocabularies }) {
@@ -14,6 +15,7 @@ function Home({ setCurLang, history, languages, curLang, vocabularies }) {
     localStorage.setItem("lang", lang);
     setCurLang(lang);
     history.push('/new');
+    setArabicMarkup(lang);
   };
 
   return (

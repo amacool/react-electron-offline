@@ -2,14 +2,9 @@
   display: flex;
 }
 
-/*.main-arabic .Start label,*/
-/*.main-arabic .Start span,*/
-/*.main-arabic .Start p,*/
-/*.main-arabic .Start textarea,*/
-/*.main-arabic .Start input*/
-/*{*/
-  /*direction: rtl;*/
-/*}*/
+.main-arabic {
+  direction: rtl;
+}
 
 .main .left-container {
   text-align: center;

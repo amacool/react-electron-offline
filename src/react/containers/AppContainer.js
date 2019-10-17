@@ -4,6 +4,7 @@ import { setVocabularies, setLanguage } from "../redux/actions";
 import { withRouter } from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
+import { setArabicMarkup } from "../common/helper";
 
 const AppContainer = ({ setLanguage, setVocabularies, vocabularies, children }) => {
   useEffect(() => {
@@ -15,10 +16,11 @@ const AppContainer = ({ setLanguage, setVocabularies, vocabularies, children }) 
       .then(function (result) {
         setVocabularies(result.data);
       });
-  }, []);
+  }, [setLanguage, setVocabularies]);
 
   if (vocabularies) {
     // localStorage.removeItem('lang');
+    setArabicMarkup(localStorage.getItem('lang'));
     return children;
   }
   return null;

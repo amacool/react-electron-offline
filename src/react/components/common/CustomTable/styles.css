@@ -39,3 +39,7 @@ table.custom-table .table-btn-edit-item .dropdown-item {
 table.custom-table .table-btn-edit-item .dropdown-item:hover {
   background-color: #eee;
 }
+
+.main-arabic table.custom-table thead tr th {
+  text-align: right;
+}

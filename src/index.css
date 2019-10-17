@@ -118,3 +118,50 @@ button.add-button {
 button.add-button.btn-bg {
   width: 125px;
 }
+
+
+.main-arabic .left-stepper .MuiStepper-vertical .MuiStepLabel-iconContainer {
+  padding-right: 6px;
+}
+
+.main-arabic .left-stepper .MuiStepConnector-lineVertical {
+  margin-right: 15px;
+  border-right: solid 1px #bdbdbd;
+  border-left: none;
+}
+
+.main-arabic .left-stepper .MuiStepper-vertical .MuiStepLabel-labelContainer {
+  text-align: right;
+  margin-right: 20px;
+}
+
+.main-arabic .stepper-container .to-prev {
+  border-right: none;
+  border-left: solid 1px #707070;
+}
+
+.main-arabic .left-stepper {
+  padding-right: 50px;
+}
+
+.main-arabic ul.MuiMenu-list li {
+  direction: rtl;
+}
+
+.main-arabic .left-stepper .step-navigator {
+  text-align: right;
+}
+
+.main-arabic table.custom-table thead tr th span {
+  border-right: solid 1px;
+  border-left: none;
+}
+
+.main-arabic .Recent .custom-table tbody tr td {
+  text-align: right;
+}
+
+.main-arabic .custom-outlined-form-control .custom-select svg {
+  right: unset;
+  left: 7px;
+}

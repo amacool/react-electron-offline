@@ -15,6 +15,7 @@ import {
 } from "../../redux/actions";
 import logo from "../../assets/logo.png";
 import LeftArrowIcon from "../../assets/icons/arrow/left-arrow.svg";
+import RightArrowIcon from "../../assets/icons/arrow/right-arrow.svg";
 import { channels } from "../../../shared/constants";
 import { CustomModal } from "../../components/common/CustomModal";
 import "./styles.css";
@@ -205,7 +206,7 @@ class Main extends Component {
     const lang = curLang || this.lang;
 
     return (
-      <div className={`main ${lang === 'AR' ? 'main-arabic' : ''}`}>
+      <div className="main">
         <div className="left-container">
           <div className="top">
             <div className="left-logo">
@@ -216,7 +217,7 @@ class Main extends Component {
               pathname === '/start' ? (
                 <div className="stepper-container">
                   <div className="to-prev" onClick={this.onGoBack}>
-                    <img src={LeftArrowIcon} alt='' />
+                    {lang !== 'AR' ? <img src={LeftArrowIcon} alt='' /> : <img src={RightArrowIcon} alt='' />}
                   </div>
                   <LeftStepper lockScroll={(val) => this.lockScroll = val} />
                 </div>
