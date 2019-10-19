@@ -18,11 +18,59 @@
       "vessel" : "容器",
       "individual" : "个人",
       "aircraft" : "飞机"
+    },
+    "RU" : {
+      "entry" : "запись",
+      "vessel" : "судно",
+      "individual" : "физическое лицо",
+      "aircraft" : "самолет"
+    },
+    "SP" : {
+      "entry" : "entrada",
+      "vessel" : "buque",
+      "individual" : "individual",
+      "aircraft" : "aeronave"
+    },
+    "AR" : {
+      "entry" : "دخول",
+      "vessel" : "وعاء",
+      "individual" : "فرد",
+      "aircraft" : "الطائرات"
     }
   }],
   "language" : ["EN","AR","CH","FR","SP","RU"],
   "applicableMeasure" : [{
     "EN" : {
+      "a" : "a-en",
+      "b" : "b-en",
+      "c" : "c-en",
+      "d" : "d-en"
+    },
+    "FR" : {
+      "a" : "a-en",
+      "b" : "b-en",
+      "c" : "c-en",
+      "d" : "d-en"
+    },
+    "CN" : {
+      "a" : "a-en",
+      "b" : "b-en",
+      "c" : "c-en",
+      "d" : "d-en"
+    },
+    "RU" : {
+      "a" : "a-en",
+      "b" : "b-en",
+      "c" : "c-en",
+      "d" : "d-en"
+    },
+    "SP" : {
+      "a" : "a-en",
+      "b" : "b-en",
+      "c" : "c-en",
+      "d" : "d-en"
+    },
+    "AR" : {
       "a" : "a-en",
       "b" : "b-en",
       "c" : "c-en",
@@ -34,6 +82,31 @@
       "R1" : "R1-EN",
       "R2" : "R2-EN",
       "R3" : "R3-EN"
+    },
+    "FR" : {
+      "R1" : "R1-EN",
+      "R2" : "R2-EN",
+      "R3" : "R3-EN"
+    },
+    "CN" : {
+      "R1" : "R1-EN",
+      "R2" : "R2-EN",
+      "R3" : "R3-EN"
+    },
+    "RU" : {
+      "R1" : "R1-EN",
+      "R2" : "R2-EN",
+      "R3" : "R3-EN"
+    },
+    "SP" : {
+      "R1" : "R1-EN",
+      "R2" : "R2-EN",
+      "R3" : "R3-EN"
+    },
+    "AR" : {
+      "R1" : "R1-EN",
+      "R2" : "R2-EN",
+      "R3" : "R3-EN"
     }
   }],
   "category" : [{
@@ -41,10 +114,60 @@
       "R1" : "cat1",
       "R2" : "cat2",
       "R3" : "cat3"
+    },
+    "FR" : {
+      "R1" : "cat1",
+      "R2" : "cat2",
+      "R3" : "cat3"
+    },
+    "CN" : {
+      "R1" : "cat1",
+      "R2" : "cat2",
+      "R3" : "cat3"
+    },
+    "RU" : {
+      "R1" : "cat1",
+      "R2" : "cat2",
+      "R3" : "cat3"
+    },
+    "SP" : {
+      "R1" : "cat1",
+      "R2" : "cat2",
+      "R3" : "cat3"
+    },
+    "AR" : {
+      "R1" : "R1-EN",
+      "R2" : "R2-EN",
+      "R3" : "R3-EN"
     }
   }],
   "type" : [{
     "EN" : {
+      "FIRST_NAME" : "FIRST NAME",
+      "SECOND_NAME" : "SECOND NAME",
+      "FULL_NAME" : "FULL NAME"
+    },
+    "FR" : {
+      "FIRST_NAME" : "FIRST NAME",
+      "SECOND_NAME" : "SECOND NAME",
+      "FULL_NAME" : "FULL NAME"
+    },
+    "CN" : {
+      "FIRST_NAME" : "FIRST NAME",
+      "SECOND_NAME" : "SECOND NAME",
+      "FULL_NAME" : "FULL NAME"
+    },
+    "RU" : {
+      "FIRST_NAME" : "FIRST NAME",
+      "SECOND_NAME" : "SECOND NAME",
+      "FULL_NAME" : "FULL NAME"
+    },
+    "SP" : {
+      "FIRST_NAME" : "FIRST NAME",
+      "SECOND_NAME" : "SECOND NAME",
+      "FULL_NAME" : "FULL NAME"
+    },
+    "AR" : {
       "FIRST_NAME" : "FIRST NAME",
       "SECOND_NAME" : "SECOND NAME",
       "FULL_NAME" : "FULL NAME"
@@ -54,10 +177,50 @@
     "EN" : {
       "MALE" : "Male",
       "FEMALE" : "Female"
+    },
+    "FR" : {
+      "MALE" : "Male",
+      "FEMALE" : "Female"
+    },
+    "CN" : {
+      "MALE" : "Male",
+      "FEMALE" : "Female"
+    },
+    "RU" : {
+      "MALE" : "Male",
+      "FEMALE" : "Female"
+    },
+    "SP" : {
+      "MALE" : "Male",
+      "FEMALE" : "Female"
+    },
+    "AR" : {
+      "MALE" : "Male",
+      "FEMALE" : "Female"
     }
   }],
   "livingStatus" : [{
     "EN" : {
+      "alive" : "Alive",
+      "deceased" : "Deceased"
+    },
+    "FR" : {
+      "alive" : "Alive",
+      "deceased" : "Deceased"
+    },
+    "CN" : {
+      "alive" : "Alive",
+      "deceased" : "Deceased"
+    },
+    "RU" : {
+      "alive" : "Alive",
+      "deceased" : "Deceased"
+    },
+    "SP" : {
+      "alive" : "Alive",
+      "deceased" : "Deceased"
+    },
+    "AR" : {
       "alive" : "Alive",
       "deceased" : "Deceased"
     }
@@ -66,16 +229,76 @@
     "EN" : {
       "password" : "Passport",
       "NIN" : "National Identification Number"
+    },
+    "FR" : {
+      "password" : "Passport",
+      "NIN" : "National Identification Number"
+    },
+    "CN" : {
+      "password" : "Passport",
+      "NIN" : "National Identification Number"
+    },
+    "RU" : {
+      "password" : "Passport",
+      "NIN" : "National Identification Number"
+    },
+    "SP" : {
+      "password" : "Passport",
+      "NIN" : "National Identification Number"
+    },
+    "AR" : {
+      "password" : "Passport",
+      "NIN" : "National Identification Number"
     }
   }],
   "countries" : [{
     "EN" : {
       "US" : "United States",
       "CA" : "Canada"
+    },
+    "FR" : {
+      "US" : "United States",
+      "CA" : "Canada"
+    },
+    "CN" : {
+      "US" : "United States",
+      "CA" : "Canada"
+    },
+    "RU" : {
+      "US" : "United States",
+      "CA" : "Canada"
+    },
+    "SP" : {
+      "US" : "United States",
+      "CA" : "Canada"
+    },
+    "AR" : {
+      "US" : "United States",
+      "CA" : "Canada"
     }
   }],
   "biometricType" : [{
     "EN" : {
+      "photo" : "Photo",
+      "eye_color" : "Eye color"
+    },
+    "FR" : {
+      "photo" : "Photo",
+      "eye_color" : "Eye color"
+    },
+    "CN" : {
+      "photo" : "Photo",
+      "eye_color" : "Eye color"
+    },
+    "RU" : {
+      "photo" : "Photo",
+      "eye_color" : "Eye color"
+    },
+    "SP" : {
+      "photo" : "Photo",
+      "eye_color" : "Eye color"
+    },
+    "AR" : {
       "photo" : "Photo",
       "eye_color" : "Eye color"
     }

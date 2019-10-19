@@ -74,6 +74,8 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
     handleSetValue(value);
   };
 
+  console.log(regime);
+
   return (
     <div className="start-page Information" id="INFORMATION">
       <div className="header">
@@ -138,7 +140,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
           <div className="row">
             <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.regime ? 'select-empty' : ''}`}>
               <InputLabel ref={regimeLabel} htmlFor="regime" className="custom-select-label">
-                {vocabularies[lang]['new']['common'][4]}<b>*</b>
+                {vocabularies[lang]['new']['information'][4]}<b>*</b>
               </InputLabel>
               <Select
                 value={state.regime}
@@ -153,9 +155,9 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {regime && regime[lang] && Object.keys(regime[lang]).map((itemKey, index) => (
+                {regime && Object.keys(regime).map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
-                    {regime[lang][itemKey]}
+                    {regime[itemKey]}
                   </MenuItem>
                 ))}
               </Select>

@@ -58,10 +58,14 @@ class Start extends Component {
     let th = this;
     axios.get('/data/lookupsData.json')
       .then(function (result) {
+        let data = {};
         Object.keys(result.data).forEach((itemKey) => {
-          th.setState({
-            [itemKey]: result.data[itemKey]
-          });
+          data[itemKey] = result.data[itemKey];
+        });
+        console.log(data);
+        th.setState({
+          ...th.state,
+          ...data
         });
       });
   }
