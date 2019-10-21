@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
   heading: {
     padding: '5px',
+    marginBottom: 0,
     borderBottom: 'solid 1px grey'
   },
   textField: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     color: 'black'
   },
   modalBody: {
-    height: '75%',
+    height: 'inherit',
     marginBottom: '20px',
     whiteSpace: 'pre-line',
     overflowY: 'auto',
@@ -62,7 +63,7 @@ export const CustomModal = ({
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(isOpen);
-  const width = size === "sm" ? "45%" : (size === "md" ? "60%" : "80%");
+  const width = size === "sm" ? "30%" : (size === "md" ? "60%" : "80%");
   const height = size === "sm" ? "45%" : (size === "md" ? "60%" : "80%");
 
   React.useEffect(() => {

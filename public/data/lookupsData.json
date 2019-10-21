@@ -233,27 +233,27 @@
   }],
   "documentType" : [{
     "EN" : {
-      "password" : "Passport",
+      "passport" : "Passport",
       "NIN" : "National Identification Number"
     },
     "FR" : {
-      "password" : "Passport",
+      "passport" : "Passport",
       "NIN" : "National Identification Number"
     },
     "CN" : {
-      "password" : "Passport",
+      "passport" : "Passport",
       "NIN" : "National Identification Number"
     },
     "RU" : {
-      "password" : "Passport",
+      "passport" : "Passport",
       "NIN" : "National Identification Number"
     },
     "SP" : {
-      "password" : "Passport",
+      "passport" : "Passport",
       "NIN" : "National Identification Number"
     },
     "AR" : {
-      "password" : "Passport",
+      "passport" : "Passport",
       "NIN" : "National Identification Number"
     }
   }],

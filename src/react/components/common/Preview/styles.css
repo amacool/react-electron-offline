@@ -1,0 +1,12 @@
+.preview {
+  margin-bottom: 25px;
+}
+
+.preview > div {
+  margin-top: 5px;
+}
+
+.preview > div span:first-child {
+  margin-right: 15px;
+  font-weight: bold;
+}

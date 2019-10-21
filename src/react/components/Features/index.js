@@ -4,6 +4,8 @@ import TextField from "@material-ui/core/TextField/TextField";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomHeader } from "../common/CustomHeader";
 import { CustomInput } from "../common/CustomInput";
+import { Preview } from "../common/Preview";
+import { CustomModal } from "../common/CustomModal";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
@@ -22,6 +24,7 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
   const [features, setFeatures] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
+  const [preview, setPreview] = React.useState(false);
   const types = settings.type[0];
 
   React.useEffect(() => {
@@ -180,8 +183,14 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
+              onPreview={() => {
+                setState(features[index]);
+                setEditIndex(index);
+                setPreview(true);
+              }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
+              label3={vocabularies[lang]['new']['common'][8]}
             />
           })}
           updateOrigin={(data) => {
@@ -190,6 +199,25 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
           }}
         />
       </div>
+      <CustomModal
+        isOpen={preview}
+        title={vocabularies[lang]['new']['common'][9]}
+        singleButton={true}
+        onClose={() => setPreview(false)}
+        labelClose={vocabularies[lang]['main'][12]}
+        size="sm"
+      >
+        {preview && (
+          <Preview
+            data={state}
+            header={[
+              vocabularies[lang]['new']['common'][4],
+              vocabularies[lang]['new']['features'][0],
+              vocabularies[lang]['new']['common'][3]
+            ]}
+          />
+        )}
+      </CustomModal>
     </div>
   )
 }

@@ -6,6 +6,8 @@ import { CustomInput } from "../common/CustomInput";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import { ThreeDots } from "../common/Icons/ThreeDots";
 import { CustomHeader } from "../common/CustomHeader";
+import { Preview } from "../common/Preview";
+import { CustomModal } from "../common/CustomModal";
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
@@ -31,6 +33,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
   const [documents, setDocuments] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
+  const [preview, setPreview] = React.useState(false);
   const documentType = settings.documentType[0];
   const countries = settings.countries[0];
 
@@ -155,7 +158,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
                   </MenuItem>
                   {documentType && documentType[lang] && Object.keys(documentType[lang]).map((itemKey, index) => (
                     <MenuItem
-                      value={itemKey}
+                      value={documentType[lang][itemKey]}
                       key={index}
                     >
                       {documentType[lang][itemKey]}
@@ -168,7 +171,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
               <CustomInput
                 value={state.docType1}
                 id="doc-type1"
-                label={vocabularies[lang]['new']['documents'][1]}
+                label={`${vocabularies[lang]['new']['documents'][1]}1`}
                 required={true}
                 onChange={handleChange("docType1")}
                 validation={validation}
@@ -305,8 +308,14 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
+              onPreview={() => {
+                setState(documents[index]);
+                setEditIndex(index);
+                setPreview(true);
+              }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
+              label3={vocabularies[lang]['new']['common'][8]}
             />
           })}
           updateOrigin={(data) => {
@@ -315,6 +324,31 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
           }}
         />
       </div>
+      <CustomModal
+        isOpen={preview}
+        title={vocabularies[lang]['new']['common'][9]}
+        singleButton={true}
+        onClose={() => setPreview(false)}
+        labelClose={vocabularies[lang]['main'][12]}
+        size="sm"
+      >
+        {preview && (
+          <Preview
+            data={state}
+            header={[
+              vocabularies[lang]['new']['documents'][0],
+              vocabularies[lang]['new']['documents'][1],
+              `${vocabularies[lang]['new']['documents'][1]}1`,
+              vocabularies[lang]['new']['documents'][2],
+              vocabularies[lang]['new']['documents'][3],
+              vocabularies[lang]['new']['documents'][4],
+              vocabularies[lang]['new']['documents'][5],
+              vocabularies[lang]['new']['common'][3],
+              vocabularies[lang]['new']['documents'][6]
+            ]}
+          />
+        )}
+      </CustomModal>
     </div>
   );
 }

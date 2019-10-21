@@ -95,7 +95,7 @@ export const CustomTable = ({ header, data, handleClick, getExtraCell, sortable 
   );
 };
 
-export const TableBtnEditItem = ({ onEdit, label1 = "Edit", label2 = "Remove" }) => {
+export const TableBtnEditItem = ({ onEdit, onPreview, label1 = "Edit", label2 = "Remove", label3 = "Preview" }) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -113,6 +113,7 @@ export const TableBtnEditItem = ({ onEdit, label1 = "Edit", label2 = "Remove" })
               <Paper className={classes.paper}>
                 <div className="dropdown-item" onClick={() => onEdit('edit')}>{label1}</div>
                 <div className="dropdown-item" onClick={() => onEdit('remove')}>{label2}</div>
+                <div className="dropdown-item" onClick={onPreview}>{label3}</div>
               </Paper>
             ) : null}
           </div>

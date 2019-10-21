@@ -7,6 +7,8 @@ import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import { CustomHeader } from "../common/CustomHeader";
+import { Preview } from "../common/Preview";
+import { CustomModal } from "../common/CustomModal";
 import "./styles.css";
 
 function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -23,6 +25,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
   const [dates, setDates] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
+  const [preview, setPreview] = React.useState(false);
 
   const handleChange = name => e => {
     const value = {
@@ -212,6 +215,11 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
+              onPreview={() => {
+                setState(dates[index]);
+                setEditIndex(index);
+                setPreview(true);
+              }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
             />
@@ -222,6 +230,33 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
           }}
         />
       </div>
+      <CustomModal
+        isOpen={preview}
+        title={vocabularies[lang]['new']['common'][9]}
+        singleButton={true}
+        onClose={() => setPreview(false)}
+        labelClose={vocabularies[lang]['main'][12]}
+        size="sm"
+      >
+        {preview && (
+          <Preview
+            data={{
+              date: state.date,
+              subset: state.subset,
+              from: state.from,
+              to: state.to,
+              notes: state.notes
+            }}
+            header={[
+              vocabularies[lang]['new']['dates of birth'][0],
+              vocabularies[lang]['new']['dates of birth'][3],
+              vocabularies[lang]['new']['dates of birth'][4],
+              vocabularies[lang]['new']['dates of birth'][5],
+              vocabularies[lang]['new']['common'][3]
+            ]}
+          />
+        )}
+      </CustomModal>
     </div>
   )
 }

@@ -9,6 +9,8 @@ import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomHeader } from "../common/CustomHeader";
+import { Preview } from "../common/Preview";
+import { CustomModal } from "../common/CustomModal";
 import connect from "react-redux/es/connect/connect";
 
 function Addresses({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -31,6 +33,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
   const [addresses, setAddresses] = React.useState(data);
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
+  const [preview, setPreview] = React.useState(false);
   const countries = settings.countries[0];
 
   React.useEffect(() => {
@@ -199,7 +202,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
                   </MenuItem>
                   {countries && countries[lang] && Object.keys(countries[lang]).map((itemKey, index) => (
                     <MenuItem
-                      value={itemKey}
+                      value={countries[lang][itemKey]}
                       key={index}
                     >
                       {countries[lang][itemKey]}
@@ -296,8 +299,14 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
+              onPreview={() => {
+                setState(addresses[index]);
+                setEditIndex(index);
+                setPreview(true);
+              }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
+              label3={vocabularies[lang]['new']['common'][8]}
             />
           })}
           updateOrigin={(data) => {
@@ -306,6 +315,41 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
           }}
         />
       </div>
+      <CustomModal
+        isOpen={preview}
+        title={vocabularies[lang]['new']['common'][9]}
+        singleButton={true}
+        onClose={() => setPreview(false)}
+        labelClose={vocabularies[lang]['main'][12]}
+        size="sm"
+      >
+        {preview && (
+          <Preview
+            data={{
+              street: state.street,
+              city: state.city,
+              province: state.province,
+              zipCode: state.zipCode,
+              country: state.country,
+              region: state.region,
+              latitude: state.latitude,
+              longitude: state.longitude,
+              notes: state.notes
+            }}
+            header={[
+              vocabularies[lang]['new']['addresses'][1],
+              vocabularies[lang]['new']['addresses'][2],
+              vocabularies[lang]['new']['addresses'][3],
+              vocabularies[lang]['new']['addresses'][4],
+              vocabularies[lang]['new']['addresses'][5],
+              vocabularies[lang]['new']['addresses'][7],
+              vocabularies[lang]['new']['addresses'][8],
+              vocabularies[lang]['new']['addresses'][9],
+              vocabularies[lang]['new']['common'][3]
+            ]}
+          />
+        )}
+      </CustomModal>
     </div>
   )
 }

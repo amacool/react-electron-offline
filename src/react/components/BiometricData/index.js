@@ -18,20 +18,33 @@ import { CustomHeader } from "../common/CustomHeader";
 import { FileTypes } from "../../constant/file-types";
 import { channels } from "../../../shared/constants";
 import "./styles.css";
+import {Preview} from "../common/Preview";
 
 function BiometricData({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
-  const [attachment, setAttachment] = React.useState('');
+  const [attachment, setAttachment] = React.useState({
+    name: '',
+    path: '',
+    result: '',
+    type: ''
+  });
   const [state, setState] = React.useState({
     type: '',
     value: '',
     notes: ''
   });
   const [features, setFeatures] = React.useState(data);
+  const [editIndex, setEditIndex] = React.useState(-1);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [curAttachment, setCurAttachment] = React.useState(-1);
+  // for preview only
+  const [curPreviewData, setCurPreviewData] = React.useState({
+    type: '',
+    value: '',
+    notes: '',
+    attachment: {}
+  });
   const [validation, setValidation] = React.useState(false);
   const types = settings.type[0];
 
@@ -50,33 +63,41 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
   const handleAdd = () => {
     if (!doValidation()) return;
 
-    handleSetValue([...features, { ...state, attachment }]);
-    setFeatures([...features, { ...state, attachment }]);
+    if (editIndex === -1) {
+      handleSetValue([...features, { ...state, attachment }]);
+      setFeatures([...features, { ...state, attachment }]);
+    } else {
+      let tArr = [...features];
+      tArr[editIndex] = {...state, attachment};
+      handleSetValue(tArr);
+      setFeatures(tArr);
+    }
     setState({
       type: '',
       value: '',
       notes: ''
     });
+    setAttachment({
+      name: '',
+      path: '',
+      result: '',
+      type: ''
+    });
+    setCurPreviewData({
+      type: '',
+      value: '',
+      notes: '',
+      attachment: {}
+    });
     setValidation(false);
+    setEditIndex(-1);
   };
 
   const handleEdit = (mode, index) => {
     if (mode === 'edit') {
-      if (isElectron()) {
-        const { ipcRenderer } = window.require('electron');
-        ipcRenderer.send(channels.GET_FILE_TYPE, features[index].attachment.path);
-        ipcRenderer.on(channels.GET_FILE_TYPE, (event, arg) => {
-          ipcRenderer.removeAllListeners(channels.GET_FILE_TYPE);
-          const { data, success } = arg;
-          if (success) {
-            const existingType = FileTypes.find((item) => item === data);
-            setCurAttachment({ ...features[index].attachment, type: existingType });
-            setIsModalOpen(true);
-          } else {
-            smalltalk.alert(vocabularies[lang]['messages'][0], '');
-          }
-        });
-      }
+      setState(features[index]);
+      setAttachment(features[index].attachment);
+      setEditIndex(index);
     } else {
       let tArr = [...features];
       tArr.splice(index, 1);
@@ -87,6 +108,24 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
         notes: ''
       });
       handleSetValue(tArr);
+    }
+  };
+
+  const handlePreview = (index) => {
+    if (isElectron()) {
+      const { ipcRenderer } = window.require('electron');
+      ipcRenderer.send(channels.GET_FILE_TYPE, features[index].attachment.path);
+      ipcRenderer.on(channels.GET_FILE_TYPE, (event, arg) => {
+        ipcRenderer.removeAllListeners(channels.GET_FILE_TYPE);
+        const { data, success } = arg;
+        if (success) {
+          const existingType = FileTypes.find((item) => item === data);
+          setCurPreviewData({ ...features[index], attachment: { ...features[index].attachment, type: existingType } });
+          setIsModalOpen(true);
+        } else {
+          smalltalk.alert(vocabularies[lang]['messages'][0], '');
+        }
+      });
     }
   };
 
@@ -133,7 +172,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
                   </MenuItem>
                   {types && types[lang] && Object.keys(types[lang]).map((itemKey, index) => (
                     <MenuItem
-                      value={itemKey}
+                      value={types[lang][itemKey]}
                       key={index}
                     >
                       {types[lang][itemKey]}
@@ -198,7 +237,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
                 className={`add-button ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
                 onClick={handleAdd}
               >
-                {vocabularies[lang]['new']['common'][0]}
+                {editIndex >= 0 ? vocabularies[lang]['main'][7] : vocabularies[lang]['new']['common'][0]}
               </Button>
             </div>
           </div>
@@ -225,8 +264,12 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
-              label1={vocabularies[lang]['new']['common'][6]}
+              onPreview={() => {
+                handlePreview(index);
+              }}
+              label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
+              label3={vocabularies[lang]['new']['common'][8]}
             />
           })}
           updateOrigin={(data) => {
@@ -234,32 +277,48 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
             setFeatures(data);
           }}
         />
-        {curAttachment && (
-          <CustomModal
-            isOpen={isModalOpen}
-            title={vocabularies[lang]['new']['biometric data'][4]}
-            singleButton={true}
-            onClose={() => setIsModalOpen(false)}
-            labelClose={vocabularies[lang]['main'][12]}
-          >
-            {curAttachment.type ? (
+      </div>
+      {curPreviewData && (
+        <CustomModal
+          isOpen={isModalOpen}
+          title={vocabularies[lang]['new']['biometric data'][4]}
+          singleButton={true}
+          onClose={() => setIsModalOpen(false)}
+          labelClose={vocabularies[lang]['main'][12]}
+        >
+          <div>
+            <Preview
+              data={{
+                type: curPreviewData.type,
+                value: curPreviewData.value,
+                attachment: curPreviewData.attachment && curPreviewData.attachment.path,
+                notes: curPreviewData.notes
+              }}
+              header={[
+                vocabularies[lang]['new']['common'][4],
+                vocabularies[lang]['new']['features'][0],
+                vocabularies[lang]['new']['biometric data'][0],
+                vocabularies[lang]['new']['common'][3]
+              ]}
+            />
+            {curPreviewData.attachment.type ? (
               <FileViewer
-                fileType={curAttachment.type}
-                filePath={curAttachment.path}
+                fileType={curPreviewData.attachment.type}
+                filePath={curPreviewData.attachment.path}
                 errorComponent={null}
                 onError={handleReadError}
               />
             ) : (
               <iframe
-                src={curAttachment.path}
+                src={curPreviewData.attachment.path}
                 width={'100%'}
                 height={'100%'}
                 title={vocabularies[lang]['new']['biometric data'][4]}
               />
             )}
-          </CustomModal>
-        )}
-      </div>
+          </div>
+        </CustomModal>
+      )}
     </div>
   )
 }

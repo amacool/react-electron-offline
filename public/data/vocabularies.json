@@ -43,7 +43,9 @@
         "Type",
         "None",
         "View",
-        "Max length 500 chars"
+        "Max length 500 chars",
+        "Preview",
+        "Preview In Detail"
       ],
       "information": [
         "Entry Type",
@@ -113,7 +115,9 @@
         "类型",
         "没有",
         "视图",
-        "最大长度500个字符"
+        "最大长度500个字符",
+        "预习",
+        "详细预览"
       ],
       "information": [
         "输入类型",
@@ -183,7 +187,9 @@
         "Type",
         "Aucune",
         "Vue",
-        "Longueur maximale 500 caractères"
+        "Longueur maximale 500 caractères",
+        "Aperçu",
+        "Aperçu en détail"
       ],
       "information": [
         "Type d'entrée",
@@ -253,7 +259,9 @@
         "Тип",
         "Никто",
         "Посмотреть",
-        "Максимальная длина 500 символов"
+        "Максимальная длина 500 символов",
+        "Предварительный просмотр",
+        "Предварительный просмотр в деталях"
       ],
       "information": [
         "Тип входа",
@@ -323,7 +331,9 @@
         "Tipo",
         "Ninguna",
         "Ver",
-        "Longitud máxima 500 caracteres"
+        "Longitud máxima 500 caracteres",
+        "Avance",
+        "Vista previa detallada"
       ],
       "information": [
         "Tipo de entrada",
@@ -393,7 +403,9 @@
         "نوع",
         "اي",
         "عرض",
-        "اقصي طول 500 حرف"
+        "اقصي طول 500 حرف",
+        "معاينة",
+        "معاينة بالتفصيل"
       ],
       "information": [
         "نوع الإدخال",

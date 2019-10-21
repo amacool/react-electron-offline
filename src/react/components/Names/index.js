@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button/Button";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomHeader } from "../common/CustomHeader";
+import { CustomModal } from "../common/CustomModal";
+import { Preview } from "../common/Preview";
 import "./styles.css";
 
 function Names({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -23,6 +25,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
   const [editIndex, setEditIndex] = React.useState(-1);
   const [editIndex1, setEditIndex1] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
+  const [preview, setPreview] = React.useState(false);
 
   const handleChange = name => e => {
     const value = {
@@ -218,8 +221,14 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
+              onPreview={() => {
+                setState(names[index]);
+                setEditIndex(index);
+                setPreview(1);
+              }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
+              label3={vocabularies[lang]['new']['common'][8]}
             />
           })}
           updateOrigin={(data) => {
@@ -284,8 +293,14 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit1(mode, index)}
+              onPreview={() => {
+                setState1(names1[index]);
+                setEditIndex1(index);
+                setPreview(2);
+              }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
+              label3={vocabularies[lang]['new']['common'][8]}
             />
           })}
           updateOrigin={(data) => {
@@ -294,6 +309,26 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
           }}
         />
       </div>
+      <CustomModal
+        isOpen={preview >= 1}
+        title={vocabularies[lang]['new']['common'][9]}
+        singleButton={true}
+        onClose={() => setPreview(false)}
+        labelClose={vocabularies[lang]['main'][12]}
+        size="sm"
+      >
+        {preview > 0 && (
+          <Preview
+            data={preview === 1 ? state : state1}
+            header={[
+              vocabularies[lang]['new']['common'][4],
+              vocabularies[lang]['new']['names'][1],
+              vocabularies[lang]['new']['names'][0],
+              vocabularies[lang]['new']['names'][2]
+            ]}
+          />
+        )}
+      </CustomModal>
     </div>
   );
 }

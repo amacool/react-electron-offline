@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
 import isElectron from "is-electron";
-import Button from "@material-ui/core/Button/Button";
 import smalltalk from "smalltalk";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
