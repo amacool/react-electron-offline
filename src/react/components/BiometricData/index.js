@@ -2,17 +2,13 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 import isElectron from "is-electron";
 import Button from "@material-ui/core/Button/Button";
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Select from "@material-ui/core/Select/Select";
-import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
 import smalltalk from "smalltalk";
 import FileViewer from "react-file-viewer";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomDropzone } from "../common/CustomDropzone";
-import { DocTypeIcon, DocInfo } from "../common/DocElement";
+import { DocInfo } from "../common/DocElement";
 import { CustomModal } from "../common/CustomModal";
 import { CustomHeader } from "../common/CustomHeader";
 import { FileTypes } from "../../constant/file-types";
@@ -22,8 +18,6 @@ import {Preview} from "../common/Preview";
 
 function BiometricData({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
-  const categoryLabel = React.useRef(null);
-  const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [attachment, setAttachment] = React.useState({
     name: '',
     path: '',
@@ -46,11 +40,6 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
     attachment: {}
   });
   const [validation, setValidation] = React.useState(false);
-  const types = settings.type[0];
-
-  React.useEffect(() => {
-    setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
-  }, []);
 
   const handleChange = name => e => {
     const value = {
@@ -112,6 +101,11 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
   };
 
   const handlePreview = (index) => {
+    if (!features[index].attachment.path) {
+      setCurPreviewData({ ...features[index], attachment: { ...features[index].attachment } });
+      setIsModalOpen(true);
+      return;
+    }
     if (isElectron()) {
       const { ipcRenderer } = window.require('electron');
       ipcRenderer.send(channels.GET_FILE_TYPE, features[index].attachment.path);
@@ -152,34 +146,15 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
-            <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
-              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.type ? 'select-empty' : ''}`}>
-                <InputLabel ref={categoryLabel} htmlFor="entry-type" className="custom-select-label">
-                  {vocabularies[lang]['new']['common'][4]}<b>*</b>
-                </InputLabel>
-                <Select
-                  value={state.type}
-                  onChange={handleChange('type')}
-                  labelWidth={categoryLabelWidth}
-                  inputProps={{
-                    name: 'type',
-                    id: 'type',
-                  }}
-                  className="custom-select"
-                >
-                  <MenuItem value="">
-                    <em>{vocabularies[lang]['new']['common'][5]}</em>
-                  </MenuItem>
-                  {types && types[lang] && Object.keys(types[lang]).map((itemKey, index) => (
-                    <MenuItem
-                      value={types[lang][itemKey]}
-                      key={index}
-                    >
-                      {types[lang][itemKey]}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+            <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
+              <CustomInput
+                value={state.type}
+                id="type"
+                label={vocabularies[lang]['new']['common'][4]}
+                required={true}
+                onChange={handleChange("type")}
+                validation={validation}
+              />
             </div>
             <div className="col">
               <CustomInput
@@ -202,14 +177,31 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
                     heading='Attachment'
                     description={vocabularies[lang]['new']['biometric data'][1]}
                     onHandleLoad={(v) => {
-                      setAttachment(v);
+                      if (isElectron()) {
+                        const { ipcRenderer } = window.require('electron');
+                        ipcRenderer.send(channels.GET_FILE_TYPE, v.path);
+                        ipcRenderer.on(channels.GET_FILE_TYPE, (event, arg) => {
+                          ipcRenderer.removeAllListeners(channels.GET_FILE_TYPE);
+                          const { data, success } = arg;
+                          if (success) {
+                            const existingType = FileTypes.find((item) => item === data);
+                            if (existingType) {
+                              setAttachment(v);
+                            } else {
+                              smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['new']['biometric data'][5]);
+                            }
+                          } else {
+                            smalltalk.alert(vocabularies[lang]['messages'][0], '');
+                          }
+                        });
+                      }
                     }}
                     accept=''
                     showSelectedFiles={false}
                   />
                 </div>
                 <div className="input-container">
-                  <input type="text" placeholder={vocabularies[lang]['new']['biometric data'][2]} value={attachment.path} />
+                  <input type="text" placeholder={vocabularies[lang]['new']['biometric data'][2]} value={attachment.path || ''} onChange={() => {}} />
                   {/*<Button*/}
                     {/*variant="contained"*/}
                     {/*className={`add-button ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}*/}
@@ -253,7 +245,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
           ]}
           data={features.map((item) =>
             ({
-              a: item.attachment && <DocTypeIcon type={item.attachment.type} status="Sent" />,
+              a: item.type,
               b: item.value,
               c: item.attachment && <DocInfo info={item.attachment} />,
               d: item.notes

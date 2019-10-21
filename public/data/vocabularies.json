@@ -64,7 +64,7 @@
       "addresses": ["Address", "Street", "City", "Province", "Zip Code", "Country", "Location", "Region", "Latitude", "Longitude"],
       "dates of birth": ["Specific", "Date", "Range", "Subset", "From", "To"],
       "features": ["Value"],
-      "biometric data": ["Attachment", "Choose a file or drag it here", "Upload from file", "UPLOAD", "View Attachment"]
+      "biometric data": ["Attachment", "Choose a file or drag it here", "Upload from file", "UPLOAD", "View Attachment", "Unsupported file type!"]
     },
     "recent": ["RECENT FORMS", "Last time opened", "Status", "SENT", "Completed", "Draft"],
     "help": [
@@ -136,7 +136,7 @@
       "addresses": ["地址", "街", "市", "省", "邮政编码", "国家", "位置", "区域", "纬度", "经度"],
       "dates of birth": ["具体", "日期", "范围", "子集", "从", "至"],
       "features": ["值"],
-      "biometric data": ["附件", "选择一个文件或将其拖到此处", "从文件上传", "上载", "查看附件"]
+      "biometric data": ["附件", "选择一个文件或将其拖到此处", "从文件上传", "上载", "查看附件", "不支持的文件类型"]
     },
     "recent": ["最近形式", "上次开放", "状态", "已发送", "已完成", "草案"],
     "help": [
@@ -208,7 +208,7 @@
       "addresses": ["Adresse", "rue", "Ville", "Province", "Code postal", "Pays", "Emplacement", "Région", "Latitude", "Longitude"],
       "dates of birth": ["Spécifique", "Date", "Gamme", "Sous-ensemble", "De", "À"],
       "features": ["Valeur"],
-      "biometric data": ["Attachement", "Choisissez un fichier ou faites-le glisser ici", "Télécharger depuis un fichier", "TÉLÉCHARGER", "Voir pièce jointe"]
+      "biometric data": ["Attachement", "Choisissez un fichier ou faites-le glisser ici", "Télécharger depuis un fichier", "TÉLÉCHARGER", "Voir pièce jointe", "Type de fichier non pris en charge!"]
     },
     "recent": ["FORMULAIRES RÉCENTS", "Dernière ouverture", "Statut", "ENVOYÉ", "Terminé", "Brouillon"],
     "help": [
@@ -280,7 +280,7 @@
       "addresses": ["Адрес", "улица", "город", "Провинция", "Почтовый Индекс", "Страна", "Место нахождения", "Область", "широта", "Долгота"],
       "dates of birth": ["Конкретный", "Свидание", "Ассортимент", "Подмножество", "Из", "к"],
       "features": ["Стоимость"],
-      "biometric data": ["прикрепление", "Выберите файл или перетащите его сюда", "Загрузить из файла", "ЗАГРУЗИТЬ", "Просмотреть вложение"]
+      "biometric data": ["прикрепление", "Выберите файл или перетащите его сюда", "Загрузить из файла", "ЗАГРУЗИТЬ", "Просмотреть вложение", "Неподдерживаемый тип файла!"]
     },
     "recent": ["ПОСЛЕДНИЕ ФОРМЫ", "Последний раз открывался", "Статус", "ПОСЛАЛ", "Завершенный", "Черновой вариант"],
     "help": [
@@ -352,7 +352,7 @@
       "addresses": ["Habla a", "Calle", "Ciudad", "Provincia", "Código postal", "País", "Ubicación", "Región", "Latitud", "Longitud"],
       "dates of birth": ["Específico", "Fecha", "Distancia", "Subconjunto", "De", "A"],
       "features": ["Valor"],
-      "biometric data": ["Archivo adjunto", "Elige un archivo o arrástralo aquí", "Subir desde archivo", "SUBIR", "Vea el archivo adjunto"]
+      "biometric data": ["Archivo adjunto", "Elige un archivo o arrástralo aquí", "Subir desde archivo", "SUBIR", "Vea el archivo adjunto", "¡Tipo de archivo no soportado!"]
     },
     "recent": ["FORMULARIOS RECIENTES", "Última vez abierta", "Estado", "EXPEDIDO", "Terminado", "Sequía"],
     "help": [
@@ -424,7 +424,7 @@
       "addresses": ["عنوان", "الشارع", "المدينه", "مقاطعه", "الرمز البريدي", "البلد", "موقع", "المنطقه", "العرض", "خط طول"],
       "dates of birth": ["محدده", "تاريخ", "مجموعه", "فرعيه", "من", "ل"],
       "features": ["قيمه"],
-      "biometric data": ["المرفق", "اختر ملفا أو اسحبه هنا", "التحميل من الملف", "تحميل", "عرض المرفقات"]
+      "biometric data": ["المرفق", "اختر ملفا أو اسحبه هنا", "التحميل من الملف", "تحميل", "عرض المرفقات", "نوع ملف غير مدعوم!"]
     },
     "recent": ["الاشكال الحديثة", "آخر مره تم فتحها", "حاله", "ارسال", "اكمال", "مشروع"],
     "help": [

@@ -6,10 +6,10 @@ export const FileTypes = [
   'bmp',
   '360',
   'pdf',
-  'csv',
-  'xlsx',
-  'docx',
-  'mp4',
-  'webm',
-  'mp3'
+  // 'csv',
+  // 'xlsx',
+  // 'docx',
+  // 'mp4',
+  // 'webm',
+  // 'mp3'
 ];
