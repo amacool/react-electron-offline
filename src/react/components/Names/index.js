@@ -208,12 +208,12 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
       <div className="content content-body">
         <CustomTable
           header={[
-            vocabularies[lang]['new']['names'][0],
+            vocabularies[lang]['new']['names'][2],
             vocabularies[lang]['new']['common'][4],
             vocabularies[lang]['new']['names'][1],
-            vocabularies[lang]['new']['names'][2]
+            vocabularies[lang]['new']['names'][0]
           ]}
-          data={names.map((item) => ({ a: item.name, b: item.type, c: item.script, d: item.order }))}
+          data={names.map((item) => ({ a: item.order, b: item.type, c: item.script, d: item.name }))}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem
@@ -269,12 +269,12 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
       <div className="content content-body">
         <CustomTable
           header={[
-            vocabularies[lang]['new']['names'][0],
+            vocabularies[lang]['new']['names'][2],
             vocabularies[lang]['new']['common'][4],
             vocabularies[lang]['new']['names'][1],
-            vocabularies[lang]['new']['names'][2]
+            vocabularies[lang]['new']['names'][0]
           ]}
-          data={names1.map((item) => ({ a: item.name, b: item.type, c: item.script, d: item.order }))}
+          data={names1.map((item) => ({ a: item.order, b: item.type, c: item.script, d: item.name }))}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem

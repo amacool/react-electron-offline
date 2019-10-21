@@ -136,7 +136,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
       <div className="content content-body">
         <CustomTable
           header={[vocabularies[lang]['new']['identities'][0], vocabularies[lang]['new']['identities'][1]]}
-          data={identities.map((item) => ({ a: item.identityType, b: item.category }))}
+          data={identities.map((item) => ({ identityType: item.identityType, category: item.category }))}
           handleClick={handleSetIdentityType}
         />
       </div>
