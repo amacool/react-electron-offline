@@ -6,6 +6,7 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import { CustomInput } from "../common/CustomInput";
+import { CustomHeader } from "../common/CustomHeader";
 
 function OtherData({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
@@ -33,13 +34,12 @@ function OtherData({ settings, handleSetValue, data, vocabularies, validating })
     handleSetValue(value);
   };
 
-  console.log(state.livingStatus);
-
   return (
     <div className="start-page OtherData" id="OTHER-DATA">
-      <div className="header">
-        <h5>{vocabularies[lang]['new']['main'][7]}</h5>
-      </div>
+      <CustomHeader
+        heading={vocabularies[lang]['new']['main'][7]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['otherData']}
+      />
       <div className="content content-header">
         <div className="row">
           <div className="custom-add-group mb-50">

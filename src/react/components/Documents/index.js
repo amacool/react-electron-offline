@@ -5,12 +5,12 @@ import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import { ThreeDots } from "../common/Icons/ThreeDots";
+import { CustomHeader } from "../common/CustomHeader";
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-import smalltalk from "smalltalk";
 import "./styles.css";
 
 function Documents({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -70,6 +70,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
       expirationDate: ''
     });
     setEditIndex(-1);
+    setValidation(false);
   };
 
   const handleEdit = (mode, index) => {
@@ -108,7 +109,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
       state.expirationDate === ''
     ) {
       setValidation(true);
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -116,9 +117,11 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
 
   return (
     <div className="start-page Documents" id="DOCUMENTS">
-      <div className="header" style={validating && documents.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
-        <h5>{vocabularies[lang]['new']['main'][8]}</h5>
-      </div>
+      <CustomHeader
+        style={validating && documents.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
+        heading={vocabularies[lang]['new']['main'][8]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['documents']}
+      />
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">

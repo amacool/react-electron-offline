@@ -1,0 +1,9 @@
+.custom-header {
+  display: flex;
+  align-items: center;
+}
+
+.custom-header .tooltip-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}

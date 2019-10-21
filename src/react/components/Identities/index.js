@@ -5,9 +5,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button/Button";
-import smalltalk from "smalltalk";
 import { CustomTable } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
+import { CustomHeader } from "../common/CustomHeader";
 import "./styles.css";
 
 function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep, data, vocabularies, validating }) {
@@ -59,12 +59,13 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
       identityType: '',
       category: ''
     });
+    setValidation(false);
   };
 
   const doValidation = () => {
     if (state.identityType === '' || state.category === '') {
       setValidation(true);
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -77,9 +78,10 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
 
   return (
     <div className="start-page Identities" id="IDENTITIES">
-      <div className="header" style={validating && identities.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
-        <h5>{vocabularies[lang]['new']['main'][5]}</h5>
-      </div>
+      <CustomHeader
+        heading={vocabularies[lang]['new']['main'][5]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['identities']}
+      />
       <div className="content content-header">
         <div className="custom-add-group row">
           <div className="col-4">

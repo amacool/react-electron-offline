@@ -6,10 +6,10 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import TextField from "@material-ui/core/TextField/TextField";
-import smalltalk from "smalltalk";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
+import { CustomHeader } from "../common/CustomHeader";
 
 function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
@@ -71,6 +71,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
       notes: ''
     });
     setEditIndex(-1);
+    setValidation(false);
   };
 
   const handleEdit = (mode, index) => {
@@ -110,7 +111,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
       || state.longitude === ''
     ) {
       setValidation(true);
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -118,9 +119,11 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
 
   return (
     <div className="start-page" id="PLACES-OF-BIRTH">
-      <div className="header" style={validating && addresses.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
-        <h5>{vocabularies[lang]['new']['main'][10]}</h5>
-      </div>
+      <CustomHeader
+        style={validating && addresses.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
+        heading={vocabularies[lang]['new']['main'][10]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['placesOfBirth']}
+      />
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">

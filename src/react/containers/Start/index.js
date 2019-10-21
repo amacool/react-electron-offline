@@ -31,7 +31,8 @@ class Start extends Component {
       livingStatus: [],
       documentType: [],
       countries: [],
-      biometricType: []
+      biometricType: [],
+      tooltip: []
     };
     this.results = {
       information: {
@@ -62,7 +63,6 @@ class Start extends Component {
         Object.keys(result.data).forEach((itemKey) => {
           data[itemKey] = result.data[itemKey];
         });
-        console.log(data);
         th.setState({
           ...th.state,
           ...data

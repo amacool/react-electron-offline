@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button/Button";
 import smalltalk from "smalltalk";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
+import { CustomHeader } from "../common/CustomHeader";
 import "./styles.css";
 
 function Names({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -64,6 +65,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
       script: ''
     });
     setEditIndex(-1);
+    setValidation(false);
   };
 
   const handleAdd1 = () => {
@@ -90,6 +92,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
       script: ''
     });
     setEditIndex1(-1);
+    setValidation(false);
   };
 
   const handleEdit = (mode, index) => {
@@ -139,7 +142,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
   const doValidation = () => {
     if (state.name === '' || state.type === '' || state.script === '') {
       setValidation(true);
-      smalltalk.alert('Error', 'Please input values!');
+      // smalltalk.alert('Error', 'Please input values!');
       return false;
     }
     return true;
@@ -148,7 +151,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
   const doValidation1 = () => {
     if (state1.name === '' || state1.type === '' || state1.script === '') {
       setValidation(true);
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -156,9 +159,11 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
 
   return (
     <div className="start-page Names" id="NAMES">
-      <div className="header" style={validating && (names.length === 0 || names1.length === 0) ? { backgroundColor: '#ffaeae' } : {}}>
-        <h5>{vocabularies[lang]['new']['main'][6]}</h5>
-      </div>
+      <CustomHeader
+        style={validating && (names.length === 0 || names1.length === 0) ? { backgroundColor: '#ffaeae' } : {}}
+        heading={vocabularies[lang]['new']['main'][6]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['names']}
+      />
       <div className="content content-header">
         <div className="custom-add-group">
           <div className="col-3">

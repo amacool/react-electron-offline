@@ -1,5 +1,4 @@
 import React from "react";
-import smalltalk from "smalltalk";
 import connect from "react-redux/es/connect/connect";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
@@ -7,6 +6,7 @@ import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomDatePicker } from "../common/CustomDatePicker";
+import { CustomHeader } from "../common/CustomHeader";
 import "./styles.css";
 
 function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -54,6 +54,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       notes: ''
     });
     setEditIndex(-1);
+    setValidation(false);
   };
 
   const handleEdit = (mode, index) => {
@@ -85,7 +86,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       || state.to === ''
     ) {
       setValidation(true);
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -93,9 +94,11 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
 
   return (
     <div className="start-page" id="DATES-OF-BIRTH">
-      <div className="header" style={validating && dates.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
-        <h5>{vocabularies[lang]['new']['main'][11]}</h5>
-      </div>
+      <CustomHeader
+        style={validating && dates.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
+        heading={vocabularies[lang]['new']['main'][11]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['datesOfBirth']}
+      />
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">

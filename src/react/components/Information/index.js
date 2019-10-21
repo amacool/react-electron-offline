@@ -7,6 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomMultiSelect } from "../common/CustomMultiSelect";
+import { CustomHeader } from "../common/CustomHeader";
 import "../common/FormControl/styles.css";
 import "./styles.css";
 
@@ -74,13 +75,12 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
     handleSetValue(value);
   };
 
-  console.log(regime);
-
   return (
     <div className="start-page Information" id="INFORMATION">
-      <div className="header">
-        <h5>{vocabularies[lang]['new']['main'][4]}</h5>
-      </div>
+      <CustomHeader
+        heading={vocabularies[lang]['new']['main'][4]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['information']}
+      />
       <div className="content">
         <div className="col-3">
           <div className="row">

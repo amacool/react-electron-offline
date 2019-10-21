@@ -76,12 +76,13 @@ class Main extends Component {
   }
 
   onSave() {
-    if (this.performValidation()) {
-      this.props.validateInformation(false);
-      this.handleSaveFile(false);
-    } else {
-      this.props.validateInformation(true);
-    }
+    this.handleSaveFile(true);
+    // if (this.performValidation()) {
+    //   this.props.validateInformation(false);
+    //   this.handleSaveFile(false);
+    // } else {
+    //   this.props.validateInformation(true);
+    // }
   }
 
   onSaveDraft() {

@@ -2,12 +2,12 @@ import React from "react";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
+import { CustomHeader } from "../common/CustomHeader";
 import { CustomInput } from "../common/CustomInput";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-import smalltalk from "smalltalk";
 import connect from "react-redux/es/connect/connect";
 
 function Features({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -71,13 +71,14 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
       });
       setEditIndex(-1);
       handleSetValue(tArr);
+      setValidation(false);
     }
   };
 
   const doValidation = () => {
     if (state.type === '' || state.value === '') {
       setValidation(true);
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -85,9 +86,11 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
 
   return (
     <div className="start-page" id="FEATURES">
-      <div className="header" style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
-        <h5>{vocabularies[lang]['new']['main'][12]}</h5>
-      </div>
+      <CustomHeader
+        style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
+        heading={vocabularies[lang]['new']['main'][12]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['features']}
+      />
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">

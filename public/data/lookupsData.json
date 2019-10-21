@@ -302,5 +302,79 @@
       "photo" : "Photo",
       "eye_color" : "Eye color"
     }
+  }],
+  "tooltip" : [{
+    "EN" : {
+      "information" : "Photo",
+      "identities" : "Eye color",
+      "addresses" : "Eye color",
+      "biometricData" : "Eye color",
+      "datesOfBirth" : "Eye color",
+      "placesOfBirth" : "Eye color",
+      "documents" : "Eye color",
+      "features" : "Eye color",
+      "names" : "Eye color",
+      "otherData" : "Eye color"
+    },
+    "FR" : {
+      "information" : "French",
+      "identities" : "French",
+      "addresses" : "French",
+      "biometricData" : "French",
+      "datesOfBirth" : "French",
+      "placesOfBirth" : "Eye color",
+      "documents" : "Eye color",
+      "features" : "Eye color",
+      "names" : "Eye color",
+      "otherData" : "Eye color"
+    },
+    "CN" : {
+      "information" : "Chinese",
+      "identities" : "Chinese",
+      "addresses" : "Chinese",
+      "biometricData" : "Chinese",
+      "datesOfBirth" : "Chinese",
+      "placesOfBirth" : "Chinese",
+      "documents" : "Eye color",
+      "features" : "Eye color",
+      "names" : "Eye color",
+      "otherData" : "Eye color"
+    },
+    "RU" : {
+      "information" : "Russian",
+      "identities" : "Russian",
+      "addresses" : "Russian",
+      "biometricData" : "Russian",
+      "datesOfBirth" : "Russian",
+      "placesOfBirth" : "Eye color",
+      "documents" : "Eye color",
+      "features" : "Eye color",
+      "names" : "Eye color",
+      "otherData" : "Eye color"
+    },
+    "SP" : {
+      "information" : "Spanish",
+      "identities" : "Spanish",
+      "addresses" : "Eye color",
+      "biometricData" : "Eye color",
+      "datesOfBirth" : "Eye color",
+      "placesOfBirth" : "Eye color",
+      "documents" : "Eye color",
+      "features" : "Eye color",
+      "names" : "Eye color",
+      "otherData" : "Eye color"
+    },
+    "AR" : {
+      "information" : "Arabic",
+      "identities" : "Arabic",
+      "addresses" : "Eye color",
+      "biometricData" : "Eye color",
+      "datesOfBirth" : "Eye color",
+      "placesOfBirth" : "Eye color",
+      "documents" : "Eye color",
+      "features" : "Eye color",
+      "names" : "Eye color",
+      "otherData" : "Eye color"
+    }
   }]
 }

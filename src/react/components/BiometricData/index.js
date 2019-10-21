@@ -14,6 +14,7 @@ import { CustomInput } from "../common/CustomInput";
 import { CustomDropzone } from "../common/CustomDropzone";
 import { DocTypeIcon, DocInfo } from "../common/DocElement";
 import { CustomModal } from "../common/CustomModal";
+import { CustomHeader } from "../common/CustomHeader";
 import { FileTypes } from "../../constant/file-types";
 import { channels } from "../../../shared/constants";
 import "./styles.css";
@@ -56,6 +57,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
       value: '',
       notes: ''
     });
+    setValidation(false);
   };
 
   const handleEdit = (mode, index) => {
@@ -95,7 +97,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
   const doValidation = () => {
     if (state.type === '' || state.value === '') {
       setValidation(true);
-      smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
     return true;
@@ -103,9 +105,11 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
 
   return (
     <div className="start-page BiometricData" id="BIOMETRIC-DATA">
-      <div className="header" style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}>
-        <h5>{vocabularies[lang]['new']['main'][13]}</h5>
-      </div>
+      <CustomHeader
+        style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
+        heading={vocabularies[lang]['new']['main'][13]}
+        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['biometricData']}
+      />
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
