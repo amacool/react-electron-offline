@@ -299,6 +299,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
             vocabularies[lang]['new']['common'][3]
           ]}
           data={documents.map((item) => ({ a: item.docNumber, b: item.docType, c: item.notes }))}
+          originalData={documents}
           extraCell={{ title: '', content: <ThreeDots color='#4eb6ee' /> }}
           getExtraCell={(index) => ({
             title: '',
@@ -308,6 +309,10 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
               label2={vocabularies[lang]['new']['common'][2]}
             />
           })}
+          updateOrigin={(data) => {
+            handleSetValue(data);
+            setDocuments(data);
+          }}
         />
       </div>
     </div>

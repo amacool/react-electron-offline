@@ -207,6 +207,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
               c: item.notes
             })
           )}
+          originalData={dates}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem
@@ -215,6 +216,10 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
               label2={vocabularies[lang]['new']['common'][2]}
             />
           })}
+          updateOrigin={(data) => {
+            handleSetValue(data);
+            setDates(data);
+          }}
         />
       </div>
     </div>

@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const CustomTable = ({ header, data, handleClick, getExtraCell, sortable = true, sortDirection = true }) => {
+export const CustomTable = ({ header, data, handleClick, getExtraCell, sortable = true, sortDirection = true, updateOrigin, originalData }) => {
   const [tableItems, setTableItems] = React.useState(data);
   const [isAscending, setIsAscending] = React.useState(sortDirection);
   const [sortBy, setSortBy] = React.useState('');
@@ -42,6 +42,14 @@ export const CustomTable = ({ header, data, handleClick, getExtraCell, sortable 
     });
     setTableItems(sortedArr);
     setIsAscending(!isAscending);
+
+    if (updateOrigin) {
+      let sortedArr = [...originalData];
+      sortedArr.sort((a, b) => {
+        return isAscending ? (a[sortBy] > b[sortBy] ? 1 : -1) : (a[sortBy] <= b[sortBy] ? 1 : -1);
+      });
+      updateOrigin(sortedArr);
+    }
   };
 
   // get index of row in data

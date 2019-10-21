@@ -88,19 +88,11 @@ function Recent({ history, changeInformation, vocabularies }) {
             handleClick={handleLoadData}
           />
         </div>
-        <div className="content-footer">
-          <Button
-            variant="contained"
-            className="add-button col-1 mt-39"
-          >
-            {vocabularies[lang]['recent'][3]}
-          </Button>
-        </div>
+        <div className="content-footer" />
       </div>
     </div>
   );
 }
-
 
 const mapStateToProps = (state) => ({
   vocabularies: state.vocabularies

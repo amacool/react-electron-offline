@@ -76,7 +76,7 @@ class Main extends Component {
   }
 
   onSave() {
-    this.handleSaveFile(true);
+    this.handleSaveFile(false);
     // if (this.performValidation()) {
     //   this.props.validateInformation(false);
     //   this.handleSaveFile(false);

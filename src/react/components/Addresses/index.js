@@ -291,6 +291,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
               c: item.notes
             })
           )}
+          originalData={addresses}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem
@@ -299,6 +300,10 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
               label2={vocabularies[lang]['new']['common'][2]}
             />
           })}
+          updateOrigin={(data) => {
+            handleSetValue(data);
+            setAddresses(data);
+          }}
         />
       </div>
     </div>

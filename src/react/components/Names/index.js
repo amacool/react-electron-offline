@@ -1,7 +1,6 @@
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import Button from "@material-ui/core/Button/Button";
-import smalltalk from "smalltalk";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
 import { CustomInput } from "../common/CustomInput";
 import { CustomHeader } from "../common/CustomHeader";
@@ -213,7 +212,8 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             vocabularies[lang]['new']['names'][1],
             vocabularies[lang]['new']['names'][0]
           ]}
-          data={names.map((item) => ({ a: item.order, b: item.type, c: item.script, d: item.name }))}
+          data={names.map((item) => ({ order: item.order, type: item.type, script: item.script, name: item.name }))}
+          originalData={names}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem
@@ -222,6 +222,10 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
               label2={vocabularies[lang]['new']['common'][2]}
             />
           })}
+          updateOrigin={(data) => {
+            handleSetValue({names: data, names1});
+            setNames(data);
+          }}
         />
       </div>
 
@@ -274,7 +278,8 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             vocabularies[lang]['new']['names'][1],
             vocabularies[lang]['new']['names'][0]
           ]}
-          data={names1.map((item) => ({ a: item.order, b: item.type, c: item.script, d: item.name }))}
+          data={names1.map((item) => ({ order: item.order, type: item.type, script: item.script, name: item.name }))}
+          originalData={names1}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem
@@ -283,6 +288,10 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
               label2={vocabularies[lang]['new']['common'][2]}
             />
           })}
+          updateOrigin={(data) => {
+            handleSetValue({names1: data, names});
+            setNames1(data);
+          }}
         />
       </div>
     </div>

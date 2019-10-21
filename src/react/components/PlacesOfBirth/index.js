@@ -290,6 +290,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
               c: item.notes
             })
           )}
+          originalData={addresses}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem
@@ -298,6 +299,10 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
               label2={vocabularies[lang]['new']['common'][2]}
             />
           })}
+          updateOrigin={(data) => {
+            handleSetValue(data);
+            setAddresses(data);
+          }}
         />
       </div>
     </div>

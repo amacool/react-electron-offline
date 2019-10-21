@@ -72,6 +72,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
   };
 
   const handleSetIdentityType = type => {
+    handleSetValue(identities);
     setIdentityType(type);
     setCurrentStep(2);
   };
@@ -137,7 +138,12 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
         <CustomTable
           header={[vocabularies[lang]['new']['identities'][0], vocabularies[lang]['new']['identities'][1]]}
           data={identities.map((item) => ({ identityType: item.identityType, category: item.category }))}
+          originalData={identities}
           handleClick={handleSetIdentityType}
+          updateOrigin={(data) => {
+            handleSetValue(data);
+            setIdentities(data);
+          }}
         />
       </div>
     </div>

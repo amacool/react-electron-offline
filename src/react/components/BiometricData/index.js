@@ -171,13 +171,13 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
                 </div>
                 <div className="input-container">
                   <input type="text" placeholder={vocabularies[lang]['new']['biometric data'][2]} value={attachment.path} />
-                  <Button
-                    variant="contained"
-                    className={`add-button ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}
-                    onClick={handleAdd}
-                  >
-                    {vocabularies[lang]['new']['biometric data'][3]}
-                  </Button>
+                  {/*<Button*/}
+                    {/*variant="contained"*/}
+                    {/*className={`add-button ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}*/}
+                    {/*onClick={handleAdd}*/}
+                  {/*>*/}
+                    {/*{vocabularies[lang]['new']['biometric data'][3]}*/}
+                  {/*</Button>*/}
                 </div>
               </div>
             </div>
@@ -220,6 +220,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
               d: item.notes
             })
           )}
+          originalData={features}
           getExtraCell={(index) => ({
             title: '',
             content: <TableBtnEditItem
@@ -228,6 +229,10 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
               label2={vocabularies[lang]['new']['common'][2]}
             />
           })}
+          updateOrigin={(data) => {
+            handleSetValue(data);
+            setFeatures(data);
+          }}
         />
         {curAttachment && (
           <CustomModal
