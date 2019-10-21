@@ -111,34 +111,40 @@
   }],
   "category" : [{
     "EN" : {
-      "R1" : "cat1",
-      "R2" : "cat2",
-      "R3" : "cat3"
+      "R1" : "Primary",
+      "R2" : "Category1",
+      "R3" : "Category2",
+      "R4" : "Category3"
     },
     "FR" : {
-      "R1" : "cat1",
-      "R2" : "cat2",
-      "R3" : "cat3"
+      "R1" : "Primary",
+      "R2" : "Category1",
+      "R3" : "Category2",
+      "R4" : "Category3"
     },
     "CN" : {
-      "R1" : "cat1",
-      "R2" : "cat2",
-      "R3" : "cat3"
+      "R1" : "Primary",
+      "R2" : "Category1",
+      "R3" : "Category2",
+      "R4" : "Category3"
     },
     "RU" : {
-      "R1" : "cat1",
-      "R2" : "cat2",
-      "R3" : "cat3"
+      "R1" : "Primary",
+      "R2" : "Category1",
+      "R3" : "Category2",
+      "R4" : "Category3"
     },
     "SP" : {
-      "R1" : "cat1",
-      "R2" : "cat2",
-      "R3" : "cat3"
+      "R1" : "Primary",
+      "R2" : "Category1",
+      "R3" : "Category2",
+      "R4" : "Category3"
     },
     "AR" : {
-      "R1" : "R1-EN",
-      "R2" : "R2-EN",
-      "R3" : "R3-EN"
+      "R1" : "Primary",
+      "R2" : "Category1",
+      "R3" : "Category2",
+      "R4" : "Category3"
     }
   }],
   "type" : [{

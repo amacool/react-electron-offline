@@ -113,7 +113,11 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
                 {categories && Object.keys(categories).map((itemKey, index) => (
-                  <MenuItem value={itemKey} key={index}>
+                  <MenuItem
+                    value={categories[itemKey]}
+                    key={index}
+                    disabled={!!(categories[itemKey] === 'Primary' && identities.find(item => item.category === 'Primary'))}
+                  >
                     {categories[itemKey]}
                   </MenuItem>
                 ))}
