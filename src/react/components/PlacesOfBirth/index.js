@@ -18,7 +18,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
   const categoryLabel = React.useRef(null);
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
-    address: false,
+    address: true,
     street: '',
     city: '',
     province: '',
@@ -41,22 +41,47 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
   }, []);
 
   const handleChange = name => e => {
-    const value = {
-      ...state,
-      [name]: e.target.value
-    };
-    setState(value);
+    if (name === 'address') {
+      setState({
+        ...state,
+        [name]: e.target.value,
+        location: !e.target.value
+      });
+    } else if (name === 'location') {
+      setState({
+        ...state,
+        [name]: e.target.value,
+        address: !e.target.value
+      });
+    } else {
+      setState({
+        ...state,
+        [name]: e.target.value,
+      });
+    }
   };
 
   const handleAdd = () => {
     if (!doValidation()) return;
 
+    let value = { ...state };
+    if (state.address) {
+      value.region = '';
+      value.latitude = '';
+      value.longitude = '';
+    } else if (state.longitude) {
+      value.street = '';
+      value.city = '';
+      value.province = '';
+      value.zipCode = '';
+      value.country = '';
+    }
     if (editIndex === -1) {
-      handleSetValue([...addresses, state]);
-      setAddresses([...addresses, state]);
+      handleSetValue([...addresses, value]);
+      setAddresses([...addresses, value]);
     } else {
       let tArr = [...addresses];
-      tArr[editIndex] = {...state};
+      tArr[editIndex] = value;
       handleSetValue(tArr);
       setAddresses(tArr);
     }
@@ -104,15 +129,25 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
   };
 
   const doValidation = () => {
-    if (state.street === ''
+    if (!state.address && !state.location) {
+      return false;
+    }
+    if (state.address && (
+      state.street === ''
       || state.city === ''
       || state.province === ''
       || state.zipCode === ''
       || state.country === ''
-      || state.region === ''
+    )) {
+      setValidation(true);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    if (state.location && (
+      state.region === ''
       || state.latitude === ''
       || state.longitude === ''
-    ) {
+    )) {
       setValidation(true);
       // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
@@ -145,7 +180,8 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 label={vocabularies[lang]['new']['addresses'][1]}
                 required={true}
                 onChange={handleChange("street")}
-                validation={validation}
+                validation={validation && state.address}
+                disabled={!state.address}
               />
             </div>
           </div>
@@ -158,7 +194,8 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 label={vocabularies[lang]['new']['addresses'][2]}
                 required={true}
                 onChange={handleChange("city")}
-                validation={validation}
+                validation={validation && state.address}
+                disabled={!state.address}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -168,7 +205,8 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 label={vocabularies[lang]['new']['addresses'][3]}
                 required={true}
                 onChange={handleChange("province")}
-                validation={validation}
+                validation={validation && state.address}
+                disabled={!state.address}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -178,11 +216,12 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 label={vocabularies[lang]['new']['addresses'][4]}
                 required={true}
                 onChange={handleChange("zipCode")}
-                validation={validation}
+                validation={validation && state.address}
+                disabled={!state.address}
               />
             </div>
             <div className="col mt-26">
-              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.country ? 'select-empty' : ''}`}>
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.country && state.address ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="country" className="custom-select-label">
                   {vocabularies[lang]['new']['addresses'][5]}<b>*</b>
                 </InputLabel>
@@ -195,6 +234,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                     id: 'country',
                   }}
                   className="custom-select"
+                  disabled={!state.address}
                 >
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
@@ -219,6 +259,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 onChange={handleChange('location')}
                 required={true}
                 value={state.location}
+                disabled={!state.location}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -228,7 +269,8 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 label={vocabularies[lang]['new']['addresses'][7]}
                 required={true}
                 onChange={handleChange("region")}
-                validation={validation}
+                validation={validation && state.location}
+                disabled={!state.location}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -238,7 +280,8 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 label={vocabularies[lang]['new']['addresses'][8]}
                 required={true}
                 onChange={handleChange("latitude")}
-                validation={validation}
+                validation={validation && state.location}
+                disabled={!state.location}
               />
             </div>
             <div className="col">
@@ -248,7 +291,8 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
                 label={vocabularies[lang]['new']['addresses'][9]}
                 required={true}
                 onChange={handleChange("longitude")}
-                validation={validation}
+                validation={validation && state.location}
+                disabled={!state.location}
               />
             </div>
           </div>
@@ -289,7 +333,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
           data={addresses.map((item) =>
             ({
               a: `${item.street} ${item.city} ${item.province} ${item.zipCode} ${item.country}`,
-              b: item.region,
+              b: `${item.region} ${item.latitude} ${item.longitude}`,
               c: item.notes
             })
           )}

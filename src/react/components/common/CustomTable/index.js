@@ -10,8 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThreeDots } from "../Icons/ThreeDots";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSortAmountUp, faSortAmountDown, faSort } from "@fortawesome/free-solid-svg-icons";
+import { faSortAmountUp, faSortAmountDown, faSort, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import "./styles.css";
+import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,10 +27,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const CustomTable = ({ header, data, handleClick, getExtraCell, sortable = true, sortDirection = true, updateOrigin, originalData }) => {
+export const CustomTable = ({
+  header,
+  data,
+  handleClick,
+  handleRemove,
+  getExtraCell,
+  sortable = true,
+  sortDirection = true,
+  selectable = false,
+  updateOrigin,
+  originalData
+}) => {
   const [tableItems, setTableItems] = React.useState(data);
   const [isAscending, setIsAscending] = React.useState(sortDirection);
   const [sortBy, setSortBy] = React.useState('');
+  const [selected, setSelected] = React.useState([...Array(data.length)].map(() => false));
+  const [selectedAll, setSelectedAll] = React.useState(false);
+  const [removable, setRemovable] = React.useState(false);
 
   const sortTable = (sortByIndex) => {
     if (!tableItems || tableItems.length === 0) return;
@@ -54,15 +69,55 @@ export const CustomTable = ({ header, data, handleClick, getExtraCell, sortable 
 
   // get index of row in data
   const getOriginalIndex = (row) => {
-    return data.findIndex(item => !Object.keys(row).some(key => row[key] !== item[key]));
+    return data.findIndex((item) => !Object.keys(row).some(key => row[key] !== item[key]));
+  };
+
+  const onChangeSelected = (val, index) => {
+    setSelected(selected.map((item, key) => key === index ? val : item));
+  };
+
+  const onChangeSelectedAll = (val) => {
+    setSelectedAll(val);
+    setSelected(selected.map(() => val));
+  };
+
+  const onRemoveItems = () => {
+    console.log(selected);
+    // handleRemove(selected);
   };
 
   React.useEffect(() => setTableItems(data), [data]);
+  React.useEffect(() => setSelected([...Array(data.length)].map(() => false)), [data]);
+  React.useEffect(() => {
+    // check if all selected or not
+    if (selected.some((item) => !item)) {
+      setSelectedAll(false);
+      setRemovable(false);
+    } else {
+      setSelectedAll(true);
+    }
+    // show remove button if more than one is selected
+    if (selected.some((item) => item)) {
+      setRemovable(true);
+    }
+  }, [selected]);
 
   return (
     <Table className="custom-table">
       <TableHead>
         <TableRow>
+          {selectable && (
+            <TableCell align="left" key="select-all">
+              <Checkbox
+                color="primary"
+                onChange={(e) => onChangeSelectedAll(e.target.checked)}
+                onClick={(e) => e.stopPropagation()}
+                value="check"
+                checked={selectedAll}
+              />
+              {removable && <FontAwesomeIcon icon={faTrashAlt} size="sm" onClick={onRemoveItems} />}
+            </TableCell>
+          )}
           {header.map((item, index) => (
             <TableCell align="left" key={index} onClick={() => sortable && sortTable(index)}>
               <span>{item}</span>
@@ -82,6 +137,17 @@ export const CustomTable = ({ header, data, handleClick, getExtraCell, sortable 
       <TableBody>
         {tableItems.map((row, index) => (
           <TableRow key={index} onClick={() => handleClick && handleClick(getOriginalIndex(row))}>
+            {selectable && (
+              <TableCell align="left" key="select-item">
+                <Checkbox
+                  color="primary"
+                  onChange={(e) => onChangeSelected(e.target.checked, index)}
+                  onClick={(e) => e.stopPropagation()}
+                  value="check"
+                  checked={selected[index]}
+                />
+              </TableCell>
+            )}
             {Object.keys(row).map((item, index) => (
               <TableCell align="left" key={index}>{row[item]}</TableCell>
             ))}

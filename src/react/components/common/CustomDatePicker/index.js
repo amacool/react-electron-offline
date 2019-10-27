@@ -23,12 +23,12 @@ function parseDate(str, format, locale) {
   return undefined;
 }
 
-export const CustomDatePicker = ({ onChange, label, required, value, locale = "en", validation }) => {
+export const CustomDatePicker = ({ onChange, label, required, value, locale = "en", validation, disabled }) => {
   const FORMAT = 'MM/dd/yyyy';
   const localeLower = locale.toLowerCase();
 
   return (
-    <div className={`custom-date-picker ${validation && required && !value ? 'date-picker-empty' :''}`}>
+    <div className={`custom-date-picker ${validation && required && !value ? 'date-picker-empty' :''} ${disabled ? 'disabled' : ''}`}>
       <label>
         {label}{required && <b>*</b>}
       </label>
@@ -49,6 +49,7 @@ export const CustomDatePicker = ({ onChange, label, required, value, locale = "e
           parseDate={parseDate}
           placeholder="MM/DD/YYYY"
           onDayChange={(v) => v && onChange({ target : { value: dateFnsFormat(v, FORMAT) } })}
+          disabled={disabled}
         />
         <img className="calendar-icon" src={CalendarIcon} alt='' />
       </div>
