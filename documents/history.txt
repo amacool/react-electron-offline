@@ -1,17 +1,1 @@
-E:\dddd,10/21/2019,1
-C:\Users\amacool\Downloads\data (6).json,10/21/2019,1
-C:\Users\amacool\Downloads\fffffff,10/17/2019,1
-C:\Users\amacool\Downloads\aaa,10/17/2019,1
-C:\Users\amacool\Downloads\asdf.json,10/21/2019,1
-C:\Users\amacool\Downloads\dddd,10/17/2019,1
-E:\data.json,10/18/2019,1
-E:\cccc,10/21/2019,1
-E:\tttt,10/16/2019,1
-E:\asb,10/21/2019,0
-E:\sample.json,10/17/2019,0
-C:\Users\amacool\Downloads\fffffffffffff,10/17/2019,1
-E:\dfdfdf,10/19/2019,0
-E:\sssss,10/21/2019,1
-E:\were,10/22/2019,1
-E:\asdasdf,10/21/2019,1
-C:\Users\amacool\Desktop\eee,10/22/2019,0
+E:\sample.json,10/28/2019,1

@@ -21,6 +21,10 @@
   margin-top: 5px;
 }
 
+.custom-input-control .custom-input.disabled {
+  border: solid 1px #b7b7b7;
+}
+
 .custom-input-control .custom-input.input-empty {
   border: solid 1px red;
 }
@@ -31,4 +35,8 @@
   outline: none;
   color: #626262;
   padding: 10px 0;
+}
+
+.custom-input-control .custom-input input:disabled {
+  background: transparent;
 }

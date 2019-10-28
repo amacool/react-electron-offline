@@ -18,7 +18,7 @@ function Recent({ history, changeInformation, vocabularies }) {
 
   const handleLoadData = (index) => {
     if (isElectron()) {
-      const {ipcRenderer} = window.require('electron');
+      const { ipcRenderer } = window.require('electron');
       ipcRenderer.send(channels.OPEN_FILE, { path: files[index].path });
       ipcRenderer.on(channels.OPEN_FILE, (event, arg) => {
         ipcRenderer.removeAllListeners(channels.OPEN_FILE);
@@ -26,6 +26,23 @@ function Recent({ history, changeInformation, vocabularies }) {
         if (success) {
           changeInformation(data.data);
           history.push('/start');
+        } else {
+          smalltalk.alert(vocabularies[lang]['messages'][0], '');
+        }
+      });
+    }
+  };
+
+  const onRemoveHistory = (history) => {
+    if (isElectron()) {
+      const removeFiles = files.filter((item, index) => history.indexOf(index) >= 0).map((item) => item.path);
+      const { ipcRenderer } = window.require('electron');
+      ipcRenderer.send(channels.REMOVE_HISTORY, { removeFiles });
+      ipcRenderer.on(channels.REMOVE_HISTORY, (event, arg) => {
+        ipcRenderer.removeAllListeners(channels.REMOVE_HISTORY);
+        const { success } = arg;
+        if (success) {
+          setFiles(files.filter((item, index) => history.indexOf(index) === -1));
         } else {
           smalltalk.alert(vocabularies[lang]['messages'][0], '');
         }
@@ -47,6 +64,7 @@ function Recent({ history, changeInformation, vocabularies }) {
             const fileInfo = item.split(",");
             const fileName = fileInfo[0].substr(fileInfo[0].lastIndexOf("\\") + 1);
             return {
+              selected: false,
               type: 'normal',
               name: fileName,
               path: fileInfo[0],
@@ -78,13 +96,19 @@ function Recent({ history, changeInformation, vocabularies }) {
             ]}
             data={files.map((item) =>
               ({
-                a: <DocTypeIcon type={item.type} status={item.status} />,
-                b: <DocInfo info={{ name: item.name, path: item.path }} />,
-                c: item.lastOpened,
-                d: item.status
+                type: <DocTypeIcon type={item.type} status={item.status} />,
+                name: <DocInfo info={{ name: item.name, path: item.path }} />,
+                lastOpened: item.lastOpened,
+                status: item.status
               })
             )}
+            originalData={files}
+            updateOrigin={(data) => {
+              setFiles(data);
+            }}
             handleClick={handleLoadData}
+            handleRemove={onRemoveHistory}
+            selectable={true}
           />
         </div>
         <div className="content-footer" />

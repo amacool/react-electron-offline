@@ -14,7 +14,7 @@ import "./styles.css";
 function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const [state, setState] = React.useState({
-    specific: false,
+    specific: true,
     date: '',
     range: false,
     subset: '',
@@ -28,22 +28,43 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
   const [preview, setPreview] = React.useState(false);
 
   const handleChange = name => e => {
-    const value = {
-      ...state,
-      [name]: e.target.value
-    };
-    setState(value);
+    if (name === 'specific') {
+      setState({
+        ...state,
+        [name]: e.target.value,
+        range: !e.target.value
+      });
+    } else if (name === 'range') {
+      setState({
+        ...state,
+        [name]: e.target.value,
+        specific: !e.target.value
+      });
+    } else {
+      setState({
+        ...state,
+        [name]: e.target.value,
+      });
+    }
   };
 
   const handleAdd = () => {
     if (!doValidation()) return;
 
+    let value = { ...state };
+    if (state.specific) {
+      value.subset = '';
+      value.from = '';
+      value.to = '';
+    } else if (state.range) {
+      value.date = '';
+    }
     if (editIndex === -1) {
-      handleSetValue([...dates, state]);
-      setDates([...dates, state]);
+      handleSetValue([...dates, value]);
+      setDates([...dates, value]);
     } else {
       let tArr = [...dates];
-      tArr[editIndex] = {...state};
+      tArr[editIndex] = value;
       handleSetValue(tArr);
       setDates(tArr);
     }
@@ -83,11 +104,19 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
   };
 
   const doValidation = () => {
-    if (state.date === ''
-      || state.subset === ''
+    if (!state.specific && !state.range) {
+      return false;
+    }
+    if (state.specific && state.date === '') {
+      setValidation(true);
+      // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
+      return false;
+    }
+    if (state.range === '' && (
+      state.subset === ''
       || state.from === ''
       || state.to === ''
-    ) {
+    )) {
       setValidation(true);
       // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
@@ -120,7 +149,8 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 label={vocabularies[lang]['new']['dates of birth'][1]}
                 onChange={handleChange('date')}
                 locale={lang}
-                validation={validation}
+                validation={validation && state.specific}
+                disabled={!state.specific}
               />
             </div>
           </div>
@@ -141,7 +171,8 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 label={vocabularies[lang]['new']['dates of birth'][3]}
                 required={true}
                 onChange={handleChange("subset")}
-                validation={validation}
+                validation={validation && state.range}
+                disabled={!state.range}
               />
             </div>
           </div>
@@ -154,7 +185,8 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 label={vocabularies[lang]['new']['dates of birth'][4]}
                 onChange={handleChange('from')}
                 locale={lang}
-                validation={validation}
+                validation={validation && state.range}
+                disabled={!state.range}
               />
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
@@ -164,7 +196,8 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 label={vocabularies[lang]['new']['dates of birth'][5]}
                 onChange={handleChange('to')}
                 locale={lang}
-                validation={validation}
+                validation={validation && state.range}
+                disabled={!state.range}
               />
             </div>
             <div className="col" />

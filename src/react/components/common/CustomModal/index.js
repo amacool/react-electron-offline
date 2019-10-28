@@ -38,7 +38,8 @@ const useStyles = makeStyles(theme => ({
     color: 'black'
   },
   modalBody: {
-    height: 'inherit',
+    height: '-webkit-fill-available',
+    marginTop: '20px',
     marginBottom: '20px',
     whiteSpace: 'pre-line',
     overflowY: 'auto',

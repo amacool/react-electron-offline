@@ -1,4 +1,3 @@
-.custom-date-picker {}
 
 .custom-date-picker label {
   color: #4eb6ee;
@@ -18,6 +17,10 @@
   background: white;
   display: block;
   align-items: center;
+}
+
+.custom-date-picker.disabled div.DayPickerInput {
+  border: solid 1px #b7b7b7;
 }
 
 .custom-date-picker.date-picker-empty div.DayPickerInput {
