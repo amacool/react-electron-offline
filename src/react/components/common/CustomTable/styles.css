@@ -28,6 +28,9 @@ table.custom-table thead tr th span {
 table.custom-table thead tr th:first-child span {
   border: none;
 }
+table.custom-table thead tr th:first-child span:hover {
+  background-color: unset;
+}
 
 table.custom-table tbody tr {
   cursor: pointer;

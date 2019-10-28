@@ -82,15 +82,20 @@ export const CustomTable = ({
   };
 
   const onRemoveItems = () => {
-    console.log(selected);
-    // handleRemove(selected);
+    const arr = [];
+    selected.forEach((item, index) => {
+      if (item) {
+        arr.push(index);
+      }
+    });
+    handleRemove(arr);
   };
 
   React.useEffect(() => setTableItems(data), [data]);
   React.useEffect(() => setSelected([...Array(data.length)].map(() => false)), [data]);
   React.useEffect(() => {
     // check if all selected or not
-    if (selected.some((item) => !item)) {
+    if (selected.some((item) => !item) || selected.length === 0) {
       setSelectedAll(false);
       setRemovable(false);
     } else {
@@ -115,7 +120,7 @@ export const CustomTable = ({
                 value="check"
                 checked={selectedAll}
               />
-              {removable && <FontAwesomeIcon icon={faTrashAlt} size="sm" onClick={onRemoveItems} />}
+              {removable && <FontAwesomeIcon icon={faTrashAlt} size="lg" onClick={onRemoveItems} />}
             </TableCell>
           )}
           {header.map((item, index) => (

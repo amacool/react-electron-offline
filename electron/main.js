@@ -111,6 +111,35 @@ ipcMain.on(channels.GET_HISTORY, function (event) {
   }
 });
 
+ipcMain.on(channels.REMOVE_HISTORY, function (event, arg) {
+  try {
+    if (!arg.removeFiles || arg.removeFiles.length === 0) {
+      throw 'nothing to remove';
+    }
+    fs.readFile(historyPath, 'utf-8', (err, data) => {
+      if (err) throw err;
+      const rows = data.split("\n");
+      let newData = [];
+      rows.forEach((item) => {
+        if (arg.removeFiles.indexOf(item.split(',')[0]) === -1) {
+          newData.push(item);
+        }
+      });
+      fs.writeFile(historyPath, newData.join("\n"), function (err) {
+        if (err) throw err;
+        event.sender.send(channels.REMOVE_HISTORY, {
+          success: true
+        });
+      });
+    });
+  } catch (err) {
+    event.sender.send(channels.REMOVE_HISTORY, {
+      message: err.message,
+      success: false
+    });
+  }
+});
+
 ipcMain.on(channels.OPEN_FILE, function (event, arg) {
   let openPath = '';
   if (arg && arg.path) {
