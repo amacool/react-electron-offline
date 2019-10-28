@@ -114,6 +114,10 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
         const { data, success } = arg;
         if (success) {
           const existingType = FileTypes.find((item) => item === data);
+          if (!existingType) {
+            smalltalk.alert(vocabularies[lang]['messages'][0], 'Unsupported file type!');
+            return;
+          }
           setCurPreviewData({ ...features[index], attachment: { ...features[index].attachment, type: existingType } });
           setIsModalOpen(true);
         } else {

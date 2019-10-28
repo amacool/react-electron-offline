@@ -55,7 +55,9 @@
         "Regime",
         "Submitted By",
         "Reason For Listing",
-        "Member state(s) confidential"
+        "Member state(s) confidential",
+        "Statement Confidential",
+        "Public Statement"
       ],
       "identities": ["Identity Type", "Category"],
       "names": ["Name", "Script", "Order", "Name In Original Script"],
@@ -127,7 +129,9 @@
         "政权",
         "所提交",
         "上市原因",
-        "会员国机密"
+        "会员国机密",
+        "机密声明",
+        "公开声明"
       ],
       "identities": ["身份类型", "类别"],
       "names": ["名称", "名称脚本", "订购", "原始脚本中的名称"],
@@ -199,7 +203,9 @@
         "Régime",
         "Proposé par",
         "Raison de l'inscription",
-        "État membre confidentiel"
+        "État membre confidentiel",
+        "Déclaration confidentielle",
+        "Déclaration publique"
       ],
       "identities": ["Type d'identité", "Catégorie"],
       "names": ["Nom", "Scénario", "Ordre", "Nom dans le script original"],
@@ -271,7 +277,9 @@
         "Режим",
         "Представленный",
         "Причина перечисления",
-        "Государство-член (ы) конфиденциально"
+        "Государство-член (ы) конфиденциально",
+        "Заявление конфиденциально",
+        "Публичное заявление"
       ],
       "identities": ["Тип идентификации", "категория"],
       "names": ["имя", "скрипт", "порядок", "Имя в оригинальном сценарии"],
@@ -343,7 +351,9 @@
         "Régimen",
         "Presentado por",
         "Motivo de la inclusión",
-        "Estado miembro (s) confidencial"
+        "Estado miembro (s) confidencial",
+        "Declaración confidencial",
+        "Declaración pública"
       ],
       "identities": ["Tipo de identidad", "Categoría"],
       "names": ["Nombre", "Guión", "Orden", "Nombre en el guión original"],
@@ -415,7 +425,9 @@
         "نظام",
         "مقدم من",
         "سبب الادراج",
-        "الدولة (الدول) الأعضاء السرية"
+        "الدولة (الدول) الأعضاء السرية",
+        "بيان سري",
+        "بيان علني"
       ],
       "identities": ["نوع الهوية", "الفئه"],
       "names": ["اسم", "البرنامج النصي", "أجل", "الاسم في النص الأصلي"],

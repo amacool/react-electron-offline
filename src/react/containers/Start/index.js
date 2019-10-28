@@ -43,7 +43,9 @@ class Start extends Component {
         applicableMeasure: [],
         submittedBy: [],
         entryRemarks: '',
-        reasonForListing: ''
+        reasonForListing: '',
+        statementConfidential: '',
+        publicStatement: ''
       },
       identityType: 0,
       identities: [],

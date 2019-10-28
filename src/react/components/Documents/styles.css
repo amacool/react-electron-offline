@@ -1,5 +1,9 @@
 .Documents .add-button {
-    margin-top: 49px;
-    float: right;
-    width: 80px;
+  margin-top: 40px;
+  float: right;
+  width: 80px;
+}
+
+.Start .Documents .text-field {
+  height: 215px;
 }

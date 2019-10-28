@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomMultiSelect } from "../common/CustomMultiSelect";
 import { CustomHeader } from "../common/CustomHeader";
+import { CustomInput } from "../common/CustomInput";
 import "../common/FormControl/styles.css";
 import "./styles.css";
 
@@ -81,7 +82,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
         heading={vocabularies[lang]['new']['main'][4]}
         tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['information']}
       />
-      <div className="content">
+      <div className="content mb-0">
         <div className="col-3">
           <div className="row">
             <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.entryType ? 'select-empty' : ''}`}>
@@ -224,6 +225,28 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
               placeholder={vocabularies[lang]['new']['common'][7]}
             />
           </div>
+        </div>
+      </div>
+      <div className="content">
+        <div className="col-5">
+          <CustomInput
+            value={state.statementConfidential}
+            id="names-statement-confidential"
+            label={vocabularies[lang]['new']['information'][8]}
+            required={true}
+            onChange={handleChange("statementConfidential")}
+            validation={validation}
+          />
+        </div>
+        <div className="col-5">
+          <CustomInput
+            value={state.publicStatement}
+            id="names-public-statement"
+            label={vocabularies[lang]['new']['information'][9]}
+            required={true}
+            onChange={handleChange("publicStatement")}
+            validation={validation}
+          />
         </div>
       </div>
     </div>

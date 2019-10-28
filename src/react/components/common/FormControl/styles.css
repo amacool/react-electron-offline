@@ -63,6 +63,7 @@
 
 .custom-textarea-control > div {
   height: 100%;
+  align-items: start;
 }
 
 .custom-textarea-control > label {

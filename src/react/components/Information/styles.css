@@ -1,3 +1,11 @@
+.Start .Information div.content.mb-0 {
+  margin-bottom: 0;
+}
+
+.Start .Information div.content:last-child {
+  margin-top: 0;
+}
+
 .Information .content .col-3 {
   width: 30%;
 }
@@ -10,4 +18,8 @@
 
 .Information .content .col-4 {
   width: 35%;
+}
+
+.Information .content .col-5 {
+  width: 49%;
 }

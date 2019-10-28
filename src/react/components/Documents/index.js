@@ -179,7 +179,8 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
             </div>
           </div>
           <div className="inline mb-20">
-            <div className={`w-34 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
+            <div className="col">
+              {/*//{`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>*/}
               <CustomInput
                 value={state.issuingCity}
                 id="issuing-city"
@@ -189,7 +190,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
                 validation={validation}
               />
             </div>
-            <div className="w-69 mt-26">
+            <div className="col ml-15 mr-15 mt-26">
               <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.issuedCountry ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="doc-type" className="custom-select-label">
                   {vocabularies[lang]['new']['documents'][3]}<b>*</b>
@@ -218,9 +219,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
                 </Select>
               </FormControl>
             </div>
-          </div>
-          <div className="inline mb-20">
-            <div className={`w-69 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
+            <div className="col mt-26">
               <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.issuingCountry ? 'select-empty' : ''}`}>
                 <InputLabel ref={categoryLabel} htmlFor="issuing-country" className="custom-select-label">
                   {vocabularies[lang]['new']['documents'][4]}<b>*</b>
@@ -249,16 +248,6 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
                 </Select>
               </FormControl>
             </div>
-            <div className="w-34">
-              <CustomDatePicker
-                value={state.issuedDate}
-                required={true}
-                label={vocabularies[lang]['new']['documents'][5]}
-                onChange={handleChange('issuedDate')}
-                locale={lang}
-                validation={validation}
-              />
-            </div>
           </div>
           <div className="inline mb-20">
             <div className={`w-69 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
@@ -275,6 +264,15 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
               />
             </div>
             <div className="w-34">
+              <CustomDatePicker
+                value={state.issuedDate}
+                required={true}
+                label={vocabularies[lang]['new']['documents'][5]}
+                onChange={handleChange('issuedDate')}
+                locale={lang}
+                validation={validation}
+                className="mb-20"
+              />
               <CustomDatePicker
                 value={state.expirationDate}
                 required={true}
