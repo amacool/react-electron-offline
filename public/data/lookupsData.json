@@ -343,6 +343,26 @@
       "eye_color" : "Eye color"
     }
   }],
+  "featuresType":{ 
+	 "EN":[ 
+		"Interpol Special Notice"
+	 ],
+	 "FR":[ 
+		"FR_Interpol Special Notice"
+	 ],
+	 "SP":[ 
+		"SP_Interpol Special Notice"
+	 ],
+	 "RU":[ 
+		"RU_Interpol Special Notice"
+	 ],
+	 "CH":[ 
+		"CH_Interpol Special Notice"
+	 ],
+	 "AR":[ 
+		"AR_Interpol Special Notice"
+	 ]
+   },
   "un_country_list":{ 
       "record":[ 
          { 
