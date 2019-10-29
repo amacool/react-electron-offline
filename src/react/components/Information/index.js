@@ -31,7 +31,6 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
     ) {
       return {};
     }
-    // console.log(settings.entryType[0]);
     return settings.entryType[0][lang];
   }, [lang, settings]);
   const regime = React.useMemo(() => {

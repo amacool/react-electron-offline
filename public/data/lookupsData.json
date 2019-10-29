@@ -2,77 +2,77 @@
   "version" :  "1569400117",
   "entryType" : [
     {
-      "EN" : {
-        "entry" : "Entity",
-        "vessel" : "Vessel",
-        "individual" : "Individual",
-        "aircraft" : "Aircraft"}
-    },
-    {"FR" : {
-      "entry" : "entité",
-      "vessel" : "récipient",
-      "individual" : "individu",
-      "aircraft" : "avion"
-    }
-	},
-    {"CN" : {
-      "entry" : "实体",
-      "vessel" : "容器",
-      "individual" : "个人",
-      "aircraft" : "飞机"
-    }},
-    {"RU" : {
-      "entry" : "запись",
-      "vessel" : "судно",
-      "individual" : "физическое лицо",
-      "aircraft" : "самолет"
-    }},
-    {"SP" : {
-      "entry" : "entrada",
-      "vessel" : "buque",
-      "individual" : "individual",
-      "aircraft" : "aeronave"
-    }},
-    {"AR" : {
-      "entry" : "دخول",
-      "vessel" : "وعاء",
-      "individual" : "فرد",
-      "aircraft" : "الطائرات"
-    }}
-  ],
+      "EN": {
+        "entry": "Entity",
+        "vessel": "Vessel",
+        "individual": "Individual",
+        "aircraft": "Aircraft"
+      },
+      "FR": {
+        "entry": "entité",
+        "vessel": "récipient",
+        "individual": "individu",
+        "aircraft": "avion"
+      },
+      "CN": {
+        "entry": "实体",
+        "vessel": "容器",
+        "individual": "个人",
+        "aircraft": "飞机"
+      },
+      "RU": {
+        "entry": "запись",
+        "vessel": "судно",
+        "individual": "физическое лицо",
+        "aircraft": "самолет"
+      },
+      "SP": {
+        "entry": "entrada",
+        "vessel": "buque",
+        "individual": "individual",
+        "aircraft": "aeronave"
+      },
+      "AR": {
+        "entry": "دخول",
+        "vessel": "وعاء",
+        "individual": "فرد",
+        "aircraft": "الطائرات"
+      }
+    }],
   "language" : ["EN","AR","CH","FR","SP","RU"],
-  "applicableMeasure" : [{
-    "EN" : {
-      "arms_embargo" : "Arms Embargo",
-      "trade_embargo" : "Trade Embargo",
-      "travel_ban" : "Travel Ban"
-    }},
-    {"FR" : {
-      "arms_embargo" : "FR_Arms Embargo",
-      "trade_embargo" : "FR_Trade Embargo",
-      "travel_ban" : "FR_Travel Ban"
-    }},
-    {"CN" : {
-      "arms_embargo" : "CN_Arms Embargo",
-      "trade_embargo" : "CN_Trade Embargo",
-      "travel_ban" : "CN_Travel Ban"
-    }},
-    {"RU" : {
-      "arms_embargo" : "RU_Arms Embargo",
-      "trade_embargo" : "RU_Trade Embargo",
-      "travel_ban" : "RU_Travel Ban"
-    }},
-    {"SP" : {
-      "arms_embargo" : "SP_Arms Embargo",
-      "trade_embargo" : "SP_Trade Embargo",
-      "travel_ban" : "SP_Travel Ban"
-    }},
-    {"AR" : {
-      "arms_embargo" : "AR_Arms Embargo",
-      "trade_embargo" : "AR_Trade Embargo",
-      "travel_ban" : "AR_Travel Ban"
-    }}
-  ],
+  "applicableMeasure" : [
+    {
+      "EN": {
+        "arms_embargo": "Arms Embargo",
+        "trade_embargo": "Trade Embargo",
+        "travel_ban": "Travel Ban"
+      },
+      "FR": {
+        "arms_embargo": "FR_Arms Embargo",
+        "trade_embargo": "FR_Trade Embargo",
+        "travel_ban": "FR_Travel Ban"
+      },
+      "CN": {
+        "arms_embargo": "CN_Arms Embargo",
+        "trade_embargo": "CN_Trade Embargo",
+        "travel_ban": "CN_Travel Ban"
+      },
+      "RU": {
+        "arms_embargo": "RU_Arms Embargo",
+        "trade_embargo": "RU_Trade Embargo",
+        "travel_ban": "RU_Travel Ban"
+      },
+      "SP": {
+        "arms_embargo": "SP_Arms Embargo",
+        "trade_embargo": "SP_Trade Embargo",
+        "travel_ban": "SP_Travel Ban"
+      },
+      "AR": {
+        "arms_embargo": "AR_Arms Embargo",
+        "trade_embargo": "AR_Trade Embargo",
+        "travel_ban": "AR_Travel Ban"
+      }
+    }],
   "regime" : [{
     "EN" : {
       "R1" : "R1-EN",
