@@ -66,6 +66,14 @@ class Start extends Component {
         Object.keys(result.data).forEach((itemKey) => {
           data[itemKey] = result.data[itemKey];
         });
+        data.countries = data.countries.record.map(item => ({
+          "EN": item.en_Short,
+          "FR": item.fr_Short,
+          "SP": item.sp_Short,
+          "RU": item.ru_Short,
+          "CH": item.ch_Short,
+          "AR": item.ar_Short
+        }));
         th.setState({
           ...th.state,
           ...data

@@ -1,13 +1,13 @@
 {
   "version" :  "1569400117",
   "entryType" : [
-  {
-    "EN" : {
-      "entry" : "Entity",
-      "vessel" : "Vessel",
-      "individual" : "Individual",
-      "aircraft" : "Aircraft"}
-  },
+    {
+      "EN" : {
+        "entry" : "Entity",
+        "vessel" : "Vessel",
+        "individual" : "Individual",
+        "aircraft" : "Aircraft"}
+    },
     {"FR" : {
       "entry" : "entité",
       "vessel" : "récipient",
@@ -291,7 +291,7 @@
       "NIN" : "National Identification Number"
     }
   }],
-  "countries" : [{
+  "countries1" : [{
     "EN" : {
       "US" : "United States",
       "CA" : "Canada"
@@ -363,7 +363,7 @@
        "interpol_special_notice": "AR_Interpol Special Notice"
      }
    }],
-  "un_country_list":{ 
+  "countries":{
       "record":[ 
          { 
             "_id":"5c9a6c6b6207be1f98869ec0",

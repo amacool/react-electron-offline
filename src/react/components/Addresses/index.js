@@ -34,7 +34,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
   const [preview, setPreview] = React.useState(false);
-  const countries = settings.countries[0];
+  const countries = settings.countries;
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -240,12 +240,12 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {countries && countries[lang] && Object.keys(countries[lang]).map((itemKey, index) => (
+                  {countries && countries.map((item, index) => (
                     <MenuItem
-                      value={countries[lang][itemKey]}
+                      value={item[lang]}
                       key={index}
                     >
-                      {countries[lang][itemKey]}
+                      {item[lang]}
                     </MenuItem>
                   ))}
                 </Select>

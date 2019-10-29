@@ -16,6 +16,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies, validating })
   const [validation, setValidation] = React.useState(validating);
   const gender = settings.gender[0];
   const livingStatus = settings.livingStatus[0];
+  const countries = settings.countries;
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -92,7 +93,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies, validating })
                       placeholder="Primary"
                     >
                       <MenuItem value="">
-                        <em>{vocabularies[lang]['new']['common'][3]}</em>
+                        <em>{vocabularies[lang]['new']['common'][5]}</em>
                       </MenuItem>
                       {livingStatus && livingStatus[lang] && Object.keys(livingStatus[lang]).map((itemKey, index) => (
                         <MenuItem
@@ -117,15 +118,34 @@ function OtherData({ settings, handleSetValue, data, vocabularies, validating })
                 />
               </div>
             </div>
-            <div className="col-4">
-              <CustomInput
-                value={state.nationality}
-                id="nationality"
-                label={vocabularies[lang]['new']['other data'][2]}
-                required={true}
-                onChange={handleChange("nationality")}
-                validation={validation}
-              />
+            <div className="col-4 mt-26">
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control`}>
+                <InputLabel ref={categoryLabel} htmlFor="doc-type" className="custom-select-label">
+                  {vocabularies[lang]['new']['other data'][2]}<b>*</b>
+                </InputLabel>
+                <Select
+                  value={state.nationality}
+                  onChange={handleChange('nationality')}
+                  labelWidth={categoryLabelWidth}
+                  inputProps={{
+                    name: 'issued-country',
+                    id: 'issued-country',
+                  }}
+                  className="custom-select"
+                >
+                  <MenuItem value="">
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
+                  </MenuItem>
+                  {countries && countries.map((item, index) => (
+                    <MenuItem
+                      value={item[lang]}
+                      key={index}
+                    >
+                      {item[lang]}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
           </div>
           <div className="custom-add-group">
