@@ -160,7 +160,7 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
       <CustomHeader
         style={validating && addresses.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
         heading={vocabularies[lang]['new']['main'][10]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['placesOfBirth']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['placesOfBirth']}
       />
       <div className="content content-header">
         <div className="row">

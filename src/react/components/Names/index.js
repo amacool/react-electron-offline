@@ -184,7 +184,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
       <CustomHeader
         style={validating && (names.length === 0 || names1.length === 0) ? { backgroundColor: '#ffaeae' } : {}}
         heading={vocabularies[lang]['new']['main'][6]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['names']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['names']}
       />
       <div className="content content-header">
         <div className="custom-add-group">

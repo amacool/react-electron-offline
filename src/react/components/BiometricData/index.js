@@ -165,7 +165,7 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
       <CustomHeader
         style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
         heading={vocabularies[lang]['new']['main'][13]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['biometricData']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['biometricData']}
       />
       <div className="content content-header">
         <div className="row">

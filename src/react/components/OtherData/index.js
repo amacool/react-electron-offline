@@ -38,7 +38,7 @@ function OtherData({ settings, handleSetValue, data, vocabularies, validating })
     <div className="start-page OtherData" id="OTHER-DATA">
       <CustomHeader
         heading={vocabularies[lang]['new']['main'][7]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['otherData']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['otherData']}
       />
       <div className="content content-header">
         <div className="row">

@@ -81,7 +81,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     <div className="start-page Identities" id="IDENTITIES">
       <CustomHeader
         heading={vocabularies[lang]['new']['main'][5]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['identities']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['identities']}
       />
       <div className="content content-header">
         <div className="custom-add-group row">

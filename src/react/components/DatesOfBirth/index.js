@@ -129,7 +129,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       <CustomHeader
         style={validating && dates.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
         heading={vocabularies[lang]['new']['main'][11]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['datesOfBirth']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['datesOfBirth']}
       />
       <div className="content content-header">
         <div className="row">

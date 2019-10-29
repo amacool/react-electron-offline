@@ -100,7 +100,7 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
       <CustomHeader
         style={validating && features.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
         heading={vocabularies[lang]['new']['main'][12]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['features']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['features']}
       />
       <div className="content content-header">
         <div className="row">

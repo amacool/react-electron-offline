@@ -80,7 +80,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
     <div className="start-page Information" id="INFORMATION">
       <CustomHeader
         heading={vocabularies[lang]['new']['main'][4]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['information']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['information']}
       />
       <div className="content mb-0">
         <div className="col-3">

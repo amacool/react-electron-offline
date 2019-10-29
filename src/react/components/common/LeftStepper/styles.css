@@ -65,7 +65,7 @@
 .left-stepper .MuiStepLabel-vertical {
   cursor: pointer !important;
   display: flex;
-  align-items: flex-end;
+  align-items: end;
 }
 
 .left-stepper .MuiStepper-vertical .MuiStepLabel-labelContainer {

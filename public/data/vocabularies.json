@@ -71,7 +71,19 @@
     "recent": ["RECENT FORMS", "Last time opened", "Status", "SENT", "Completed", "Draft"],
     "help": [
       "The following are some frequently asked questions on United Nations and the Security Council. If your question is not listed here, please fell free to contact the Security Council Practices and Charter Research Branch."
-    ]
+    ],
+    "tooltip" : {
+      "information" : "information",
+      "identities" : "identities",
+      "addresses" : "addresses",
+      "biometricData" : "biometricData",
+      "datesOfBirth" : "datesOfBirth",
+      "placesOfBirth" : "placesOfBirth",
+      "documents" : "documents",
+      "features" : "features",
+      "names" : "names",
+      "otherData" : "otherData"
+    }
   },
   "CN": {
     "messages": ["错误", "信息", "保存成功!", "无效的文件!", "保存失败", "请输入值!", "打开失败!"],
@@ -145,7 +157,19 @@
     "recent": ["最近形式", "上次开放", "状态", "已发送", "已完成", "草案"],
     "help": [
       "以下是有关联合国和安全理事会的一些常见问题。如果您的问题未在此处列出，请随时与安全理事会惯例和宪章研究处联系。"
-    ]
+    ],
+    "tooltip" : {
+      "information" : "信息",
+      "identities" : "信息",
+      "addresses" : "信息",
+      "biometricData" : "信息",
+      "datesOfBirth" : "信息",
+      "placesOfBirth" : "信息",
+      "documents" : "信息",
+      "features" : "信息",
+      "names" : "信息",
+      "otherData" : "信息"
+    }
   },
   "FR": {
     "messages": ["Erreur", "Info", "Enregistré avec succès!", "Document invalide!", "Échec de la sauvegarde!", "S'il vous plaît entrer des valeurs!", "Impossible d'ouvrir!"],
@@ -219,7 +243,19 @@
     "recent": ["FORMULAIRES RÉCENTS", "Dernière ouverture", "Statut", "ENVOYÉ", "Terminé", "Brouillon"],
     "help": [
       "Voici quelques questions fréquemment posées sur l’Organisation des Nations Unies et le Conseil de sécurité. Si votre question ne figure pas ici, n'hésitez pas à contacter le Service de la recherche sur les pratiques et la Charte du Conseil de sécurité."
-    ]
+    ],
+    "tooltip" : {
+      "information" : "ENVOYÉ",
+      "identities" : "ENVOYÉ",
+      "addresses" : "ENVOYÉ",
+      "biometricData" : "ENVOYÉ",
+      "datesOfBirth" : "ENVOYÉ",
+      "placesOfBirth" : "ENVOYÉ",
+      "documents" : "ENVOYÉ",
+      "features" : "ENVOYÉ",
+      "names" : "ENVOYÉ",
+      "otherData" : "ENVOYÉ"
+    }
   },
   "RU": {
     "messages": ["ошибка", "Информация", "Успешно сохранено!", "Неверный документ!", "Не удалось сохранить!", "Пожалуйста, введите значения!", "Не удалось открыть!"],
@@ -293,7 +329,19 @@
     "recent": ["ПОСЛЕДНИЕ ФОРМЫ", "Последний раз открывался", "Статус", "ПОСЛАЛ", "Завершенный", "Черновой вариант"],
     "help": [
       "Ниже приведены некоторые часто задаваемые вопросы об Организации Объединенных Наций и Совете Безопасности. Если ваш вопрос не указан здесь, пожалуйста, не стесняйтесь связаться с Сектором практики Совета Безопасности и Хартии."
-    ]
+    ],
+    "tooltip" : {
+      "information" : "Информация",
+      "identities" : "Информация",
+      "addresses" : "Информация",
+      "biometricData" : "Информация",
+      "datesOfBirth" : "Информация",
+      "placesOfBirth" : "Информация",
+      "documents" : "Информация",
+      "features" : "Информация",
+      "names" : "Информация",
+      "otherData" : "Информация"
+    }
   },
   "SP": {
     "messages": ["Error", "Informacion", "¡Guardado exitosamente!", "Documento inválido!", "¡Error al guardar!", "Por favor ingrese los valores!", "¡Falló al abrir!"],
@@ -367,7 +415,19 @@
     "recent": ["FORMULARIOS RECIENTES", "Última vez abierta", "Estado", "EXPEDIDO", "Terminado", "Sequía"],
     "help": [
       "Las siguientes son algunas preguntas frecuentes sobre las Naciones Unidas y el Consejo de Seguridad. Si su pregunta no figura en esta lista, no dude en ponerse en contacto con el Servicio de Prácticas del Consejo de Seguridad y la División de Investigación de la Carta."
-    ]
+    ],
+    "tooltip" : {
+      "information" : "Estado",
+      "identities" : "Estado",
+      "addresses" : "Estado",
+      "biometricData" : "Estado",
+      "datesOfBirth" : "Estado",
+      "placesOfBirth" : "Estado",
+      "documents" : "Estado",
+      "features" : "Estado",
+      "names" : "Estado",
+      "otherData" : "Estado"
+    }
   },
   "AR": {
     "messages": ["خطأ", "المعلومات", "حفظ بنجاح!", "وثيقة غير صالحة!", "فشلت في انقاذ!", "يرجى إدخال القيم!", "فشل في الفتح!"],
@@ -441,6 +501,18 @@
     "recent": ["الاشكال الحديثة", "آخر مره تم فتحها", "حاله", "ارسال", "اكمال", "مشروع"],
     "help": [
       "وفيما يلي بعض الاسئله التي يتكرر طرحها بشان الأمم المتحدة ومجلس الأمن. إذا لم يتم سرد سؤالك هنا ، فيرجى الاتصال بفرع ممارسات مجلس الأمن وأبحاث الميثاق."
-    ]
+    ],
+    "tooltip" : {
+      "information" : "المعلومات",
+      "identities" : "المعلومات",
+      "addresses" : "المعلومات",
+      "biometricData" : "المعلومات",
+      "datesOfBirth" : "المعلومات",
+      "placesOfBirth" : "المعلومات",
+      "documents" : "المعلومات",
+      "features" : "المعلومات",
+      "names" : "المعلومات",
+      "otherData" : "المعلومات"
+    }
   }
 }

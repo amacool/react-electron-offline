@@ -123,7 +123,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
       <CustomHeader
         style={validating && documents.length === 0 ? { backgroundColor: '#ffaeae' } : {}}
         heading={vocabularies[lang]['new']['main'][8]}
-        tooltipText={settings.tooltip && settings.tooltip[0] && settings.tooltip[0][lang]['documents']}
+        tooltipText={vocabularies[lang]['tooltip'] && vocabularies[lang]['tooltip']['documents']}
       />
       <div className="content content-header">
         <div className="row">
