@@ -343,9 +343,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
               onPreview={() => {
-                setState(addresses[index]);
-                setEditIndex(index);
-                setPreview(true);
+                setPreview(addresses[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
@@ -369,15 +367,15 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
         {preview && (
           <Preview
             data={{
-              street: state.street,
-              city: state.city,
-              province: state.province,
-              zipCode: state.zipCode,
-              country: state.country,
-              region: state.region,
-              latitude: state.latitude,
-              longitude: state.longitude,
-              notes: state.notes
+              street: preview.street,
+              city: preview.city,
+              province: preview.province,
+              zipCode: preview.zipCode,
+              country: preview.country,
+              region: preview.region,
+              latitude: preview.latitude,
+              longitude: preview.longitude,
+              notes: preview.notes
             }}
             header={[
               vocabularies[lang]['new']['addresses'][1],

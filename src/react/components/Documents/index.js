@@ -307,9 +307,7 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
               onPreview={() => {
-                setState(documents[index]);
-                setEditIndex(index);
-                setPreview(true);
+                setPreview(documents[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
@@ -332,7 +330,17 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
       >
         {preview && (
           <Preview
-            data={state}
+            data={{
+              docNumber: preview.docNumber,
+              docType: preview.docType,
+              docType1: preview.docType1,
+              issuingCity: preview.issuingCity,
+              issuedCountry: preview.issuedCountry,
+              issuingCountry: preview.issuingCountry,
+              issuedDate: preview.issuedDate,
+              expirationDate: preview.expirationDate,
+              notes: preview.notes
+            }}
             header={[
               vocabularies[lang]['new']['documents'][0],
               vocabularies[lang]['new']['documents'][1],
@@ -341,8 +349,8 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
               vocabularies[lang]['new']['documents'][3],
               vocabularies[lang]['new']['documents'][4],
               vocabularies[lang]['new']['documents'][5],
-              vocabularies[lang]['new']['common'][3],
-              vocabularies[lang]['new']['documents'][6]
+              vocabularies[lang]['new']['documents'][6],
+              vocabularies[lang]['new']['common'][3]
             ]}
           />
         )}

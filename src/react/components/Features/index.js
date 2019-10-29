@@ -184,9 +184,7 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
               onPreview={() => {
-                setState(features[index]);
-                setEditIndex(index);
-                setPreview(true);
+                setPreview(features[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
@@ -209,7 +207,11 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
       >
         {preview && (
           <Preview
-            data={state}
+            data={{
+              type: preview.type,
+              value: preview.value,
+              notes: preview.notes
+            }}
             header={[
               vocabularies[lang]['new']['common'][4],
               vocabularies[lang]['new']['features'][0],

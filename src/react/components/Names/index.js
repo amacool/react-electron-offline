@@ -274,8 +274,6 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
               onPreview={() => {
-                // setState(names[index]);
-                // setEditIndex(index);
                 setPreview(names[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
@@ -378,10 +376,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit1(mode, index)}
               onPreview={() => {
-                // setState1(names1[index]);
-                // setEditIndex1(index);
                 setPreview(names1[index]);
-                console.log(names1[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}

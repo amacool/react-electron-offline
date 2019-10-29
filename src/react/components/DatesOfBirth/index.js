@@ -249,9 +249,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
               onPreview={() => {
-                setState(dates[index]);
-                setEditIndex(index);
-                setPreview(true);
+                setPreview(dates[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
@@ -274,11 +272,11 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
         {preview && (
           <Preview
             data={{
-              date: state.date,
-              subset: state.subset,
-              from: state.from,
-              to: state.to,
-              notes: state.notes
+              date: preview.date,
+              subset: preview.subset,
+              from: preview.from,
+              to: preview.to,
+              notes: preview.notes
             }}
             header={[
               vocabularies[lang]['new']['dates of birth'][0],
