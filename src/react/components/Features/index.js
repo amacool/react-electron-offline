@@ -25,7 +25,15 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
   const [preview, setPreview] = React.useState(false);
-  const types = settings.type[0];
+  const types = React.useMemo(() => {
+    if (
+      !settings.featuresType[0] ||
+      !settings.featuresType[0][lang]
+    ) {
+      return {};
+    }
+    return settings.featuresType[0][lang];
+  }, [lang, settings]);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -115,12 +123,12 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {types && types[lang] && Object.keys(types[lang]).map((itemKey, index) => (
+                  {types && Object.keys(types).map((itemKey, index) => (
                     <MenuItem
-                      value={itemKey}
+                      value={types[itemKey]}
                       key={index}
                     >
-                      {types[lang][itemKey]}
+                      {types[itemKey]}
                     </MenuItem>
                   ))}
                 </Select>

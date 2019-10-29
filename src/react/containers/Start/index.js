@@ -32,7 +32,8 @@ class Start extends Component {
       documentType: [],
       countries: [],
       biometricType: [],
-      tooltip: []
+      featuresType: [],
+      tooltip: [],
     };
     this.results = {
       information: {

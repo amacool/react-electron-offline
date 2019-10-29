@@ -343,26 +343,26 @@
       "eye_color" : "Eye color"
     }
   }],
-  "featuresType":{ 
-	 "EN":[ 
-		"Interpol Special Notice"
-	 ],
-	 "FR":[ 
-		"FR_Interpol Special Notice"
-	 ],
-	 "SP":[ 
-		"SP_Interpol Special Notice"
-	 ],
-	 "RU":[ 
-		"RU_Interpol Special Notice"
-	 ],
-	 "CH":[ 
-		"CH_Interpol Special Notice"
-	 ],
-	 "AR":[ 
-		"AR_Interpol Special Notice"
-	 ]
-   },
+  "featuresType": [{
+	 "EN": {
+       "interpol_special_notice": "Interpol Special Notice"
+     },
+	 "FR": {
+       "interpol_special_notice": "FR_Interpol Special Notice"
+     },
+	 "SP": {
+       "interpol_special_notice": "SP_Interpol Special Notice"
+	 },
+	 "RU": {
+       "interpol_special_notice": "RU_Interpol Special Notice"
+     },
+	 "CH": {
+       "interpol_special_notice": "CH_Interpol Special Notice"
+     },
+	 "AR": {
+       "interpol_special_notice": "AR_Interpol Special Notice"
+     }
+   }],
   "un_country_list":{ 
       "record":[ 
          { 

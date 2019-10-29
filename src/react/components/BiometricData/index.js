@@ -51,14 +51,14 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
     setTypeLabelWidth(typeLabel.current.offsetWidth);
   }, []);
 
-  const entryTypes = React.useMemo(() => {
+  const biometricTypes = React.useMemo(() => {
     if (
-      !settings.entryType[0] ||
-      !settings.entryType[0][lang]
+      !settings.biometricType[0] ||
+      !settings.biometricType[0][lang]
     ) {
       return {};
     }
-    return settings.entryType[0][lang];
+    return settings.biometricType[0][lang];
   }, [lang, settings]);
 
   const handleChange = name => e => {
@@ -188,9 +188,9 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
-                    <MenuItem value={itemKey} key={index}>
-                      {entryTypes[itemKey]}
+                  {biometricTypes && Object.keys(biometricTypes).map((itemKey, index) => (
+                    <MenuItem value={biometricTypes[itemKey]} key={index}>
+                      {biometricTypes[itemKey]}
                     </MenuItem>
                   ))}
                 </Select>
