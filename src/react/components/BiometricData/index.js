@@ -15,9 +15,15 @@ import { FileTypes } from "../../constant/file-types";
 import { channels } from "../../../shared/constants";
 import "./styles.css";
 import {Preview} from "../common/Preview";
+import FormControl from "@material-ui/core/FormControl/FormControl";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Select from "@material-ui/core/Select/Select";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
 function BiometricData({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
+  const typeLabel = React.useRef(null);
+  const [typeLabelWidth, setTypeLabelWidth] = React.useState(0);
   const [attachment, setAttachment] = React.useState({
     name: '',
     path: '',
@@ -40,6 +46,20 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
     attachment: {}
   });
   const [validation, setValidation] = React.useState(false);
+
+  React.useEffect(() => {
+    setTypeLabelWidth(typeLabel.current.offsetWidth);
+  }, []);
+
+  const entryTypes = React.useMemo(() => {
+    if (
+      !settings.entryType[0] ||
+      !settings.entryType[0][lang]
+    ) {
+      return {};
+    }
+    return settings.entryType[0][lang];
+  }, [lang, settings]);
 
   const handleChange = name => e => {
     const value = {
@@ -150,15 +170,31 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
-            <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-              <CustomInput
-                value={state.type}
-                id="type"
-                label={vocabularies[lang]['new']['common'][4]}
-                required={true}
-                onChange={handleChange("type")}
-                validation={validation}
-              />
+            <div className={`w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.type ? 'select-empty' : ''}`}>
+                <InputLabel ref={typeLabel} htmlFor="entry-type" className="custom-select-label">
+                  {vocabularies[lang]['new']['common'][4]}<b>*</b>
+                </InputLabel>
+                <Select
+                  value={state.type}
+                  onChange={handleChange('type')}
+                  labelWidth={typeLabelWidth}
+                  inputProps={{
+                    name: 'language',
+                    id: 'language',
+                  }}
+                  className="custom-select"
+                >
+                  <MenuItem value="">
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
+                  </MenuItem>
+                  {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
+                    <MenuItem value={itemKey} key={index}>
+                      {entryTypes[itemKey]}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
             <div className="col">
               <CustomInput

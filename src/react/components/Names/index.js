@@ -198,18 +198,10 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
               validation={validation}
             />
           </div>
-          <div className="col-3 mr-15 ml-15">
-            {/*<CustomInput*/}
-              {/*value={state.type}*/}
-              {/*id="names-type"*/}
-              {/*label={vocabularies[lang]['new']['common'][4]}*/}
-              {/*required={true}*/}
-              {/*onChange={handleChange("type")}*/}
-              {/*validation={validation}*/}
-            {/*/>*/}
+          <div className="col-3 mr-15 ml-15 mt-26">
             <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.type ? 'select-empty' : ''}`}>
               <InputLabel ref={typeLabel} htmlFor="entry-type" className="custom-select-label">
-                {vocabularies[lang]['new']['information'][0]}<b>*</b>
+                {vocabularies[lang]['new']['common'][4]}<b>*</b>
               </InputLabel>
               <Select
                 value={state.type}
@@ -232,15 +224,31 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
               </Select>
             </FormControl>
           </div>
-          <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-            <CustomInput
-              value={state.script}
-              id="names-script"
-              label={vocabularies[lang]['new']['names'][1]}
-              required={true}
-              onChange={handleChange("script")}
-              validation={validation}
-            />
+          <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.script ? 'select-empty' : ''}`}>
+              <InputLabel ref={typeLabel} htmlFor="entry-type" className="custom-select-label">
+                {vocabularies[lang]['new']['names'][1]}<b>*</b>
+              </InputLabel>
+              <Select
+                value={state.script}
+                onChange={handleChange('script')}
+                labelWidth={typeLabelWidth}
+                inputProps={{
+                  name: 'language',
+                  id: 'language',
+                }}
+                className="custom-select"
+              >
+                <MenuItem value="">
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
+                </MenuItem>
+                {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
+                  <MenuItem value={itemKey} key={index}>
+                    {entryTypes[itemKey]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
           <Button
             variant="contained"
@@ -266,9 +274,9 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit(mode, index)}
               onPreview={() => {
-                setState(names[index]);
-                setEditIndex(index);
-                setPreview(1);
+                // setState(names[index]);
+                // setEditIndex(index);
+                setPreview(names[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
@@ -294,25 +302,57 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
               validation={validation}
             />
           </div>
-          <div className="col-3 mr-15 ml-15">
-            <CustomInput
-              value={state1.type}
-              id="names-type1"
-              label={vocabularies[lang]['new']['common'][4]}
-              required={true}
-              onChange={handleChange1("type")}
-              validation={validation}
-            />
+          <div className="col-3 mr-15 ml-15 mt-26">
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state1.type ? 'select-empty' : ''}`}>
+              <InputLabel ref={typeLabel} htmlFor="entry-type" className="custom-select-label">
+                {vocabularies[lang]['new']['common'][4]}<b>*</b>
+              </InputLabel>
+              <Select
+                value={state1.type}
+                onChange={handleChange1('type')}
+                labelWidth={typeLabelWidth}
+                inputProps={{
+                  name: 'language',
+                  id: 'language',
+                }}
+                className="custom-select"
+              >
+                <MenuItem value="">
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
+                </MenuItem>
+                {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
+                  <MenuItem value={itemKey} key={index}>
+                    {entryTypes[itemKey]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
-          <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-            <CustomInput
-              value={state1.script}
-              id="names-script1"
-              label={vocabularies[lang]['new']['names'][1]}
-              required={true}
-              onChange={handleChange1("script")}
-              validation={validation}
-            />
+          <div className={`col-3 ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state1.script ? 'select-empty' : ''}`}>
+              <InputLabel ref={typeLabel} htmlFor="entry-type" className="custom-select-label">
+                {vocabularies[lang]['new']['names'][1]}<b>*</b>
+              </InputLabel>
+              <Select
+                value={state1.script}
+                onChange={handleChange1('script')}
+                labelWidth={typeLabelWidth}
+                inputProps={{
+                  name: 'language',
+                  id: 'language',
+                }}
+                className="custom-select"
+              >
+                <MenuItem value="">
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
+                </MenuItem>
+                {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
+                  <MenuItem value={itemKey} key={index}>
+                    {entryTypes[itemKey]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
           <Button
             variant="contained"
@@ -338,9 +378,10 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit1(mode, index)}
               onPreview={() => {
-                setState1(names1[index]);
-                setEditIndex1(index);
-                setPreview(2);
+                // setState1(names1[index]);
+                // setEditIndex1(index);
+                setPreview(names1[index]);
+                console.log(names1[index]);
               }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
@@ -354,21 +395,26 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
         />
       </div>
       <CustomModal
-        isOpen={preview >= 1}
+        isOpen={preview}
         title={vocabularies[lang]['new']['common'][9]}
         singleButton={true}
-        onClose={() => setPreview(false)}
+        onClose={() => setPreview(null)}
         labelClose={vocabularies[lang]['main'][12]}
         size="sm"
       >
-        {preview > 0 && (
+        {preview && (
           <Preview
-            data={preview === 1 ? state : state1}
+            data={{
+              order: preview.order,
+              type: preview.type,
+              script: preview.script,
+              name: preview.name
+            }}
             header={[
+              vocabularies[lang]['new']['names'][2],
               vocabularies[lang]['new']['common'][4],
               vocabularies[lang]['new']['names'][1],
-              vocabularies[lang]['new']['names'][0],
-              vocabularies[lang]['new']['names'][2]
+              vocabularies[lang]['new']['names'][0]
             ]}
           />
         )}
