@@ -8,8 +8,8 @@ const { dialog } = require('electron');
 const { channels } = require('../src/shared/constants');
 
 let mainWindow;
-const historyPath = path.join(__dirname, './history.txt');
-// const historyPath = 'D:/documents/history.txt';
+// const historyPath = path.join(__dirname, './history.txt');
+const historyPath = "D:/history.txt";
 
 function createWindow () {
   const startUrl = process.env.ELECTRON_START_URL || url.format({
