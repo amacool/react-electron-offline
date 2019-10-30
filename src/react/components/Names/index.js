@@ -39,12 +39,21 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
 
   const entryTypes = React.useMemo(() => {
     if (
-      !settings.entryType[0] ||
-      !settings.entryType[0][lang]
+      !settings.type[0] ||
+      !settings.type[0][lang]
     ) {
       return {};
     }
-    return settings.entryType[0][lang];
+    return settings.type[0][lang];
+  }, [lang, settings]);
+
+  const scripts = React.useMemo(() => {
+    if (
+      !settings.language
+    ) {
+      return {};
+    }
+    return settings.language;
   }, [lang, settings]);
 
   const handleChange = name => e => {
@@ -242,9 +251,9 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
+                {scripts && scripts.map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
-                    {entryTypes[itemKey]}
+                    {itemKey}
                   </MenuItem>
                 ))}
               </Select>
@@ -344,9 +353,9 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {entryTypes && Object.keys(entryTypes).map((itemKey, index) => (
+                {scripts && scripts.map((itemKey, index) => (
                   <MenuItem value={itemKey} key={index}>
-                    {entryTypes[itemKey]}
+                    {itemKey}
                   </MenuItem>
                 ))}
               </Select>
