@@ -31,7 +31,8 @@ class Main extends Component {
   lang = localStorage.getItem("lang") || 'EN';
 
   componentDidMount() {
-    document.getElementById('create-new-container').addEventListener('scroll', this.onScroll);
+    this.newContainer = document.getElementById('create-new-container');
+    this.newContainer && document.getElementById('create-new-container').addEventListener('scroll', this.onScroll);
   }
 
   componentDidUpdate(prevProps) {
@@ -43,7 +44,7 @@ class Main extends Component {
   }
 
   componentWillUnmount() {
-    document.getElementById('create-new-container').removeEventListener('scroll', this.onScroll);
+    this.newContainer && document.getElementById('create-new-container').removeEventListener('scroll', this.onScroll);
   }
 
   onScroll = (e) => {
@@ -209,6 +210,10 @@ class Main extends Component {
     const { createStep, clearInformation, vocabularies, children, curLang } = this.props;
     const { isModalOpen, errorMsg } = this.state;
     const lang = curLang || this.lang;
+
+    if (pathname === '/') {
+      return null;
+    }
 
     return (
       <div className="main">
