@@ -12,7 +12,7 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 
-function Names({ settings, handleSetValue, data, vocabularies, validating }) {
+function Names({ settings, handleSetValue, data, vocabularies, validating, languages }) {
   const lang = localStorage.getItem('lang') || 'EN';
   const typeLabel = React.useRef(null);
   const [typeLabelWidth, setTypeLabelWidth] = React.useState(0);
@@ -45,15 +45,6 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
       return {};
     }
     return settings.type[0][lang];
-  }, [lang, settings]);
-
-  const scripts = React.useMemo(() => {
-    if (
-      !settings.language
-    ) {
-      return {};
-    }
-    return settings.language;
   }, [lang, settings]);
 
   const handleChange = name => e => {
@@ -251,11 +242,11 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {scripts && scripts.map((itemKey, index) => (
-                  <MenuItem value={itemKey} key={index}>
-                    {itemKey}
-                  </MenuItem>
-                ))}
+                {languages.map((item, i) => {
+                  return (
+                    <MenuItem key={i} value={item.name}>{item.name}</MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
           </div>
@@ -353,11 +344,11 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {scripts && scripts.map((itemKey, index) => (
-                  <MenuItem value={itemKey} key={index}>
-                    {itemKey}
-                  </MenuItem>
-                ))}
+                {languages.map((item, i) => {
+                  return (
+                    <MenuItem key={i} value={item.name}>{item.name}</MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
           </div>
@@ -428,6 +419,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating }) {
 }
 
 const mapStateToProps = (state) => ({
+  languages: state.languages,
   vocabularies: state.vocabularies,
   validating: state.validating
 });

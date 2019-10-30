@@ -9,7 +9,7 @@ const { channels } = require('../src/shared/constants');
 
 let mainWindow;
 // const historyPath = path.join(__dirname, './history.txt');
-const historyPath = "D:/history.txt";
+const historyPath = "C:/history.txt";
 
 function createWindow () {
   const startUrl = process.env.ELECTRON_START_URL || url.format({

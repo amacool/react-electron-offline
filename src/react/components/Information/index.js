@@ -128,13 +128,11 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {
-                  languages.map((item, i) => {
-                    return (
-                      <MenuItem key={i} value={item.type}>{item.name}</MenuItem>
-                    )
-                  })
-                }
+                {languages.map((item, i) => {
+                  return (
+                    <MenuItem key={i} value={item.name}>{item.name}</MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
           </div>
