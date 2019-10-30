@@ -211,12 +211,8 @@ class Main extends Component {
     const { isModalOpen, errorMsg } = this.state;
     const lang = curLang || this.lang;
 
-    if (pathname === '/') {
-      return null;
-    }
-
     return (
-      <div className="main">
+      <div className="main" style={{display: pathname === '/' ? 'none' : 'flex'}}>
         <div className="left-container">
           <div className="top">
             <div className="left-logo">
