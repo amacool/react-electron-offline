@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import AppContainer from "./react/containers/AppContainer";
 import Main from "./react/containers/Main";
@@ -16,7 +16,7 @@ import "./index.css";
 
 render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <AppContainer>
           <Route exact path="/" component={Home}/>
@@ -29,7 +29,7 @@ render(
           </Main>
         </AppContainer>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.getElementById("root"));
 

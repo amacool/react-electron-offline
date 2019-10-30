@@ -8,11 +8,11 @@ import { setArabicMarkup } from "../common/helper";
 
 const AppContainer = ({ setLanguage, setVocabularies, vocabularies, children }) => {
   useEffect(() => {
-    axios.get('/data/languages.json')
+    axios.get('./data/languages.json')
       .then(function (result) {
         setLanguage(result.data.languages);
       });
-    axios.get('/data/vocabularies.json')
+    axios.get('./data/vocabularies.json')
       .then(function (result) {
         setVocabularies(result.data);
       });

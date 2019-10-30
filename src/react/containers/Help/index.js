@@ -9,7 +9,7 @@ function Help({ vocabularies }) {
   const [content, setContent] = React.useState({});
 
   React.useEffect(() => {
-    axios.get('/data/help.json')
+    axios.get('./data/help.json')
       .then(function (result) {
         setContent(result.data.content[0]);
       });

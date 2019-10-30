@@ -60,7 +60,7 @@ class Start extends Component {
     }
 
     let th = this;
-    axios.get('/data/lookupsData.json')
+    axios.get('./data/lookupsData.json')
       .then(function (result) {
         let data = {};
         Object.keys(result.data).forEach((itemKey) => {
