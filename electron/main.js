@@ -60,23 +60,29 @@ ipcMain.on(channels.SAVE_FILE, function (event, arg) {
       if (err)  throw err;
 
       // update history info
-      fs.readFile(historyPath, 'utf-8', (err, data) => {
-        if (err) throw err;
-        let logs = data.split("\n");
-        logs.splice(logs.length - 1, 1);
-        const existingLogIndex = logs.findIndex((item) => item.indexOf(savePath) >= 0);
-        const today = moment(new Date()).format('MM/DD/YYYY');
-        const newLog = `${savePath},${today},${arg.isDraft}`;
-        if (existingLogIndex >= 0) {
-          logs[existingLogIndex] = newLog;
-        } else {
-          logs.push(newLog);
-        }
-        logs.push("");
-        fs.writeFile(historyPath, logs.join("\n"), (err) => {
+      if (!fs.existsSync(historyPath)) {
+        fs.writeFile(historyPath, "", function(err) {
           if (err) throw err;
         });
-      });
+      } else {
+        fs.readFile(historyPath, 'utf-8', (err, data) => {
+          if (err) throw err;
+          let logs = data.split("\n");
+          logs.splice(logs.length - 1, 1);
+          const existingLogIndex = logs.findIndex((item) => item.indexOf(savePath) >= 0);
+          const today = moment(new Date()).format('MM/DD/YYYY');
+          const newLog = `${savePath},${today},${arg.isDraft}`;
+          if (existingLogIndex >= 0) {
+            logs[existingLogIndex] = newLog;
+          } else {
+            logs.push(newLog);
+          }
+          logs.push("");
+          fs.writeFile(historyPath, logs.join("\n"), (err) => {
+            if (err) throw err;
+          });
+        });
+      }
       event.sender.send(channels.SAVE_FILE, {
         success: true
       });
@@ -91,19 +97,25 @@ ipcMain.on(channels.SAVE_FILE, function (event, arg) {
 
 ipcMain.on(channels.GET_HISTORY, function (event) {
   try {
-    fs.readFile(historyPath, 'utf-8', (err, data) => {
-      if (err) throw err;
-      const newData = keepRecent(data).join("\n");
-      event.sender.send(channels.GET_HISTORY, {
-        success: true,
-        data: newData
+    if (!fs.existsSync(historyPath)) {
+      fs.writeFile(historyPath, "", function (err) {
+        if (err) throw err;
       });
-      if (newData !== data) {
-        fs.writeFile(historyPath, newData, function (err) {
-          if (err) throw err;
+    } else {
+      fs.readFile(historyPath, 'utf-8', (err, data) => {
+        if (err) throw err;
+        const newData = keepRecent(data).join("\n");
+        event.sender.send(channels.GET_HISTORY, {
+          success: true,
+          data: newData
         });
-      }
-    });
+        if (newData !== data) {
+          fs.writeFile(historyPath, newData, function (err) {
+            if (err) throw err;
+          });
+        }
+      });
+    }
   } catch (err) {
     event.sender.send(channels.GET_HISTORY, {
       message: err.message,
@@ -170,29 +182,35 @@ ipcMain.on(channels.OPEN_FILE, function (event, arg) {
           throw Error('Invalid document');
         }
 
-        // update last opened date
-        fs.readFile(historyPath, 'utf-8', (err, data) => {
-          if (err) throw err;
-          let logs = data.split("\n");
-          logs.splice(logs.length - 1, 1);
-          let existingLog = logs.find((item) => item.split(",")[0] === openPath.replace("\\\\", "\\"));
-          let newData = '';
-          if (existingLog) {
-            let newInfo = existingLog.split(",");
-            newInfo[1] = moment(new Date()).format('MM/DD/YYYY');
-            newInfo = newInfo.join(",");
-            newData = data.replace(existingLog, newInfo);
-          } else {
-            const today = moment(new Date()).format('MM/DD/YYYY');
-            const newLog = `${openPath},${today},1`;
-            logs.push(newLog);
-            logs.push("");
-            newData = logs.join("\n");
-          }
-          fs.writeFile(historyPath, newData, function (err) {
+        if (!fs.existsSync(historyPath)) {
+          fs.writeFile(historyPath, "", function (err) {
             if (err) throw err;
           });
-        });
+        } else {
+          // update last opened date
+          fs.readFile(historyPath, 'utf-8', (err, data) => {
+            if (err) throw err;
+            let logs = data.split("\n");
+            logs.splice(logs.length - 1, 1);
+            let existingLog = logs.find((item) => item.split(",")[0] === openPath.replace("\\\\", "\\"));
+            let newData = '';
+            if (existingLog) {
+              let newInfo = existingLog.split(",");
+              newInfo[1] = moment(new Date()).format('MM/DD/YYYY');
+              newInfo = newInfo.join(",");
+              newData = data.replace(existingLog, newInfo);
+            } else {
+              const today = moment(new Date()).format('MM/DD/YYYY');
+              const newLog = `${openPath},${today},1`;
+              logs.push(newLog);
+              logs.push("");
+              newData = logs.join("\n");
+            }
+            fs.writeFile(historyPath, newData, function (err) {
+              if (err) throw err;
+            });
+          });
+        }
 
         event.sender.send(channels.OPEN_FILE, {
           success: true,

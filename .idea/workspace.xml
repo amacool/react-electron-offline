@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="439823f8-1106-4de8-93bb-72e4cf0e483f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/electron/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/electron/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,7 +56,7 @@
           <entry key="env" value="2" />
           <entry key="gitignore" value="2" />
           <entry key="html" value="3" />
-          <entry key="js" value="604" />
+          <entry key="js" value="606" />
           <entry key="json" value="61" />
           <entry key="lock" value="1" />
           <entry key="log" value="2" />
@@ -72,7 +72,7 @@
           <entry key="CSS" value="103" />
           <entry key="HTML" value="3" />
           <entry key="JSON" value="61" />
-          <entry key="JavaScript" value="604" />
+          <entry key="JavaScript" value="606" />
           <entry key="PLAIN_TEXT" value="19" />
           <entry key="SVG" value="11" />
           <entry key="TypeScript" value="50" />
@@ -91,7 +91,7 @@
         <counts>
           <entry key="css" value="5935" />
           <entry key="gitignore" value="7" />
-          <entry key="js" value="51696" />
+          <entry key="js" value="51737" />
           <entry key="json" value="2842" />
           <entry key="svg" value="11" />
           <entry key="txt" value="39" />
@@ -101,7 +101,7 @@
         <counts>
           <entry key="CSS" value="5935" />
           <entry key="JSON" value="2842" />
-          <entry key="JavaScript" value="51696" />
+          <entry key="JavaScript" value="51737" />
           <entry key="PLAIN_TEXT" value="46" />
           <entry key="SVG" value="11" />
         </counts>
@@ -114,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="41" column="42" lean-forward="true" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+              <caret line="41" column="72" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -123,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/src/react/containers/Start/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+              <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -177,6 +177,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
               <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+              <folding>
+                <element signature="n#!!block;n#createWindow#0" />
+                <element signature="e#928#990#0" />
+                <element signature="e#1025#1081#0" />
+                <element signature="e#1126#1238#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -353,7 +359,12 @@
             <path>
               <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="offlineapp" type="462c0819:PsiDirectoryNode" />
-              <item name="electron" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="offlineapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="offlineapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -467,12 +478,12 @@
       <workItem from="1572335656425" duration="2179000" />
       <workItem from="1572361032557" duration="20784000" />
       <workItem from="1572415311519" duration="698000" />
-      <workItem from="1572418994174" duration="3668000" />
+      <workItem from="1572418994174" duration="4139000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="499116000" />
+    <option name="totallyTimeSpent" value="499587000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -485,7 +496,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17979905" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -852,12 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/electron/main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/src/shared/constants.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/react/containers/Main/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
@@ -870,17 +874,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="41" column="42" lean-forward="true" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/react/containers/Start/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/electron/main.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/src/shared/constants.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="41" column="72" selection-start-line="41" selection-start-column="72" selection-end-line="41" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -888,6 +898,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!block;n#createWindow#0" />
+            <element signature="e#928#990#0" />
+            <element signature="e#1025#1081#0" />
+            <element signature="e#1126#1238#0" />
+          </folding>
         </state>
       </provider>
     </entry>
