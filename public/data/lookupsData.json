@@ -1,7 +1,6 @@
 {
   "version" :  "1569400117",
-  "entryType" : [
-    {
+  "entryType" :{
       "EN": {
         "entry": "Entity",
         "vessel": "Vessel",
@@ -38,74 +37,102 @@
         "individual": "فرد",
         "aircraft": "الطائرات"
       }
-    }],
+    },
   "language" : ["EN","AR","CH","FR","SP","RU"],
-  "applicableMeasure" : [
-    {
-      "EN": {
-        "arms_embargo": "Arms Embargo",
-        "trade_embargo": "Trade Embargo",
-        "travel_ban": "Travel Ban"
+  "measure" : {
+      "EN": [
+        "Arms Embargo",
+        "Trade Embargo",
+        "Travel Ban"
+      ],
+      "FR": [
+        "FR_Arms Embargo",
+        "FR_Trade Embargo",
+        "FR_Travel Ban"
+      ],
+      "CN": [
+        "CN_Arms Embargo",
+        "CN_Trade Embargo",
+        "CN_Travel Ban"
+      ],
+      "RU": [
+        "RU_Arms Embargo",
+        "RU_Trade Embargo",
+        "RU_Travel Ban"
+      ],
+      "SP": [
+        "SP_Arms Embargo",
+        "SP_Trade Embargo",
+        "SP_Travel Ban"
+      ],
+      "AR": [
+        "AR_Arms Embargo",
+        "AR_Trade Embargo",
+        "AR_Travel Ban"
+      ]
+    },
+  "regime":[ 
+      { 
+         "QD":"Al-Qaida",
+         "measures":[ 
+            "Arms Embargo",
+            "Asset Freeze",
+            "Diamond Embargo"
+         ]
       },
-      "FR": {
-        "arms_embargo": "FR_Arms Embargo",
-        "trade_embargo": "FR_Trade Embargo",
-        "travel_ban": "FR_Travel Ban"
+      { 
+         "CF":"CAR"
       },
-      "CN": {
-        "arms_embargo": "CN_Arms Embargo",
-        "trade_embargo": "CN_Trade Embargo",
-        "travel_ban": "CN_Travel Ban"
+      { 
+         "CD":"DRC"
       },
-      "RU": {
-        "arms_embargo": "RU_Arms Embargo",
-        "trade_embargo": "RU_Trade Embargo",
-        "travel_ban": "RU_Travel Ban"
+      { 
+         "KP":"DPRK"
       },
-      "SP": {
-        "arms_embargo": "SP_Arms Embargo",
-        "trade_embargo": "SP_Trade Embargo",
-        "travel_ban": "SP_Travel Ban"
+      { 
+         "GB":"GB"
       },
-      "AR": {
-        "arms_embargo": "AR_Arms Embargo",
-        "trade_embargo": "AR_Trade Embargo",
-        "travel_ban": "AR_Travel Ban"
+      { 
+         "IR":"Iran"
+      },
+      { 
+         "IQ":"Iraq"
+      },
+      { 
+         "LY":"Libya"
+      },
+      { 
+         "SO":"Somalia"
+      },
+      { 
+         "SS":"SouthSudan"
+      },
+      { 
+         "SD":"Sudan"
+      },
+      { 
+         "TA":"Taliban"
+      },
+      { 
+         "YE":"Yemen"
+      },
+      { 
+         "tp":"truopm",
+         "measures":[ 
+            "Arms Embargo",
+            "Asset Freeze",
+            "one more sandton",
+            "second sanction"
+         ]
+      },
+      { 
+         "jj":"jjj",
+         "measures":[ 
+            "Arms Embargo"
+         ]
       }
-    }],
-  "regime" : [{
-    "EN" : {
-      "R1" : "R1-EN",
-      "R2" : "R2-EN",
-      "R3" : "R3-EN"
-    },
-    "FR" : {
-      "R1" : "R1-EN",
-      "R2" : "R2-EN",
-      "R3" : "R3-EN"
-    },
-    "CN" : {
-      "R1" : "R1-EN",
-      "R2" : "R2-EN",
-      "R3" : "R3-EN"
-    },
-    "RU" : {
-      "R1" : "R1-EN",
-      "R2" : "R2-EN",
-      "R3" : "R3-EN"
-    },
-    "SP" : {
-      "R1" : "R1-EN",
-      "R2" : "R2-EN",
-      "R3" : "R3-EN"
-    },
-    "AR" : {
-      "R1" : "R1-EN",
-      "R2" : "R2-EN",
-      "R3" : "R3-EN"
-    }
-  }],
-  "identityType":[{ 
+   ],
+  "identityType":{ 
       "EN":{ 
          "Primary":"PRIMARY",
          "A.K.A.":"A.K.A.",
@@ -113,237 +140,389 @@
          "N.K.A.":"N.K.A."
       },
       "FR":{ 
-         "FR_Primary":"FR_PRIMARY",
-         "FR_A.K.A.":"FR_A.K.A.",
-         "FR_F.K.A.":"FR_F.K.A.",
-         "FR_N.K.A.":"FR_N.K.A."
+         "Primary":"FR_PRIMARY",
+         "A.K.A.":"FR_A.K.A.",
+         "F.K.A.":"FR_F.K.A.",
+         "N.K.A.":"FR_N.K.A."
       },
       "SP":{ 
-         "SP_Primary":"SP_PRIMARY",
-         "SP_A.K.A.":"SP_A.K.A.",
-         "SP_F.K.A.":"SP_F.K.A.",
-         "SP_N.K.A.":"SP_N.K.A."
+         "Primary":"SP_PRIMARY",
+         "A.K.A.":"SP_A.K.A.",
+         "F.K.A.":"SP_F.K.A.",
+         "N.K.A.":"SP_N.K.A."
       },
       "RU":{ 
-         "RU_Primary":"RU_PRIMARY",
-         "RU_A.K.A.":"RU_A.K.A.",
-         "RU_F.K.A.":"RU_F.K.A.",
-         "RU_N.K.A.":"RU_N.K.A."
+         "Primary":"RU_PRIMARY",
+         "A.K.A.":"RU_A.K.A.",
+         "F.K.A.":"RU_F.K.A.",
+         "N.K.A.":"RU_N.K.A."
       },
       "CH":{ 
-         "CH_Primary":"CH_PRIMARY",
-         "CH_A.K.A.":"CH_A.K.A.",
-         "CH_F.K.A.":"CH_F.K.A.",
-         "CH_N.K.A.":"CH_N.K.A."
+         "Primary":"CH_PRIMARY",
+         "A.K.A.":"CH_A.K.A.",
+         "F.K.A.":"CH_F.K.A.",
+         "N.K.A.":"CH_N.K.A."
       },
       "AR":{ 
-         "AR_Primary":"AR_PRIMARY",
-         "AR_A.K.A.":"AR_A.K.A.",
-         "AR_F.K.A.":"AR_F.K.A.",
-         "AR_N.K.A.":"AR_N.K.A."
+         "Primary":"AR_PRIMARY",
+         "A.K.A.":"AR_A.K.A.",
+         "F.K.A.":"AR_F.K.A.",
+         "N.K.A.":"AR_N.K.A."
       }
-   }],
-  "category" : [{
-    "EN" : {
-      "R1" : "Primary",
-      "R2" : "Category1",
-      "R3" : "Category2",
-      "R4" : "Category3"
-    },
-    "FR" : {
-      "R1" : "Primary",
-      "R2" : "Category1",
-      "R3" : "Category2",
-      "R4" : "Category3"
-    },
-    "CN" : {
-      "R1" : "Primary",
-      "R2" : "Category1",
-      "R3" : "Category2",
-      "R4" : "Category3"
-    },
-    "RU" : {
-      "R1" : "Primary",
-      "R2" : "Category1",
-      "R3" : "Category2",
-      "R4" : "Category3"
-    },
-    "SP" : {
-      "R1" : "Primary",
-      "R2" : "Category1",
-      "R3" : "Category2",
-      "R4" : "Category3"
-    },
-    "AR" : {
-      "R1" : "Primary",
-      "R2" : "Category1",
-      "R3" : "Category2",
-      "R4" : "Category3"
-    }
-  }],
-  "type" : [{
-    "EN" : {
-      "FIRST_NAME" : "FIRST NAME",
-      "SECOND_NAME" : "SECOND NAME",
-      "FULL_NAME" : "FULL NAME"
-    },
-    "FR" : {
-      "FIRST_NAME" : "FIRST NAME",
-      "SECOND_NAME" : "SECOND NAME",
-      "FULL_NAME" : "FULL NAME"
-    },
-    "CN" : {
-      "FIRST_NAME" : "FIRST NAME",
-      "SECOND_NAME" : "SECOND NAME",
-      "FULL_NAME" : "FULL NAME"
-    },
-    "RU" : {
-      "FIRST_NAME" : "FIRST NAME",
-      "SECOND_NAME" : "SECOND NAME",
-      "FULL_NAME" : "FULL NAME"
-    },
-    "SP" : {
-      "FIRST_NAME" : "FIRST NAME",
-      "SECOND_NAME" : "SECOND NAME",
-      "FULL_NAME" : "FULL NAME"
-    },
-    "AR" : {
-      "FIRST_NAME" : "FIRST NAME",
-      "SECOND_NAME" : "SECOND NAME",
-      "FULL_NAME" : "FULL NAME"
-    }
-  }],
-  "gender" : [{
+   },
+  "idCategory":{ 
+      "EN":{ 
+         "Low":"Low",
+         "High":"High"
+      },
+      "FR":{ 
+         "Low":"FR_Low",
+         "High":"FR_High"
+      },
+      "SP":{ 
+         "Low":"SP_Low",
+         "High":"SP_High"
+      },
+      "RU":{ 
+         "Low":"RU_Low",
+         "High":"RU_High"
+      },
+      "CH":{ 
+         "Low":"CH_Low",
+         "High":"CH_High"
+      },
+      "AR":{ 
+         "Low":"AR_Low",
+         "High":"AR_High"
+      }
+   },
+  "type" : { 
+      "EN":{ 
+         "First Name":"FIRST_NAME",
+         "Second Name":"SECOND_NAME",
+         "Third Name":"THIRD_NAME",
+         "Fourth Name":"FOURTH_NAME",
+         "Middle Name":"MIDDLE_NAME",
+         "Full Name":"FULL_NAME",
+         "Family Name":"FAMILY_NAME",
+         "Father's Name":"FATHERS_NAME",
+         "Grand-father's Name":"GRAND-FATHERS_NAME",
+         "Great-grand-father's Name":"GREAT-GRAND-FATHERS_NAME",
+         "Tribal Name":"TRIBAL_NAME",
+         "Geographical Reference":"GEOGRAPHICAL_REFERENCE",
+         "Religious Title":"RELIGIOUS_TITLE",
+         "Honorific Title":"HONORIFIC_TITLE",
+         "Mother's Name":"MOTHERS_NAME"
+      },
+      "FR":{ 
+         "First Name":"FR_FIRST_NAME",
+         "Second Name":"FR_SECOND_NAME",
+         "Third Name":"FR_THIRD_NAME",
+         "Fourth Name":"FR_FOURTH_NAME",
+         "Middle Name":"FR_MIDDLE_NAME",
+         "Full Name":"FR_FULL_NAME",
+         "Family Name":"FR_FAMILY_NAME",
+         "Father's Name":"FR_FATHERS_NAME",
+         "Grand-father's Name":"FR_GRAND-FATHERS_NAME",
+         "Great-grand-father's Name":"FR_GREAT-GRAND-FATHERS_NAME",
+         "Tribal Name":"FR_TRIBAL_NAME",
+         "Geographical Reference":"FR_GEOGRAPHICAL_REFERENCE",
+         "Religious Title":"FR_RELIGIOUS_TITLE",
+         "Honorific Title":"FR_HONORIFIC_TITLE",
+         "Mother's Name":"FR_MOTHERS_NAME"
+      },
+      "SP":{ 
+         "First Name":"SP_FIRST_NAME",
+         "Second Name":"SP_SECOND_NAME",
+         "Third Name":"SP_THIRD_NAME",
+         "Fourth Name":"SP_FOURTH_NAME",
+         "Middle Name":"SP_MIDDLE_NAME",
+         "Full Name":"SP_FULL_NAME",
+         "Family Name":"SP_FAMILY_NAME",
+         "Father's Name":"SP_FATHERS_NAME",
+         "Grand-father's Name":"SP_GRAND-FATHERS_NAME",
+         "Great-grand-father's Name":"SP_GREAT-GRAND-FATHERS_NAME",
+         "Tribal Name":"SP_TRIBAL_NAME",
+         "Geographical Reference":"SP_GEOGRAPHICAL_REFERENCE",
+         "Religious Title":"SP_RELIGIOUS_TITLE",
+         "Honorific Title":"SP_HONORIFIC_TITLE",
+         "Mother's Name":"SP_MOTHERS_NAME"
+      },
+      "RU":{ 
+         "First Name":"RU_FIRST_NAME",
+         "Second Name":"RU_SECOND_NAME",
+         "Third Name":"RU_THIRD_NAME",
+         "Fourth Name":"RU_FOURTH_NAME",
+         "Middle Name":"RU_MIDDLE_NAME",
+         "Full Name":"RU_FULL_NAME",
+         "Family Name":"RU_FAMILY_NAME",
+         "Father's Name":"RU_FATHERS_NAME",
+         "Grand-father's Name":"RU_GRAND-FATHERS_NAME",
+         "Great-grand-father's Name":"RU_GREAT-GRAND-FATHERS_NAME",
+         "Tribal Name":"RU_TRIBAL_NAME",
+         "Geographical Reference":"RU_GEOGRAPHICAL_REFERENCE",
+         "Religious Title":"RU_RELIGIOUS_TITLE",
+         "Honorific Title":"RU_HONORIFIC_TITLE",
+         "Mother's Name":"RU_MOTHERS_NAME"
+      },
+      "CH":{ 
+         "First Name":"CH_FIRST_NAME",
+         "Second Name":"CH_SECOND_NAME",
+         "Third Name":"CH_THIRD_NAME",
+         "Fourth Name":"CH_FOURTH_NAME",
+         "Middle Name":"CH_MIDDLE_NAME",
+         "Full Name":"CH_FULL_NAME",
+         "Family Name":"CH_FAMILY_NAME",
+         "Father's Name":"CH_FATHERS_NAME",
+         "Grand-father's Name":"CH_GRAND-FATHERS_NAME",
+         "Great-grand-father's Name":"CH_GREAT-GRAND-FATHERS_NAME",
+         "Tribal Name":"CH_TRIBAL_NAME",
+         "Geographical Reference":"CH_GEOGRAPHICAL_REFERENCE",
+         "Religious Title":"CH_RELIGIOUS_TITLE",
+         "Honorific Title":"CH_HONORIFIC_TITLE",
+         "Mother's Name":"CH_MOTHERS_NAME"
+      },
+      "AR":{ 
+         "First Name":"AR_FIRST_NAME",
+         "Second Name":"AR_SECOND_NAME",
+         "Third Name":"AR_THIRD_NAME",
+         "Fourth Name":"AR_FOURTH_NAME",
+         "Middle Name":"AR_MIDDLE_NAME",
+         "Full Name":"AR_FULL_NAME",
+         "Family Name":"AR_FAMILY_NAME",
+         "Father's Name":"AR_FATHERS_NAME",
+         "Grand-father's Name":"AR_GRAND-FATHERS_NAME",
+         "Great-grand-father's Name":"AR_GREAT-GRAND-FATHERS_NAME",
+         "Tribal Name":"AR_TRIBAL_NAME",
+         "Geographical Reference":"AR_GEOGRAPHICAL_REFERENCE",
+         "Religious Title":"AR_RELIGIOUS_TITLE",
+         "Honorific Title":"AR_HONORIFIC_TITLE",
+         "Mother's Name":"AR_MOTHERS_NAME"
+      }
+   },
+  "scriptType":{ 
+      "EN":{ 
+         "Arabic":"ARABIC",
+         "Hebrew":"HEBREW",
+         "Cyrillic":"CYRILLIC",
+         "Latin":"LATIN",
+         "Korean":"KOREAN",
+         "Japanese":"JAPANESE"
+      },
+      "FR":{ 
+         "Arabic":"FR_ARABIC",
+         "Hebrew":"FR_HEBREW",
+         "Cyrillic":"FR_CYRILLIC",
+         "Latin":"FR_LATIN",
+         "Korean":"FR_KOREAN",
+         "Japanese":"FR_JAPANESE"
+      },
+      "SP":{ 
+         "Arabic":"SP_ARABIC",
+         "Hebrew":"SP_HEBREW",
+         "Cyrillic":"SP_CYRILLIC",
+         "Latin":"SP_LATIN",
+         "Korean":"SP_KOREAN",
+         "Japanese":"SP_JAPANESE"
+      },
+      "RU":{ 
+         "Arabic":"RU_ARABIC",
+         "Hebrew":"RU_HEBREW",
+         "Cyrillic":"RU_CYRILLIC",
+         "Latin":"RU_LATIN",
+         "Korean":"RU_KOREAN",
+         "Japanese":"RU_JAPANESE"
+      },
+      "CH":{ 
+         "Arabic":"CH_ARABIC",
+         "Hebrew":"CH_HEBREW",
+         "Cyrillic":"CH_CYRILLIC",
+         "Latin":"CH_LATIN",
+         "Korean":"CH_KOREAN",
+         "Japanese":"CH_JAPANESE"
+      },
+      "AR":{ 
+         "Arabic":"AR_ARABIC",
+         "Hebrew":"AR_HEBREW",
+         "Cyrillic":"AR_CYRILLIC",
+         "Latin":"AR_LATIN",
+         "Korean":"AR_KOREAN",
+         "Japanese":"AR_JAPANESE"
+      }
+   },
+  "gender" : {
     "EN" : {
       "MALE" : "Male",
-      "FEMALE" : "Female"
+      "FEMALE" : "Female",
+	  "Unknown" : "Unknown"
     },
     "FR" : {
-      "MALE" : "Male",
-      "FEMALE" : "Female"
+      "MALE" : "FR_Male",
+      "FEMALE" : "FR_Female",
+	  "Unknown" : "FR_Unknown"
     },
     "CN" : {
-      "MALE" : "Male",
-      "FEMALE" : "Female"
+      "MALE" : "CN_Male",
+      "FEMALE" : "CN_Female",
+	  "Unknown" : "CN_Unknown"
     },
     "RU" : {
-      "MALE" : "Male",
-      "FEMALE" : "Female"
+      "MALE" : "RU_Male",
+      "FEMALE" : "RU_Female",
+	  "Unknown" : "RU_Unknown"
     },
     "SP" : {
-      "MALE" : "Male",
-      "FEMALE" : "Female"
+      "MALE" : "SP_Male",
+      "FEMALE" : "SP_Female",
+	  "Unknown" : "SP_Unknown"
     },
     "AR" : {
-      "MALE" : "Male",
-      "FEMALE" : "Female"
+      "MALE" : "AR_Male",
+      "FEMALE" : "AR_Female",
+	  "Unknown" : "AR_Unknown"
     }
-  }],
-  "livingStatus" : [{
-    "EN" : {
-      "alive" : "Alive",
-      "deceased" : "Deceased"
-    },
-    "FR" : {
-      "alive" : "Alive",
-      "deceased" : "Deceased"
-    },
-    "CN" : {
-      "alive" : "Alive",
-      "deceased" : "Deceased"
-    },
-    "RU" : {
-      "alive" : "Alive",
-      "deceased" : "Deceased"
-    },
-    "SP" : {
-      "alive" : "Alive",
-      "deceased" : "Deceased"
-    },
-    "AR" : {
-      "alive" : "Alive",
-      "deceased" : "Deceased"
-    }
-  }],
-  "documentType" : [{
-    "EN" : {
-      "passport" : "Passport",
-      "NIN" : "National Identification Number"
-    },
-    "FR" : {
-      "passport" : "Passport",
-      "NIN" : "National Identification Number"
-    },
-    "CN" : {
-      "passport" : "Passport",
-      "NIN" : "National Identification Number"
-    },
-    "RU" : {
-      "passport" : "Passport",
-      "NIN" : "National Identification Number"
-    },
-    "SP" : {
-      "passport" : "Passport",
-      "NIN" : "National Identification Number"
-    },
-    "AR" : {
-      "passport" : "Passport",
-      "NIN" : "National Identification Number"
-    }
-  }],
-  "countries1" : [{
-    "EN" : {
-      "US" : "United States",
-      "CA" : "Canada"
-    },
-    "FR" : {
-      "US" : "United States",
-      "CA" : "Canada"
-    },
-    "CN" : {
-      "US" : "United States",
-      "CA" : "Canada"
-    },
-    "RU" : {
-      "US" : "United States",
-      "CA" : "Canada"
-    },
-    "SP" : {
-      "US" : "United States",
-      "CA" : "Canada"
-    },
-    "AR" : {
-      "US" : "United States",
-      "CA" : "Canada"
-    }
-  }],
-  "biometricType" : [{
-    "EN" : {
-      "photo" : "Photo",
-      "eye_color" : "Eye color"
-    },
-    "FR" : {
-      "photo" : "Photo",
-      "eye_color" : "Eye color"
-    },
-    "CN" : {
-      "photo" : "Photo",
-      "eye_color" : "Eye color"
-    },
-    "RU" : {
-      "photo" : "Photo",
-      "eye_color" : "Eye color"
-    },
-    "SP" : {
-      "photo" : "Photo",
-      "eye_color" : "Eye color"
-    },
-    "AR" : {
-      "photo" : "Photo",
-      "eye_color" : "Eye color"
-    }
-  }],
-  "featuresType": [{
+  },
+  "livingStatus" : {
+         "EN":[ 
+            "Alive",
+            "Deceased",
+            "Presumably Deceased"
+         ],
+         "FR":[ 
+            "FR_Alive",
+            "FR_Deceased",
+            "FR_Presumably Deceased"
+         ],
+         "SP":[ 
+            "SP_Alive",
+            "SP_Deceased",
+            "SP_Presumably Deceased"
+         ],
+         "RU":[ 
+            "RU_Alive",
+            "RU_Deceased",
+            "RU_Presumably Deceased"
+         ],
+         "CH":[ 
+            "CH_Alive",
+            "CH_Deceased",
+            "CH_Presumably Deceased"
+         ],
+         "AR":[ 
+            "AR_Alive",
+            "AR_Deceased",
+            "AR_Presumably Deceased"
+         ]
+	},
+  "documentType" : { 
+	 "EN":[ 
+		"Passport",
+		"National Identification Number"
+	 ],
+	 "FR":[ 
+		"FR_Passport",
+		"FR_National Identification Number"
+	 ],
+	 "SP":[ 
+		"SP_Passport",
+		"SP_National Identification Number"
+	 ],
+	 "RU":[ 
+		"RU_Passport",
+		"RU_National Identification Number"
+	 ],
+	 "CH":[ 
+		"CH_Passport",
+		"CH_National Identification Number"
+	 ],
+	 "AR":[ 
+		"AR_Passport",
+		"AR_National Identification Number"
+	 ]
+  },
+  "dobSubset":{ 
+      "EN":{ 
+         "Full":"FULL",
+         "Year":"YEAR",
+         "Year-Month":"YEAR-MONTH"
+      },
+      "FR":{ 
+         "Full":"FR_FULL",
+         "Year":"FR_YEAR",
+         "Year-Month":"FR_YEAR-MONTH"
+      },
+      "SP":{ 
+         "Full":"SP_FULL",
+         "Year":"SP_YEAR",
+         "Year-Month":"SP_YEAR-MONTH"
+      },
+      "RU":{ 
+         "Full":"RU_FULL",
+         "Year":"RU_YEAR",
+         "Year-Month":"RU_YEAR-MONTH"
+      },
+      "CH":{ 
+         "Full":"CH_FULL",
+         "Year":"CH_YEAR",
+         "Year-Month":"CH_YEAR-MONTH"
+      },
+      "AR":{ 
+         "Full":"AR_FULL",
+         "Year":"AR_YEAR",
+         "Year-Month":"AR_YEAR-MONTH"
+      }
+   },
+  "biometricType" : { 
+      "EN":{ 
+         "photo":"PHOTO",
+         "height":"HEIGHT",
+         "weight":"WEIGHT",
+         "eye_color":"EYE COLOR",
+         "hair_color":"HAIR COLOR",
+         "distinguishing_marks":"DISTINGUISHING MARKS"
+      },
+      "FR":{ 
+         "photo":"FR_PHOTO",
+         "height":"FR_HEIGHT",
+         "weight":"FR_WEIGHT",
+         "eye_color":"FR_EYE COLOR",
+         "hair_color":"FR_HAIR COLOR",
+         "distinguishing_marks":"FR_DISTINGUISHING MARKS"
+      },
+      "SP":{ 
+         "photo":"SP_PHOTO",
+         "height":"SP_HEIGHT",
+         "weight":"SP_WEIGHT",
+         "eye_color":"SP_EYE COLOR",
+         "hair_color":"SP_HAIR COLOR",
+         "distinguishing_marks":"SP_DISTINGUISHING MARKS"
+      },
+      "RU":{ 
+         "photo":"RU_PHOTO",
+         "height":"RU_HEIGHT",
+         "weight":"RU_WEIGHT",
+         "eye_color":"RU_EYE COLOR",
+         "hair_color":"RU_HAIR COLOR",
+         "distinguishing_marks":"RU_DISTINGUISHING MARKS"
+      },
+      "CH":{ 
+         "photo":"CH_PHOTO",
+         "height":"CH_HEIGHT",
+         "weight":"CH_WEIGHT",
+         "eye_color":"CH_EYE COLOR",
+         "hair_color":"CH_HAIR COLOR",
+         "distinguishing_marks":"CH_DISTINGUISHING MARKS"
+      },
+      "AR":{ 
+         "photo":"AR_PHOTO",
+         "height":"AR_HEIGHT",
+         "weight":"AR_WEIGHT",
+         "eye_color":"AR_EYE COLOR",
+         "hair_color":"AR_HAIR COLOR",
+         "distinguishing_marks":"AR_DISTINGUISHING MARKS"
+      }
+   },
+  "featuresType": {
 	 "EN": {
        "interpol_special_notice": "Interpol Special Notice"
      },
@@ -362,7 +541,7 @@
 	 "AR": {
        "interpol_special_notice": "AR_Interpol Special Notice"
      }
-   }],
+   },
   "countries":{
       "record":[ 
          { 
