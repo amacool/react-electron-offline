@@ -53,12 +53,12 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
 
   const biometricTypes = React.useMemo(() => {
     if (
-      !settings.biometricType[0] ||
-      !settings.biometricType[0][lang]
+      !settings.biometricType ||
+      !settings.biometricType[lang]
     ) {
       return {};
     }
-    return settings.biometricType[0][lang];
+    return settings.biometricType[lang];
   }, [lang, settings]);
 
   const handleChange = name => e => {

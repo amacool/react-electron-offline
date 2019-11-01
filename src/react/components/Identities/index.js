@@ -20,14 +20,24 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     category: ''
   });
   const [identities, setIdentities] = React.useState(data);
-  const categories = React.useMemo(() => {
+  const identityTypes = React.useMemo(() => {
     if (
-      !settings.category[0] ||
-      !settings.category[0][lang]
+      !settings.identityType ||
+      !settings.identityType[lang]
     ) {
       return {};
     }
-    return settings.category[0][lang];
+    return settings.identityType[lang];
+  }, [lang, settings]);
+
+  const categories = React.useMemo(() => {
+    if (
+      !settings.idCategory ||
+      !settings.idCategory[lang]
+    ) {
+      return {};
+    }
+    return settings.idCategory[lang];
   }, [lang, settings]);
 
   React.useEffect(() => {
@@ -76,6 +86,7 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     setIdentityType(type);
     setCurrentStep(2);
   };
+  console.log(identities);
 
   return (
     <div className="start-page Identities" id="IDENTITIES">
@@ -86,14 +97,34 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
       <div className="content content-header">
         <div className="custom-add-group row">
           <div className="col-4">
-            <CustomInput
-              value={state.identityType}
-              id="identity-type"
-              label={vocabularies[lang]['new']['identities'][0]}
-              required={true}
-              onChange={handleChange("identityType")}
-              validation={validation}
-            />
+            <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.identityType ? 'select-empty' : ''}`}>
+              <InputLabel ref={categoryLabel} htmlFor="identityType" className="custom-select-label">
+                {vocabularies[lang]['new']['identities'][0]}<b>*</b>
+              </InputLabel>
+              <Select
+                value={state.identityType}
+                onChange={handleChange('identityType')}
+                labelWidth={categoryLabelWidth}
+                inputProps={{
+                  name: 'identityType',
+                  id: 'identityType',
+                }}
+                className="custom-select"
+              >
+                <MenuItem value="">
+                  <em>{vocabularies[lang]['new']['common'][5]}</em>
+                </MenuItem>
+                {identityTypes && Object.keys(identityTypes).map((itemKey, index) => (
+                  <MenuItem
+                    value={identityTypes[itemKey]}
+                    key={index}
+                    disabled={!!(itemKey === 'Primary' && identities.findIndex(item => item.identityType.toLowerCase().indexOf('primary') >= 0) >= 0)}
+                  >
+                    {identityTypes[itemKey]}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
           <div className="col-4">
             <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && !state.category ? 'select-empty' : ''}`}>
@@ -117,7 +148,6 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
                   <MenuItem
                     value={categories[itemKey]}
                     key={index}
-                    disabled={!!(categories[itemKey] === 'Primary' && identities.find(item => item.category === 'Primary'))}
                   >
                     {categories[itemKey]}
                   </MenuItem>

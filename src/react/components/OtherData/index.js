@@ -14,8 +14,8 @@ function OtherData({ settings, handleSetValue, data, vocabularies, validating })
   const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState(data);
   const [validation, setValidation] = React.useState(validating);
-  const gender = settings.gender[0];
-  const livingStatus = settings.livingStatus[0];
+  const gender = settings.gender;
+  const livingStatus = settings.livingStatus;
   const countries = settings.countries;
 
   React.useEffect(() => {

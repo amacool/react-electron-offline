@@ -34,8 +34,15 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
   const [preview, setPreview] = React.useState(false);
-  const documentType = settings.documentType[0];
   const countries = settings.countries;
+  const documentType = React.useMemo(() => {
+    if (
+      !settings.documentType
+    ) {
+      return {};
+    }
+    return settings.documentType[lang];
+  }, [lang, settings]);
 
   React.useEffect(() => {
     setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
@@ -156,12 +163,12 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
                   <MenuItem value="">
                     <em>{vocabularies[lang]['new']['common'][5]}</em>
                   </MenuItem>
-                  {documentType && documentType[lang] && Object.keys(documentType[lang]).map((itemKey, index) => (
+                  {documentType && documentType && Object.keys(documentType).map((itemKey, index) => (
                     <MenuItem
-                      value={documentType[lang][itemKey]}
+                      value={documentType[itemKey]}
                       key={index}
                     >
-                      {documentType[lang][itemKey]}
+                      {documentType[itemKey]}
                     </MenuItem>
                   ))}
                 </Select>

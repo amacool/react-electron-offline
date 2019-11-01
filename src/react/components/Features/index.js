@@ -27,12 +27,12 @@ function Features({ settings, handleSetValue, data, vocabularies, validating }) 
   const [preview, setPreview] = React.useState(false);
   const types = React.useMemo(() => {
     if (
-      !settings.featuresType[0] ||
-      !settings.featuresType[0][lang]
+      !settings.featuresType ||
+      !settings.featuresType[lang]
     ) {
       return {};
     }
-    return settings.featuresType[0][lang];
+    return settings.featuresType[lang];
   }, [lang, settings]);
 
   React.useEffect(() => {

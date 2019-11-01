@@ -26,12 +26,12 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
 
   const entryTypes = React.useMemo(() => {
     if (
-      !settings.entryType[0] ||
-      !settings.entryType[0][lang]
+      !settings.entryType ||
+      !settings.entryType[lang]
     ) {
       return {};
     }
-    return settings.entryType[0][lang];
+    return settings.entryType[lang];
   }, [lang, settings]);
   const regime = React.useMemo(() => {
     if (
@@ -44,12 +44,12 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
   }, [lang, settings]);
   const applicableMeasure = React.useMemo(() => {
     if (
-      !settings.applicableMeasure[0] ||
-      !settings.applicableMeasure[0][lang]
+      !settings.measure ||
+      !settings.measure[lang]
     ) {
       return {};
     }
-    return settings.applicableMeasure[0][lang];
+    return settings.measure[lang];
   }, [lang, settings]);
   const submittedBy = { a: 'person1', b: 'person2', c: 'person3' };
 
