@@ -26,6 +26,10 @@ export const CustomMultiSelect = ({ options, selected, label, required, onChange
     setValues(selected);
   }, [selected]);
 
+  // React.useEffect(() => {
+  //   setValues([]);
+  // }, [options]);
+
   return (
     <div className="custom-multi-select">
       <FormControl variant="outlined" className="form-control custom-outlined-form-control">

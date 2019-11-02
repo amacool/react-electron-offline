@@ -23,6 +23,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
   const [regimeLabelWidth, setRegimeLabelWidth] = React.useState(0);
   const [validation, setValidation] = React.useState(false);
   const [state, setState] = React.useState(data);
+  const [applicableMeasure, setApplicableMeasure] = React.useState([]);
 
   const entryTypes = React.useMemo(() => {
     if (
@@ -35,23 +36,34 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
   }, [lang, settings]);
   const regime = React.useMemo(() => {
     if (
-      !settings.regime[0] ||
-      !settings.regime[0][lang]
+      !settings.regime
     ) {
-      return {};
+      return [];
     }
-    return settings.regime[0][lang];
-  }, [lang, settings]);
-  const applicableMeasure = React.useMemo(() => {
+    return settings.regime.map((item) => {
+      let newItem = Object.assign({}, item);
+      delete newItem.measures;
+      return Object.values(newItem)[0];
+    });
+  }, [settings]);
+
+  const submittedBy = { a: 'person1', b: 'person2', c: 'person3' };
+
+  React.useEffect(() => {
     if (
       !settings.measure ||
       !settings.measure[lang]
     ) {
-      return {};
+      setApplicableMeasure({});
+    } else {
+      const selectedRegime = settings.regime.find((item) => Object.values(item).indexOf(state.regime) >= 0);
+      if (selectedRegime && selectedRegime['measures']) {
+        setApplicableMeasure(selectedRegime['measures']);
+      } else {
+        setApplicableMeasure(settings.measure[lang]);
+      }
     }
-    return settings.measure[lang];
-  }, [lang, settings]);
-  const submittedBy = { a: 'person1', b: 'person2', c: 'person3' };
+  }, [lang, settings, state.regime]);
 
   React.useEffect(() => {
     setTypeLabelWidth(typeLabel.current.offsetWidth);
@@ -66,6 +78,20 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
   React.useEffect(() => {
     setValidation(validating);
   }, [validating]);
+
+  React.useEffect(() => {
+    console.log(state.regime);
+    const selectedRegime = settings.regime.find((item) => Object.values(item).indexOf(state.regime) >= 0);
+    if (selectedRegime && selectedRegime['measures']) {
+      setApplicableMeasure(selectedRegime['measures']);
+    } else {
+      settings.measure && setApplicableMeasure(settings.measure[lang]);
+    }
+    setState({
+      ...state,
+      applicableMeasure: []
+    });
+  }, [state.regime]);
 
   const handleChange = name => e => {
     const value = {
@@ -154,9 +180,9 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
                 <MenuItem value="">
                   <em>{vocabularies[lang]['new']['common'][5]}</em>
                 </MenuItem>
-                {regime && Object.keys(regime).map((itemKey, index) => (
-                  <MenuItem value={itemKey} key={index}>
-                    {regime[itemKey]}
+                {regime && regime.map((value, key) => (
+                  <MenuItem value={value} key={key}>
+                    {value}
                   </MenuItem>
                 ))}
               </Select>
