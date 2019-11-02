@@ -367,6 +367,7 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
         {preview && (
           <Preview
             data={{
+              isAddr: preview.address ? vocabularies[lang]['new']['addresses'][0] : vocabularies[lang]['new']['addresses'][6],
               street: preview.street,
               city: preview.city,
               province: preview.province,
@@ -375,9 +376,10 @@ function Addresses({ settings, handleSetValue, data, vocabularies, validating })
               region: preview.region,
               latitude: preview.latitude,
               longitude: preview.longitude,
-              notes: preview.notes
+              notes: preview.notes,
             }}
             header={[
+              `${vocabularies[lang]['new']['addresses'][0]}/${vocabularies[lang]['new']['addresses'][6]}`,
               vocabularies[lang]['new']['addresses'][1],
               vocabularies[lang]['new']['addresses'][2],
               vocabularies[lang]['new']['addresses'][3],

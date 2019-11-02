@@ -112,7 +112,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
     }
-    if (state.range === '' && (
+    if (state.range && (
       state.subset === ''
       || state.from === ''
       || state.to === ''
@@ -272,6 +272,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
         {preview && (
           <Preview
             data={{
+              isSpecific: preview.specific ? vocabularies[lang]['new']['dates of birth'][0] : vocabularies[lang]['new']['dates of birth'][2],
               date: preview.date,
               subset: preview.subset,
               from: preview.from,
@@ -279,6 +280,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
               notes: preview.notes
             }}
             header={[
+              `${vocabularies[lang]['new']['dates of birth'][0]}/${vocabularies[lang]['new']['dates of birth'][2]}`,
               vocabularies[lang]['new']['dates of birth'][0],
               vocabularies[lang]['new']['dates of birth'][3],
               vocabularies[lang]['new']['dates of birth'][4],
