@@ -63,7 +63,7 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
         setApplicableMeasure(settings.measure[lang]);
       }
     }
-  }, [lang, settings, state.regime]);
+  }, [lang, settings]);
 
   React.useEffect(() => {
     setTypeLabelWidth(typeLabel.current.offsetWidth);
@@ -80,24 +80,23 @@ function Information({ settings, handleSetValue, data, vocabularies, languages, 
   }, [validating]);
 
   React.useEffect(() => {
-    console.log(state.regime);
+    console.log(">>>", state.regime);
     const selectedRegime = settings.regime.find((item) => Object.values(item).indexOf(state.regime) >= 0);
     if (selectedRegime && selectedRegime['measures']) {
       setApplicableMeasure(selectedRegime['measures']);
     } else {
       settings.measure && setApplicableMeasure(settings.measure[lang]);
     }
-    setState({
-      ...state,
-      applicableMeasure: []
-    });
   }, [state.regime]);
 
   const handleChange = name => e => {
-    const value = {
+    let value = {
       ...state,
       [name]: e.target.value
     };
+    if (name === 'regime') {
+      value.applicableMeasure = [];
+    }
     setState(value);
     handleSetValue(value);
   };
