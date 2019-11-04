@@ -105,6 +105,9 @@ export const CustomTable = ({
     }
   };
   const handleDrag = (e, ui, index) => {
+    if (ui.lastY % 2 === 0) {
+      return;
+    }
     const newPosition = {
       x: 0,
       y: ui.lastY,
@@ -118,7 +121,7 @@ export const CustomTable = ({
         ? Math.floor((newPosition.y + 30) / 60.0)
         : -Math.floor((Math.abs(newPosition.y) + 30) / 60.0)
     );
-    if (newOrder >= 0 && newOrder < tableItems.length) {
+    if (newOrder >= 0 && newOrder < tableItems.length && newOrder !== index) {
       setNewOrder(newOrder);
     }
     setPositionArr(newPositionArr);
@@ -282,10 +285,7 @@ export const CustomTable = ({
 export const TableBtnEditItem = ({
   onEdit,
   onPreview,
-  onMoveRow,
-  label1 = "Edit",
-  label2 = "Remove",
-  label3 = "Preview"
+  onMoveRow
 }) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
@@ -320,8 +320,8 @@ export const TableBtnEditItem = ({
             </Button>
             {open ? (
               <Paper className={classes.paper}>
-                <div className="dropdown-item" onClick={() => onMoveRow(1)}>{getIcon(4)}</div>
-                <div className="dropdown-item" onClick={() => onMoveRow(2)}>{getIcon(5)}</div>
+                {onMoveRow && <div className="dropdown-item" onClick={() => onMoveRow && onMoveRow(1)}>{getIcon(4)}</div>}
+                {onMoveRow && <div className="dropdown-item" onClick={() => onMoveRow && onMoveRow(2)}>{getIcon(5)}</div>}
                 <div className="dropdown-item" onClick={() => onEdit('edit')}>{getIcon(1)}</div>
                 <div className="dropdown-item" onClick={() => onEdit('remove')}>{getIcon(2)}</div>
                 <div className="dropdown-item" onClick={onPreview}>{getIcon(3)}</div>
