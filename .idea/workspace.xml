@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="439823f8-1106-4de8-93bb-72e4cf0e483f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react/components/Names/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/Names/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react/components/common/CustomTable/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/common/CustomTable/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +27,7 @@
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="5" />
-          <entry key="project.open.time.20" value="2" />
+          <entry key="project.open.time.20" value="3" />
           <entry key="project.open.time.21" value="4" />
           <entry key="project.open.time.22" value="4" />
           <entry key="project.open.time.24" value="3" />
@@ -46,7 +43,7 @@
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.70" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="60" />
+          <entry key="project.opened" value="61" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -66,7 +63,7 @@
           <entry key="lock" value="1" />
           <entry key="log" value="2" />
           <entry key="svg" value="11" />
-          <entry key="ts" value="51" />
+          <entry key="ts" value="52" />
           <entry key="txt" value="15" />
           <entry key="xml" value="1" />
           <entry key="yaml" value="1" />
@@ -80,7 +77,7 @@
           <entry key="JavaScript" value="643" />
           <entry key="PLAIN_TEXT" value="24" />
           <entry key="SVG" value="11" />
-          <entry key="TypeScript" value="51" />
+          <entry key="TypeScript" value="52" />
           <entry key="XML" value="1" />
           <entry key="YAML" value="1" />
           <entry key="yarn.lock" value="1" />
@@ -88,15 +85,15 @@
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="52" />
-          <entry key="TypeScriptServerServiceImpl" value="23" />
+          <entry key="ESLintLanguageService" value="53" />
+          <entry key="TypeScriptServerServiceImpl" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="5935" />
           <entry key="gitignore" value="7" />
-          <entry key="js" value="56731" />
+          <entry key="js" value="57076" />
           <entry key="json" value="2842" />
           <entry key="svg" value="11" />
           <entry key="txt" value="39" />
@@ -106,7 +103,7 @@
         <counts>
           <entry key="CSS" value="5935" />
           <entry key="JSON" value="2842" />
-          <entry key="JavaScript" value="56731" />
+          <entry key="JavaScript" value="57076" />
           <entry key="PLAIN_TEXT" value="46" />
           <entry key="SVG" value="11" />
         </counts>
@@ -118,10 +115,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomTable/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="253" column="45" selection-start-line="253" selection-start-column="45" selection-end-line="253" selection-end-column="45" />
+            <state relative-caret-position="477">
+              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#4696#5636#0" />
               </folding>
             </state>
           </provider>
@@ -130,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/react/components/Names/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7938">
-              <caret line="390" column="29" selection-start-line="390" selection-start-column="29" selection-end-line="390" selection-end-column="29" />
+            <state relative-caret-position="7749">
+              <caret line="381" column="61" lean-forward="true" selection-start-line="381" selection-start-column="61" selection-end-line="381" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -139,8 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/react/components/Identities/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3465">
-              <caret line="175" column="12" selection-start-line="175" selection-start-column="12" selection-end-line="175" selection-end-column="12" />
+            <state relative-caret-position="471">
+              <caret line="171" column="45" lean-forward="true" selection-start-line="171" selection-start-column="45" selection-end-line="171" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -156,8 +154,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>set_la</find>
-      <find>language</find>
       <find>scripts</find>
       <find>languages</find>
       <find>applica</find>
@@ -186,6 +182,8 @@
       <find>CustomDropzone</find>
       <find>deltaPosition</find>
       <find>draggabl</find>
+      <find>edit</find>
+      <find>eye</find>
     </findStrings>
     <replaceStrings>
       <replace>color: #626262;</replace>
@@ -595,11 +593,12 @@
       <workItem from="1572760700051" duration="4867000" />
       <workItem from="1572792013521" duration="26404000" />
       <workItem from="1572821755419" duration="123000" />
+      <workItem from="1572847182072" duration="4717000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="549972000" />
+    <option name="totallyTimeSpent" value="554689000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -612,6 +611,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17979905" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -666,13 +666,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomInput/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@fortawesome/fontawesome-svg-core/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -966,27 +959,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomTable/index.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/@fortawesome/free-solid-svg-icons/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="253" column="45" selection-start-line="253" selection-start-column="45" selection-end-line="253" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/react/components/Names/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7938">
-          <caret line="390" column="29" selection-start-line="390" selection-start-column="29" selection-end-line="390" selection-end-column="29" />
+        <state relative-caret-position="185">
+          <caret line="300" column="18" selection-start-line="300" selection-start-column="13" selection-end-line="300" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/react/components/Identities/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3465">
-          <caret line="175" column="12" selection-start-line="175" selection-start-column="12" selection-end-line="175" selection-end-column="12" />
+        <state relative-caret-position="471">
+          <caret line="171" column="45" lean-forward="true" selection-start-line="171" selection-start-column="45" selection-end-line="171" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/Names/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7749">
+          <caret line="381" column="61" lean-forward="true" selection-start-line="381" selection-start-column="61" selection-end-line="381" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomTable/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#4696#5636#0" />
+          </folding>
         </state>
       </provider>
     </entry>

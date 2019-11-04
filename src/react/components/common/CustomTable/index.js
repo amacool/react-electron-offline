@@ -10,7 +10,14 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThreeDots } from "../Icons/ThreeDots";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSortAmountUp, faSortAmountDown, faSort, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSortAmountUp,
+  faSortAmountDown,
+  faSort,
+  faTrashAlt,
+  faEye,
+  faEdit
+} from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import Draggable from 'react-draggable';
 import "./styles.css";
@@ -21,10 +28,13 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     position: 'absolute',
-    top: 36,
+    marginTop: '-33px',
     right: 0,
-    width: '125px',
-    zIndex: 1
+    height: '33px',
+    zIndex: 1,
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 }));
 
@@ -168,8 +178,13 @@ export const CustomTable = ({
         </TableCell>
       ))}
       {getExtraCell && (
-        <TableCell className="drag-disable" align="right" key='appendix' style={{ borderBottom: isDragPosition ? 'solid 1px red' : 'solid 1px #e0e0e0' }}>
-          {getExtraCell(getOriginalIndex(row), setDraggable).content}
+        <TableCell
+          className="drag-disable"
+          align="right"
+          key='appendix'
+          style={{ borderBottom: isDragPosition ? 'solid 1px red' : 'solid 1px #e0e0e0', transform: 'translate(0px, 0px)' }}
+        >
+          {getExtraCell(getOriginalIndex(row)).content}
         </TableCell>
       )}
     </>
@@ -224,15 +239,6 @@ export const CustomTable = ({
         </TableRow>
       </TableHead>
       <TableBody>
-        {/*{!draggable && tableItems.map((row, index) => (*/}
-          {/*<TableRow*/}
-            {/*key={index}*/}
-            {/*onClick={() => handleClick && handleClick(getOriginalIndex(row))}*/}
-            {/*onMouseDown={(e) => console.log(e.pageX)}*/}
-          {/*>*/}
-            {/*{getRowContent({ row, index, selectable, selected: selected[index] })}*/}
-          {/*</TableRow>*/}
-        {/*))}*/}
         {tableItems.map((row, index) => (
           <>
             <Draggable
@@ -247,8 +253,7 @@ export const CustomTable = ({
               <TableRow
                 style={{
                   backgroundColor: curOrder === index ? '#d2d2d2' : 'unset',
-                  opacity: curOrder === index ? '0.7' : '1',
-                  transform: 'none'
+                  opacity: curOrder === index ? '0.7' : '1'
                 }}
                 key={row.order}
                 onClick={() => handleClick && handleClick(getOriginalIndex(row))}
@@ -259,17 +264,6 @@ export const CustomTable = ({
             </Draggable>
           </>
         ))}
-        {/*{curOrder >= 0 && (*/}
-          {/*<Draggable*/}
-            {/*position={{ x: 0 , y: -(tableItems.length - curOrder) * rowHeight}}*/}
-          {/*>*/}
-            {/*<TableRow*/}
-              {/*key={`ghost-${curOrder}`}*/}
-            {/*>*/}
-              {/*{getRowContent({ row: tableItems[curOrder], index: curOrder })}*/}
-            {/*</TableRow>*/}
-          {/*</Draggable>*/}
-        {/*)}*/}
       </TableBody>
     </Table>
   );
@@ -278,7 +272,6 @@ export const CustomTable = ({
 export const TableBtnEditItem = ({
   onEdit,
   onPreview,
-  setDraggable,
   label1 = "Edit",
   label2 = "Remove",
   label3 = "Preview"
@@ -286,10 +279,18 @@ export const TableBtnEditItem = ({
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
-  const handleClickAway = (e) => {
-    // console.log('out', e);
-    // open && setDraggable(true);
+  const handleClickAway = () => {
     open && setOpen(false);
+  };
+
+  const getIcon = (label) => {
+    if (label === 'Edit') {
+      return <FontAwesomeIcon icon={faEdit} size="lg" />;
+    } else if (label === 'Remove') {
+      return <FontAwesomeIcon icon={faTrashAlt} size="lg" />;
+    } else if (label === 'Preview') {
+      return <FontAwesomeIcon icon={faEye} size="lg" />;
+    }
   };
 
   return (
@@ -298,18 +299,15 @@ export const TableBtnEditItem = ({
         <ClickAwayListener onClickAway={handleClickAway}>
           <div>
             <Button onClick={(e) => {
-              console.log('button', open);
-              setDraggable(open);
               setOpen((open) => !open);
-              e.stopPropagation();
             }}>
               <ThreeDots color='#4eb6ee'/>
             </Button>
             {open ? (
               <Paper className={classes.paper}>
-                <div className="dropdown-item" onClick={() => onEdit('edit')}>{label1}</div>
-                <div className="dropdown-item" onClick={() => onEdit('remove')}>{label2}</div>
-                <div className="dropdown-item" onClick={onPreview}>{label3}</div>
+                <div className="dropdown-item" onClick={() => onEdit('edit')}>{getIcon(label1)}</div>
+                <div className="dropdown-item" onClick={() => onEdit('remove')}>{getIcon(label2)}</div>
+                <div className="dropdown-item" onClick={onPreview}>{getIcon(label3)}</div>
               </Paper>
             ) : null}
           </div>
