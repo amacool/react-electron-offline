@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="439823f8-1106-4de8-93bb-72e4cf0e483f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/react/components/Names/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/Names/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react/components/common/CustomTable/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/react/components/common/CustomTable/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -93,7 +92,7 @@
         <counts>
           <entry key="css" value="5935" />
           <entry key="gitignore" value="7" />
-          <entry key="js" value="57076" />
+          <entry key="js" value="57104" />
           <entry key="json" value="2842" />
           <entry key="svg" value="11" />
           <entry key="txt" value="39" />
@@ -103,7 +102,7 @@
         <counts>
           <entry key="CSS" value="5935" />
           <entry key="JSON" value="2842" />
-          <entry key="JavaScript" value="57076" />
+          <entry key="JavaScript" value="57104" />
           <entry key="PLAIN_TEXT" value="46" />
           <entry key="SVG" value="11" />
         </counts>
@@ -115,10 +114,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomTable/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+            <state relative-caret-position="387">
+              <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#2850#3348#0" />
                 <element signature="e#4696#5636#0" />
               </folding>
             </state>
@@ -593,12 +593,12 @@
       <workItem from="1572760700051" duration="4867000" />
       <workItem from="1572792013521" duration="26404000" />
       <workItem from="1572821755419" duration="123000" />
-      <workItem from="1572847182072" duration="4717000" />
+      <workItem from="1572847182072" duration="4894000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="554689000" />
+    <option name="totallyTimeSpent" value="554866000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -982,10 +982,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/react/components/common/CustomTable/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+        <state relative-caret-position="387">
+          <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#2850#3348#0" />
             <element signature="e#4696#5636#0" />
           </folding>
         </state>

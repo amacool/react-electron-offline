@@ -63,7 +63,6 @@ export const CustomTable = ({
   const [positionArr, setPositionArr] = React.useState([]);
   const [newOrder, setNewOrder] = React.useState(-1);
   const [curOrder, setCurOrder] = React.useState(-1);
-  const rowHeight = 48;
   const getInitialPosition = (len) => {
     return [...Array(len)].map((item) => ({
       x: 0,
@@ -89,10 +88,19 @@ export const CustomTable = ({
       }));
       setTableItems(newItems);
     }
+
     // initialize delta position
     setPositionArr(getInitialPosition(tableItems.length));
     setNewOrder(-1);
     setCurOrder(-1);
+
+    // update original data
+    if (updateOrigin) {
+      let newItems = [...originalData];
+      const firstItem = newItems.splice(index, 1);
+      newItems = [...newItems.slice(0, newOrder), firstItem[0], ...newItems.slice(newOrder)];
+      updateOrigin(newItems);
+    }
   };
   const handleDrag = (e, ui, index) => {
     const newPosition = {
