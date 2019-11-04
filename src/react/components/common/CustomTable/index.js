@@ -11,8 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ThreeDots } from "../Icons/ThreeDots";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortAmountUp, faSortAmountDown, faSort, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import "./styles.css";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
+import Draggable from 'react-draggable';
+import "./styles.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,11 +34,12 @@ export const CustomTable = ({
   handleClick,
   handleRemove,
   getExtraCell,
+  updateOrigin,
+  originalData,
   sortable = true,
   sortDirection = true,
   selectable = false,
-  updateOrigin,
-  originalData
+  rowDraggable = false
 }) => {
   const [tableItems, setTableItems] = React.useState(data);
   const [isAscending, setIsAscending] = React.useState(sortDirection);
@@ -45,6 +47,62 @@ export const CustomTable = ({
   const [selected, setSelected] = React.useState([...Array(data.length)].map(() => false));
   const [selectedAll, setSelectedAll] = React.useState(false);
   const [removable, setRemovable] = React.useState(false);
+  const [draggable, setDraggable] = React.useState(rowDraggable);
+
+  // drag
+  const [positionArr, setPositionArr] = React.useState([]);
+  const [newOrder, setNewOrder] = React.useState(-1);
+  const [curOrder, setCurOrder] = React.useState(-1);
+  const rowHeight = 48;
+  const getInitialPosition = (len) => {
+    return [...Array(len)].map((item) => ({
+      x: 0,
+      y: 0
+    }));
+  };
+  React.useEffect(() => {
+    setPositionArr(getInitialPosition(tableItems.length));
+  }, [tableItems]);
+  const onDragStart = (index) => {
+    setCurOrder(index);
+  };
+  const onDragStop = (index) => {
+    if (index !== newOrder) {
+      let newItems = [...tableItems];
+      const firstItem = newItems.splice(index, 1);
+      newItems = [...newItems.slice(0, newOrder), firstItem[0], ...newItems.slice(newOrder)];
+
+      // update order property as well!
+      newItems.map((item, index) => ({
+        ...item,
+        order: index + 1
+      }));
+      setTableItems(newItems);
+    }
+    // initialize delta position
+    setPositionArr(getInitialPosition(tableItems.length));
+    setNewOrder(-1);
+    setCurOrder(-1);
+  };
+  const handleDrag = (e, ui, index) => {
+    const newPosition = {
+      x: 0,
+      y: ui.lastY,
+    };
+    let newPositionArr = [...positionArr];
+    newPositionArr[index] = newPosition;
+
+    // monitor order change, update order
+    const newOrder = index + (
+      newPosition.y >= 0
+        ? Math.floor((newPosition.y + 30) / 60.0)
+        : -Math.floor((Math.abs(newPosition.y) + 30) / 60.0)
+    );
+    if (newOrder >= 0 && newOrder < tableItems.length) {
+      setNewOrder(newOrder);
+    }
+    setPositionArr(newPositionArr);
+  };
 
   const sortTable = (sortByIndex) => {
     if (!tableItems || tableItems.length === 0) return;
@@ -90,6 +148,32 @@ export const CustomTable = ({
     });
     handleRemove(arr);
   };
+
+  const getRowContent = ({ row, index, selectable, selected, isDragPosition }) => (
+    <>
+      {selectable && (
+        <TableCell align="left" key="select-item" style={{ borderBottom: isDragPosition ? 'solid 1px red' : 'solid 1px #e0e0e0' }}>
+          <Checkbox
+            color="primary"
+            onChange={(e) => onChangeSelected(e.target.checked, index)}
+            onClick={(e) => e.stopPropagation()}
+            value="check"
+            checked={selected}
+          />
+        </TableCell>
+      )}
+      {Object.keys(row).map((item, index) => (
+        <TableCell align="left" key={index} style={{ borderBottom: isDragPosition ? 'solid 1px red' : 'solid 1px #e0e0e0' }}>
+          {row[item]}
+        </TableCell>
+      ))}
+      {getExtraCell && (
+        <TableCell className="drag-disable" align="right" key='appendix' style={{ borderBottom: isDragPosition ? 'solid 1px red' : 'solid 1px #e0e0e0' }}>
+          {getExtraCell(getOriginalIndex(row), setDraggable).content}
+        </TableCell>
+      )}
+    </>
+  );
 
   React.useEffect(() => setTableItems(data), [data]);
   React.useEffect(() => setSelected([...Array(data.length)].map(() => false)), [data]);
@@ -140,46 +224,87 @@ export const CustomTable = ({
         </TableRow>
       </TableHead>
       <TableBody>
+        {/*{!draggable && tableItems.map((row, index) => (*/}
+          {/*<TableRow*/}
+            {/*key={index}*/}
+            {/*onClick={() => handleClick && handleClick(getOriginalIndex(row))}*/}
+            {/*onMouseDown={(e) => console.log(e.pageX)}*/}
+          {/*>*/}
+            {/*{getRowContent({ row, index, selectable, selected: selected[index] })}*/}
+          {/*</TableRow>*/}
+        {/*))}*/}
         {tableItems.map((row, index) => (
-          <TableRow key={index} onClick={() => handleClick && handleClick(getOriginalIndex(row))}>
-            {selectable && (
-              <TableCell align="left" key="select-item">
-                <Checkbox
-                  color="primary"
-                  onChange={(e) => onChangeSelected(e.target.checked, index)}
-                  onClick={(e) => e.stopPropagation()}
-                  value="check"
-                  checked={selected[index]}
-                />
-              </TableCell>
-            )}
-            {Object.keys(row).map((item, index) => (
-              <TableCell align="left" key={index}>{row[item]}</TableCell>
-            ))}
-            {getExtraCell && (
-              <TableCell align="right" key='appendix'>{getExtraCell(getOriginalIndex(row)).content}</TableCell>
-            )}
-          </TableRow>
+          <>
+            <Draggable
+              axis="y"
+              cancel=".drag-disable"
+              disabled={!draggable}
+              onStart={() => onDragStart(index)}
+              onStop={() => onDragStop(index)}
+              onDrag={(e, ui) => handleDrag(e, ui, index)}
+              position={positionArr[index] ? positionArr[index] : {}}
+            >
+              <TableRow
+                style={{
+                  backgroundColor: curOrder === index ? '#d2d2d2' : 'unset',
+                  opacity: curOrder === index ? '0.7' : '1',
+                  transform: 'none'
+                }}
+                key={row.order}
+                onClick={() => handleClick && handleClick(getOriginalIndex(row))}
+                onMouseDown={(e) => console.log(e.pageX)}
+              >
+                {getRowContent({ row, index, selectable, selected: selected[index], isDragPosition: newOrder === index })}
+              </TableRow>
+            </Draggable>
+          </>
         ))}
+        {/*{curOrder >= 0 && (*/}
+          {/*<Draggable*/}
+            {/*position={{ x: 0 , y: -(tableItems.length - curOrder) * rowHeight}}*/}
+          {/*>*/}
+            {/*<TableRow*/}
+              {/*key={`ghost-${curOrder}`}*/}
+            {/*>*/}
+              {/*{getRowContent({ row: tableItems[curOrder], index: curOrder })}*/}
+            {/*</TableRow>*/}
+          {/*</Draggable>*/}
+        {/*)}*/}
       </TableBody>
     </Table>
   );
 };
 
-export const TableBtnEditItem = ({ onEdit, onPreview, label1 = "Edit", label2 = "Remove", label3 = "Preview" }) => {
+export const TableBtnEditItem = ({
+  onEdit,
+  onPreview,
+  setDraggable,
+  label1 = "Edit",
+  label2 = "Remove",
+  label3 = "Preview"
+}) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
-  const handleClickAway = () => {
-    setOpen(false);
+  const handleClickAway = (e) => {
+    // console.log('out', e);
+    // open && setDraggable(true);
+    open && setOpen(false);
   };
 
   return (
-    <div className='table-btn-edit-item' onClick={() => setOpen(!open)}>
+    <div className='table-btn-edit-item'>
       <div className={classes.root}>
         <ClickAwayListener onClickAway={handleClickAway}>
           <div>
-            <Button onClick={() => setOpen(!open)}><ThreeDots color='#4eb6ee'/></Button>
+            <Button onClick={(e) => {
+              console.log('button', open);
+              setDraggable(open);
+              setOpen((open) => !open);
+              e.stopPropagation();
+            }}>
+              <ThreeDots color='#4eb6ee'/>
+            </Button>
             {open ? (
               <Paper className={classes.paper}>
                 <div className="dropdown-item" onClick={() => onEdit('edit')}>{label1}</div>

@@ -371,13 +371,14 @@ function Names({ settings, handleSetValue, data, vocabularies, validating, langu
           ]}
           data={names1.map((item) => ({ order: item.order, type: item.type, script: item.script, name: item.name }))}
           originalData={names1}
-          getExtraCell={(index) => ({
+          getExtraCell={(index, setDraggable) => ({
             title: '',
             content: <TableBtnEditItem
               onEdit={(mode) => handleEdit1(mode, index)}
               onPreview={() => {
                 setPreview(names1[index]);
               }}
+              setDraggable={setDraggable}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
               label3={vocabularies[lang]['new']['common'][8]}
@@ -387,6 +388,7 @@ function Names({ settings, handleSetValue, data, vocabularies, validating, langu
             handleSetValue({names1: data, names});
             setNames1(data);
           }}
+          rowDraggable={true}
         />
       </div>
       <CustomModal
