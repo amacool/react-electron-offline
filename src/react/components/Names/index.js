@@ -378,6 +378,34 @@ function Names({ settings, handleSetValue, data, vocabularies, validating, langu
               onPreview={() => {
                 setPreview(names1[index]);
               }}
+              onMoveRow={(direction) => {
+                console.log(direction);
+                let newItems = [...names1];
+                let temp = Object.assign({}, newItems[index]);
+                if (direction === 1) {
+                  let newIndex = index === 0 ? names1.length - 1 : index - 1;
+                  newItems[index] = Object.assign({}, newItems[newIndex]);
+                  newItems[newIndex] = temp;
+                } else if (direction === 2) {
+                  let newIndex = index === names1.length - 1 ? 0 : index + 1;
+                  newItems[index] = Object.assign({}, newItems[newIndex]);
+                  newItems[newIndex] = temp;
+                }
+                handleSetValue({names1: newItems, names});
+                setNames1(newItems);
+                setEditIndex(-1);
+                setEditIndex1(-1);
+                setState({
+                  name: '',
+                  type: '',
+                  script: ''
+                });
+                setState1({
+                  name: '',
+                  type: '',
+                  script: ''
+                });
+              }}
               label1={vocabularies[lang]['new']['common'][1]}
               label2={vocabularies[lang]['new']['common'][2]}
               label3={vocabularies[lang]['new']['common'][8]}
@@ -386,6 +414,18 @@ function Names({ settings, handleSetValue, data, vocabularies, validating, langu
           updateOrigin={(data) => {
             handleSetValue({names1: data, names});
             setNames1(data);
+            setEditIndex(-1);
+            setEditIndex1(-1);
+            setState({
+              name: '',
+              type: '',
+              script: ''
+            });
+            setState1({
+              name: '',
+              type: '',
+              script: ''
+            });
           }}
           rowDraggable={true}
         />

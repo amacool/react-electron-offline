@@ -16,7 +16,9 @@ import {
   faSort,
   faTrashAlt,
   faEye,
-  faEdit
+  faEdit,
+  faArrowUp,
+  faArrowDown
 } from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import Draggable from 'react-draggable';
@@ -280,6 +282,7 @@ export const CustomTable = ({
 export const TableBtnEditItem = ({
   onEdit,
   onPreview,
+  onMoveRow,
   label1 = "Edit",
   label2 = "Remove",
   label3 = "Preview"
@@ -292,12 +295,16 @@ export const TableBtnEditItem = ({
   };
 
   const getIcon = (label) => {
-    if (label === 'Edit') {
+    if (label === 1) {
       return <FontAwesomeIcon icon={faEdit} size="lg" />;
-    } else if (label === 'Remove') {
+    } else if (label === 2) {
       return <FontAwesomeIcon icon={faTrashAlt} size="lg" />;
-    } else if (label === 'Preview') {
+    } else if (label === 3) {
       return <FontAwesomeIcon icon={faEye} size="lg" />;
+    } else if (label === 4) {
+      return <FontAwesomeIcon icon={faArrowUp} size="lg" />;
+    } else if (label === 5) {
+      return <FontAwesomeIcon icon={faArrowDown} size="lg" />;
     }
   };
 
@@ -305,17 +312,19 @@ export const TableBtnEditItem = ({
     <div className='table-btn-edit-item'>
       <div className={classes.root}>
         <ClickAwayListener onClickAway={handleClickAway}>
-          <div>
-            <Button onClick={(e) => {
+          <div onClick={() => open && setOpen(false)}>
+            <Button onClick={() => {
               setOpen((open) => !open);
             }}>
               <ThreeDots color='#4eb6ee'/>
             </Button>
             {open ? (
               <Paper className={classes.paper}>
-                <div className="dropdown-item" onClick={() => onEdit('edit')}>{getIcon(label1)}</div>
-                <div className="dropdown-item" onClick={() => onEdit('remove')}>{getIcon(label2)}</div>
-                <div className="dropdown-item" onClick={onPreview}>{getIcon(label3)}</div>
+                <div className="dropdown-item" onClick={() => onMoveRow(1)}>{getIcon(4)}</div>
+                <div className="dropdown-item" onClick={() => onMoveRow(2)}>{getIcon(5)}</div>
+                <div className="dropdown-item" onClick={() => onEdit('edit')}>{getIcon(1)}</div>
+                <div className="dropdown-item" onClick={() => onEdit('remove')}>{getIcon(2)}</div>
+                <div className="dropdown-item" onClick={onPreview}>{getIcon(3)}</div>
               </Paper>
             ) : null}
           </div>
