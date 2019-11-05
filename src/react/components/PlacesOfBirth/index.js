@@ -326,14 +326,14 @@ function PlacesOfBirth({ settings, handleSetValue, data, vocabularies, validatin
       <div className="content content-body">
         <CustomTable
           header={[
-            vocabularies[lang]['new']['addresses'][0],
-            vocabularies[lang]['new']['addresses'][6],
+            vocabularies[lang]['new']['common'][4],
+            vocabularies[lang]['new']['features'][0],
             vocabularies[lang]['new']['common'][3]
           ]}
           data={addresses.map((item) =>
             ({
-              a: `${item.street} ${item.city} ${item.province} ${item.zipCode} ${item.country}`,
-              b: `${item.region} ${item.latitude} ${item.longitude}`,
+              a: item.address ? vocabularies[lang]['new']['addresses'][0] : vocabularies[lang]['new']['addresses'][6],
+              b: item.address ? `${item.street} ${item.city} ${item.province} ${item.zipCode} ${item.country}` : `${item.region} ${item.latitude} ${item.longitude}`,
               c: item.notes
             })
           )}
