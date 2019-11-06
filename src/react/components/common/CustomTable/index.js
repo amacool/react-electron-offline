@@ -66,7 +66,7 @@ export const CustomTable = ({
   const [newOrder, setNewOrder] = React.useState(-1);
   const [curOrder, setCurOrder] = React.useState(-1);
   const getInitialPosition = (len) => {
-    return [...Array(len)].map((item) => ({
+    return [...Array(len)].map(() => ({
       x: 0,
       y: 0
     }));
@@ -248,34 +248,33 @@ export const CustomTable = ({
               }
             </TableCell>
           ))}
-          {getExtraCell && <TableCell>{getExtraCell(0).title}</TableCell>}
+          {getExtraCell && <TableCell key="extra-cell">{getExtraCell(0).title}</TableCell>}
         </TableRow>
       </TableHead>
       <TableBody>
         {tableItems.map((row, index) => (
-          <>
-            <Draggable
-              axis="y"
-              cancel=".drag-disable"
-              disabled={!draggable}
-              onStart={() => onDragStart(index)}
-              onStop={() => onDragStop(index)}
-              onDrag={(e, ui) => handleDrag(e, ui, index)}
-              position={positionArr[index] ? positionArr[index] : {}}
+          <Draggable
+            key={index}
+            axis="y"
+            cancel=".drag-disable"
+            disabled={!draggable}
+            onStart={() => onDragStart(index)}
+            onStop={() => onDragStop(index)}
+            onDrag={(e, ui) => handleDrag(e, ui, index)}
+            position={positionArr[index] ? positionArr[index] : {}}
+          >
+            <TableRow
+              style={{
+                backgroundColor: curOrder === index ? '#d2d2d2' : 'unset',
+                opacity: curOrder === index ? '0.7' : '1'
+              }}
+              key={row.order}
+              onClick={() => handleClick && handleClick(getOriginalIndex(row))}
+              onMouseDown={(e) => console.log(e.pageX)}
             >
-              <TableRow
-                style={{
-                  backgroundColor: curOrder === index ? '#d2d2d2' : 'unset',
-                  opacity: curOrder === index ? '0.7' : '1'
-                }}
-                key={row.order}
-                onClick={() => handleClick && handleClick(getOriginalIndex(row))}
-                onMouseDown={(e) => console.log(e.pageX)}
-              >
-                {getRowContent({ row, index, selectable, selected: selected[index], isDragPosition: newOrder === index })}
-              </TableRow>
-            </Draggable>
-          </>
+              {getRowContent({ row, index, selectable, selected: selected[index], isDragPosition: newOrder === index })}
+            </TableRow>
+          </Draggable>
         ))}
       </TableBody>
     </Table>

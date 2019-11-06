@@ -3,16 +3,21 @@ import connect from "react-redux/es/connect/connect";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
 import { CustomTable, TableBtnEditItem } from "../common/CustomTable";
-import { CustomInput } from "../common/CustomInput";
 import { CustomCheckbox } from "../common/CustomCheckbox";
 import { CustomDatePicker } from "../common/CustomDatePicker";
 import { CustomHeader } from "../common/CustomHeader";
 import { Preview } from "../common/Preview";
 import { CustomModal } from "../common/CustomModal";
 import "./styles.css";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Select from "@material-ui/core/Select/Select";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import FormControl from "@material-ui/core/FormControl/FormControl";
 
 function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
+  const categoryLabel = React.useRef(null);
+  const [categoryLabelWidth, setCategoryLabelWidth] = React.useState(0);
   const [state, setState] = React.useState({
     specific: true,
     date: '',
@@ -26,6 +31,11 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
   const [editIndex, setEditIndex] = React.useState(-1);
   const [validation, setValidation] = React.useState(false);
   const [preview, setPreview] = React.useState(false);
+  const subsets = settings.dobSubset && settings.dobSubset[lang] ? settings.dobSubset[lang] : [];
+
+  React.useEffect(() => {
+    setCategoryLabelWidth(categoryLabel.current && categoryLabel.current.offsetWidth);
+  }, []);
 
   const handleChange = name => e => {
     if (name === 'specific') {
@@ -164,16 +174,36 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 value={state.range}
               />
             </div>
-            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-              <CustomInput
-                value={state.subset}
-                id="subset"
-                label={vocabularies[lang]['new']['dates of birth'][3]}
-                required={true}
-                onChange={handleChange("subset")}
-                validation={validation && state.range}
-                disabled={!state.range}
-              />
+            <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15 mt-26`}>
+              <FormControl variant="outlined" className={`form-control custom-outlined-form-control ${validation && state.range && !state.subset ? 'select-empty' : ''}`}>
+                <InputLabel ref={categoryLabel} htmlFor="country" className="custom-select-label">
+                  {vocabularies[lang]['new']['dates of birth'][3]}<b>*</b>
+                </InputLabel>
+                <Select
+                  value={state.subset}
+                  onChange={handleChange('subset')}
+                  labelWidth={categoryLabelWidth}
+                  inputProps={{
+                    name: 'country',
+                    id: 'country',
+                  }}
+                  className="custom-select"
+                  placeholder="Primary"
+                  disabled={!state.range}
+                >
+                  <MenuItem value="">
+                    <em>{vocabularies[lang]['new']['common'][5]}</em>
+                  </MenuItem>
+                  {subsets && Object.keys(subsets).map((itemKey, index) => (
+                    <MenuItem
+                      value={subsets[itemKey]}
+                      key={index}
+                    >
+                      {subsets[itemKey]}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
           </div>
 
@@ -239,7 +269,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
           data={dates.map((item) =>
             ({
               a: item.specific ? vocabularies[lang]['new']['dates of birth'][0] : vocabularies[lang]['new']['dates of birth'][2],
-              b: item.specific ? item.date : `${item.subset} ${item.from} ${item.to}`,
+              b: item.specific ? item.date : `${item.from} ${item.to}`,
               c: item.notes
             })
           )}
