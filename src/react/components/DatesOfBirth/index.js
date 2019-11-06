@@ -232,14 +232,14 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       <div className="content content-body">
         <CustomTable
           header={[
-            vocabularies[lang]['new']['dates of birth'][0],
-            vocabularies[lang]['new']['dates of birth'][2],
+            vocabularies[lang]['new']['common'][4],
+            vocabularies[lang]['new']['features'][0],
             vocabularies[lang]['new']['common'][3]
           ]}
           data={dates.map((item) =>
             ({
-              a: item.date,
-              b: item.subset,
+              a: item.specific ? vocabularies[lang]['new']['dates of birth'][0] : vocabularies[lang]['new']['dates of birth'][2],
+              b: item.specific ? item.date : `${item.subset} ${item.from} ${item.to}`,
               c: item.notes
             })
           )}
