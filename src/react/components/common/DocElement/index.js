@@ -34,6 +34,6 @@ export const DocTypeIcon = ({ type, status }) => {
 export const DocInfo = ({ info }) => (
   <div className="file-info">
     <div className="file-name">{info.name}</div>
-    <div className="file-path">{info.path}</div>
+    {/*<div className="file-path">{info.path}</div>*/}
   </div>
 );

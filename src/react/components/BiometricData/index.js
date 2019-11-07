@@ -242,13 +242,6 @@ function BiometricData({ settings, handleSetValue, data, vocabularies, validatin
                 </div>
                 <div className="input-container">
                   <input type="text" placeholder={vocabularies[lang]['new']['biometric data'][2]} value={attachment.path || ''} onChange={() => {}} />
-                  {/*<Button*/}
-                    {/*variant="contained"*/}
-                    {/*className={`add-button ${lang !== 'EN' && lang !== 'CN' ? 'btn-bg' : ''}`}*/}
-                    {/*onClick={handleAdd}*/}
-                  {/*>*/}
-                    {/*{vocabularies[lang]['new']['biometric data'][3]}*/}
-                  {/*</Button>*/}
                 </div>
               </div>
             </div>
