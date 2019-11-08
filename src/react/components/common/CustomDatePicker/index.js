@@ -46,6 +46,7 @@ export const CustomDatePicker = ({ onChange, label, required, value, locale = "e
             firstDayOfWeek: FIRST_DAY_OF_WEEK[localeLower],
             labels: LABELS[localeLower]
           }}
+          inputProps={{ disabled }}
           parseDate={parseDate}
           placeholder="MM/DD/YYYY"
           onDayChange={(v) => v && onChange({ target : { value: dateFnsFormat(v, FORMAT) } })}

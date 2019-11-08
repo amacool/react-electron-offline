@@ -269,7 +269,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
           data={dates.map((item) =>
             ({
               a: item.specific ? vocabularies[lang]['new']['dates of birth'][0] : vocabularies[lang]['new']['dates of birth'][2],
-              b: item.specific ? item.date : `${item.from} ${item.to}`,
+              b: item.specific ? item.date : `${item.from} - ${item.to}`,
               c: item.notes
             })
           )}
