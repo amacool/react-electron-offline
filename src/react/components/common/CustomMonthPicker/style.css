@@ -1,0 +1,51 @@
+.custom-month-picker {
+  position: relative;
+}
+
+.custom-month-picker label {
+  color: #4eb6ee;
+  font-weight: 600;
+}
+
+.custom-month-picker label b {
+  color: black;
+}
+
+.custom-month-picker .ryms-container {
+  width: 282px;
+  position: absolute;
+  top: 73px;
+}
+
+.custom-month-picker-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  padding: 0 13px 0 10px;
+  background: white;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.custom-month-picker-input.disabled {
+  border: solid 1px #b7b7b7;
+}
+
+.custom-month-picker-input input {
+  padding: 15px 0;
+  width: 93%;
+  outline: none;
+  border: none;
+  background-color: white;
+}
+
+.custom-month-picker-input.input-empty {
+  border-color: red;
+}
+
+.custom-month-picker-input .calendar-icon {
+  width: 15px;
+  height: 15px;
+}

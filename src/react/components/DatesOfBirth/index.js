@@ -8,11 +8,12 @@ import { CustomDatePicker } from "../common/CustomDatePicker";
 import { CustomHeader } from "../common/CustomHeader";
 import { Preview } from "../common/Preview";
 import { CustomModal } from "../common/CustomModal";
+import { CustomMonthPicker } from "../common/CustomMonthPicker";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-import { isValidDate } from "../../common/helper";
+import { isValidDate, isValidYearMonth } from "../../common/helper";
 import "./styles.css";
 
 function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
@@ -23,7 +24,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
     specific: true,
     date: '',
     range: false,
-    subset: '',
+    subset: 'FULL',
     from: '',
     to: '',
     notes: ''
@@ -83,7 +84,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       specific: false,
       date: '',
       range: false,
-      subset: '',
+      subset: 'FULL',
       from: '',
       to: '',
       notes: ''
@@ -104,7 +105,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
         specific: false,
         date: '',
         range: false,
-        subset: '',
+        subset: 'FULL',
         from: '',
         to: '',
         notes: ''
@@ -127,8 +128,10 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       state.subset === ''
       || state.from === ''
       || state.to === ''
-      || !isValidDate(state.from)
-      || !isValidDate(state.to)
+      || (state.subset === 'FULL' && !isValidDate(state.from))
+      || (state.subset === 'YEAR-MONTH' && !isValidYearMonth(state.from))
+      || (state.subset === 'FULL' && !isValidDate(state.to))
+      || (state.subset === 'YEAR-MONTH' && !isValidYearMonth(state.to))
     )) {
       setValidation(true);
       // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
@@ -212,7 +215,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
 
           <div className="inline mb-20">
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-              <CustomDatePicker
+              {state.subset === 'FULL' && <CustomDatePicker
                 value={state.from}
                 required={true}
                 label={vocabularies[lang]['new']['dates of birth'][4]}
@@ -220,10 +223,19 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 locale={lang}
                 validation={validation && state.range}
                 disabled={!state.range}
-              />
+              />}
+              {state.subset === 'YEAR-MONTH' && <CustomMonthPicker
+                id="month-picker-1"
+                value={state.from}
+                required={true}
+                label={vocabularies[lang]['new']['dates of birth'][4]}
+                onChange={handleChange('from')}
+                validation={validation && state.range}
+                disabled={!state.range}
+              />}
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-              <CustomDatePicker
+              {state.subset === 'FULL' && <CustomDatePicker
                 value={state.to}
                 required={true}
                 label={vocabularies[lang]['new']['dates of birth'][5]}
@@ -231,7 +243,16 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 locale={lang}
                 validation={validation && state.range}
                 disabled={!state.range}
-              />
+              />}
+              {state.subset === 'YEAR-MONTH' && <CustomMonthPicker
+                id="month-picker-2"
+                value={state.to}
+                required={true}
+                label={vocabularies[lang]['new']['dates of birth'][5]}
+                onChange={handleChange('to')}
+                validation={validation && state.range}
+                disabled={!state.range}
+              />}
             </div>
             <div className="col" />
           </div>

@@ -190,7 +190,6 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
           </div>
           <div className="inline mb-20">
             <div className="col">
-              {/*//{`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>*/}
               <CustomInput
                 value={state.issuingCity}
                 id="issuing-city"

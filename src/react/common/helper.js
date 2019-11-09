@@ -33,3 +33,8 @@ export function isValidDate(dateString) {
   // Check the range of the day
   return day > 0 && day <= monthLength[month - 1];
 }
+
+export function isValidYearMonth(dateStr) {
+  if (dateStr.length !== 7) return false;
+  return /[\d]{2}\/[\d]{4}/.test(dateStr);
+}
