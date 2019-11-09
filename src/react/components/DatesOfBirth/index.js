@@ -8,11 +8,12 @@ import { CustomDatePicker } from "../common/CustomDatePicker";
 import { CustomHeader } from "../common/CustomHeader";
 import { Preview } from "../common/Preview";
 import { CustomModal } from "../common/CustomModal";
-import "./styles.css";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
+import { isValidDate } from "../../common/helper";
+import "./styles.css";
 
 function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
@@ -117,7 +118,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
     if (!state.specific && !state.range) {
       return false;
     }
-    if (state.specific && state.date === '') {
+    if (state.specific && (state.date === '' || !isValidDate(state.date))) {
       setValidation(true);
       // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
       return false;
@@ -126,6 +127,8 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       state.subset === ''
       || state.from === ''
       || state.to === ''
+      || !isValidDate(state.from)
+      || !isValidDate(state.to)
     )) {
       setValidation(true);
       // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
