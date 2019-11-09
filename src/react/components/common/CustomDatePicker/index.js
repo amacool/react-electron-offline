@@ -1,10 +1,9 @@
 import React from "react";
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import { DateUtils } from 'react-day-picker';
-import dateFnsFormat from 'date-fns/format';
-import dateFnsParse from 'date-fns/parse';
-import MomentLocaleUtils from 'react-day-picker/moment';
-import CalendarIcon from '../../../assets/icons/calendar/calendar.svg';
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import dateFnsFormat from "date-fns/format";
+import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment';
+import { isValidDate } from "../../../common/helper";
+import CalendarIcon from "../../../assets/icons/calendar/calendar.svg";
 import {
   WEEKDAYS_SHORT,
   MONTHS,
@@ -12,16 +11,16 @@ import {
   FIRST_DAY_OF_WEEK,
   LABELS
 } from "./locale";
-import 'react-day-picker/lib/style.css';
-import './styles.css';
+import "react-day-picker/lib/style.css";
+import "./styles.css";
 
-function parseDate(str, format, locale) {
-  const parsed = dateFnsParse(str, format, { locale });
-  if (DateUtils.isDate(parsed)) {
-    return parsed;
-  }
-  return undefined;
-}
+// function parseDate(str, format, locale) {
+//   const parsed = dateFnsParse(str, format, { locale });
+//   if (DateUtils.isDate(parsed)) {
+//     return parsed;
+//   }
+//   return undefined;
+// }
 
 export const CustomDatePicker = ({ onChange, label, required, value, locale = "en", validation, disabled, className }) => {
   const FORMAT = 'MM/dd/yyyy';
@@ -36,7 +35,8 @@ export const CustomDatePicker = ({ onChange, label, required, value, locale = "e
         <DayPickerInput
           id="day-picker-input"
           value={value}
-          format={FORMAT}
+          formatDate={formatDate}
+          parseDate={parseDate}
           localeUtils={MomentLocaleUtils}
           dayPickerProps={{
             locale: localeLower,
@@ -46,10 +46,16 @@ export const CustomDatePicker = ({ onChange, label, required, value, locale = "e
             firstDayOfWeek: FIRST_DAY_OF_WEEK[localeLower],
             labels: LABELS[localeLower]
           }}
-          inputProps={{ disabled }}
-          parseDate={parseDate}
+          inputProps={{
+            disabled,
+            onChange: (e) => {
+              onChange(e);
+            }
+          }}
           placeholder="MM/DD/YYYY"
-          onDayChange={(v) => v && onChange({ target : { value: dateFnsFormat(v, FORMAT) } })}
+          onDayChange={(v) => {
+            v && onChange({ target : { value: dateFnsFormat(v, FORMAT) } });
+          }}
           disabled={disabled}
         />
         <img className="calendar-icon" src={CalendarIcon} alt='' />
