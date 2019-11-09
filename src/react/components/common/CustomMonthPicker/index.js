@@ -20,9 +20,22 @@ export const CustomMonthPicker = ({
   const month = isValidYearMonth(value) ? value.split('/')[0] : date.getMonth();
 
   const handleClose = () => {
-    console.log('click out');
     setOpen(false);
   };
+
+  const handleClickOnWindow = (e) => {
+    if (e.target.className === "ryms-clickout") {
+      setOpen(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('click', handleClickOnWindow);
+    return () => {
+      console.log('remove handler');
+      window.removeEventListener('click', handleClickOnWindow);
+    }
+  }, []);
 
   return (
     <div className="custom-month-picker">
@@ -39,7 +52,6 @@ export const CustomMonthPicker = ({
         month={month}
         onChange={(year, month) => {
           let tMonth = (month + 1).toString().length === 1 ? '0' + (month + 1) : month + 1;
-          console.log(`${tMonth}/${year}`);
           onChange({ target: { value: `${tMonth}/${year}` } });
         }}
         open={open}
