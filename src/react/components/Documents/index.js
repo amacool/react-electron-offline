@@ -14,6 +14,7 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import "./styles.css";
+import {isValidDate} from "../../common/helper";
 
 function Documents({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
@@ -116,7 +117,9 @@ function Documents({ settings, handleSetValue, data, vocabularies, validating })
       state.issuedCountry === '' ||
       state.issuingCountry === '' ||
       state.issuedDate === '' ||
-      state.expirationDate === ''
+      state.expirationDate === '' ||
+      !isValidDate(state.issuedDate) ||
+      !isValidDate(state.expirationDate)
     ) {
       setValidation(true);
       // smalltalk.alert(vocabularies[lang]['messages'][0], vocabularies[lang]['messages'][5]);
