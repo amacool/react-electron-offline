@@ -86,7 +86,6 @@ function Identities({ settings, handleSetValue, setIdentityType, setCurrentStep,
     setIdentityType(type);
     setCurrentStep(2);
   };
-  console.log(identities);
 
   return (
     <div className="start-page Identities" id="IDENTITIES">

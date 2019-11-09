@@ -1,9 +1,9 @@
 import React from "react";
 import YearMonthSelector from "react-year-month-selector";
 import CalendarIcon from "../../../assets/icons/calendar/calendar.svg";
+import { isValidYearMonth } from "../../../common/helper";
 import "react-year-month-selector/src/styles/index.css";
 import "./style.css";
-import {isValidYearMonth} from "../../../common/helper";
 
 export const CustomMonthPicker = ({
   id,
@@ -16,8 +16,8 @@ export const CustomMonthPicker = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const date = new Date();
-  const year = isValidYearMonth(value) ? value.split('/')[1] : date.getFullYear();
-  const month = isValidYearMonth(value) ? value.split('/')[0] : date.getMonth();
+  const year = isValidYearMonth(value) ? parseInt(value.split('/')[1]) : date.getFullYear();
+  const month = isValidYearMonth(value) ? parseInt(value.split('/')[0]) - 1 : date.getMonth();
 
   const handleClose = () => {
     setOpen(false);
@@ -32,7 +32,6 @@ export const CustomMonthPicker = ({
   React.useEffect(() => {
     window.addEventListener('click', handleClickOnWindow);
     return () => {
-      console.log('remove handler');
       window.removeEventListener('click', handleClickOnWindow);
     }
   }, []);

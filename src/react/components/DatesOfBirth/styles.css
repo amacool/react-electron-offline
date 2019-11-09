@@ -1,3 +1,11 @@
 .specific-date .custom-date-picker {
   width: 42%;
 }
+
+#DATES-OF-BIRTH .year-picker {
+  margin-top: 26px;
+}
+
+.custom-outlined-form-control.year-picker label.custom-select-label {
+  top: 4px;
+}

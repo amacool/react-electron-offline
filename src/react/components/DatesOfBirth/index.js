@@ -15,6 +15,7 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import { isValidDate, isValidYearMonth } from "../../common/helper";
 import "./styles.css";
+import {CustomYearPicker} from "../common/CustomYearPicker";
 
 function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating }) {
   const lang = localStorage.getItem('lang') || 'EN';
@@ -150,7 +151,7 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
       <div className="content content-header">
         <div className="row">
           <div className="inline mb-20">
-            <div className={`col w-31 ${lang === 'AR' ? 'ml' : 'mr'}mr-15`}>
+            <div className={`col w-31 ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               <CustomCheckbox
                 label={vocabularies[lang]['new']['dates of birth'][0]}
                 onChange={handleChange('specific')}
@@ -215,24 +216,59 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
 
           <div className="inline mb-20">
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
-              {state.subset === 'FULL' && <CustomDatePicker
-                value={state.from}
-                required={true}
-                label={vocabularies[lang]['new']['dates of birth'][4]}
-                onChange={handleChange('from')}
-                locale={lang}
-                validation={validation && state.range}
-                disabled={!state.range}
-              />}
-              {state.subset === 'YEAR-MONTH' && <CustomMonthPicker
-                id="month-picker-1"
-                value={state.from}
-                required={true}
-                label={vocabularies[lang]['new']['dates of birth'][4]}
-                onChange={handleChange('from')}
-                validation={validation && state.range}
-                disabled={!state.range}
-              />}
+              {state.subset === 'FULL' && (
+                <CustomDatePicker
+                  value={state.from}
+                  required={true}
+                  label={vocabularies[lang]['new']['dates of birth'][4]}
+                  onChange={handleChange('from')}
+                  locale={lang}
+                  validation={validation && state.range}
+                  disabled={!state.range}
+                />
+              )}
+              {state.subset === 'YEAR' && (
+                <FormControl variant="outlined" className={`form-control custom-outlined-form-control year-picker ${validation && state.range && !state.from ? 'select-empty' : ''}`}>
+                  <InputLabel ref={categoryLabel} htmlFor="country" className="custom-select-label">
+                    {vocabularies[lang]['new']['dates of birth'][4]}<b>*</b>
+                  </InputLabel>
+                  <Select
+                    value={state.from}
+                    onChange={handleChange('from')}
+                    labelWidth={categoryLabelWidth}
+                    inputProps={{
+                      name: 'year',
+                      id: 'year',
+                    }}
+                    className="custom-select"
+                    placeholder="Primary"
+                    disabled={!state.range}
+                  >
+                    <MenuItem value="">
+                      <em>{vocabularies[lang]['new']['common'][5]}</em>
+                    </MenuItem>
+                    {[...Array(120)].map((itemKey, index) => (
+                      <MenuItem
+                        value={(new Date()).getFullYear() - index}
+                        key={index}
+                      >
+                        {(new Date()).getFullYear() - index}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              {state.subset === 'YEAR-MONTH' && (
+                <CustomMonthPicker
+                  id="month-picker-1"
+                  value={state.from}
+                  required={true}
+                  label={vocabularies[lang]['new']['dates of birth'][4]}
+                  onChange={handleChange('from')}
+                  validation={validation && state.range}
+                  disabled={!state.range}
+                />
+              )}
             </div>
             <div className={`col ${lang === 'AR' ? 'ml' : 'mr'}-15`}>
               {state.subset === 'FULL' && <CustomDatePicker
@@ -244,6 +280,37 @@ function DatesOfBirth({ settings, handleSetValue, data, vocabularies, validating
                 validation={validation && state.range}
                 disabled={!state.range}
               />}
+              {state.subset === 'YEAR' && (
+                <FormControl variant="outlined" className={`form-control custom-outlined-form-control year-picker ${validation && state.range && !state.to ? 'select-empty' : ''}`}>
+                  <InputLabel ref={categoryLabel} htmlFor="country" className="custom-select-label">
+                    {vocabularies[lang]['new']['dates of birth'][5]}<b>*</b>
+                  </InputLabel>
+                  <Select
+                    value={state.to}
+                    onChange={handleChange('to')}
+                    labelWidth={categoryLabelWidth}
+                    inputProps={{
+                      name: 'year',
+                      id: 'year',
+                    }}
+                    className="custom-select"
+                    placeholder="Primary"
+                    disabled={!state.range}
+                  >
+                    <MenuItem value="">
+                      <em>{vocabularies[lang]['new']['common'][5]}</em>
+                    </MenuItem>
+                    {[...Array(120)].map((itemKey, index) => (
+                      <MenuItem
+                        value={(new Date()).getFullYear() - index}
+                        key={index}
+                      >
+                        {(new Date()).getFullYear() - index}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
               {state.subset === 'YEAR-MONTH' && <CustomMonthPicker
                 id="month-picker-2"
                 value={state.to}

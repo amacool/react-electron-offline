@@ -2,6 +2,8 @@
 .custom-date-picker label {
   color: #4eb6ee;
   font-weight: 600;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
 }
 
 .custom-date-picker label b {

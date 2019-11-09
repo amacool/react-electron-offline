@@ -1,0 +1,74 @@
+.custom-year-picker {
+  position: relative;
+}
+.custom-year-picker label {
+  color: #4eb6ee;
+  font-weight: 600;
+}
+
+.custom-year-picker label b {
+  color: black;
+}
+
+.custom-year-picker .picker-panel {
+  z-index: 100;
+  top: 46px !important;
+  left: 0;
+  width: 100%;
+  height: 240px;
+}
+
+.custom-year-picker .year-picker-wrapper {
+  width: 100%;
+  height: 45px;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.custom-year-picker .year-picker {
+  width: 100%;
+  height: 45px;
+  border: none;
+}
+
+.custom-year-picker .year-picker .input-wrapper i {
+  display: none;
+}
+
+.year-picker .year-input {
+  cursor: pointer;
+}
+
+.year-picker:hover {
+  border-color: black !important;
+}
+
+.year-picker .nav-button {
+  cursor: pointer;
+  outline: none;
+}
+
+.custom-year-picker .overlay-picker {
+  width: 100%;
+  height: 45px;
+  border: solid 1px #b7b7b7;
+  border-radius: 4px;
+  background: white;
+  margin-top: 5px;
+  position: absolute;
+  z-index: 1;
+}
+
+.custom-year-picker img {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  right: 13px;
+  top: 41px;
+  z-index: 1;
+}
+
+.custom-year-picker .year-picker-wrapper.empty-year {
+  border-color: red;
+}

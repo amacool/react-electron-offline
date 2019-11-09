@@ -5,6 +5,8 @@
 .custom-month-picker label {
   color: #4eb6ee;
   font-weight: 600;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
 }
 
 .custom-month-picker label b {
@@ -12,7 +14,7 @@
 }
 
 .custom-month-picker .ryms-container {
-  width: 282px;
+  width: 247px;
   position: absolute;
   top: 73px;
 }
@@ -48,4 +50,17 @@
 .custom-month-picker-input .calendar-icon {
   width: 15px;
   height: 15px;
+}
+
+.custom-month-picker .ryms-selected_cell {
+  background-color: #00adef;
+}
+
+.custom-month-picker .ryms-col_mp:hover {
+  background-color: #00adef;
+  color: white;
+}
+
+.custom-month-picker .ryms-selected_date_mp {
+  color: #00adef;
 }
