@@ -6,7 +6,6 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button/Button";
 import { CustomTable } from "../common/CustomTable";
-import { CustomInput } from "../common/CustomInput";
 import { CustomHeader } from "../common/CustomHeader";
 import "./styles.css";
 
