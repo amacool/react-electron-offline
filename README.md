@@ -1,4 +1,4 @@
-# UNICC Offline React-Electron App
+# Offline React-Electron App
 
 ## Project Development Start
 
