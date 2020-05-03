@@ -1,7 +1,7 @@
 {
-  "name": "unicc-offline",
+  "name": "offline electron",
   "version": "0.1.0",
-  "productName": "Offline App of Unicc",
+  "productName": "Offline App",
   "main": "electron/main.js",
   "private": true,
   "dependencies": {
@@ -56,8 +56,8 @@
     ],
     "publish": {
       "provider": "github",
-      "repo": "unicc-offline",
-      "owner": "alexandarnikita"
+      "repo": "offline",
+      "owner": "amacool"
     }
   },
   "eslintConfig": {
